@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frank's Hello World | MGMT 342</title>
+    <style>
+        :root {
+            --guardians-navy: #0C2340;
+            --guardians-red: #E31937;
+            --guardians-white: #FFFFFF;
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--guardians-navy);
+            color: var(--guardians-white);
+            padding: 2rem 5%;
+            border-bottom: 5px solid var(--guardians-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 5%;
+            max-width: 1200px;
+        }
+
+        .hero-section {
+            background: var(--guardians-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 8px solid var(--guardians-red);
+        }
+
+        .hero-section h2 {
+            color: var(--guardians-navy);
+            margin-top: 0;
+        }
+
+        .placeholder-content {
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 2px dashed #ccc;
+            color: #888;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: var(--guardians-navy);
+            color: var(--guardians-white);
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: var(--guardians-red);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Frank's Hello World | MGMT 342</h1>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <span class="status-badge">Phase 1: Deployment</span>
+            <h2>Hello World!</h2>
+            <p>This is the initial deployment for MGMT 342. The connection to GitHub Pages is being established and verified with this static template.</p>
+        </section>
+
+        <section class="placeholder-content">
+            <p>Future interactive features and semester projects will be integrated here.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Version 1.0 | Deployed: April 7, 2026</p>
+    </footer>
+
+</body>
+</html>
