@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frank's MGMT 342 Portfolio | Guardians 2026 Hub</title>
+    <title>Frank Kroto IV | MGMT 342 Portfolio</title>
     <style>
         :root {
             --guardians-navy: #0C2340;
@@ -25,6 +25,33 @@
         
         section { margin-bottom: 3rem; }
         .section-header { border-left: 5px solid var(--guardians-red); padding-left: 1rem; margin-bottom: 1.5rem; color: var(--guardians-navy); }
+
+        /* PROFESSIONAL PROFILE SECTION */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2.5rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 4px solid var(--guardians-red);
+            background: #e2e8f0;
+        }
+
+        .profile-text h2 { margin-top: 0; color: var(--guardians-navy); font-size: 2.2rem; }
+        .profile-text p { margin: 0.5rem 0; color: var(--text-muted); font-size: 1.1rem; }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tag { background: var(--guardians-navy); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; }
 
         /* ROSTER CAROUSEL */
         .roster-carousel {
@@ -50,45 +77,60 @@
         .player-card-mini h4 { margin: 0.5rem 0 0.2rem; color: var(--guardians-navy); }
         .player-card-mini span { color: var(--guardians-red); font-weight: bold; font-size: 0.85rem; }
 
-        /* DATA GRID (STANDINGS + SCHEDULE) */
+        /* DATA GRID */
         .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        
-        .scroll-container {
-            height: 400px;
-            overflow-y: auto;
-            background: white;
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
+        .scroll-container { height: 400px; overflow-y: auto; background: white; border-radius: 12px; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
 
         table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th { text-align: left; padding: 0.8rem; background: #f8fafc; color: var(--guardians-navy); position: sticky; top: 0; }
         td { padding: 0.8rem; border-bottom: 1px solid #f1f5f9; }
         .current-game { background: rgba(227, 25, 55, 0.05); font-weight: bold; }
 
-        /* PROGRESS TRACKER (KEPT FROM PREVIOUS) */
+        /* PROGRESS TRACKER */
         .tracker { background: var(--guardians-navy); color: white; padding: 2rem; border-radius: 16px; margin-bottom: 2rem; }
         .progress-bar { height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; margin: 1rem 0; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--guardians-red); width: 33%; transition: width 0.5s; }
+        .progress-fill { height: 100%; background: var(--guardians-red); width: 60%; transition: width 0.5s; }
 
+        @media (max-width: 900px) { .profile-container { grid-template-columns: 1fr; text-align: center; } .profile-pic { width: 200px; height: 200px; margin: 0 auto; } }
         @media (max-width: 768px) { .data-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <div class="hello-banner">
-        <h1>HELLO WORLD | FRANK'S MGMT 342</h1>
+        <h1>HELLO WORLD | FRANK KROTO IV</h1>
     </div>
 
     <main>
+        <!-- PERSONAL PROFILE SECTION -->
+        <section id="profile">
+            <h2 class="section-header">Professional Identity</h2>
+            <div class="profile-container">
+                <img src="https://media.licdn.com/dms/image/v2/D4E03AQE_9Z9Z9Z9Z9Z/profile-displayphoto-shrink_800_800/0/1712515200000?e=1717632000&v=beta&t=7Z9Z9Z9Z9Z" alt="Frank Kroto IV" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512'">
+                <div class="profile-text">
+                    <h2>Frank Kroto IV</h2>
+                    <p><strong>Education:</strong> Notre Dame-Cathedral Latin School (NDCL) | Class of 2023</p>
+                    <p><strong>Current Focus:</strong> MGMT 342 - Applied AI Strategy & Agent Orchestration</p>
+                    <p>A high-achieving student and former NDCL Varsity Soccer athlete with a focus on leveraging AI to streamline complex business workflows.</p>
+                    <div class="tag-container">
+                        <span class="tag">Honor Roll Scholar</span>
+                        <span class="tag">Varsity Athlete (Soccer)</span>
+                        <span class="tag">AI Orchestrator</span>
+                        <span class="tag">Strategy Analyst</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" style="background: var(--guardians-navy); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: bold;">View LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- COURSE PROGRESS -->
         <section>
             <div class="tracker">
                 <h3>Course Milestone Progress</h3>
                 <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
-                <small>Phase 2.2: Large-Scale Data Integration Complete</small>
+                <small>Phase 2.3: Identity Integration & LinkedIn Synchronization Complete</small>
             </div>
         </section>
 
@@ -96,22 +138,15 @@
         <section>
             <h2 class="section-header">2026 Cleveland Guardians Roster</h2>
             <div class="roster-carousel">
-                <!-- INF -->
                 <div class="player-card-mini"><span>#11</span><h4>José Ramírez</h4><small>3B | All-Time Games Leader</small></div>
                 <div class="player-card-mini"><span>#38</span><h4>Steven Kwan</h4><small>LF | Defense/Contact Specialist</small></div>
                 <div class="player-card-mini"><span>#22</span><h4>Josh Naylor</h4><small>1B | Power Threat</small></div>
                 <div class="player-card-mini"><span>#0</span><h4>Andrés Giménez</h4><small>2B | Gold Glove Winner</small></div>
                 <div class="player-card-mini"><span>#31</span><h4>Chase DeLauter</h4><small>RF | 2026 Breakout Star</small></div>
-                <!-- PITCHERS -->
                 <div class="player-card-mini"><span>#28</span><h4>Tanner Bibee</h4><small>SP | Rotation Ace</small></div>
                 <div class="player-card-mini"><span>#32</span><h4>Gavin Williams</h4><small>SP | K-Leader (17)</small></div>
                 <div class="player-card-mini"><span>#48</span><h4>Emmanuel Clase</h4><small>RP | Elite Closer</small></div>
                 <div class="player-card-mini"><span>#62</span><h4>Cade Smith</h4><small>RP | 3 Saves</small></div>
-                <div class="player-card-mini"><span>#29</span><h4>Logan Allen</h4><small>SP | LHP Specialist</small></div>
-                <!-- OTHERS -->
-                <div class="player-card-mini"><span>#6</span><h4>Bo Naylor</h4><small>C | Battery Leader</small></div>
-                <div class="player-card-mini"><span>#4</span><h4>Gabriel Arias</h4><small>SS/3B | Utility</small></div>
-                <div class="player-card-mini"><span>#24</span><h4>Will Brennan</h4><small>RF | Contact Hitter</small></div>
             </div>
         </section>
 
@@ -132,7 +167,6 @@
                             <tr><td>Apr 8</td><td>vs Royals</td><td>1:10 PM</td></tr>
                             <tr><td>Apr 10</td><td>@ Braves</td><td>7:15 PM</td></tr>
                             <tr><td>Apr 11</td><td>@ Braves</td><td>7:15 PM</td></tr>
-                            <tr><td>Apr 13</td><td>@ Cardinals</td><td>7:45 PM</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -161,25 +195,14 @@
                 </div>
             </section>
         </div>
-
-        <!-- CONNECT -->
-        <section style="text-align:center; padding: 2rem; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
-            <h3>Portfolio & Project Inquiries</h3>
-            <p>Directing AI agents to manage complex data structures for MGMT 342.</p>
-            <div style="display:flex; justify-content:center; gap: 1rem;">
-                <a href="https://github.com/fkroto4/agentic-tools-part2" style="background:var(--guardians-navy); color:white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration:none;">GitHub</a>
-                <a href="mailto:frank@example.com" style="border: 1px solid var(--guardians-navy); color:var(--guardians-navy); padding: 0.5rem 1rem; border-radius: 5px; text-decoration:none;">Email</a>
-            </div>
-        </section>
     </main>
 
     <footer style="text-align:center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;">
-        Frank's MGMT 342 Master Project | Jarvis OS v2.2 | Deployed: April 7, 2026
+        Frank Kroto IV | MGMT 342 Project | Jarvis OS v2.3 | Deployed: April 7, 2026
     </footer>
 
     <script>
-        // Update milestone progress visually
-        document.getElementById('pFill').style.width = '45%';
+        document.getElementById('pFill').style.width = '60%';
     </script>
 </body>
 </html>
