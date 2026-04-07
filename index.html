@@ -10,151 +10,59 @@
         :root {
             --xav-blue: #0C2340;
             --xav-silver: #9EA2A2;
-            --xav-light: #F0F4F8;
             --gua-red: #E31937;
-            --gua-navy: #0C2340;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-light: #475569;
-            --accent: #3b82f6;
-            --border-color: #e2e8f0;
-            --nav-bg: rgba(255, 255, 255, 0.9);
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-dark: #020617;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #f8fafc;
-            --text-light: #94a3b8;
-            --border-color: #334155;
-            --nav-bg: rgba(15, 23, 42, 0.9);
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; padding-top: 70px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 80px; }
 
-        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--gua-red); }
-        .theme-toggle { background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 3000; }
+        .nav-brand { font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; color: var(--text-main); }
+        .nav-brand span { color: var(--accent); }
 
-        .hero { background: linear-gradient(135deg, var(--xav-blue) 0%, #1e3a8a 100%); color: white; padding: 6rem 2rem; text-align: center; border-bottom: 8px solid var(--xav-silver); }
-        .hero h1 { font-size: 4rem; letter-spacing: 4px; margin-bottom: 1rem; }
-        .hero p { font-size: 1.5rem; color: #cbd5e1; max-width: 900px; margin: 0 auto; }
-        .hero-badge { display: inline-block; background: var(--gua-red); padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: bold; margin-top: 2rem; }
+        .hero { background: radial-gradient(circle at top right, var(--xav-blue), var(--bg-dark)); padding: 8rem 2rem; text-align: center; border-bottom: 4px solid var(--accent); position: relative; overflow: hidden; }
+        .hero h1 { font-size: 5rem; font-weight: 900; letter-spacing: -3px; margin-bottom: 1rem; text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; font-family: 'Fira Code', monospace; }
 
-        main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        .section-card { background: var(--card-bg); border-radius: 20px; padding: 3rem; margin-bottom: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
-        .section-title { font-size: 2.5rem; color: var(--xav-blue); border-bottom: 4px solid var(--gua-red); padding-bottom: 0.5rem; margin-bottom: 2.5rem; display: inline-block; }
-        [data-theme="dark"] .section-title { color: var(--text-main); }
+        main { max-width: 1600px; margin: 0 auto; padding: 3rem; }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 3rem; margin-bottom: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 3rem; border-left: 8px solid var(--accent); padding-left: 1.5rem; text-transform: uppercase; }
 
-        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
-        .btn-social { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
-        .btn-linkedin { background: #0077b5; color: white; }
-        .btn-github { background: #333; color: white; }
-        .btn-social:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* LIVE SCOREBOARD */
+        .live-scoreboard { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 4rem; background: rgba(255,255,255,0.03); border-radius: 20px; padding: 2.5rem; border: 1px solid var(--accent); margin-bottom: 3rem; }
+        .score-team { text-align: center; }
+        .score-team img { width: 100px; margin-bottom: 1rem; }
+        .score-name { font-size: 1.5rem; font-weight: 800; color: var(--text-muted); }
+        .score-num { font-size: 5rem; font-weight: 900; color: var(--text-main); line-height: 1; }
+        .score-status { text-align: center; font-family: 'Fira Code', monospace; font-weight: bold; }
+        .status-live { color: #f43f5e; animation: pulse 2s infinite; }
 
-        /* ROSTER GRID & FLIP CARDS */
-        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; perspective: 1000px; }
-        .player-card { width: 100%; height: 400px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
-        .player-card.flipped { transform: rotateY(180deg); }
-        .card-front, .card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
-        .card-front { background: var(--bg-color); }
-        .card-back { background: var(--gua-navy); color: white; transform: rotateY(180deg); padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 4px solid var(--gua-red); }
-        .player-photo { width: 100%; height: 300px; object-fit: cover; border-bottom: 4px solid var(--gua-red); background: #cbd5e1; }
-        .css-avatar { width: 100%; height: 300px; background: var(--gua-navy); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem; font-weight: bold; border-bottom: 4px solid var(--gua-red); }
-        .player-info { padding: 1rem; }
-        .player-name { font-size: 1.3rem; font-weight: 800; color: var(--gua-navy); }
-        [data-theme="dark"] .player-name { color: var(--text-main); }
-        .player-pos { color: var(--text-light); font-weight: 600; }
-        .player-num { position: absolute; top: 10px; left: 10px; background: var(--gua-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 10; }
-        .back-stats { width: 100%; margin-top: 1.5rem; }
-        .stat-line { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .stat-val { font-weight: bold; color: var(--gua-red); font-size: 1.2rem; }
+        /* ROSTER GRID */
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .player-card { background: rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; border: 1px solid var(--glass-border); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; }
+        .player-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--accent); background: rgba(56, 189, 248, 0.1); }
+        .player-img-wrap { width: 100%; height: 320px; background: #1e293b; position: relative; overflow: hidden; }
+        .player-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .player-card:hover .player-img { transform: scale(1.1); }
+        .player-meta { padding: 1.5rem; }
+        .p-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.2rem; }
+        .p-pos { font-size: 0.9rem; color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .p-num { position: absolute; top: 1rem; right: 1rem; font-size: 3rem; font-weight: 900; opacity: 0.1; color: white; }
 
-        /* MILESTONES */
-        .milestone-container { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; }
-        .task-item { display: flex; align-items: center; padding: 1rem; background: var(--bg-color); border-radius: 10px; margin-bottom: 1rem; cursor: pointer; border: 1px solid var(--border-color); }
-        .task-item.done { background: rgba(16, 185, 129, 0.1); text-decoration: line-through; }
-        .progress-circle { position: relative; width: 200px; height: 200px; margin: 0 auto; }
-        .progress-circle svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-        .progress-circle circle { fill: none; stroke-width: 15; stroke-dasharray: 565; stroke-dashoffset: 565; transition: stroke-dashoffset 1s; }
-        .progress-circle .bg { stroke: var(--border-color); }
-        .progress-circle .fill { stroke: var(--gua-red); }
-        .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: bold; }
+        /* ANALYTICS */
+        .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .stat-row { margin-bottom: 1.5rem; }
+        .stat-bar-bg { width: 100%; height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
+        .stat-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 1s ease-out; }
 
-        .filter-group { display: flex; gap: 1rem; margin-bottom: 3rem; justify-content: center; flex-wrap: wrap; }
-        .filter-btn { padding: 0.8rem 2rem; border: 2px solid var(--gua-navy); background: transparent; border-radius: 30px; cursor: pointer; font-weight: bold; }
-        .filter-btn.active { background: var(--gua-navy); color: white; }
-
-        .guardians-rationale { background: var(--xav-light); border-left: 5px solid var(--gua-red); padding: 2rem; margin-bottom: 3rem; border-radius: 0 15px 15px 0; }
-        [data-theme="dark"] .guardians-rationale { background: #1e293b; }
-
-        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem; }
-        @media (max-width: 768px) { .milestone-container { grid-template-columns: 1fr; } .profile-grid-main { grid-template-columns: 1fr !important; } }
-
-        /* ADVANCED SPORTS DASHBOARD */
-        .advanced-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
-        .live-panel { background: var(--bg-color); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; text-align: center; }
-        .score-board { display: flex; justify-content: space-around; align-items: center; font-size: 2rem; font-weight: 900; margin-bottom: 2rem; }
-        .team-score { color: var(--gua-red); font-size: 4rem; }
-        
-        .momentum-tracker { width: 100%; height: 30px; background: #e2e8f0; border-radius: 15px; overflow: hidden; position: relative; margin-bottom: 2rem; }
-        .momentum-bar { height: 100%; background: linear-gradient(90deg, var(--gua-red) 0%, var(--xav-blue) 100%); width: 65%; transition: width 0.5s ease-in-out; }
-        .momentum-label { position: absolute; width: 100%; text-align: center; color: white; font-weight: bold; line-height: 30px; mix-blend-mode: difference; }
-
-        .odds-slider-container { margin-top: 2rem; text-align: left; }
-        .odds-slider { width: 100%; margin: 1rem 0; }
-        .payout-display { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
-
-        .analytics-panel { background: var(--bg-color); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; }
-        .comparison-selects { display: flex; gap: 1rem; margin-bottom: 2rem; }
-        .comparison-selects select { flex: 1; padding: 0.5rem; border-radius: 5px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); }
-        .stat-bar-container { margin-bottom: 1rem; }
-        .stat-label { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 0.2rem; }
-        .stat-track { width: 100%; height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; display: flex; }
-        .stat-fill-1 { height: 100%; background: var(--gua-red); width: 50%; transition: width 0.5s; }
-        .stat-fill-2 { height: 100%; background: var(--xav-blue); width: 50%; transition: width 0.5s; }
-
-        .sortable-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-        .sortable-table th { background: var(--gua-navy); color: white; padding: 1rem; cursor: pointer; text-align: left; }
-        .sortable-table th:hover { background: var(--gua-red); }
-        .sortable-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
-        
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @media (max-width: 900px) { .advanced-dashboard { grid-template-columns: 1fr; } }
-
-        /* AGENTIC COMMAND CENTER */
-        .command-center { display: grid; grid-template-columns: 1fr 350px; gap: 2rem; }
-        .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .strategy-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .strategy-card:hover { border-color: var(--gua-red); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .strategy-card i { font-size: 2rem; margin-bottom: 1rem; color: var(--gua-red); }
-        .strategy-card h4 { margin-bottom: 0.5rem; color: var(--xav-blue); }
-        [data-theme="dark"] .strategy-card h4 { color: var(--text-main); }
-        .strategy-card p { font-size: 0.85rem; color: var(--text-light); }
-
-        .agent-sidebar { background: var(--gua-navy); color: white; border-radius: 15px; padding: 1.5rem; position: sticky; top: 90px; border: 2px solid var(--gua-red); }
-        .agent-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .agent-pulse-icon { width: 50px; height: 50px; background: rgba(227, 25, 55, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gua-red); animation: pulse 2s infinite; }
-        .agent-briefing { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem; font-size: 0.9rem; min-height: 150px; margin-bottom: 1.5rem; line-height: 1.5; }
-        .agent-briefing strong { color: var(--gua-red); display: block; margin-bottom: 0.5rem; }
-
-        .roadmap-container { margin-top: 3rem; position: relative; padding-left: 2rem; border-left: 3px solid var(--border-color); }
-        .roadmap-item { position: relative; margin-bottom: 2rem; }
-        .roadmap-dot { position: absolute; left: -2.4rem; top: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--border-color); border: 3px solid var(--bg-color); }
-        .roadmap-dot.active { background: var(--gua-red); box-shadow: 0 0 10px var(--gua-red); }
-
-        .btn-command { width: 100%; padding: 0.8rem; background: var(--gua-red); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 1rem; }
-        .btn-command:hover { background: #b91c1c; }
-        
-        @media (max-width: 1100px) { .command-center { grid-template-columns: 1fr; } .agent-sidebar { position: static; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @media (max-width: 1000px) { .live-scoreboard { grid-template-columns: 1fr; gap: 2rem; } .analytics-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -416,177 +324,103 @@
             document.getElementById('circleFill').style.strokeDashoffset = 565 - (565 * percent / 100);
         }
 
-        // Universal MLB 2026 Engine
-        const mlbTeams = {
-            "CLE": { name: "Cleveland Guardians", color: "#E31937", rival: "NYY", odds: -150 },
-            "LAD": { name: "Los Angeles Dodgers", color: "#005A9C", rival: "SD", odds: -220 },
-            "NYY": { name: "New York Yankees", color: "#003087", rival: "BOS", odds: -180 },
-            "PHI": { name: "Philadelphia Phillies", color: "#E81828", rival: "NYM", odds: -140 },
-            "ATL": { name: "Atlanta Braves", color: "#CE1141", rival: "NYM", odds: -160 },
-            "BOS": { name: "Boston Red Sox", color: "#BD3039", rival: "NYY", odds: +110 },
-            "HOU": { name: "Houston Astros", color: "#EB6E1F", rival: "TEX", odds: -130 },
-            "CHC": { name: "Chicago Cubs", color: "#0E3386", rival: "STL", odds: +100 }
+        // Live League Orchestrator Engine (v6.0)
+        const teamMap = {
+            "CLE": 114, "LAD": 119, "NYY": 147, "PHI": 143, "ATL": 144, 
+            "BOS": 111, "HOU": 117, "CHC": 112, "SD": 135, "SF": 137,
+            "NYM": 121, "STL": 138, "TOR": 141, "BAL": 110, "MIN": 142,
+            "AZ": 109, "MIL": 158, "SEA": 136, "TEX": 140, "TB": 139,
+            "DET": 116, "KC": 118, "CWS": 145, "LAA": 108, "COL": 115,
+            "MIA": 146, "WSH": 120, "CIN": 113, "PIT": 134, "OAK": 133
         };
 
-        let currentTeamId = "CLE";
-
-        const mlbRosters = {
-            "CLE": [
-                { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", s1: ".285 AVG", s2: "35 HR", s3: "110 RBI" },
-                { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", s1: ".312 AVG", s2: "100 R", s3: "25 SB" },
-                { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", s1: "0.85 ERA", s2: "45 SV", s3: "102 MPH" }
-            ],
-            "LAD": [
-                { name: "Shohei Ohtani", pos: "DH/SP", num: "17", id: "660271", group: "All-Stars", s1: ".305 AVG", s2: "54 HR", s3: "3.10 ERA" },
-                { name: "Mookie Betts", pos: "SS/OF", num: "50", id: "605141", group: "Infielders", s1: ".290 AVG", s2: "25 HR", s3: "95 R" },
-                { name: "Freddie Freeman", pos: "1B", num: "5", id: "518692", group: "Infielders", s1: ".300 AVG", s2: "28 HR", s3: "105 RBI" }
-            ],
-            "NYY": [
-                { name: "Aaron Judge", pos: "CF", num: "99", id: "592450", group: "Outfielders", s1: ".280 AVG", s2: "58 HR", s3: "140 RBI" },
-                { name: "Juan Soto", pos: "RF", num: "22", id: "665742", group: "Outfielders", s1: ".295 AVG", s2: "40 HR", s3: "125 BB" },
-                { name: "Gerrit Cole", pos: "SP", num: "45", id: "543037", group: "Pitchers", s1: "2.85 ERA", s2: "220 K", s3: "1.05 WHIP" }
-            ]
+        const teamColors = {
+            "CLE": "#E31937", "LAD": "#005A9C", "NYY": "#003087", "PHI": "#E81828",
+            "ATL": "#CE1141", "BOS": "#BD3039", "HOU": "#EB6E1F", "CHC": "#0E3386"
         };
 
-        window.switchTeam = function(teamId) {
-            currentTeamId = teamId;
-            const team = mlbTeams[teamId];
-            document.documentElement.style.setProperty('--gua-red', team.color);
-            document.getElementById('teamHubTitle').innerText = `${team.name} 2026 Roster Hub`;
-            document.getElementById('currentTeamName').innerText = team.name;
-            document.getElementById('rivalTeamName').innerText = team.rival;
-            document.getElementById('wagerTeamName').innerText = team.name;
+        let currentTeamAbbr = "CLE";
+
+        window.switchTeam = async function(abbr) {
+            currentTeamAbbr = abbr;
+            const teamId = teamMap[abbr];
+            const color = teamColors[abbr] || "#38bdf8";
             
-            renderRoster('All');
-            updatePayout();
+            document.documentElement.style.setProperty('--accent', color);
+            document.getElementById('teamHubTitle').innerText = `${abbr} 2026 Live Hub`;
+            
+            await Promise.all([fetchRoster(teamId), fetchLiveGame(teamId)]);
         }
 
-        function renderRoster(filter) {
+        async function fetchRoster(teamId) {
+            const grid = document.getElementById('rosterGrid');
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:5rem;"><h3>Orchestrating Roster Data...</h3></div>';
+            
+            try {
+                const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}/roster`);
+                const data = await res.json();
+                renderRoster(data.roster);
+            } catch (err) {
+                grid.innerHTML = '<p>Error fetching roster data. Please check connection.</p>';
+            }
+        }
+
+        function renderRoster(roster) {
             const grid = document.getElementById('rosterGrid');
             grid.innerHTML = '';
-            const roster = mlbRosters[currentTeamId] || mlbRosters["CLE"];
-            const filtered = filter === 'All' ? roster : roster.filter(p => p.group === filter);
-            
-            filtered.forEach(p => {
+            roster.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                card.onclick = () => card.classList.toggle('flipped');
-                const initials = p.name.split(' ').map(n => n[0]).join('');
-                const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.id}/headshot/67/current`;
+                const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
                 card.innerHTML = `
-                    <div class="card-front"><div class="player-num">#${p.num}</div><img src="${img}" class="player-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="css-avatar" style="display:none;">${initials}</div><div class="player-info"><div class="player-name">${p.name}</div><div class="player-pos">${p.pos}</div></div></div>
-                    <div class="card-back"><h3 style="margin-bottom:1rem;">${p.name}</h3><div class="back-stats"><div class="stat-line"><span>Stat 1</span><span class="stat-val">${p.s1}</span></div><div class="stat-line"><span>Stat 2</span><span class="stat-val">${p.s2}</span></div><div class="stat-line"><span>Stat 3</span><span class="stat-val">${p.s3}</span></div></div><p style="margin-top:2rem; font-size:0.8rem; opacity:0.7;">Click to flip back</p></div>
+                    <div class="player-img-wrap"><img src="${img}" class="player-img" onerror="this.src='https://ui-avatars.com/api/?name=${p.person.fullName.replace(' ', '+')}&background=1e293b&color=fff'"></div>
+                    <div class="player-meta">
+                        <div class="p-name">${p.person.fullName}</div>
+                        <div class="p-pos">${p.position.abbreviation} | ${p.status.description}</div>
+                    </div>
+                    <div class="p-num">#${p.jerseyNumber || '--'}</div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        window.filterRoster = function(group) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            renderRoster(group);
-        }
-
-        // Advanced Analytics Logic
-        const advancedStats = [
-            { name: "José Ramírez", pos: "3B", ev: 90.5, speed: 28.2, pow: 85, spd: 70, con: 88, team: "CLE" },
-            { name: "Steven Kwan", pos: "LF", ev: 85.2, speed: 28.9, pow: 40, spd: 80, con: 95, team: "CLE" },
-            { name: "Shohei Ohtani", pos: "DH", ev: 95.8, speed: 29.5, pow: 100, spd: 90, con: 90, team: "LAD" },
-            { name: "Aaron Judge", pos: "CF", ev: 97.2, speed: 27.2, pow: 100, spd: 40, con: 80, team: "NYY" }
-        ];
-
-        function initAdvancedSports() {
-            const s1 = document.getElementById('player1Select');
-            const s2 = document.getElementById('player2Select');
-            s1.innerHTML = ''; s2.innerHTML = '';
-            advancedStats.forEach((p, i) => {
-                s1.innerHTML += `<option value="${i}">${p.name} (${p.team})</option>`;
-                s2.innerHTML += `<option value="${i}" ${i===1?'selected':''}>${p.name} (${p.team})</option>`;
-            });
-            updateComparison();
-
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-            advancedStats.forEach(p => {
-                tbody.innerHTML += `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.ev} mph</td><td>${p.speed} ft/s</td></tr>`;
-            });
-
-            setInterval(() => {
-                let prob = 50 + Math.random() * 30;
-                document.getElementById('winProbBar').style.width = prob + '%';
-                document.getElementById('winProbLabel').innerText = `${currentTeamId} ${prob.toFixed(1)}%`;
-            }, 3000);
-        }
-
-        function updatePayout() {
-            const wager = document.getElementById('wagerAmount').value;
-            const team = mlbTeams[currentTeamId];
-            document.getElementById('wagerDisplay').innerText = wager;
-            const oddsVal = Math.abs(team.odds);
-            const payout = team.odds < 0 ? parseFloat(wager) + (wager / (oddsVal/100)) : parseFloat(wager) + (wager * (oddsVal/100));
-            document.getElementById('payoutDisplay').innerText = payout.toFixed(2);
-        }
-
-        function updateComparison() {
-            const p1 = advancedStats[document.getElementById('player1Select').value];
-            const p2 = advancedStats[document.getElementById('player2Select').value];
-            
-            const setBar = (id1, id2, labelId, val1, val2) => {
-                const total = val1 + val2;
-                const pct1 = (val1/total)*100;
-                document.getElementById(id1).style.width = pct1 + '%';
-                document.getElementById(id2).style.width = (100-pct1) + '%';
-                document.getElementById(labelId).innerText = `${val1} vs ${val2}`;
-            };
-
-            setBar('pow1', 'pow2', 'powLabel', p1.pow, p2.pow);
-            setBar('spd1', 'spd2', 'spdLabel', p1.spd, p2.spd);
-            setBar('con1', 'con2', 'conLabel', p1.con, p2.con);
-        }
-
-        let sortAsc = true;
-        function sortTable(colIndex) {
-            const tbody = document.getElementById('tableBody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-            
-            rows.sort((a, b) => {
-                let valA = a.cells[colIndex].innerText.replace(' mph', '').replace(' ft/s', '');
-                let valB = b.cells[colIndex].innerText.replace(' mph', '').replace(' ft/s', '');
+        async function fetchLiveGame(teamId) {
+            const scoreboard = document.getElementById('liveScoreboard');
+            try {
+                const res = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1`);
+                const data = await res.json();
+                const game = data.dates[0]?.games.find(g => g.teams.away.team.id === teamId || g.teams.home.team.id === teamId);
                 
-                let numA = parseFloat(valA);
-                let numB = parseFloat(valB);
-                
-                if (!isNaN(numA) && !isNaN(numB)) {
-                    return sortAsc ? numA - numB : numB - numA;
+                if (!game) {
+                    scoreboard.innerHTML = '<div style="grid-column:1/-1; text-align:center;"><h3>No Active Game Found for Today</h3></div>';
+                    return;
                 }
-                return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
-            });
-            
-            sortAsc = !sortAsc;
-            tbody.innerHTML = '';
-            rows.forEach(r => tbody.appendChild(r));
+
+                const isHome = game.teams.home.team.id === teamId;
+                const opp = isHome ? game.teams.away.team.name : game.teams.home.team.name;
+                const score = isHome ? `${game.teams.home.score || 0} - ${game.teams.away.score || 0}` : `${game.teams.away.score || 0} - ${game.teams.home.score || 0}`;
+                
+                scoreboard.innerHTML = `
+                    <div class="score-team">
+                        <div class="score-name">${currentTeamAbbr}</div>
+                        <div class="score-num">${isHome ? (game.teams.home.score || 0) : (game.teams.away.score || 0)}</div>
+                    </div>
+                    <div class="score-status">
+                        <div class="${game.status.abstractGameState === 'Live' ? 'status-live' : ''}">${game.status.detailedState}</div>
+                        <div style="font-size: 1.2rem; margin-top:1rem;">VS</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:1rem;">${opp}</div>
+                    </div>
+                    <div class="score-team">
+                        <div class="score-name">OPP</div>
+                        <div class="score-num">${isHome ? (game.teams.away.score || 0) : (game.teams.home.score || 0)}</div>
+                    </div>
+                `;
+            } catch (err) {
+                scoreboard.innerHTML = '<p>Live Score Stream Offline</p>';
+            }
         }
 
-        window.onload = () => { renderTasks(); renderRoster('All'); initAdvancedSports(); };
-
-        // Agentic Command Center Logic
-        function updateAgent(title, message) {
-            const textEl = document.getElementById('agentBriefingText');
-            textEl.style.opacity = 0;
-            setTimeout(() => {
-                textEl.innerHTML = `<strong>${title}:</strong>${message}`;
-                textEl.style.opacity = 1;
-            }, 200);
-        }
-
-        function calculatePortfolioROI() {
-            const textEl = document.getElementById('agentBriefingText');
-            textEl.innerHTML = "<em>Calculating potential yield...</em>";
-            setTimeout(() => {
-                textEl.innerHTML = "<strong>Simulation Complete:</strong>By shifting 30% of middle-office operations to agentic workflows, we project a cost reduction of $2.4M annually with a 15% increase in throughput. Shall I initiate the pilot phase?";
-            }, 1500);
-        }
-        document.getElementById('agentBriefingText').style.transition = 'opacity 0.3s ease';
+        window.onload = () => { renderTasks(); switchTeam('CLE'); };
     </script>
 </body>
 </html>
