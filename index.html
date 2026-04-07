@@ -94,6 +94,41 @@
 
         footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem; }
         @media (max-width: 768px) { .milestone-container { grid-template-columns: 1fr; } .profile-grid-main { grid-template-columns: 1fr !important; } }
+
+        /* ADVANCED SPORTS DASHBOARD */
+        .advanced-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+        .live-panel { background: var(--bg-color); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; text-align: center; }
+        .score-board { display: flex; justify-content: space-around; align-items: center; font-size: 2rem; font-weight: 900; margin-bottom: 2rem; }
+        .team-score { color: var(--gua-red); font-size: 4rem; }
+        
+        .momentum-tracker { width: 100%; height: 30px; background: #e2e8f0; border-radius: 15px; overflow: hidden; position: relative; margin-bottom: 2rem; }
+        .momentum-bar { height: 100%; background: linear-gradient(90deg, var(--gua-red) 0%, var(--xav-blue) 100%); width: 65%; transition: width 0.5s ease-in-out; }
+        .momentum-label { position: absolute; width: 100%; text-align: center; color: white; font-weight: bold; line-height: 30px; mix-blend-mode: difference; }
+
+        .odds-slider-container { margin-top: 2rem; text-align: left; }
+        .odds-slider { width: 100%; margin: 1rem 0; }
+        .payout-display { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+
+        .analytics-panel { background: var(--bg-color); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; }
+        .comparison-selects { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        .comparison-selects select { flex: 1; padding: 0.5rem; border-radius: 5px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); }
+        .stat-bar-container { margin-bottom: 1rem; }
+        .stat-label { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 0.2rem; }
+        .stat-track { width: 100%; height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; display: flex; }
+        .stat-fill-1 { height: 100%; background: var(--gua-red); width: 50%; transition: width 0.5s; }
+        .stat-fill-2 { height: 100%; background: var(--xav-blue); width: 50%; transition: width 0.5s; }
+
+        .sortable-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        .sortable-table th { background: var(--gua-navy); color: white; padding: 1rem; cursor: pointer; text-align: left; }
+        .sortable-table th:hover { background: var(--gua-red); }
+        .sortable-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @media (max-width: 900px) { .advanced-dashboard { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -155,6 +190,80 @@
                 <button class="filter-btn" onclick="filterRoster('Catchers')">Catchers</button>
             </div>
             <div class="roster-grid" id="rosterGrid"></div>
+        </section>
+
+        <section id="advanced-sports" class="section-card">
+            <h2 class="section-title">Next-Gen Sports Analytics Dashboard</h2>
+            <div class="guardians-rationale">
+                <h3><i class="fas fa-chart-line"></i> Maximum Data Integration</h3>
+                <p style="margin-top: 1rem;">Showcasing elite interactive data orchestration, this dashboard simulates live-action tracking and deep sabermetric analysis. Features pure DOM-manipulated probability trackers, predictive odds calculation, and dynamic data sorting.</p>
+            </div>
+
+            <div class="advanced-dashboard">
+                <!-- LIVE ACTION CENTER -->
+                <div class="live-panel">
+                    <h3><i class="fas fa-satellite-dish" style="color: var(--gua-red); animation: pulse 2s infinite;"></i> Live Simulation: CLE vs NYY</h3>
+                    <div class="score-board">
+                        <div>CLE<br><span class="team-score">4</span></div>
+                        <div>Top 8th<br><span style="font-size:1rem; color:var(--text-light);">2 Outs</span></div>
+                        <div>NYY<br><span class="team-score">3</span></div>
+                    </div>
+                    
+                    <p style="text-align:left; font-weight:bold;">Live Win Probability</p>
+                    <div class="momentum-tracker">
+                        <div class="momentum-bar" id="winProbBar" style="width: 65%;"></div>
+                        <div class="momentum-label" id="winProbLabel">CLE 65.0%</div>
+                    </div>
+
+                    <div class="odds-slider-container">
+                        <label for="wagerAmount" style="font-weight:bold;">Predictive Odds Calculator (CLE Moneyline -150)</label>
+                        <input type="range" id="wagerAmount" class="odds-slider" min="10" max="1000" step="10" value="100" oninput="updatePayout()">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>Wager: $<span id="wagerDisplay">100</span></span>
+                            <span>To Win: $<span class="payout-display" id="payoutDisplay">166.67</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEEP ANALYTICS ENGINE -->
+                <div class="analytics-panel">
+                    <h3><i class="fas fa-balance-scale"></i> Head-to-Head Engine</h3>
+                    <div class="comparison-selects">
+                        <select id="player1Select" onchange="updateComparison()"></select>
+                        <select id="player2Select" onchange="updateComparison()"></select>
+                    </div>
+
+                    <div class="stat-bar-container">
+                        <div class="stat-label"><span>Power (ISO)</span> <span id="powLabel">P1 vs P2</span></div>
+                        <div class="stat-track"><div class="stat-fill-1" id="pow1"></div><div class="stat-fill-2" id="pow2"></div></div>
+                    </div>
+                    <div class="stat-bar-container">
+                        <div class="stat-label"><span>Speed (Sprint)</span> <span id="spdLabel">P1 vs P2</span></div>
+                        <div class="stat-track"><div class="stat-fill-1" id="spd1"></div><div class="stat-fill-2" id="spd2"></div></div>
+                    </div>
+                    <div class="stat-bar-container">
+                        <div class="stat-label"><span>Contact (xBA)</span> <span id="conLabel">P1 vs P2</span></div>
+                        <div class="stat-track"><div class="stat-fill-1" id="con1"></div><div class="stat-fill-2" id="con2"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;"><i class="fas fa-sort-amount-down"></i> Sortable Metrics Database</h3>
+            <div style="overflow-x:auto;">
+                <table class="sortable-table" id="metricsTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Player Name <i class="fas fa-sort"></i></th>
+                            <th onclick="sortTable(1)">Position <i class="fas fa-sort"></i></th>
+                            <th onclick="sortTable(2)">Avg Exit Velo <i class="fas fa-sort"></i></th>
+                            <th onclick="sortTable(3)">Sprint Speed <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -244,7 +353,84 @@
             renderRoster(group);
         }
 
-        window.onload = () => { renderTasks(); renderRoster('All'); };
+        // Advanced Analytics Logic
+        const advancedStats = [
+            { name: "José Ramírez", pos: "3B", ev: 90.5, speed: 28.2, pow: 85, spd: 70, con: 88 },
+            { name: "Steven Kwan", pos: "LF", ev: 85.2, speed: 28.9, pow: 40, spd: 80, con: 95 },
+            { name: "Andrés Giménez", pos: "2B", ev: 87.1, speed: 29.1, pow: 60, spd: 85, con: 80 },
+            { name: "Josh Naylor", pos: "1B", ev: 91.8, speed: 25.5, pow: 90, spd: 30, con: 75 },
+            { name: "Chase DeLauter", pos: "RF", ev: 92.1, speed: 27.8, pow: 82, spd: 65, con: 85 }
+        ];
+
+        function initAdvancedSports() {
+            const s1 = document.getElementById('player1Select');
+            const s2 = document.getElementById('player2Select');
+            advancedStats.forEach((p, i) => {
+                s1.innerHTML += `<option value="${i}">${p.name}</option>`;
+                s2.innerHTML += `<option value="${i}" ${i===1?'selected':''}>${p.name}</option>`;
+            });
+            updateComparison();
+
+            const tbody = document.getElementById('tableBody');
+            advancedStats.forEach(p => {
+                tbody.innerHTML += `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.ev} mph</td><td>${p.speed} ft/s</td></tr>`;
+            });
+
+            setInterval(() => {
+                let prob = 50 + Math.random() * 30;
+                document.getElementById('winProbBar').style.width = prob + '%';
+                document.getElementById('winProbLabel').innerText = `CLE ${prob.toFixed(1)}%`;
+            }, 3000);
+        }
+
+        function updatePayout() {
+            const wager = document.getElementById('wagerAmount').value;
+            document.getElementById('wagerDisplay').innerText = wager;
+            const payout = parseFloat(wager) + (wager / 1.5);
+            document.getElementById('payoutDisplay').innerText = payout.toFixed(2);
+        }
+
+        function updateComparison() {
+            const p1 = advancedStats[document.getElementById('player1Select').value];
+            const p2 = advancedStats[document.getElementById('player2Select').value];
+            
+            const setBar = (id1, id2, labelId, val1, val2) => {
+                const total = val1 + val2;
+                const pct1 = (val1/total)*100;
+                document.getElementById(id1).style.width = pct1 + '%';
+                document.getElementById(id2).style.width = (100-pct1) + '%';
+                document.getElementById(labelId).innerText = `${val1} vs ${val2}`;
+            };
+
+            setBar('pow1', 'pow2', 'powLabel', p1.pow, p2.pow);
+            setBar('spd1', 'spd2', 'spdLabel', p1.spd, p2.spd);
+            setBar('con1', 'con2', 'conLabel', p1.con, p2.con);
+        }
+
+        let sortAsc = true;
+        function sortTable(colIndex) {
+            const tbody = document.getElementById('tableBody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            rows.sort((a, b) => {
+                let valA = a.cells[colIndex].innerText.replace(' mph', '').replace(' ft/s', '');
+                let valB = b.cells[colIndex].innerText.replace(' mph', '').replace(' ft/s', '');
+                
+                let numA = parseFloat(valA);
+                let numB = parseFloat(valB);
+                
+                if (!isNaN(numA) && !isNaN(numB)) {
+                    return sortAsc ? numA - numB : numB - numA;
+                }
+                return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+            });
+            
+            sortAsc = !sortAsc;
+            tbody.innerHTML = '';
+            rows.forEach(r => tbody.appendChild(r));
+        }
+
+        window.onload = () => { renderTasks(); renderRoster('All'); initAdvancedSports(); };
     </script>
 </body>
 </html>
