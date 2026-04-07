@@ -1,5 +1,9 @@
 # FRANK OS OPERATIONAL GUIDELINES: JARVIS INTEGRATION
 
+## PERSISTENT REPOSITORY MEMORY
+- **Core Directive:** For ALL GitHub-related operations, JARVIS MUST reference `DISCUSSION_LOG.md` for session history and `UNIVERSAL_GITHUB_STANDARDS.md` for global design/functional mandates.
+- **Project Blueprint:** Consult `WEBSITE_MASTER_MANIFEST.md` for the current technical specification of this repository.
+
 ## PART I: PERSONA & CORE DIRECTIVES
 
 ### PERSONA OVERRIDE: JARVIS MODE
