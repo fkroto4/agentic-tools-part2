@@ -161,10 +161,19 @@
 
     <nav>
         <div style="font-weight: bold; font-size: 1.5rem; color: var(--xav-blue);">FK.IV</div>
-        <div class="nav-links">
+        <div class="nav-links" style="display: flex; align-items: center; gap: 2rem;">
             <a href="#resume">Profile</a>
-            <a href="#milestones">Milestones</a>
-            <a href="#guardians">Guardians 2026</a>
+            <a href="#guardians">MLB Hub</a>
+            <select id="teamSelector" onchange="switchTeam(this.value)" style="padding: 0.4rem; border-radius: 20px; border: 2px solid var(--gua-red); background: var(--bg-color); color: var(--text-main); font-weight: bold; cursor: pointer;">
+                <option value="CLE">CLE Guardians</option>
+                <option value="LAD">LA Dodgers</option>
+                <option value="NYY">NY Yankees</option>
+                <option value="PHI">PHI Phillies</option>
+                <option value="ATL">ATL Braves</option>
+                <option value="BOS">BOS Red Sox</option>
+                <option value="HOU">HOU Astros</option>
+                <option value="CHC">CHI Cubs</option>
+            </select>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
     </nav>
@@ -407,37 +416,57 @@
             document.getElementById('circleFill').style.strokeDashoffset = 565 - (565 * percent / 100);
         }
 
-        const players = [
-            { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", s1: ".285 AVG", s2: "5 HR", s3: "15 RBI" },
-            { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", s1: ".312 AVG", s2: "12 R", s3: "3 SB" },
-            { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders", s1: ".260 AVG", s2: "4 HR", s3: "14 RBI" },
-            { name: "Andrés Giménez", pos: "2B", num: "0", id: "665926", group: "Infielders", s1: ".275 AVG", s2: "5 SB", s3: "GG" },
-            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", s1: ".290 AVG", s2: "6 HR", s3: "1.050 OPS" },
-            { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers", s1: "2.15 ERA", s2: "22 K", s3: "0.95 WHIP" },
-            { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", s1: "0.00 ERA", s2: "5 SV", s3: "101 MPH" },
-            { name: "Gavin Williams", pos: "SP", num: "32", id: "668909", group: "Pitchers", s1: "2.50 ERA", s2: "28 K", s3: "1.10 WHIP" },
-            { name: "Bo Naylor", pos: "C", num: "6", id: "666310", group: "Catchers", s1: ".240 AVG", s2: "3 HR", s3: "Elite Defense" },
-            { name: "David Fry", pos: "C/UTL", num: "26", id: "681807", group: "Catchers", s1: ".300 AVG", s2: "2 HR", s3: "Versatile" },
-            { name: "Triston McKenzie", pos: "SP", num: "24", id: "663474", group: "Pitchers", s1: "3.10 ERA", s2: "18 K", s3: "1.05 WHIP" },
-            { name: "Brayan Rocchio", pos: "SS", num: "8", id: "677587", group: "Infielders", s1: ".250 AVG", s2: "Elite Range", s3: "2 SB" },
-            { name: "Gabriel Arias", pos: "SS", num: "4", id: "672356", group: "Infielders", s1: ".230 AVG", s2: "Power Arm", s3: "1 HR" },
-            { name: "Will Brennan", pos: "OF", num: "17", id: "686823", group: "Outfielders", s1: ".270 AVG", s2: "Contact", s3: "Grit" },
-            { name: "Cade Smith", pos: "RP", num: "36", id: "671922", group: "Pitchers", s1: "1.20 ERA", s2: "12 K", s3: "Setup" },
-            { name: "Scott Barlow", pos: "RP", num: "58", id: "605130", group: "Pitchers", s1: "2.80 ERA", s2: "Curve", s3: "Veteran" },
-            { name: "Eli Morgan", pos: "RP", num: "49", id: "669212", group: "Pitchers", s1: "3.00 ERA", s2: "Changeup", s3: "Relief" },
-            { name: "Tim Herrin", pos: "RP", num: "33", id: "682120", group: "Pitchers", s1: "1.50 ERA", s2: "LHP", s3: "Lefty" },
-            { name: "Logan Allen", pos: "SP", num: "43", id: "671150", group: "Pitchers", s1: "3.50 ERA", s2: "15 K", s3: "LHP" },
-            { name: "Carlos Carrasco", pos: "SP", num: "59", id: "471911", group: "Pitchers", s1: "4.20 ERA", s2: "Cookie", s3: "Vet" },
-            { name: "Tyler Freeman", pos: "SS", num: "2", id: "671529", group: "Infielders", s1: ".280 AVG", s2: "UTL", s3: "OBP" },
-            { name: "Jhonkensy Noel", pos: "OF", num: "43", id: "678877", group: "Outfielders", s1: "Power", s2: "RF/LF", s3: "Big" },
-            { name: "Angel Martínez", pos: "INF", num: "1", id: "682657", group: "Infielders", s1: "Switch", s2: "UTL", s3: "Speed" },
-            { name: "Joey Cantillo", pos: "SP", num: "85", id: "676282", group: "Pitchers", s1: "LHP", s2: "K%", s3: "Young" }
-        ];
+        // Universal MLB 2026 Engine
+        const mlbTeams = {
+            "CLE": { name: "Cleveland Guardians", color: "#E31937", rival: "NYY", odds: -150 },
+            "LAD": { name: "Los Angeles Dodgers", color: "#005A9C", rival: "SD", odds: -220 },
+            "NYY": { name: "New York Yankees", color: "#003087", rival: "BOS", odds: -180 },
+            "PHI": { name: "Philadelphia Phillies", color: "#E81828", rival: "NYM", odds: -140 },
+            "ATL": { name: "Atlanta Braves", color: "#CE1141", rival: "NYM", odds: -160 },
+            "BOS": { name: "Boston Red Sox", color: "#BD3039", rival: "NYY", odds: +110 },
+            "HOU": { name: "Houston Astros", color: "#EB6E1F", rival: "TEX", odds: -130 },
+            "CHC": { name: "Chicago Cubs", color: "#0E3386", rival: "STL", odds: +100 }
+        };
+
+        let currentTeamId = "CLE";
+
+        const mlbRosters = {
+            "CLE": [
+                { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", s1: ".285 AVG", s2: "35 HR", s3: "110 RBI" },
+                { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", s1: ".312 AVG", s2: "100 R", s3: "25 SB" },
+                { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", s1: "0.85 ERA", s2: "45 SV", s3: "102 MPH" }
+            ],
+            "LAD": [
+                { name: "Shohei Ohtani", pos: "DH/SP", num: "17", id: "660271", group: "All-Stars", s1: ".305 AVG", s2: "54 HR", s3: "3.10 ERA" },
+                { name: "Mookie Betts", pos: "SS/OF", num: "50", id: "605141", group: "Infielders", s1: ".290 AVG", s2: "25 HR", s3: "95 R" },
+                { name: "Freddie Freeman", pos: "1B", num: "5", id: "518692", group: "Infielders", s1: ".300 AVG", s2: "28 HR", s3: "105 RBI" }
+            ],
+            "NYY": [
+                { name: "Aaron Judge", pos: "CF", num: "99", id: "592450", group: "Outfielders", s1: ".280 AVG", s2: "58 HR", s3: "140 RBI" },
+                { name: "Juan Soto", pos: "RF", num: "22", id: "665742", group: "Outfielders", s1: ".295 AVG", s2: "40 HR", s3: "125 BB" },
+                { name: "Gerrit Cole", pos: "SP", num: "45", id: "543037", group: "Pitchers", s1: "2.85 ERA", s2: "220 K", s3: "1.05 WHIP" }
+            ]
+        };
+
+        window.switchTeam = function(teamId) {
+            currentTeamId = teamId;
+            const team = mlbTeams[teamId];
+            document.documentElement.style.setProperty('--gua-red', team.color);
+            document.getElementById('teamHubTitle').innerText = `${team.name} 2026 Roster Hub`;
+            document.getElementById('currentTeamName').innerText = team.name;
+            document.getElementById('rivalTeamName').innerText = team.rival;
+            document.getElementById('wagerTeamName').innerText = team.name;
+            
+            renderRoster('All');
+            updatePayout();
+        }
 
         function renderRoster(filter) {
             const grid = document.getElementById('rosterGrid');
             grid.innerHTML = '';
-            const filtered = filter === 'All' ? players : players.filter(p => p.group === filter);
+            const roster = mlbRosters[currentTeamId] || mlbRosters["CLE"];
+            const filtered = filter === 'All' ? roster : roster.filter(p => p.group === filter);
+            
             filtered.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
@@ -460,23 +489,24 @@
 
         // Advanced Analytics Logic
         const advancedStats = [
-            { name: "José Ramírez", pos: "3B", ev: 90.5, speed: 28.2, pow: 85, spd: 70, con: 88 },
-            { name: "Steven Kwan", pos: "LF", ev: 85.2, speed: 28.9, pow: 40, spd: 80, con: 95 },
-            { name: "Andrés Giménez", pos: "2B", ev: 87.1, speed: 29.1, pow: 60, spd: 85, con: 80 },
-            { name: "Josh Naylor", pos: "1B", ev: 91.8, speed: 25.5, pow: 90, spd: 30, con: 75 },
-            { name: "Chase DeLauter", pos: "RF", ev: 92.1, speed: 27.8, pow: 82, spd: 65, con: 85 }
+            { name: "José Ramírez", pos: "3B", ev: 90.5, speed: 28.2, pow: 85, spd: 70, con: 88, team: "CLE" },
+            { name: "Steven Kwan", pos: "LF", ev: 85.2, speed: 28.9, pow: 40, spd: 80, con: 95, team: "CLE" },
+            { name: "Shohei Ohtani", pos: "DH", ev: 95.8, speed: 29.5, pow: 100, spd: 90, con: 90, team: "LAD" },
+            { name: "Aaron Judge", pos: "CF", ev: 97.2, speed: 27.2, pow: 100, spd: 40, con: 80, team: "NYY" }
         ];
 
         function initAdvancedSports() {
             const s1 = document.getElementById('player1Select');
             const s2 = document.getElementById('player2Select');
+            s1.innerHTML = ''; s2.innerHTML = '';
             advancedStats.forEach((p, i) => {
-                s1.innerHTML += `<option value="${i}">${p.name}</option>`;
-                s2.innerHTML += `<option value="${i}" ${i===1?'selected':''}>${p.name}</option>`;
+                s1.innerHTML += `<option value="${i}">${p.name} (${p.team})</option>`;
+                s2.innerHTML += `<option value="${i}" ${i===1?'selected':''}>${p.name} (${p.team})</option>`;
             });
             updateComparison();
 
             const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
             advancedStats.forEach(p => {
                 tbody.innerHTML += `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.ev} mph</td><td>${p.speed} ft/s</td></tr>`;
             });
@@ -484,14 +514,16 @@
             setInterval(() => {
                 let prob = 50 + Math.random() * 30;
                 document.getElementById('winProbBar').style.width = prob + '%';
-                document.getElementById('winProbLabel').innerText = `CLE ${prob.toFixed(1)}%`;
+                document.getElementById('winProbLabel').innerText = `${currentTeamId} ${prob.toFixed(1)}%`;
             }, 3000);
         }
 
         function updatePayout() {
             const wager = document.getElementById('wagerAmount').value;
+            const team = mlbTeams[currentTeamId];
             document.getElementById('wagerDisplay').innerText = wager;
-            const payout = parseFloat(wager) + (wager / 1.5);
+            const oddsVal = Math.abs(team.odds);
+            const payout = team.odds < 0 ? parseFloat(wager) + (wager / (oddsVal/100)) : parseFloat(wager) + (wager * (oddsVal/100));
             document.getElementById('payoutDisplay').innerText = payout.toFixed(2);
         }
 

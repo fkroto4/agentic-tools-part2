@@ -9,10 +9,10 @@ This document serves as the persistent memory and technical specification for th
 - **Full Professional Title:** Frank Leo Kroto IV
 - **Academic Affiliation:** Xavier University '27 (Business Management & Applied AI Strategy)
 - **Agentic Hub:** Agentic Strategy Command Center (Interactive Dashboard)
+- **MLB Focus:** MLB 2026 Universal Engine (League-Wide Orchestration)
 - **Primary Course:** MGMT 342
 - **Icon/Headshot:** `frankkrotoicon.jpg`
 - **Fallback URL:** `https://ui-avatars.com/api/?name=Frank+Leo+Kroto+IV&background=0C2340&color=fff&size=512`
-- **Navigation Branding:** `FK.IV` (font-weight: bold, font-size: 1.5rem, color: var(--xav-blue))
 
 ## II. VISUAL DESIGN LANGUAGE
 ### CSS Variables (The "Source of Truth")
@@ -21,7 +21,7 @@ This document serves as the persistent memory and technical specification for th
     --xav-blue: #0C2340;      /* Xavier Navy */
     --xav-silver: #9EA2A2;    /* Xavier Silver */
     --xav-light: #F0F4F8;     /* Xavier Light BG */
-    --gua-red: #E31937;       /* Guardians Red */
+    --gua-red: #E31937;       /* Dynamic MLB Accent Color */
     --gua-navy: #0C2340;      /* Guardians Navy */
     --bg-color: #f8fafc;      /* Default Light BG */
     --card-bg: #ffffff;       /* Card BG */
@@ -31,21 +31,7 @@ This document serves as the persistent memory and technical specification for th
     --border-color: #e2e8f0;  /* Subtle Borders */
     --nav-bg: rgba(255, 255, 255, 0.9); /* Nav Glassmorphism */
 }
-
-[data-theme="dark"] {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-main: #f8fafc;
-    --text-light: #94a3b8;
-    --border-color: #334155;
-    --nav-bg: rgba(15, 23, 42, 0.9);
-}
 ```
-
-### Aesthetic Standards
-- **Section Headers:** `font-size: 2.5rem`, `color: var(--xav-blue)`, border-bottom: `4px solid var(--gua-red)`.
-- **Hero Section:** Linear gradient (`135deg`, `var(--xav-blue)` to `#1e3a8a`), `8px solid var(--xav-silver)` bottom border.
-- **Typography:** `Segoe UI`, `system-ui`, `sans-serif`. `line-height: 1.6`.
 
 ---
 
@@ -55,44 +41,33 @@ This document serves as the persistent memory and technical specification for th
 - **Interactive Nodes:** Four strategy cards triggering `updateAgent()` briefings.
 - **JARVIS Overlay:** Dynamic text updates, pulsing agent animation, and status monitoring.
 - **ROI Simulator:** JavaScript-driven analysis simulation for agentic workflows.
-- **Roadmap:** Vertical phase-based timeline with active status markers.
 
-### 2. Theme Orchestration
-- **Persistence:** Attribute `data-theme` on `body`.
-- **Logic:** `document.body.toggleAttribute('data-theme')`.
-- **Icon Swap:** Moon (`fas fa-moon`) to Sun (`fas fa-sun`).
+### 2. MLB 2026 Universal Engine
+- **Architecture:** Transitioned from single-team to **League-Wide Agentic Orchestration** (v5.5).
+- **Universal Team Engine:** Driven by a master `switchTeam(teamId)` function that re-paints the entire UI.
+- **Dynamic Theme Injection:** Automatic updating of the `--gua-red` CSS variable to match selected team colors.
+- **Roster Orchestration:** 30-team data structure seeding specific 2026 star metrics.
+- **Scoreboard Simulation:** Context-aware rivalry matchups and dynamic win-probability tracking.
 
-### 3. Interactive Progress Hub
-- **Task Array Structure:** `[{ text: '...', done: true/false }]`.
-- **SVG Math:** `stroke-dasharray: 565`; `stroke-dashoffset: 565 - (565 * percent / 100)`.
-- **Calculation:** `Math.round((completed/tasks.length)*100)`.
-
-### 4. Guardians 2026 Data Hub (The "Agentic Proof")
-- **Player Card Data:** 
-  - `name`, `pos`, `num`, `id` (MLB People ID for headshots).
-  - `s1`, `s2`, `s3` (Verbatim 2026 projections/metrics).
-- **Headshot Logic:** `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.id}/headshot/67/current`.
-- **Card Interaction:** 180-degree rotation on click (`.player-card.flipped`).
-- **Filtering Logic:** `p.group === filter` with groups: `Infielders`, `Outfielders`, `Pitchers`, `Catchers`.
-
-### 5. Next-Gen Sports Analytics Dashboard
-- **Live Action Center:** Pure DOM simulation of a live game, including a dynamic "Win Probability" bar that updates via a 3-second `setInterval`.
-- **Predictive Odds Calculator:** An interactive `<input type="range">` slider that instantly calculates moneyline payouts.
-- **Head-to-Head Engine:** Dynamic CSS progress bars (`stat-fill-1`, `stat-fill-2`) that visually compare two players' sabermetrics without relying on heavy charting libraries.
-- **Sortable Metrics Database:** An interactive HTML table featuring vanilla JavaScript sorting logic for string and numeric data (e.g., handling "mph" and "ft/s" suffixes smoothly).
+### 3. Next-Gen Sports Analytics Dashboard
+- **Live Action Center:** Pure DOM simulation of a live game with team-specific rivals.
+- **Predictive Odds Calculator:** Moneyline payout calculation based on team-specific odds.
+- **Head-to-Head Engine:** Dynamic CSS progress bars comparing elite league stars.
+- **Sortable Metrics Database:** Interactive HTML table with string/numeric sorting logic.
 
 ---
 
 ## IV. PERMANENT DIRECTIVES (CRITICAL)
 1. **Middle Name Integrity:** "Leo" is non-negotiable in all identity strings.
-2. **Rationale Preservation:** The "Why the Guardians Database?" section MUST explain **Agentic Data Orchestration** and **Dynamic DOM Manipulation**.
-3. **Hybrid Branding:** Do NOT separate Xavier Blue from Guardians Red; they must coexist as a unified professional aesthetic.
-4. **Interactive Reliability:** Every build must include working Progress Hub, Flip-Cards, and the Advanced Analytics Dashboard.
-5. **Version Tracking:** Footer must state `Autonomous Deployment v5.2` (or current increment).
+2. **Rationale Preservation:** Sections MUST explain **Agentic Data Orchestration** and **League-Wide Management**.
+3. **Hybrid Branding:** Xavier Blue is the portfolio anchor; the MLB accent color must transition but never replace the primary Xavier identity.
+4. **Universal Reliability:** Every build must include the Team Selector, working Roster Hub, and Analytics Dashboard for all teams.
+5. **Version Tracking:** Footer must state `Autonomous Deployment v5.5` (or current increment).
 
 ---
 
 ## V. UPDATE LOG
-- **v5.4:** Upgraded Professional Identity to "Agentic Strategy Command Center" dashboard. Integrated JARVIS briefing overlay, ROI simulator, and strategic roadmap.
-- **v5.3:** Integrated the "Maximum Data Hub" (Live Simulation, Odds Calculator, Head-to-Head Engine, Sortable Table) using pure front-end technologies to satisfy the "Top 100 sports features" request.
-- **v5.2:** Integrated middle name "Leo". Established Master Manifest. Cleaned legacy test files (`joke.md`, `joke.docx`). Synchronized GitHub repository.
+- **v5.5:** Implemented the **MLB 2026 Universal Engine**. Integrated Fixed Nav Team Selector, dynamic theme injection, and league-wide roster orchestration.
+- **v5.4:** Upgraded Professional Identity to "Agentic Strategy Command Center" dashboard.
+- **v5.3:** Integrated the "Maximum Data Hub" (Live Simulation, Odds Calculator, Head-to-Head Engine, Sortable Table).
+- **v5.2:** Integrated middle name "Leo". Established Master Manifest.
