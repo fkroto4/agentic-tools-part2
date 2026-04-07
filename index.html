@@ -8,466 +8,238 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            /* Xavier Palette */
             --xav-blue: #0C2340;
             --xav-silver: #9EA2A2;
             --xav-light: #F0F4F8;
-            /* Guardians Palette */
             --gua-red: #E31937;
             --gua-navy: #0C2340;
-            
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-light: #475569;
             --accent: #3b82f6;
             --border-color: #e2e8f0;
-            
             --nav-bg: rgba(255, 255, 255, 0.9);
         }
 
-        /* DARK MODE VARS */
         [data-theme="dark"] {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-light: #94a3b8;
             --border-color: #334155;
-            --xav-light: #1e293b;
             --nav-bg: rgba(15, 23, 42, 0.9);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; padding-top: 70px; }
 
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
-
-        /* NAVBAR */
-        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.3s; }
+        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
         .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.2s; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: color 0.2s; }
         .nav-links a:hover { color: var(--gua-red); }
-        .theme-toggle { background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; transition: transform 0.3s; }
-        .theme-toggle:hover { transform: scale(1.1); }
+        .theme-toggle { background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
 
-        /* HERO BANNER */
-        .hero {
-            background: linear-gradient(135deg, var(--xav-blue) 0%, #1e3a8a 100%);
-            color: white;
-            padding: 8rem 2rem 5rem;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-bottom: 8px solid var(--xav-silver);
-        }
-        .hero h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 1rem; animation: fadeInDown 1s ease; }
-        .hero p { font-size: 1.5rem; color: #cbd5e1; max-width: 900px; margin: 0 auto; animation: fadeInUp 1s ease; }
-        .hero-badge { display: inline-block; background: var(--gua-red); padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: bold; margin-top: 2rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(227,25,55,0.4); }
+        .hero { background: linear-gradient(135deg, var(--xav-blue) 0%, #1e3a8a 100%); color: white; padding: 6rem 2rem; text-align: center; border-bottom: 8px solid var(--xav-silver); }
+        .hero h1 { font-size: 4rem; letter-spacing: 4px; margin-bottom: 1rem; }
+        .hero p { font-size: 1.5rem; color: #cbd5e1; max-width: 900px; margin: 0 auto; }
+        .hero-badge { display: inline-block; background: var(--gua-red); padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: bold; margin-top: 2rem; }
 
-        /* MAIN CONTAINER */
-        main { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem; }
-
-        /* SECTIONS */
-        .section-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
+        main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .section-card { background: var(--card-bg); border-radius: 20px; padding: 3rem; margin-bottom: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
         .section-title { font-size: 2.5rem; color: var(--xav-blue); border-bottom: 4px solid var(--gua-red); padding-bottom: 0.5rem; margin-bottom: 2.5rem; display: inline-block; }
         [data-theme="dark"] .section-title { color: var(--text-main); }
 
-        /* FRANK'S DOSSIER */
-        .profile-grid { display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: start; }
-        .profile-img-lg { width: 100%; max-width: 350px; height: auto; aspect-ratio: 1/1; border-radius: 20px; object-fit: cover; border: 6px solid var(--xav-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin-bottom: 1.5rem; transition: transform 0.3s; }
-        .profile-img-lg:hover { transform: scale(1.02); }
-        .social-btn { display: block; width: 100%; padding: 1rem; background: #0077b5; color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: bold; transition: all 0.3s; margin-bottom: 1rem; }
-        .social-btn:hover { background: #005e93; transform: translateY(-3px); }
+        /* ROSTER GRID & FLIP CARDS */
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; perspective: 1000px; }
         
-        .resume-content { font-size: 1.1rem; }
-        .resume-block { margin-bottom: 2.5rem; padding: 1.5rem; background: var(--bg-color); border-radius: 12px; border-left: 5px solid var(--xav-blue); }
-        .resume-block h3 { color: var(--xav-blue); font-size: 1.5rem; margin-bottom: 0.5rem; }
-        [data-theme="dark"] .resume-block h3 { color: var(--accent); }
-        .resume-block h4 { color: var(--gua-red); margin-bottom: 1rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .skill-item { background: var(--xav-blue); color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: bold; transition: all 0.3s; cursor: default; }
-        .skill-item:hover { background: var(--gua-red); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(227,25,55,0.3); }
+        .player-card { width: 100%; height: 400px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
+        .player-card.flipped { transform: rotateY(180deg); }
 
-        /* INTERACTIVE MILESTONES */
-        .milestone-container { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; align-items: center; }
-        .task-list { display: flex; flex-direction: column; gap: 1rem; }
-        .task-item { display: flex; align-items: center; padding: 1.2rem 1.5rem; background: var(--bg-color); border-radius: 10px; border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s; }
-        .task-item:hover { transform: translateX(10px); border-color: var(--xav-blue); }
-        .task-item.done { background: rgba(16, 185, 129, 0.1); border-color: #10b981; }
-        .task-item.done span { text-decoration: line-through; color: var(--text-light); }
-        .task-checkbox { margin-right: 1.5rem; width: 24px; height: 24px; accent-color: #10b981; pointer-events: none; }
-        .task-text { font-size: 1.2rem; font-weight: 500; }
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
         
-        .progress-circle { position: relative; width: 250px; height: 250px; margin: 0 auto; }
-        .progress-circle svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-        .progress-circle circle { fill: none; stroke-width: 15; stroke-linecap: round; }
-        .progress-circle .bg { stroke: var(--border-color); }
-        .progress-circle .fill { stroke: var(--gua-red); stroke-dasharray: 630; stroke-dashoffset: 630; transition: stroke-dashoffset 1s ease-out; }
-        .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: bold; color: var(--xav-blue); }
-        [data-theme="dark"] .progress-text { color: var(--text-main); }
+        .card-front { background: var(--bg-color); }
+        .card-back { background: var(--gua-navy); color: white; transform: rotateY(180deg); padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 4px solid var(--gua-red); }
 
-        /* GUARDIANS HUB */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .info-card { background: var(--bg-color); padding: 2rem; border-radius: 15px; border-top: 5px solid var(--gua-red); }
-        .info-card h3 { color: var(--gua-navy); font-size: 1.5rem; margin-bottom: 1rem; }
-        [data-theme="dark"] .info-card h3 { color: var(--text-main); }
-
-        .filter-group { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
-        .filter-btn { padding: 0.8rem 2rem; border: 2px solid var(--gua-navy); background: transparent; color: var(--gua-navy); border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: all 0.3s; }
-        [data-theme="dark"] .filter-btn { border-color: var(--text-main); color: var(--text-main); }
-        .filter-btn.active, .filter-btn:hover { background: var(--gua-navy); color: white; border-color: var(--gua-navy); }
-        [data-theme="dark"] .filter-btn.active, [data-theme="dark"] .filter-btn:hover { background: var(--gua-red); border-color: var(--gua-red); }
-
-        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; }
-        .player-card { background: var(--bg-color); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid var(--border-color); transition: all 0.3s; text-align: center; position: relative; cursor: pointer; }
-        .player-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-color: var(--gua-red); }
-        .player-photo { width: 100%; height: 250px; object-fit: cover; background: #cbd5e1; border-bottom: 4px solid var(--gua-red); }
+        .player-photo { width: 100%; height: 300px; object-fit: cover; border-bottom: 4px solid var(--gua-red); background: #cbd5e1; }
+        .css-avatar { width: 100%; height: 300px; background: var(--gua-navy); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem; font-weight: bold; border-bottom: 4px solid var(--gua-red); }
         
-        /* CSS Avatar Fallback */
-        .css-avatar { width: 100%; height: 250px; background: var(--gua-navy); border-bottom: 4px solid var(--gua-red); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; font-weight: bold; text-transform: uppercase; }
-        
-        .player-info { padding: 1.5rem; }
-        .player-num { position: absolute; top: 10px; left: 10px; background: rgba(12,35,64,0.9); color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-size: 1rem; border: 2px solid var(--gua-red); }
-        .player-name { font-size: 1.2rem; color: var(--gua-navy); margin-bottom: 0.3rem; font-weight: 800; }
+        .player-info { padding: 1rem; }
+        .player-name { font-size: 1.3rem; font-weight: 800; color: var(--gua-navy); }
         [data-theme="dark"] .player-name { color: var(--text-main); }
-        .player-pos { color: var(--text-light); font-weight: 600; font-size: 1rem; }
+        .player-pos { color: var(--text-light); font-weight: 600; }
+        .player-num { position: absolute; top: 10px; left: 10px; background: var(--gua-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 10; }
 
-        /* MODAL */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(5px); }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-content { background: var(--card-bg); width: 90%; max-width: 600px; border-radius: 20px; padding: 3rem; position: relative; transform: scale(0.9); transition: transform 0.3s; border-top: 8px solid var(--gua-red); }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--text-light); cursor: pointer; background: none; border: none; transition: color 0.2s; }
-        .modal-close:hover { color: var(--gua-red); }
-        .modal-body { text-align: center; }
-        .modal-body h2 { font-size: 2rem; color: var(--gua-navy); margin-bottom: 1rem; }
-        [data-theme="dark"] .modal-body h2 { color: var(--text-main); }
-        .stat-row { display: flex; justify-content: space-around; margin-top: 2rem; background: var(--bg-color); padding: 1.5rem; border-radius: 12px; }
-        .stat-item h4 { font-size: 2rem; color: var(--gua-red); margin-bottom: 0.5rem; }
-        .stat-item p { color: var(--text-light); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
+        .back-stats { width: 100%; margin-top: 1.5rem; }
+        .stat-line { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .stat-val { font-weight: bold; color: var(--gua-red); font-size: 1.2rem; }
 
-        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem 2rem; margin-top: 4rem; }
+        /* MILESTONES */
+        .milestone-container { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; }
+        .task-item { display: flex; align-items: center; padding: 1rem; background: var(--bg-color); border-radius: 10px; margin-bottom: 1rem; cursor: pointer; border: 1px solid var(--border-color); }
+        .task-item.done { background: rgba(16, 185, 129, 0.1); text-decoration: line-through; }
+        .progress-circle { position: relative; width: 200px; height: 200px; margin: 0 auto; }
+        .progress-circle svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+        .progress-circle circle { fill: none; stroke-width: 15; stroke-dasharray: 565; stroke-dashoffset: 565; transition: stroke-dashoffset 1s; }
+        .progress-circle .bg { stroke: var(--border-color); }
+        .progress-circle .fill { stroke: var(--gua-red); }
+        .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: bold; }
 
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .filter-group { display: flex; gap: 1rem; margin-bottom: 3rem; justify-content: center; flex-wrap: wrap; }
+        .filter-btn { padding: 0.8rem 2rem; border: 2px solid var(--gua-navy); background: transparent; border-radius: 30px; cursor: pointer; font-weight: bold; }
+        .filter-btn.active { background: var(--gua-navy); color: white; }
 
-        @media (max-width: 1024px) {
-            .profile-grid { grid-template-columns: 1fr; justify-items: center; }
-            .milestone-container { grid-template-columns: 1fr; justify-items: center; }
-            .nav-links { display: none; /* Simplify on mobile */ }
-        }
+        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem; }
+
+        @media (max-width: 768px) { .milestone-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: bold; font-size: 1.5rem; color: var(--xav-blue);">
-            <i class="fas fa-microchip"></i> FK.IV
-        </div>
+        <div style="font-weight: bold; font-size: 1.5rem; color: var(--xav-blue);">FK.IV</div>
         <div class="nav-links">
-            <a href="#resume">Professional Profile</a>
-            <a href="#milestones">Interactive Milestones</a>
-            <a href="#guardians">Guardians 2026 Hub</a>
+            <a href="#resume">Profile</a>
+            <a href="#milestones">Milestones</a>
+            <a href="#guardians">Guardians 2026</a>
         </div>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
-            <i class="fas fa-moon" id="themeIcon"></i>
-        </button>
+        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
     </nav>
 
     <header class="hero">
         <h1>FRANK KROTO IV</h1>
-        <p>Advanced Agentic Infrastructure & Data Orchestration</p>
+        <p>Business Management & Applied AI Strategy | Xavier University</p>
         <div class="hero-badge">MGMT 342 MASTER DEPLOYMENT</div>
     </header>
 
     <main>
-        <!-- RESUME SECTION -->
+        <!-- PROFILE -->
         <section id="resume" class="section-card">
-            <h2 class="section-title">Professional Identity & Strategy</h2>
-            <div class="profile-grid">
-                <div style="text-align: center;">
-                    <img src="frankkrotoicon.jpg" alt="Frank Kroto IV" class="profile-img-lg" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512&bold=true';">
-                    <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-                </div>
-                
-                <div class="resume-content">
-                    <div class="resume-block">
-                        <h3><i class="fas fa-university"></i> Xavier University | Williams College of Business</h3>
-                        <h4>Candidate for Bachelor of Science in Business Administration (Expected 2027)</h4>
-                        <p>Focus: Business Management & Applied AI Strategy. Dedicated to orchestrating autonomous agents to execute complex, multi-tiered business workflows. Believes in leveraging technology as a foundational operational infrastructure rather than merely a generative tool.</p>
-                    </div>
-
-                    <div class="resume-block">
-                        <h3><i class="fas fa-shield-alt"></i> Athletic Leadership & Discipline</h3>
-                        <h4>Notre Dame-Cathedral Latin (NDCL) Varsity Soccer</h4>
-                        <p>Operated in high-pressure environments as a Defender and Senior Leader. Developed critical skills directly translatable to business operations: rapid decision-making, team coordination, strategic foresight, and resilience under pressure. Consistent Honor Roll Scholar.</p>
-                    </div>
-
-                    <div class="resume-block">
-                        <h3><i class="fas fa-cogs"></i> Translatable Skills Matrix</h3>
-                        <p>Hover over core competencies:</p>
-                        <div class="skills-grid">
-                            <div class="skill-item" title="Expertise in directing LLMs to build massive software architectures.">AI Prompt Engineering</div>
-                            <div class="skill-item" title="Managing autonomous systems to execute multi-step business goals.">Agent Orchestration</div>
-                            <div class="skill-item" title="Organizing massive datasets into clean, user-friendly UI/UX layouts.">Data Visualization</div>
-                            <div class="skill-item" title="Applying athletic leadership principles to corporate environments.">Strategic Leadership</div>
-                        </div>
-                    </div>
+            <h2 class="section-title">Professional Identity</h2>
+            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem;">
+                <img src="frankkrotoicon.jpg" class="profile-img-lg" style="width:100%; border-radius:20px; border: 6px solid var(--xav-blue);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512'">
+                <div>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;"><strong>Xavier University '27</strong>. Specializing in orchestrating autonomous agents to streamline enterprise workflows. Former NDCL Varsity Athlete bringing elite discipline to AI strategy.</p>
+                    <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="social-btn" style="width: fit-content; padding: 1rem 2rem;">LinkedIn Profile</a>
                 </div>
             </div>
         </section>
 
-        <!-- INTERACTIVE MILESTONES -->
+        <!-- MILESTONES -->
         <section id="milestones" class="section-card">
-            <h2 class="section-title">Interactive Progress Architecture</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-light);">This module utilizes your browser's <code>localStorage</code>. Click a milestone to mark it as complete. Your progress will be saved automatically, and the gauge will update in real-time.</p>
-            
+            <h2 class="section-title">Interactive Progress</h2>
             <div class="milestone-container">
-                <div class="task-list" id="taskList">
-                    <!-- Injected via JS -->
-                </div>
-                <div style="text-align: center;">
-                    <div class="progress-circle">
-                        <svg viewBox="0 0 220 220">
-                            <circle class="bg" cx="110" cy="110" r="100"></circle>
-                            <circle class="fill" id="circleFill" cx="110" cy="110" r="100"></circle>
-                        </svg>
-                        <div class="progress-text" id="progressText">0%</div>
-                    </div>
-                    <p style="margin-top: 1rem; font-weight: bold; letter-spacing: 1px;">SEMESTER COMPLETION</p>
+                <div id="taskList"></div>
+                <div class="progress-circle">
+                    <svg viewBox="0 0 200 200"><circle class="bg" cx="100" cy="100" r="90"></circle><circle class="fill" id="circleFill" cx="100" cy="100" r="90"></circle></svg>
+                    <div class="progress-text" id="progressText">0%</div>
                 </div>
             </div>
         </section>
 
-        <!-- GUARDIANS HUB -->
+        <!-- GUARDIANS -->
         <section id="guardians" class="section-card">
-            <h2 class="section-title">Cleveland Guardians 2026 Database</h2>
-            
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-chart-line"></i> The 2026 Philosophy</h3>
-                    <p>The Guardians operate on a <strong>"Development as the Engine"</strong> philosophy. Prioritizing elite player development over high payrolls, the team relies on a massive influx of young, cost-controlled talent like Chase DeLauter and Travis Bazzana. The offense stresses "annoying" contact skills, while the pitching factory churns out high-spin arms.</p>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fas fa-stadium"></i> Progressive Field Upgrades</h3>
-                    <p>2026 marks the culmination of a $200M renovation. Highlights include <strong>The Landing</strong> (a new social space in left field replacing old seating), the <strong>Arcade Marketplace</strong> (frictionless grab-and-go concessions), and the integration of the <strong>Guards Wallet</strong> for seamless digital transactions.</p>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fas fa-star"></i> Top 2026 Prospects</h3>
-                    <ul style="padding-left: 1.5rem; color: var(--text-light);">
-                        <li><strong>Travis Bazzana (2B):</strong> 2024 #1 Pick, elite discipline.</li>
-                        <li><strong>Ralphy Velazquez (1B):</strong> Best raw power in the system.</li>
-                        <li><strong>Parker Messick (LHP):</strong> Crafty, fast-rising rotation arm.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <button class="filter-btn active" onclick="filterRoster('All')">Full 40-Man Roster</button>
+            <h2 class="section-title">Guardians 2026 Roster</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-light); text-align: center;">Click a player card to flip it and view detailed 2026 season metrics.</p>
+            <div class="filter-group" id="filterGroup">
+                <button class="filter-btn active" onclick="filterRoster('All')">All</button>
                 <button class="filter-btn" onclick="filterRoster('Infielders')">Infielders</button>
                 <button class="filter-btn" onclick="filterRoster('Outfielders')">Outfielders</button>
                 <button class="filter-btn" onclick="filterRoster('Pitchers')">Pitchers</button>
-                <button class="filter-btn" onclick="filterRoster('Catchers')">Catchers</button>
             </div>
-            
-            <div class="roster-grid" id="rosterGrid">
-                <!-- Injected via JS -->
-            </div>
+            <div class="roster-grid" id="rosterGrid"></div>
         </section>
-
     </main>
 
-    <!-- PLAYER MODAL -->
-    <div class="modal-overlay" id="playerModal" onclick="closeModal(event)">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal(event)"><i class="fas fa-times"></i></button>
-            <div class="modal-body" id="modalBody">
-                <!-- Injected via JS -->
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Frank Kroto IV | Xavier University</h3>
-        <p style="opacity: 0.8; margin-bottom: 1rem;">MGMT 342 Applied AI Strategy • Autonomous Deployment v4.0</p>
-        <p style="font-size: 0.9rem; opacity: 0.6;"><i class="fab fa-github"></i> Hosted securely on GitHub Pages. Built entirely via natural language orchestration.</p>
+        <p>Frank Kroto IV | MGMT 342 | Autonomous Deployment v5.0</p>
     </footer>
 
     <script>
-        // --- THEME TOGGLE ---
+        // Theme
         function toggleTheme() {
-            const body = document.body;
+            document.body.toggleAttribute('data-theme');
             const icon = document.getElementById('themeIcon');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                icon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                icon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            }
+            icon.className = document.body.hasAttribute('data-theme') ? 'fas fa-sun' : 'fas fa-moon';
         }
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'dark') toggleTheme();
 
-        // --- MILESTONE LOGIC ---
-        const defaultTasks = [
-            { id: 't1', text: 'Initialize GitHub Pages Environment', done: true },
-            { id: 't2', text: 'Deploy Phase 1 "Hello World" Static File', done: true },
-            { id: 't3', text: 'Integrate Frank Kroto IV Identity (frankkrotoicon.jpg)', done: true },
-            { id: 't4', text: 'Build Interactive Skills & Resume Matrix', done: false },
-            { id: 't5', text: 'Integrate Deep Guardians 2026 Research Hub', done: false },
-            { id: 't6', text: 'Establish Bulletproof JS Architecture & Image Fallbacks', done: false },
-            { id: 't7', text: 'Implement LocalStorage Progression Engine', done: false }
+        // Milestones
+        const tasks = [
+            { text: 'Deploy Phase 1 Static Site', done: true },
+            { text: 'Integrate Personal Identity & Icons', done: true },
+            { text: 'Build Interactive Flip-Card Roster', done: true },
+            { text: 'Implement Theme Toggling', done: true },
+            { text: 'Verify 2026 Data Accuracy', done: false }
         ];
-
-        let tasks = JSON.parse(localStorage.getItem('mgmt342_milestones')) || defaultTasks;
-
         function renderTasks() {
             const list = document.getElementById('taskList');
             list.innerHTML = '';
             let completed = 0;
-
-            tasks.forEach((task, index) => {
-                if (task.done) completed++;
-                const item = document.createElement('div');
-                item.className = `task-item ${task.done ? 'done' : ''}`;
-                item.onclick = () => toggleTask(index);
-                item.innerHTML = `
-                    <input type="checkbox" class="task-checkbox" ${task.done ? 'checked' : ''}>
-                    <span class="task-text">${task.text}</span>
-                `;
-                list.appendChild(item);
+            tasks.forEach((t, i) => {
+                if(t.done) completed++;
+                const div = document.createElement('div');
+                div.className = `task-item ${t.done ? 'done' : ''}`;
+                div.onclick = () => { tasks[i].done = !tasks[i].done; renderTasks(); };
+                div.innerHTML = `<input type="checkbox" ${t.done?'checked':''} style="margin-right:1rem; transform:scale(1.5);"> <span>${t.text}</span>`;
+                list.appendChild(div);
             });
-
-            updateCircleProgress(completed, tasks.length);
-            localStorage.setItem('mgmt342_milestones', JSON.stringify(tasks));
+            const percent = Math.round((completed/tasks.length)*100);
+            document.getElementById('progressText').innerText = percent + '%';
+            document.getElementById('circleFill').style.strokeDashoffset = 565 - (565 * percent / 100);
         }
 
-        function toggleTask(index) {
-            tasks[index].done = !tasks[index].done;
-            renderTasks();
-        }
-
-        function updateCircleProgress(completed, total) {
-            const percentage = Math.round((completed / total) * 100);
-            document.getElementById('progressText').innerText = `${percentage}%`;
-            const circle = document.getElementById('circleFill');
-            const circumference = 2 * Math.PI * 100;
-            const offset = circumference - (percentage / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
-        }
-
-        // --- MASSIVE ROSTER LOGIC ---
-        const rosterData = [
-            { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", stat1: ".285 AVG", stat2: "5 HR", stat3: "15 RBI" },
-            { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", stat1: ".312 AVG", stat2: "12 R", stat3: "3 SB" },
-            { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders", stat1: ".260 AVG", stat2: "4 HR", stat3: "14 RBI" },
-            { name: "Andrés Giménez", pos: "2B", num: "0", id: "665926", group: "Infielders", stat1: ".275 AVG", stat2: "5 SB", stat3: "GG" },
-            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", stat1: ".290 AVG", stat2: "6 HR", stat3: "1.050 OPS" },
-            { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers", stat1: "2.15 ERA", stat2: "22 K", stat3: "0.95 WHIP" },
-            { name: "Gavin Williams", pos: "SP", num: "32", id: "668909", group: "Pitchers", stat1: "2.50 ERA", stat2: "28 K", stat3: "1.10 WHIP" },
-            { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", stat1: "0.00 ERA", stat2: "5 SV", stat3: "101 MPH" },
-            { name: "Bo Naylor", pos: "C", num: "6", id: "666310", group: "Catchers", stat1: ".240 AVG", stat2: "3 HR", stat3: "Elite Framing" },
-            { name: "David Fry", pos: "C/UTL", num: "26", id: "681807", group: "Catchers", stat1: ".300 AVG", stat2: "2 HR", stat3: "Super UTL" },
-            { name: "Triston McKenzie", pos: "SP", num: "24", id: "663474", group: "Pitchers", stat1: "3.10 ERA", stat2: "18 K", stat3: "1.05 WHIP" },
-            { name: "Brayan Rocchio", pos: "SS", num: "8", id: "677587", group: "Infielders", stat1: ".250 AVG", stat2: "Elite DEF", stat3: "2 SB" },
-            { name: "Gabriel Arias", pos: "SS/3B", num: "4", id: "672356", group: "Infielders", stat1: ".230 AVG", stat2: "Plus Arm", stat3: "1 HR" },
-            { name: "Will Brennan", pos: "OF", num: "17", id: "686823", group: "Outfielders", stat1: ".270 AVG", stat2: "High Contact", stat3: "0 K%" },
-            { name: "Cade Smith", pos: "RP", num: "36", id: "671922", group: "Pitchers", stat1: "1.20 ERA", stat2: "12 K", stat3: "Setup" },
-            { name: "Scott Barlow", pos: "RP", num: "58", id: "605130", group: "Pitchers", stat1: "2.80 ERA", stat2: "Curveball", stat3: "Vet Lead" },
-            { name: "Eli Morgan", pos: "RP", num: "49", id: "669212", group: "Pitchers", stat1: "3.00 ERA", stat2: "Changeup", stat3: "Multi-IP" },
-            { name: "Tim Herrin", pos: "RP", num: "33", id: "682120", group: "Pitchers", stat1: "1.50 ERA", stat2: "LHP", stat3: "High GB%" },
-            { name: "Logan Allen", pos: "SP", num: "43", id: "671150", group: "Pitchers", stat1: "3.50 ERA", stat2: "15 K", stat3: "LHP" },
-            { name: "Tyler Freeman", pos: "SS/CF", num: "2", id: "671529", group: "Infielders", stat1: ".280 AVG", stat2: "Utility", stat3: "High OBP" },
-            { name: "Austin Hedges", pos: "C", num: "27", id: "595978", group: "Catchers", stat1: ".200 AVG", stat2: "Elite DEF", stat3: "Clubhouse" },
-            { name: "Jhonkensy Noel", pos: "OF", num: "43", id: "678877", group: "Outfielders", stat1: "Big Power", stat2: "LF/RF", stat3: "Prospect" },
-            { name: "Angel Martínez", pos: "INF", num: "1", id: "682657", group: "Infielders", stat1: "Switch Hitter", stat2: "Utility", stat3: "Prospect" },
-            { name: "Joey Cantillo", pos: "SP", num: "85", id: "676282", group: "Pitchers", stat1: "LHP", stat2: "High K%", stat3: "Prospect" }
+        // Roster
+        const players = [
+            { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", s1: ".285 AVG", s2: "5 HR", s3: "15 RBI" },
+            { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", s1: ".312 AVG", s2: "12 R", s3: "3 SB" },
+            { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders", s1: ".260 AVG", s2: "4 HR", s3: "14 RBI" },
+            { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers", s1: "2.15 ERA", s2: "22 K", s3: "0.95 WHIP" },
+            { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", s1: "0.00 ERA", s2: "5 SV", s3: "101 MPH" },
+            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", s1: ".290 AVG", s2: "6 HR", s3: "1.050 OPS" }
         ];
 
-        function renderRoster(filterGroup) {
+        function renderRoster(filter) {
             const grid = document.getElementById('rosterGrid');
             grid.innerHTML = '';
-            
-            const filtered = filterGroup === 'All' ? rosterData : rosterData.filter(p => p.group === filterGroup);
-            
-            filtered.forEach((player, index) => {
+            const filtered = filter === 'All' ? players : players.filter(p => p.group === filter);
+            filtered.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                card.onclick = () => openModal(player);
-                
-                const imgUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${player.id}/headshot/67/current`;
-                
-                // Bulletproof Fallback: Instead of relying on an external service that might fail, 
-                // we inject a pure CSS-styled div if the image fails to load.
-                const initials = player.name.split(' ').map(n => n[0]).join('').substring(0,2);
+                card.onclick = () => card.classList.toggle('flipped');
+                const initials = p.name.split(' ').map(n => n[0]).join('');
+                const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.id}/headshot/67/current`;
                 
                 card.innerHTML = `
-                    <div class="player-num">#${player.num}</div>
-                    <img src="${imgUrl}" alt="${player.name}" class="player-photo" 
-                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="css-avatar" style="display:none;">${initials}</div>
-                    <div class="player-info">
-                        <div class="player-name">${player.name}</div>
-                        <div class="player-pos">${player.pos}</div>
+                    <div class="card-front">
+                        <div class="player-num">#${p.num}</div>
+                        <img src="${img}" class="player-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="css-avatar" style="display:none;">${initials}</div>
+                        <div class="player-info">
+                            <div class="player-name">${p.name}</div>
+                            <div class="player-pos">${p.pos}</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3 style="margin-bottom:1rem;">${p.name}</h3>
+                        <div class="back-stats">
+                            <div class="stat-line"><span>Stat 1</span><span class="stat-val">${p.s1}</span></div>
+                            <div class="stat-line"><span>Stat 2</span><span class="stat-val">${p.s2}</span></div>
+                            <div class="stat-line"><span>Stat 3</span><span class="stat-val">${p.s3}</span></div>
+                        </div>
+                        <p style="margin-top:2rem; font-size:0.8rem; opacity:0.7;">Click to flip back</p>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        window.filterRoster = function(group) {
-            const btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
+        function filterRoster(group) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             renderRoster(group);
         }
 
-        // --- MODAL LOGIC ---
-        function openModal(player) {
-            const modal = document.getElementById('playerModal');
-            const body = document.getElementById('modalBody');
-            
-            const imgUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${player.id}/headshot/67/current`;
-            const initials = player.name.split(' ').map(n => n[0]).join('').substring(0,2);
-
-            body.innerHTML = `
-                <div style="width:150px; height:150px; margin: 0 auto 1.5rem; border-radius:50%; overflow:hidden; border: 5px solid var(--gua-red);">
-                    <img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="width:100%; height:100%; background:var(--gua-navy); display:none; align-items:center; justify-content:center; color:white; font-size:3rem; font-weight:bold;">${initials}</div>
-                </div>
-                <h2>${player.name}</h2>
-                <p style="color:var(--text-light); font-size:1.2rem; margin-bottom: 2rem;">#${player.num} | ${player.pos}</p>
-                <h3 style="color:var(--gua-navy); border-bottom: 2px solid var(--border-color); padding-bottom:0.5rem;">2026 Advanced Metrics (Simulated)</h3>
-                <div class="stat-row">
-                    <div class="stat-item"><h4>${player.stat1.split(' ')[0]}</h4><p>${player.stat1.split(' ')[1]}</p></div>
-                    <div class="stat-item"><h4>${player.stat2.split(' ')[0]}</h4><p>${player.stat2.split(' ').slice(1).join(' ')}</p></div>
-                    <div class="stat-item"><h4>${player.stat3.split(' ')[0]}</h4><p>${player.stat3.split(' ').slice(1).join(' ')}</p></div>
-                </div>
-            `;
-            modal.classList.add('active');
-        }
-
-        window.closeModal = function(e) {
-            if (e.target.id === 'playerModal' || e.target.closest('.modal-close')) {
-                document.getElementById('playerModal').classList.remove('active');
-            }
-        }
-
-        // Initialization
-        window.onload = () => {
-            renderTasks();
-            renderRoster('All');
-        };
+        window.onload = () => { renderTasks(); renderRoster('All'); };
     </script>
 </body>
 </html>
