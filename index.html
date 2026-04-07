@@ -129,6 +129,32 @@
             100% { opacity: 1; transform: scale(1); }
         }
         @media (max-width: 900px) { .advanced-dashboard { grid-template-columns: 1fr; } }
+
+        /* AGENTIC COMMAND CENTER */
+        .command-center { display: grid; grid-template-columns: 1fr 350px; gap: 2rem; }
+        .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .strategy-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .strategy-card:hover { border-color: var(--gua-red); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .strategy-card i { font-size: 2rem; margin-bottom: 1rem; color: var(--gua-red); }
+        .strategy-card h4 { margin-bottom: 0.5rem; color: var(--xav-blue); }
+        [data-theme="dark"] .strategy-card h4 { color: var(--text-main); }
+        .strategy-card p { font-size: 0.85rem; color: var(--text-light); }
+
+        .agent-sidebar { background: var(--gua-navy); color: white; border-radius: 15px; padding: 1.5rem; position: sticky; top: 90px; border: 2px solid var(--gua-red); }
+        .agent-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .agent-pulse-icon { width: 50px; height: 50px; background: rgba(227, 25, 55, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gua-red); animation: pulse 2s infinite; }
+        .agent-briefing { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem; font-size: 0.9rem; min-height: 150px; margin-bottom: 1.5rem; line-height: 1.5; }
+        .agent-briefing strong { color: var(--gua-red); display: block; margin-bottom: 0.5rem; }
+
+        .roadmap-container { margin-top: 3rem; position: relative; padding-left: 2rem; border-left: 3px solid var(--border-color); }
+        .roadmap-item { position: relative; margin-bottom: 2rem; }
+        .roadmap-dot { position: absolute; left: -2.4rem; top: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--border-color); border: 3px solid var(--bg-color); }
+        .roadmap-dot.active { background: var(--gua-red); box-shadow: 0 0 10px var(--gua-red); }
+
+        .btn-command { width: 100%; padding: 0.8rem; background: var(--gua-red); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 1rem; }
+        .btn-command:hover { background: #b91c1c; }
+        
+        @media (max-width: 1100px) { .command-center { grid-template-columns: 1fr; } .agent-sidebar { position: static; } }
     </style>
 </head>
 <body>
@@ -151,14 +177,93 @@
 
     <main>
         <section id="resume" class="section-card">
-            <h2 class="section-title">Professional Identity</h2>
-            <div class="profile-grid-main" style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem;">
-                <img src="frankkrotoicon.jpg" class="profile-img-lg" style="width:100%; border-radius:20px; border: 6px solid var(--xav-blue);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Leo+Kroto+IV&background=0C2340&color=fff&size=512'">
-                <div>
-                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;"><strong>Xavier University '27</strong>. Specializing in orchestrating autonomous agents to streamline enterprise workflows. Former NDCL Varsity Athlete bringing elite discipline to AI strategy.</p>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-social btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="https://github.com/fkroto4" target="_blank" class="btn-social btn-github"><i class="fab fa-github"></i> GitHub</a>
+            <h2 class="section-title">Agentic Strategy Command Center</h2>
+            
+            <div class="command-center">
+                <!-- STRATEGY HUB -->
+                <div class="strategy-main">
+                    <div class="strategy-grid">
+                        <div class="strategy-card" onclick="updateAgent('Value Realization', 'Sir, this module tracks the delta between R&D investment and production value. Current projections show a 4.2x multiplier on agentic automation pilots.')">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Value Realization</h4>
+                            <p>Dynamic ROI tracking across the AI lifecycle, from experimental sandboxes to enterprise-scale deployment.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('Agentic Governance', 'Safety protocols are engaged. I am monitoring for hallucination drift and ensuring all autonomous agents adhere to the ethical framework.')">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Agentic Governance</h4>
+                            <p>Automated compliance, bias detection, and human-in-the-loop triggers for autonomous agent swarms.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('Data Sovereignty', 'Our proprietary vector database has grown significantly. The moat is deepening, Sir. External LLMs cannot replicate this context.')">
+                            <i class="fas fa-database"></i>
+                            <h4>Data Sovereignty</h4>
+                            <p>Building the Moat through unique data flywheels and secure vector memory architectures.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('Talent Synergy', 'Upskilling initiatives are progressing. The workforce is transitioning from task-execution to agent-orchestration roles.')">
+                            <i class="fas fa-users-cog"></i>
+                            <h4>Human-AI Synergy</h4>
+                            <p>Mapping talent readiness and cultural evolution as the organization shifts to an AI-first mindset.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-container">
+                        <h3><i class="fas fa-map-signs"></i> Strategic Roadmap</h3>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot active"></div>
+                            <h4 style="color: var(--gua-red);">Phase 1: Foundation</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Infrastructure audit and pilot identification. (Xavier University MGMT 342)</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <h4>Phase 2: Agentic Integration</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Deploying autonomous workflows in high-value departments.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <h4>Phase 3: Cognitive Enterprise</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Full-scale AI orchestration and self-optimizing strategy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JARVIS SIDEBAR -->
+                <div class="agent-sidebar">
+                    <div class="agent-header">
+                        <div class="agent-pulse-icon"><i class="fas fa-robot"></i></div>
+                        <div>
+                            <h3 style="color: white; margin:0;">JARVIS</h3>
+                            <p style="font-size: 0.7rem; color: #10b981; margin:0; font-family: monospace;">ONLINE / ANALYZING</p>
+                        </div>
+                    </div>
+                    
+                    <div class="agent-briefing">
+                        <p id="agentBriefingText">Welcome, Sir. I have analyzed the current AI strategy portfolio. Select a pillar to receive a deep-dive briefing on our operational readiness.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display:flex; justify-content:space-between; font-size: 0.75rem; margin-bottom: 0.3rem;">
+                            <span>Model Alignment</span>
+                            <span>98%</span>
+                        </div>
+                        <div style="width:100%; height:4px; background: rgba(255,255,255,0.1); border-radius:2px;">
+                            <div style="width:98%; height:100%; background: var(--gua-red);"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display:flex; justify-content:space-between; font-size: 0.75rem; margin-bottom: 0.3rem;">
+                            <span>Data Readiness</span>
+                            <span>84%</span>
+                        </div>
+                        <div style="width:100%; height:4px; background: rgba(255,255,255,0.1); border-radius:2px;">
+                            <div style="width:84%; height:100%; background: #3b82f6;"></div>
+                        </div>
+                    </div>
+
+                    <button class="btn-command" onclick="calculatePortfolioROI()"><i class="fas fa-calculator"></i> Run ROI Simulation</button>
+                    
+                    <div class="social-links" style="justify-content: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 1.5rem;">
+                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/fkroto4" target="_blank" style="color: white; font-size: 1.5rem; margin-left: 1.5rem;"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -431,6 +536,25 @@
         }
 
         window.onload = () => { renderTasks(); renderRoster('All'); initAdvancedSports(); };
+
+        // Agentic Command Center Logic
+        function updateAgent(title, message) {
+            const textEl = document.getElementById('agentBriefingText');
+            textEl.style.opacity = 0;
+            setTimeout(() => {
+                textEl.innerHTML = `<strong>${title}:</strong>${message}`;
+                textEl.style.opacity = 1;
+            }, 200);
+        }
+
+        function calculatePortfolioROI() {
+            const textEl = document.getElementById('agentBriefingText');
+            textEl.innerHTML = "<em>Calculating potential yield...</em>";
+            setTimeout(() => {
+                textEl.innerHTML = "<strong>Simulation Complete:</strong>By shifting 30% of middle-office operations to agentic workflows, we project a cost reduction of $2.4M annually with a 15% increase in throughput. Shall I initiate the pilot phase?";
+            }, 1500);
+        }
+        document.getElementById('agentBriefingText').style.transition = 'opacity 0.3s ease';
     </script>
 </body>
 </html>

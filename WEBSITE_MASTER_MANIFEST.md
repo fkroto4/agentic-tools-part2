@@ -8,6 +8,7 @@ This document serves as the persistent memory and technical specification for th
 ## I. CORE IDENTITY & BRANDING
 - **Full Professional Title:** Frank Leo Kroto IV
 - **Academic Affiliation:** Xavier University '27 (Business Management & Applied AI Strategy)
+- **Agentic Hub:** Agentic Strategy Command Center (Interactive Dashboard)
 - **Primary Course:** MGMT 342
 - **Icon/Headshot:** `frankkrotoicon.jpg`
 - **Fallback URL:** `https://ui-avatars.com/api/?name=Frank+Leo+Kroto+IV&background=0C2340&color=fff&size=512`
@@ -49,17 +50,24 @@ This document serves as the persistent memory and technical specification for th
 ---
 
 ## III. FUNCTIONAL SPECIFICATIONS
-### 1. Theme Orchestration
+### 1. Agentic Strategy Command Center
+- **Interface:** Dual-column grid (Strategy Hub + JARVIS Sidebar).
+- **Interactive Nodes:** Four strategy cards triggering `updateAgent()` briefings.
+- **JARVIS Overlay:** Dynamic text updates, pulsing agent animation, and status monitoring.
+- **ROI Simulator:** JavaScript-driven analysis simulation for agentic workflows.
+- **Roadmap:** Vertical phase-based timeline with active status markers.
+
+### 2. Theme Orchestration
 - **Persistence:** Attribute `data-theme` on `body`.
 - **Logic:** `document.body.toggleAttribute('data-theme')`.
 - **Icon Swap:** Moon (`fas fa-moon`) to Sun (`fas fa-sun`).
 
-### 2. Interactive Progress Hub
+### 3. Interactive Progress Hub
 - **Task Array Structure:** `[{ text: '...', done: true/false }]`.
 - **SVG Math:** `stroke-dasharray: 565`; `stroke-dashoffset: 565 - (565 * percent / 100)`.
 - **Calculation:** `Math.round((completed/tasks.length)*100)`.
 
-### 3. Guardians 2026 Data Hub (The "Agentic Proof")
+### 4. Guardians 2026 Data Hub (The "Agentic Proof")
 - **Player Card Data:** 
   - `name`, `pos`, `num`, `id` (MLB People ID for headshots).
   - `s1`, `s2`, `s3` (Verbatim 2026 projections/metrics).
@@ -67,7 +75,7 @@ This document serves as the persistent memory and technical specification for th
 - **Card Interaction:** 180-degree rotation on click (`.player-card.flipped`).
 - **Filtering Logic:** `p.group === filter` with groups: `Infielders`, `Outfielders`, `Pitchers`, `Catchers`.
 
-### 4. Next-Gen Sports Analytics Dashboard
+### 5. Next-Gen Sports Analytics Dashboard
 - **Live Action Center:** Pure DOM simulation of a live game, including a dynamic "Win Probability" bar that updates via a 3-second `setInterval`.
 - **Predictive Odds Calculator:** An interactive `<input type="range">` slider that instantly calculates moneyline payouts.
 - **Head-to-Head Engine:** Dynamic CSS progress bars (`stat-fill-1`, `stat-fill-2`) that visually compare two players' sabermetrics without relying on heavy charting libraries.
@@ -85,5 +93,6 @@ This document serves as the persistent memory and technical specification for th
 ---
 
 ## V. UPDATE LOG
+- **v5.4:** Upgraded Professional Identity to "Agentic Strategy Command Center" dashboard. Integrated JARVIS briefing overlay, ROI simulator, and strategic roadmap.
 - **v5.3:** Integrated the "Maximum Data Hub" (Live Simulation, Odds Calculator, Head-to-Head Engine, Sortable Table) using pure front-end technologies to satisfy the "Top 100 sports features" request.
 - **v5.2:** Integrated middle name "Leo". Established Master Manifest. Cleaned legacy test files (`joke.md`, `joke.docx`). Synchronized GitHub repository.
