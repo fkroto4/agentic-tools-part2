@@ -160,8 +160,17 @@
                         <div style="width:15px; height:15px; background: #10b981; border-radius:50%; animation: pulse 2s infinite;"></div>
                         <h3 style="font-family: 'Fira Code', monospace; font-size: 1rem; color: white;">JARVIS_OS: ONLINE</h3>
                     </div>
-                    <div id="agentBriefing" class="agent-briefing">Welcome back, Sir. Directing all autonomous agents to synchronize league-wide API streams. Select a strategy module for a status report.</div>
+                    <div id="agentBriefing" class="agent-briefing">Welcome back, Sir. My knowledge base is now synchronized with your professional history. Ready for inquiries from guests or strategic briefing for you.</div>
                     
+                    <div style="margin-bottom: 2rem;">
+                        <input type="text" id="jarvisQuery" placeholder="Ask JARVIS about Frank..." onkeyup="if(event.key==='Enter') queryAgent()" style="width:100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--accent); background: rgba(0,0,0,0.5); color: var(--accent); font-family: 'Fira Code', monospace; font-size: 0.8rem; outline: none; margin-bottom: 1rem;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="filter-btn" style="padding: 0.4rem 0.8rem; font-size: 0.6rem; flex: 1;" onclick="queryAgent('background')">BACKGROUND</button>
+                            <button class="filter-btn" style="padding: 0.4rem 0.8rem; font-size: 0.6rem; flex: 1;" onclick="queryAgent('skills')">SKILLS</button>
+                            <button class="filter-btn" style="padding: 0.4rem 0.8rem; font-size: 0.6rem; flex: 1;" onclick="queryAgent('vision')">VISION</button>
+                        </div>
+                    </div>
+
                     <div class="sys-metric">
                         <div class="metric-label"><span>Model Alignment</span><span>98%</span></div>
                         <div class="metric-bar"><div class="metric-fill" style="width: 98%;"></div></div>
@@ -174,7 +183,7 @@
                     <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                         <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-social"><i class="fab fa-linkedin"></i></a>
                         <a href="https://github.com/fkroto4" target="_blank" class="btn-social"><i class="fab fa-github"></i></a>
-                        <button class="filter-btn" style="flex:1; padding: 0.5rem; font-size: 0.7rem;" onclick="runROISim()">Run ROI Sim</button>
+                        <button class="filter-btn" style="flex:1; padding: 0.5rem; font-size: 0.7rem;" onclick="runROISim()">ROI SIM</button>
                     </div>
                 </div>
             </div>
@@ -351,6 +360,25 @@
         }
 
         window.updateAgent = (t, m) => { const b = document.getElementById('agentBriefing'); b.style.opacity = 0; setTimeout(() => { b.innerHTML = `> ${t}: ${m}`; b.style.opacity = 1; }, 200); };
+        
+        window.queryAgent = function(topic) {
+            const query = topic || document.getElementById('jarvisQuery').value.toLowerCase();
+            let response = "I'm sorry, Sir, I don't have that specific data point in my current persona matrix. Try 'Background', 'Skills', or 'Vision'.";
+            
+            if (query.includes('background') || query.includes('who is')) {
+                response = "Frank Leo Kroto IV is a Business Management & Applied AI Strategy specialist at Xavier University ('27). He is a former NDCL Varsity Athlete, bringing elite competitive discipline to the field of autonomous orchestration.";
+            } else if (query.includes('skills') || query.includes('can he do')) {
+                response = "Frank specializes in Agentic Strategy, Dynamic ROI Modeling, and Data Sovereignty. He is proficient in directing AI swarms to manage complex, real-time data environments like this very portal.";
+            } else if (query.includes('vision') || query.includes('future')) {
+                response = "His vision is the 'Cognitive Enterprise'—an organization where human leadership is augmented by self-optimizing agentic workflows, maximizing both throughput and strategic foresight.";
+            } else if (query.includes('xavier')) {
+                response = "Frank is currently a standout at Xavier University, where he is applying agentic principles to the MGMT 342 Master Deployment project.";
+            }
+            
+            updateAgent('PERSONA_QUERY', response);
+            document.getElementById('jarvisQuery').value = '';
+        }
+
         function runROISim() { updateAgent('ROI SIMULATION', 'By shifting 30% of mid-office operations to agentic workflows, we project a cost reduction of $2.4M annually with a 15% increase in throughput.'); }
 
         setInterval(() => {
