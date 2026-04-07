@@ -26,7 +26,6 @@
             --border-color: rgba(0, 0, 0, 0.1);
             --text-main: #0f172a;
             --text-muted: #475569;
-            --xav-blue: #0C2340;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
@@ -55,7 +54,7 @@
         .strategy-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
         
         .agent-sidebar { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 2rem; border: 2px solid var(--accent); position: sticky; top: 100px; }
-        .agent-briefing { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent); min-height: 150px; margin-bottom: 2rem; line-height: 1.5; border-left: 4px solid var(--accent); }
+        .agent-briefing { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent); min-height: 150px; margin-bottom: 2rem; line-height: 1.5; border-left: 4px solid var(--accent); transition: opacity 0.3s; }
 
         .sys-metric { margin-bottom: 1.5rem; }
         .metric-label { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; }
@@ -93,6 +92,9 @@
         .filter-btn { padding: 1rem 2.5rem; border: 2px solid var(--accent); background: transparent; border-radius: 40px; cursor: pointer; font-weight: 900; color: var(--text-main); transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .filter-btn.active { background: var(--accent); color: var(--bg-color); box-shadow: 0 0 20px var(--accent); }
         
+        .momentum-tracker { width: 100%; height: 12px; background: rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+        .momentum-fill { height: 100%; background: var(--accent); transition: width 1s ease-in-out; }
+
         .odds-slider { width: 100%; height: 12px; background: rgba(255,255,255,0.1); border-radius: 6px; appearance: none; outline: none; margin: 2rem 0; cursor: pointer; }
         .odds-slider::-webkit-slider-thumb { appearance: none; width: 28px; height: 28px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
 
@@ -358,6 +360,20 @@
                 document.getElementById('momentumLabel').innerText = `${cTeamAbbr} ${p.toFixed(1)}%`;
             }
         }, 3000);
+
+        let sortAsc = true;
+        window.sortTable = function(col) {
+            const b = document.getElementById('tableBody');
+            const r = Array.from(b.querySelectorAll('tr'));
+            r.sort((a, b) => {
+                const vA = a.cells[col].innerText;
+                const vB = b.cells[col].innerText;
+                return sortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+            });
+            sortAsc = !sortAsc;
+            b.innerHTML = '';
+            r.forEach(row => b.appendChild(row));
+        }
 
         window.onload = () => { renderTasks(); switchTeam('CLE'); };
     </script>
