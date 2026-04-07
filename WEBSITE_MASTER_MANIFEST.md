@@ -8,49 +8,54 @@ This document serves as the persistent memory and technical specification for th
 ## I. CORE IDENTITY & BRANDING
 - **Full Professional Title:** Frank Leo Kroto IV
 - **Academic Affiliation:** Xavier University '27 (Business Management & Applied AI Strategy)
-- **Agentic Hub:** Agentic Strategy Command Center (Interactive Dashboard)
-- **MLB Focus:** Live League Orchestrator (v6.0 - Real-Time API Integration)
-- **Primary Course:** MGMT 342
-- **Aesthetic:** Pro-Analytics Dark-Glass (Inter / Fira Code Typography)
+- **Agentic Hub:** Agentic Strategy Command Center (v6.4 Fusion)
+- **MLB Focus:** Live League Orchestrator (Full 30-Team API Integration)
+- **Aesthetic:** Pro-Analytics Dark-Glass / Light-Mode Hybrid
 
 ## II. VISUAL DESIGN LANGUAGE
 ### CSS Variables (The "Source of Truth")
 ```css
 :root {
     --xav-blue: #0C2340;
-    --bg-dark: #020617;
-    --glass-bg: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --accent: #38bdf8; /* Dynamic MLB Accent Color */
+    --bg-color: #020617; /* Default Dark */
+    --accent: #38bdf8;   /* Dynamic MLB Accent */
+}
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-main: #0f172a;
 }
 ```
 
 ## III. FUNCTIONAL SPECIFICATIONS
-### 1. Live League Orchestrator (v6.0)
-- **Architecture:** Asynchronous `fetch` calls to `statsapi.mlb.com`.
-- **Live Rosters:** Dynamically fetches active roster for all 30 MLB teams.
-- **Real-Time Scoreboard:** Fetches daily schedule and displays live game states (Live/Final/Scheduled).
-- **Interactive Player Cards:** Renders as many players as returned by the API with MLB headshots.
-- **Dynamic Theming:** Updates `--accent` color and hub titles based on `switchTeam(abbr)`.
+### 1. Agentic Strategy Command Center (Restored)
+- **Interface:** Strategy Grid + JARVIS Briefing Sidebar.
+- **Metrics:** Restored "Model Alignment" (98%) and "Data Readiness" (84%) visual bars.
+- **Social:** Persistent LinkedIn/GitHub command buttons integrated.
+- **Simulator:** `runROISim()` trigger functional.
 
-### 2. Agentic Strategy Command Center
-- **Interface:** Dual-column grid (Strategy Hub + JARVIS Sidebar).
-- **Interactive Nodes:** Four strategy cards triggering `updateAgent()` briefings.
-- **JARVIS Overlay:** Dynamic text updates, pulsing agent animation, and status monitoring.
+### 2. Interactive Milestones (Restored)
+- **Feature:** Checkbox-driven task list with circular SVG progress animation.
+- **Logic:** `renderTasks()` calculates dynamic percentages.
+
+### 3. Live League Orchestrator (v6.4)
+- **Architecture:** `statsapi.mlb.com` fetch engine.
+- **Interaction:** Restored **Flip-Card** mechanics for all 30 teams.
+- **Discovery:** League-wide **Search Bar** and **Sortable Metrics Table** functional.
+- **Momentum:** Real-time "Win Probability" pulse gauge.
 
 ---
 
 ## IV. PERMANENT DIRECTIVES (CRITICAL)
-1. **Middle Name Integrity:** "Leo" is non-negotiable in all identity strings.
-2. **API Autonomy:** NEVER revert to hardcoded rosters; the site must remain a portal for live global data streams.
-3. **Hybrid Branding:** Xavier branding is the anchor; MLB accents must be dynamic.
-4. **Universal Support:** All 30 MLB teams must be supported in the `teamMap` and selector.
-5. **Version Tracking:** Footer must state `Autonomous Deployment v6.0`.
+1. **Never** remove the Theme Toggle; the site must support Dark and Light modes.
+2. **Never** omit the middle name "Leo".
+3. **Never** delete the Milestones/Progress section; it is a core engagement feature.
+4. **Always** include social links in the sidebar.
+5. **Always** maintain the API-driven roster; do not revert to hardcoded lists.
 
 ---
 
 ## V. UPDATE LOG
-- **v6.0:** Transitioned to **Real-Time MLB Stats API**. Implemented live rosters, live game tracking, and a "Pro-Analytics" visual overhaul.
-- **v5.5:** Implemented the MLB 2026 Universal Engine (Simulated).
-- **v5.4:** Upgraded Professional Identity to Agentic Command Center.
-- **v5.2:** Established Master Manifest.
+- **v6.4 (Fixed Model):** Performed "Master Fusion." Restored Theme Toggle, Milestones section, social links, system metrics, and flip-card interactivity. Fixed broken Odds Slider IDs.
+- **v6.2:** Implemented Search and Sort features.
+- **v6.0:** Transitioned to Real-Time MLB Stats API.
