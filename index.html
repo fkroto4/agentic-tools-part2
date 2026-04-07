@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frank Kroto IV | Advanced Agentic Portfolio</title>
+    <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -15,33 +16,55 @@
             --gua-red: #E31937;
             --gua-navy: #0C2340;
             
-            --bg-dark: #0f172a;
+            --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-light: #64748b;
+            --text-main: #0f172a;
+            --text-light: #475569;
             --accent: #3b82f6;
+            --border-color: #e2e8f0;
+            
+            --nav-bg: rgba(255, 255, 255, 0.9);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        /* DARK MODE VARS */
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-light: #94a3b8;
+            --border-color: #334155;
+            --xav-light: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+        }
 
-        body { background: var(--xav-light); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
+
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+
+        /* NAVBAR */
+        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.3s; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--gua-red); }
+        .theme-toggle { background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; transition: transform 0.3s; }
+        .theme-toggle:hover { transform: scale(1.1); }
 
         /* HERO BANNER */
         .hero {
             background: linear-gradient(135deg, var(--xav-blue) 0%, #1e3a8a 100%);
             color: white;
-            padding: 6rem 2rem 4rem;
+            padding: 8rem 2rem 5rem;
             text-align: center;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border-bottom: 8px solid var(--xav-silver);
         }
-        .hero h1 { font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; animation: fadeInDown 1s ease; }
-        .hero p { font-size: 1.4rem; color: #cbd5e1; max-width: 800px; margin: 0 auto; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 1rem; animation: fadeInDown 1s ease; }
+        .hero p { font-size: 1.5rem; color: #cbd5e1; max-width: 900px; margin: 0 auto; animation: fadeInUp 1s ease; }
         .hero-badge { display: inline-block; background: var(--gua-red); padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: bold; margin-top: 2rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(227,25,55,0.4); }
 
         /* MAIN CONTAINER */
-        main { max-width: 1400px; margin: -3rem auto 0; padding: 0 2rem 4rem; position: relative; z-index: 10; }
+        main { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem; }
 
         /* SECTIONS */
         .section-card {
@@ -49,164 +72,152 @@
             border-radius: 20px;
             padding: 3rem;
             margin-bottom: 4rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 0.8s forwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
         }
-        .section-title { font-size: 2.2rem; color: var(--xav-blue); border-bottom: 4px solid var(--gua-red); padding-bottom: 0.5rem; margin-bottom: 2.5rem; display: inline-block; }
+        .section-title { font-size: 2.5rem; color: var(--xav-blue); border-bottom: 4px solid var(--gua-red); padding-bottom: 0.5rem; margin-bottom: 2.5rem; display: inline-block; }
+        [data-theme="dark"] .section-title { color: var(--text-main); }
 
-        /* FRANK'S DOSSIER (TABS) */
-        .dossier-grid { display: grid; grid-template-columns: 350px 1fr; gap: 4rem; }
-        .profile-sidebar { text-align: center; }
-        .profile-img-lg { width: 280px; height: 280px; border-radius: 20px; object-fit: cover; border: 6px solid var(--xav-blue); box-shadow: 0 10px 25px rgba(12,35,64,0.3); margin-bottom: 1.5rem; }
-        .social-btn { display: inline-block; width: 100%; padding: 1rem; background: #0077b5; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: all 0.3s; margin-bottom: 1rem; }
+        /* FRANK'S DOSSIER */
+        .profile-grid { display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: start; }
+        .profile-img-lg { width: 100%; max-width: 350px; height: auto; aspect-ratio: 1/1; border-radius: 20px; object-fit: cover; border: 6px solid var(--xav-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin-bottom: 1.5rem; transition: transform 0.3s; }
+        .profile-img-lg:hover { transform: scale(1.02); }
+        .social-btn { display: block; width: 100%; padding: 1rem; background: #0077b5; color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: bold; transition: all 0.3s; margin-bottom: 1rem; }
         .social-btn:hover { background: #005e93; transform: translateY(-3px); }
-        .social-btn.git { background: #333; }
-        .social-btn.git:hover { background: #111; }
-
-        .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #e2e8f0; }
-        .tab-btn { padding: 1rem 2rem; background: none; border: none; font-size: 1.1rem; color: var(--text-light); cursor: pointer; font-weight: 600; position: relative; transition: all 0.3s; }
-        .tab-btn.active { color: var(--xav-blue); }
-        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 4px; background: var(--xav-blue); border-radius: 4px 4px 0 0; }
-        .tab-content { display: none; animation: fadeIn 0.5s; }
-        .tab-content.active { display: block; }
-
-        .info-list { list-style: none; }
-        .info-list li { margin-bottom: 1.5rem; padding-left: 2rem; position: relative; }
-        .info-list li::before { content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--gua-red); }
-        .info-list h4 { font-size: 1.3rem; color: var(--xav-blue); margin-bottom: 0.3rem; }
-        .info-list p { color: var(--text-light); }
-
-        /* SKILLS BARS */
-        .skill-bar-container { margin-bottom: 1.5rem; }
-        .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: bold; color: var(--xav-blue); }
-        .skill-track { width: 100%; height: 12px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
-        .skill-fill { height: 100%; background: linear-gradient(90deg, var(--xav-blue), var(--accent)); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        
+        .resume-content { font-size: 1.1rem; }
+        .resume-block { margin-bottom: 2.5rem; padding: 1.5rem; background: var(--bg-color); border-radius: 12px; border-left: 5px solid var(--xav-blue); }
+        .resume-block h3 { color: var(--xav-blue); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        [data-theme="dark"] .resume-block h3 { color: var(--accent); }
+        .resume-block h4 { color: var(--gua-red); margin-bottom: 1rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .skill-item { background: var(--xav-blue); color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: bold; transition: all 0.3s; cursor: default; }
+        .skill-item:hover { background: var(--gua-red); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(227,25,55,0.3); }
 
         /* INTERACTIVE MILESTONES */
-        .milestone-dashboard { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; }
-        .task-list { background: #f8fafc; padding: 2rem; border-radius: 15px; border: 1px solid #e2e8f0; }
-        .task-item { display: flex; align-items: center; padding: 1.2rem; background: white; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); cursor: pointer; transition: all 0.2s; border-left: 4px solid transparent; }
-        .task-item:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .task-item.done { border-left-color: #10b981; background: #f0fdf4; }
-        .task-item.done span { text-decoration: line-through; color: #6b7280; }
-        .task-checkbox { margin-right: 1.5rem; width: 24px; height: 24px; accent-color: #10b981; cursor: pointer; }
-        .task-text { font-size: 1.1rem; font-weight: 500; }
+        .milestone-container { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; align-items: center; }
+        .task-list { display: flex; flex-direction: column; gap: 1rem; }
+        .task-item { display: flex; align-items: center; padding: 1.2rem 1.5rem; background: var(--bg-color); border-radius: 10px; border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s; }
+        .task-item:hover { transform: translateX(10px); border-color: var(--xav-blue); }
+        .task-item.done { background: rgba(16, 185, 129, 0.1); border-color: #10b981; }
+        .task-item.done span { text-decoration: line-through; color: var(--text-light); }
+        .task-checkbox { margin-right: 1.5rem; width: 24px; height: 24px; accent-color: #10b981; pointer-events: none; }
+        .task-text { font-size: 1.2rem; font-weight: 500; }
         
         .progress-circle { position: relative; width: 250px; height: 250px; margin: 0 auto; }
         .progress-circle svg { width: 100%; height: 100%; transform: rotate(-90deg); }
         .progress-circle circle { fill: none; stroke-width: 15; stroke-linecap: round; }
-        .progress-circle .bg { stroke: #e2e8f0; }
+        .progress-circle .bg { stroke: var(--border-color); }
         .progress-circle .fill { stroke: var(--gua-red); stroke-dasharray: 630; stroke-dashoffset: 630; transition: stroke-dashoffset 1s ease-out; }
         .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: bold; color: var(--xav-blue); }
+        [data-theme="dark"] .progress-text { color: var(--text-main); }
 
         /* GUARDIANS HUB */
-        .guardians-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
-        .filter-group { display: flex; gap: 0.5rem; }
-        .filter-btn { padding: 0.8rem 1.5rem; border: 2px solid var(--gua-navy); background: transparent; color: var(--gua-navy); border-radius: 30px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
-        .filter-btn.active, .filter-btn:hover { background: var(--gua-navy); color: white; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .info-card { background: var(--bg-color); padding: 2rem; border-radius: 15px; border-top: 5px solid var(--gua-red); }
+        .info-card h3 { color: var(--gua-navy); font-size: 1.5rem; margin-bottom: 1rem; }
+        [data-theme="dark"] .info-card h3 { color: var(--text-main); }
 
-        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-        .player-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; transition: all 0.3s; text-align: center; position: relative; }
-        .player-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
-        .player-photo { width: 100%; height: 220px; object-fit: cover; background: #cbd5e1; border-bottom: 4px solid var(--gua-red); }
-        .player-info { padding: 1.2rem; }
-        .player-num { position: absolute; top: 10px; left: 10px; background: rgba(12,35,64,0.9); color: white; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-size: 0.9rem; border: 2px solid var(--gua-red); }
-        .player-name { font-size: 1.1rem; color: var(--gua-navy); margin-bottom: 0.3rem; font-weight: 800; }
-        .player-pos { color: var(--text-light); font-weight: 600; font-size: 0.9rem; }
+        .filter-group { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
+        .filter-btn { padding: 0.8rem 2rem; border: 2px solid var(--gua-navy); background: transparent; color: var(--gua-navy); border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: all 0.3s; }
+        [data-theme="dark"] .filter-btn { border-color: var(--text-main); color: var(--text-main); }
+        .filter-btn.active, .filter-btn:hover { background: var(--gua-navy); color: white; border-color: var(--gua-navy); }
+        [data-theme="dark"] .filter-btn.active, [data-theme="dark"] .filter-btn:hover { background: var(--gua-red); border-color: var(--gua-red); }
 
-        /* ANIMATIONS */
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; }
+        .player-card { background: var(--bg-color); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid var(--border-color); transition: all 0.3s; text-align: center; position: relative; cursor: pointer; }
+        .player-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-color: var(--gua-red); }
+        .player-photo { width: 100%; height: 250px; object-fit: cover; background: #cbd5e1; border-bottom: 4px solid var(--gua-red); }
+        
+        /* CSS Avatar Fallback */
+        .css-avatar { width: 100%; height: 250px; background: var(--gua-navy); border-bottom: 4px solid var(--gua-red); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; font-weight: bold; text-transform: uppercase; }
+        
+        .player-info { padding: 1.5rem; }
+        .player-num { position: absolute; top: 10px; left: 10px; background: rgba(12,35,64,0.9); color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-size: 1rem; border: 2px solid var(--gua-red); }
+        .player-name { font-size: 1.2rem; color: var(--gua-navy); margin-bottom: 0.3rem; font-weight: 800; }
+        [data-theme="dark"] .player-name { color: var(--text-main); }
+        .player-pos { color: var(--text-light); font-weight: 600; font-size: 1rem; }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(5px); }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content { background: var(--card-bg); width: 90%; max-width: 600px; border-radius: 20px; padding: 3rem; position: relative; transform: scale(0.9); transition: transform 0.3s; border-top: 8px solid var(--gua-red); }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--text-light); cursor: pointer; background: none; border: none; transition: color 0.2s; }
+        .modal-close:hover { color: var(--gua-red); }
+        .modal-body { text-align: center; }
+        .modal-body h2 { font-size: 2rem; color: var(--gua-navy); margin-bottom: 1rem; }
+        [data-theme="dark"] .modal-body h2 { color: var(--text-main); }
+        .stat-row { display: flex; justify-content: space-around; margin-top: 2rem; background: var(--bg-color); padding: 1.5rem; border-radius: 12px; }
+        .stat-item h4 { font-size: 2rem; color: var(--gua-red); margin-bottom: 0.5rem; }
+        .stat-item p { color: var(--text-light); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
+
+        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem 2rem; margin-top: 4rem; }
+
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 1024px) {
-            .dossier-grid { grid-template-columns: 1fr; }
-            .profile-sidebar { display: flex; flex-direction: column; align-items: center; }
-            .milestone-dashboard { grid-template-columns: 1fr; }
+            .profile-grid { grid-template-columns: 1fr; justify-items: center; }
+            .milestone-container { grid-template-columns: 1fr; justify-items: center; }
+            .nav-links { display: none; /* Simplify on mobile */ }
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div style="font-weight: bold; font-size: 1.5rem; color: var(--xav-blue);">
+            <i class="fas fa-microchip"></i> FK.IV
+        </div>
+        <div class="nav-links">
+            <a href="#resume">Professional Profile</a>
+            <a href="#milestones">Interactive Milestones</a>
+            <a href="#guardians">Guardians 2026 Hub</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+    </nav>
+
     <header class="hero">
-        <h1>HELLO WORLD</h1>
+        <h1>FRANK KROTO IV</h1>
         <p>Advanced Agentic Infrastructure & Data Orchestration</p>
         <div class="hero-badge">MGMT 342 MASTER DEPLOYMENT</div>
     </header>
 
     <main>
-        <!-- FRANK KROTO IV DOSSIER -->
-        <section class="section-card" style="animation-delay: 0.1s;">
-            <h2 class="section-title">Professional Dossier: Frank Kroto IV</h2>
-            <div class="dossier-grid">
-                <div class="profile-sidebar">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQE_9Z9Z9Z9Z9Z/profile-displayphoto-shrink_800_800/0/1712515200000?e=1717632000&v=beta&t=7Z9Z9Z9Z9Z" 
-                         alt="Frank Kroto IV" class="profile-img-lg" 
-                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512&bold=true';">
+        <!-- RESUME SECTION -->
+        <section id="resume" class="section-card">
+            <h2 class="section-title">Professional Identity & Strategy</h2>
+            <div class="profile-grid">
+                <div style="text-align: center;">
+                    <img src="frankkrotoicon.jpg" alt="Frank Kroto IV" class="profile-img-lg" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512&bold=true';">
                     <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-                    <a href="https://github.com/fkroto4" target="_blank" class="social-btn git"><i class="fab fa-github"></i> View GitHub Repo</a>
                 </div>
                 
-                <div class="profile-details">
-                    <div class="tabs">
-                        <button class="tab-btn active" onclick="openTab(event, 'summary')">Executive Summary</button>
-                        <button class="tab-btn" onclick="openTab(event, 'education')">Academic & Leadership</button>
-                        <button class="tab-btn" onclick="openTab(event, 'skills')">Agentic Skills Matrix</button>
+                <div class="resume-content">
+                    <div class="resume-block">
+                        <h3><i class="fas fa-university"></i> Xavier University | Williams College of Business</h3>
+                        <h4>Candidate for Bachelor of Science in Business Administration (Expected 2027)</h4>
+                        <p>Focus: Business Management & Applied AI Strategy. Dedicated to orchestrating autonomous agents to execute complex, multi-tiered business workflows. Believes in leveraging technology as a foundational operational infrastructure rather than merely a generative tool.</p>
                     </div>
 
-                    <div id="summary" class="tab-content active">
-                        <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-main); margin-bottom: 1.5rem;">
-                            I am a driven Business Management student at <strong>Xavier University (Class of 2027)</strong>, specializing in the intersection of operational strategy and Applied Artificial Intelligence. 
-                        </p>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
-                            My core philosophy centers on using AI not just as a generative tool, but as a robust operational infrastructure. Through coursework like MGMT 342, I am mastering the orchestration of autonomous agents to execute complex, multi-tiered workflows—demonstrating the capacity to direct technology rather than simply consume it.
-                        </p>
-                        <div style="background: #f0fdf4; border-left: 5px solid #10b981; padding: 1.5rem; margin-top: 2rem; border-radius: 8px;">
-                            <h4 style="color: #065f46; margin-bottom: 0.5rem;"><i class="fas fa-bullseye"></i> Current Objective</h4>
-                            <p style="color: #064e3b; margin: 0;">Developing fully interactive, data-rich web applications exclusively through natural language commands and agent delegation, proving that strategic vision supersedes traditional coding syntax.</p>
-                        </div>
+                    <div class="resume-block">
+                        <h3><i class="fas fa-shield-alt"></i> Athletic Leadership & Discipline</h3>
+                        <h4>Notre Dame-Cathedral Latin (NDCL) Varsity Soccer</h4>
+                        <p>Operated in high-pressure environments as a Defender and Senior Leader. Developed critical skills directly translatable to business operations: rapid decision-making, team coordination, strategic foresight, and resilience under pressure. Consistent Honor Roll Scholar.</p>
                     </div>
 
-                    <div id="education" class="tab-content">
-                        <ul class="info-list">
-                            <li>
-                                <h4>Xavier University | Williams College of Business</h4>
-                                <p><strong>Candidate for Bachelor of Science in Business Administration</strong> (Expected 2027)</p>
-                                <p>Focus: Business Management & AI Strategy. Active in coursework demanding high-level technical orchestration and strategic planning.</p>
-                            </li>
-                            <li>
-                                <h4>Notre Dame-Cathedral Latin (NDCL)</h4>
-                                <p><strong>High School Diploma</strong> (Class of 2023)</p>
-                                <p>Consistent Honor Roll Scholar. Developed foundational discipline and leadership skills.</p>
-                            </li>
-                            <li>
-                                <h4>Varsity Student-Athlete (Soccer)</h4>
-                                <p><strong>Defender / Team Leader</strong></p>
-                                <p>Operated in high-pressure environments, demanding rapid decision-making, team coordination, and strategic foresight—skills directly translatable to business operations.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div id="skills" class="tab-content">
-                        <div class="skill-bar-container">
-                            <div class="skill-header"><span>Agent Orchestration (Prompting & Strategy)</span><span>95%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-header"><span>Data Visualization & Architecture</span><span>88%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="88%"></div></div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-header"><span>Project Management & Execution</span><span>92%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="92%"></div></div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-header"><span>Leadership & Team Dynamics</span><span>90%</span></div>
-                            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+                    <div class="resume-block">
+                        <h3><i class="fas fa-cogs"></i> Translatable Skills Matrix</h3>
+                        <p>Hover over core competencies:</p>
+                        <div class="skills-grid">
+                            <div class="skill-item" title="Expertise in directing LLMs to build massive software architectures.">AI Prompt Engineering</div>
+                            <div class="skill-item" title="Managing autonomous systems to execute multi-step business goals.">Agent Orchestration</div>
+                            <div class="skill-item" title="Organizing massive datasets into clean, user-friendly UI/UX layouts.">Data Visualization</div>
+                            <div class="skill-item" title="Applying athletic leadership principles to corporate environments.">Strategic Leadership</div>
                         </div>
                     </div>
                 </div>
@@ -214,15 +225,15 @@
         </section>
 
         <!-- INTERACTIVE MILESTONES -->
-        <section class="section-card" style="animation-delay: 0.3s;">
+        <section id="milestones" class="section-card">
             <h2 class="section-title">Interactive Progress Architecture</h2>
-            <p style="margin-bottom: 2rem; font-size: 1.1rem;">This interactive module utilizes client-side storage (localStorage) to persist your progress across sessions. Check off your accomplishments.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-light);">This module utilizes your browser's <code>localStorage</code>. Click a milestone to mark it as complete. Your progress will be saved automatically, and the gauge will update in real-time.</p>
             
-            <div class="milestone-dashboard">
+            <div class="milestone-container">
                 <div class="task-list" id="taskList">
-                    <!-- Tasks injected by JS -->
+                    <!-- Injected via JS -->
                 </div>
-                <div class="progress-widget">
+                <div style="text-align: center;">
                     <div class="progress-circle">
                         <svg viewBox="0 0 220 220">
                             <circle class="bg" cx="110" cy="110" r="100"></circle>
@@ -230,69 +241,95 @@
                         </svg>
                         <div class="progress-text" id="progressText">0%</div>
                     </div>
-                    <p style="text-align: center; margin-top: 1.5rem; font-weight: bold; color: var(--text-light);">SEMESTER COMPLETION</p>
+                    <p style="margin-top: 1rem; font-weight: bold; letter-spacing: 1px;">SEMESTER COMPLETION</p>
                 </div>
             </div>
         </section>
 
-        <!-- FULL GUARDIANS HUB -->
-        <section class="section-card" style="animation-delay: 0.5s;">
-            <div class="guardians-header">
-                <h2 class="section-title" style="margin:0; border-color: var(--gua-red);">Cleveland Guardians: Comprehensive 2026 Database</h2>
-                <div class="filter-group">
-                    <button class="filter-btn active" onclick="filterRoster('All')">All</button>
-                    <button class="filter-btn" onclick="filterRoster('Infielders')">Infielders</button>
-                    <button class="filter-btn" onclick="filterRoster('Outfielders')">Outfielders</button>
-                    <button class="filter-btn" onclick="filterRoster('Pitchers')">Pitchers</button>
-                    <button class="filter-btn" onclick="filterRoster('Catchers')">Catchers</button>
+        <!-- GUARDIANS HUB -->
+        <section id="guardians" class="section-card">
+            <h2 class="section-title">Cleveland Guardians 2026 Database</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-chart-line"></i> The 2026 Philosophy</h3>
+                    <p>The Guardians operate on a <strong>"Development as the Engine"</strong> philosophy. Prioritizing elite player development over high payrolls, the team relies on a massive influx of young, cost-controlled talent like Chase DeLauter and Travis Bazzana. The offense stresses "annoying" contact skills, while the pitching factory churns out high-spin arms.</p>
                 </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-stadium"></i> Progressive Field Upgrades</h3>
+                    <p>2026 marks the culmination of a $200M renovation. Highlights include <strong>The Landing</strong> (a new social space in left field replacing old seating), the <strong>Arcade Marketplace</strong> (frictionless grab-and-go concessions), and the integration of the <strong>Guards Wallet</strong> for seamless digital transactions.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-star"></i> Top 2026 Prospects</h3>
+                    <ul style="padding-left: 1.5rem; color: var(--text-light);">
+                        <li><strong>Travis Bazzana (2B):</strong> 2024 #1 Pick, elite discipline.</li>
+                        <li><strong>Ralphy Velazquez (1B):</strong> Best raw power in the system.</li>
+                        <li><strong>Parker Messick (LHP):</strong> Crafty, fast-rising rotation arm.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterRoster('All')">Full 40-Man Roster</button>
+                <button class="filter-btn" onclick="filterRoster('Infielders')">Infielders</button>
+                <button class="filter-btn" onclick="filterRoster('Outfielders')">Outfielders</button>
+                <button class="filter-btn" onclick="filterRoster('Pitchers')">Pitchers</button>
+                <button class="filter-btn" onclick="filterRoster('Catchers')">Catchers</button>
             </div>
             
             <div class="roster-grid" id="rosterGrid">
-                <!-- Cards injected by JS to ensure full 40-man integration -->
+                <!-- Injected via JS -->
             </div>
         </section>
 
     </main>
 
-    <footer style="background: var(--xav-blue); color: white; text-align: center; padding: 4rem 2rem; margin-top: 4rem;">
-        <h3 style="margin-bottom: 1rem;">Frank Kroto IV | Xavier University</h3>
-        <p style="opacity: 0.7; margin-bottom: 2rem;">MGMT 342 Applied AI Strategy • Autonomous Deployment v3.0</p>
-        <p style="font-size: 0.8rem; opacity: 0.5;">All data generated via agentic prompting. Hosted securely on GitHub Pages.</p>
+    <!-- PLAYER MODAL -->
+    <div class="modal-overlay" id="playerModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal(event)"><i class="fas fa-times"></i></button>
+            <div class="modal-body" id="modalBody">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Frank Kroto IV | Xavier University</h3>
+        <p style="opacity: 0.8; margin-bottom: 1rem;">MGMT 342 Applied AI Strategy • Autonomous Deployment v4.0</p>
+        <p style="font-size: 0.9rem; opacity: 0.6;"><i class="fab fa-github"></i> Hosted securely on GitHub Pages. Built entirely via natural language orchestration.</p>
     </footer>
 
     <script>
-        // --- TAB LOGIC ---
-        function openTab(evt, tabName) {
-            let i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-
-            // Trigger skill animations if skills tab is clicked
-            if(tabName === 'skills') {
-                setTimeout(() => {
-                    const fills = document.querySelectorAll('.skill-fill');
-                    fills.forEach(fill => { fill.style.width = fill.getAttribute('data-width'); });
-                }, 100);
+        // --- THEME TOGGLE ---
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') toggleTheme();
 
-        // --- MILESTONE LOGIC (WITH LOCAL STORAGE) ---
+        // --- MILESTONE LOGIC ---
         const defaultTasks = [
-            { id: 't1', text: 'Initialize GitHub Pages Repository', done: true },
+            { id: 't1', text: 'Initialize GitHub Pages Environment', done: true },
             { id: 't2', text: 'Deploy Phase 1 "Hello World" Static File', done: true },
-            { id: 't3', text: 'Implement Complex CSS Architectures & Glassmorphism', done: true },
-            { id: 't4', text: 'Integrate Live Guardians Database via AI Search', done: true },
-            { id: 't5', text: 'Establish Interactive JavaScript Milestones', done: false },
-            { id: 't6', text: 'Finalize Professional Xavier Identity Profile', done: false },
-            { id: 't7', text: 'Submit Public URL to Canvas Dashboard', done: false }
+            { id: 't3', text: 'Integrate Frank Kroto IV Identity (frankkrotoicon.jpg)', done: true },
+            { id: 't4', text: 'Build Interactive Skills & Resume Matrix', done: false },
+            { id: 't5', text: 'Integrate Deep Guardians 2026 Research Hub', done: false },
+            { id: 't6', text: 'Establish Bulletproof JS Architecture & Image Fallbacks', done: false },
+            { id: 't7', text: 'Implement LocalStorage Progression Engine', done: false }
         ];
 
-        let tasks = JSON.parse(localStorage.getItem('mgmt342_tasks')) || defaultTasks;
+        let tasks = JSON.parse(localStorage.getItem('mgmt342_milestones')) || defaultTasks;
 
         function renderTasks() {
             const list = document.getElementById('taskList');
@@ -305,14 +342,14 @@
                 item.className = `task-item ${task.done ? 'done' : ''}`;
                 item.onclick = () => toggleTask(index);
                 item.innerHTML = `
-                    <input type="checkbox" class="task-checkbox" ${task.done ? 'checked' : ''} onclick="event.stopPropagation(); toggleTask(${index})">
+                    <input type="checkbox" class="task-checkbox" ${task.done ? 'checked' : ''}>
                     <span class="task-text">${task.text}</span>
                 `;
                 list.appendChild(item);
             });
 
             updateCircleProgress(completed, tasks.length);
-            localStorage.setItem('mgmt342_tasks', JSON.stringify(tasks));
+            localStorage.setItem('mgmt342_milestones', JSON.stringify(tasks));
         }
 
         function toggleTask(index) {
@@ -324,46 +361,37 @@
             const percentage = Math.round((completed / total) * 100);
             document.getElementById('progressText').innerText = `${percentage}%`;
             const circle = document.getElementById('circleFill');
-            const circumference = 2 * Math.PI * 100; // r=100
+            const circumference = 2 * Math.PI * 100;
             const offset = circumference - (percentage / 100) * circumference;
             circle.style.strokeDashoffset = offset;
         }
 
         // --- MASSIVE ROSTER LOGIC ---
-        // Using MLB static API pattern for headshots. If ID is unknown/fails, onerror handles it.
         const rosterData = [
-            { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders" },
-            { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders" }, // Corrected ID
-            { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders" },
-            { name: "Andrés Giménez", pos: "2B", num: "0", id: "665926", group: "Infielders" },
-            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders" }, // Approx
-            { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers" },
-            { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers" },
-            { name: "Gavin Williams", pos: "SP", num: "32", id: "668909", group: "Pitchers" },
-            { name: "Bo Naylor", pos: "C", num: "6", id: "666310", group: "Catchers" },
-            { name: "David Fry", pos: "C/UTL", num: "26", id: "681807", group: "Catchers" },
-            { name: "Triston McKenzie", pos: "SP", num: "24", id: "663474", group: "Pitchers" },
-            { name: "Brayan Rocchio", pos: "SS", num: "8", id: "677587", group: "Infielders" },
-            { name: "Gabriel Arias", pos: "SS", num: "4", id: "672356", group: "Infielders" },
-            { name: "Will Brennan", pos: "OF", num: "17", id: "686823", group: "Outfielders" },
-            { name: "Cade Smith", pos: "RP", num: "36", id: "671922", group: "Pitchers" },
-            { name: "Scott Barlow", pos: "RP", num: "58", id: "605130", group: "Pitchers" },
-            { name: "Eli Morgan", pos: "RP", num: "49", id: "669212", group: "Pitchers" },
-            { name: "Tim Herrin", pos: "RP", num: "33", id: "682120", group: "Pitchers" },
-            { name: "Hunter Gaddis", pos: "RP", num: "33", id: "683769", group: "Pitchers" },
-            { name: "Nick Sandlin", pos: "RP", num: "52", id: "680704", group: "Pitchers" },
-            { name: "Logan Allen", pos: "SP", num: "43", id: "671150", group: "Pitchers" },
-            { name: "Carlos Carrasco", pos: "SP", num: "59", id: "471911", group: "Pitchers" },
-            { name: "Tyler Freeman", pos: "SS", num: "2", id: "671529", group: "Infielders" },
-            { name: "Estevan Florial", pos: "OF", num: "90", id: "664314", group: "Outfielders" },
-            { name: "Austin Hedges", pos: "C", num: "27", id: "595978", group: "Catchers" },
-            { name: "Jhonkensy Noel", pos: "OF", num: "43", id: "678877", group: "Outfielders" },
-            { name: "Daniel Schneemann", pos: "INF", num: "10", id: "682177", group: "Infielders" },
-            { name: "Angel Martínez", pos: "INF", num: "1", id: "682657", group: "Infielders" },
-            { name: "Juan Brito", pos: "INF", num: "74", id: "682877", group: "Infielders" },
-            { name: "Joey Cantillo", pos: "SP", num: "85", id: "676282", group: "Pitchers" },
-            { name: "Trevor Stephan", pos: "RP", num: "37", id: "663986", group: "Pitchers" },
-            { name: "James Karinchak", pos: "RP", num: "99", id: "675916", group: "Pitchers" }
+            { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", stat1: ".285 AVG", stat2: "5 HR", stat3: "15 RBI" },
+            { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", stat1: ".312 AVG", stat2: "12 R", stat3: "3 SB" },
+            { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders", stat1: ".260 AVG", stat2: "4 HR", stat3: "14 RBI" },
+            { name: "Andrés Giménez", pos: "2B", num: "0", id: "665926", group: "Infielders", stat1: ".275 AVG", stat2: "5 SB", stat3: "GG" },
+            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", stat1: ".290 AVG", stat2: "6 HR", stat3: "1.050 OPS" },
+            { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers", stat1: "2.15 ERA", stat2: "22 K", stat3: "0.95 WHIP" },
+            { name: "Gavin Williams", pos: "SP", num: "32", id: "668909", group: "Pitchers", stat1: "2.50 ERA", stat2: "28 K", stat3: "1.10 WHIP" },
+            { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", stat1: "0.00 ERA", stat2: "5 SV", stat3: "101 MPH" },
+            { name: "Bo Naylor", pos: "C", num: "6", id: "666310", group: "Catchers", stat1: ".240 AVG", stat2: "3 HR", stat3: "Elite Framing" },
+            { name: "David Fry", pos: "C/UTL", num: "26", id: "681807", group: "Catchers", stat1: ".300 AVG", stat2: "2 HR", stat3: "Super UTL" },
+            { name: "Triston McKenzie", pos: "SP", num: "24", id: "663474", group: "Pitchers", stat1: "3.10 ERA", stat2: "18 K", stat3: "1.05 WHIP" },
+            { name: "Brayan Rocchio", pos: "SS", num: "8", id: "677587", group: "Infielders", stat1: ".250 AVG", stat2: "Elite DEF", stat3: "2 SB" },
+            { name: "Gabriel Arias", pos: "SS/3B", num: "4", id: "672356", group: "Infielders", stat1: ".230 AVG", stat2: "Plus Arm", stat3: "1 HR" },
+            { name: "Will Brennan", pos: "OF", num: "17", id: "686823", group: "Outfielders", stat1: ".270 AVG", stat2: "High Contact", stat3: "0 K%" },
+            { name: "Cade Smith", pos: "RP", num: "36", id: "671922", group: "Pitchers", stat1: "1.20 ERA", stat2: "12 K", stat3: "Setup" },
+            { name: "Scott Barlow", pos: "RP", num: "58", id: "605130", group: "Pitchers", stat1: "2.80 ERA", stat2: "Curveball", stat3: "Vet Lead" },
+            { name: "Eli Morgan", pos: "RP", num: "49", id: "669212", group: "Pitchers", stat1: "3.00 ERA", stat2: "Changeup", stat3: "Multi-IP" },
+            { name: "Tim Herrin", pos: "RP", num: "33", id: "682120", group: "Pitchers", stat1: "1.50 ERA", stat2: "LHP", stat3: "High GB%" },
+            { name: "Logan Allen", pos: "SP", num: "43", id: "671150", group: "Pitchers", stat1: "3.50 ERA", stat2: "15 K", stat3: "LHP" },
+            { name: "Tyler Freeman", pos: "SS/CF", num: "2", id: "671529", group: "Infielders", stat1: ".280 AVG", stat2: "Utility", stat3: "High OBP" },
+            { name: "Austin Hedges", pos: "C", num: "27", id: "595978", group: "Catchers", stat1: ".200 AVG", stat2: "Elite DEF", stat3: "Clubhouse" },
+            { name: "Jhonkensy Noel", pos: "OF", num: "43", id: "678877", group: "Outfielders", stat1: "Big Power", stat2: "LF/RF", stat3: "Prospect" },
+            { name: "Angel Martínez", pos: "INF", num: "1", id: "682657", group: "Infielders", stat1: "Switch Hitter", stat2: "Utility", stat3: "Prospect" },
+            { name: "Joey Cantillo", pos: "SP", num: "85", id: "676282", group: "Pitchers", stat1: "LHP", stat2: "High K%", stat3: "Prospect" }
         ];
 
         function renderRoster(filterGroup) {
@@ -372,16 +400,22 @@
             
             const filtered = filterGroup === 'All' ? rosterData : rosterData.filter(p => p.group === filterGroup);
             
-            filtered.forEach(player => {
+            filtered.forEach((player, index) => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                // Robust image URL with fallback to UI-Avatars if MLB CDN fails for a specific ID
+                card.onclick = () => openModal(player);
+                
                 const imgUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${player.id}/headshot/67/current`;
-                const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(player.name)}&background=0C2340&color=fff&size=400&bold=true`;
+                
+                // Bulletproof Fallback: Instead of relying on an external service that might fail, 
+                // we inject a pure CSS-styled div if the image fails to load.
+                const initials = player.name.split(' ').map(n => n[0]).join('').substring(0,2);
                 
                 card.innerHTML = `
                     <div class="player-num">#${player.num}</div>
-                    <img src="${imgUrl}" alt="${player.name}" class="player-photo" onerror="this.onerror=null; this.src='${fallbackUrl}';">
+                    <img src="${imgUrl}" alt="${player.name}" class="player-photo" 
+                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="css-avatar" style="display:none;">${initials}</div>
                     <div class="player-info">
                         <div class="player-name">${player.name}</div>
                         <div class="player-pos">${player.pos}</div>
@@ -391,22 +425,48 @@
             });
         }
 
-        function filterRoster(group) {
+        window.filterRoster = function(group) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             renderRoster(group);
         }
 
+        // --- MODAL LOGIC ---
+        function openModal(player) {
+            const modal = document.getElementById('playerModal');
+            const body = document.getElementById('modalBody');
+            
+            const imgUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${player.id}/headshot/67/current`;
+            const initials = player.name.split(' ').map(n => n[0]).join('').substring(0,2);
+
+            body.innerHTML = `
+                <div style="width:150px; height:150px; margin: 0 auto 1.5rem; border-radius:50%; overflow:hidden; border: 5px solid var(--gua-red);">
+                    <img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="width:100%; height:100%; background:var(--gua-navy); display:none; align-items:center; justify-content:center; color:white; font-size:3rem; font-weight:bold;">${initials}</div>
+                </div>
+                <h2>${player.name}</h2>
+                <p style="color:var(--text-light); font-size:1.2rem; margin-bottom: 2rem;">#${player.num} | ${player.pos}</p>
+                <h3 style="color:var(--gua-navy); border-bottom: 2px solid var(--border-color); padding-bottom:0.5rem;">2026 Advanced Metrics (Simulated)</h3>
+                <div class="stat-row">
+                    <div class="stat-item"><h4>${player.stat1.split(' ')[0]}</h4><p>${player.stat1.split(' ')[1]}</p></div>
+                    <div class="stat-item"><h4>${player.stat2.split(' ')[0]}</h4><p>${player.stat2.split(' ').slice(1).join(' ')}</p></div>
+                    <div class="stat-item"><h4>${player.stat3.split(' ')[0]}</h4><p>${player.stat3.split(' ').slice(1).join(' ')}</p></div>
+                </div>
+            `;
+            modal.classList.add('active');
+        }
+
+        window.closeModal = function(e) {
+            if (e.target.id === 'playerModal' || e.target.closest('.modal-close')) {
+                document.getElementById('playerModal').classList.remove('active');
+            }
+        }
+
         // Initialization
         window.onload = () => {
             renderTasks();
             renderRoster('All');
-            // Trigger initial tab animation
-            setTimeout(() => {
-                const fills = document.querySelectorAll('.skill-fill');
-                fills.forEach(fill => { fill.style.width = fill.getAttribute('data-width'); });
-            }, 500);
         };
     </script>
 </body>
