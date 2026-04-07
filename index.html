@@ -50,26 +50,26 @@
         .section-title { font-size: 2.5rem; color: var(--xav-blue); border-bottom: 4px solid var(--gua-red); padding-bottom: 0.5rem; margin-bottom: 2.5rem; display: inline-block; }
         [data-theme="dark"] .section-title { color: var(--text-main); }
 
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .btn-social { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .btn-linkedin { background: #0077b5; color: white; }
+        .btn-github { background: #333; color: white; }
+        .btn-social:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
         /* ROSTER GRID & FLIP CARDS */
         .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; perspective: 1000px; }
-        
         .player-card { width: 100%; height: 400px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
         .player-card.flipped { transform: rotateY(180deg); }
-
         .card-front, .card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
-        
         .card-front { background: var(--bg-color); }
         .card-back { background: var(--gua-navy); color: white; transform: rotateY(180deg); padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 4px solid var(--gua-red); }
-
         .player-photo { width: 100%; height: 300px; object-fit: cover; border-bottom: 4px solid var(--gua-red); background: #cbd5e1; }
         .css-avatar { width: 100%; height: 300px; background: var(--gua-navy); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem; font-weight: bold; border-bottom: 4px solid var(--gua-red); }
-        
         .player-info { padding: 1rem; }
         .player-name { font-size: 1.3rem; font-weight: 800; color: var(--gua-navy); }
         [data-theme="dark"] .player-name { color: var(--text-main); }
         .player-pos { color: var(--text-light); font-weight: 600; }
         .player-num { position: absolute; top: 10px; left: 10px; background: var(--gua-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 10; }
-
         .back-stats { width: 100%; margin-top: 1.5rem; }
         .stat-line { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .stat-val { font-weight: bold; color: var(--gua-red); font-size: 1.2rem; }
@@ -89,9 +89,11 @@
         .filter-btn { padding: 0.8rem 2rem; border: 2px solid var(--gua-navy); background: transparent; border-radius: 30px; cursor: pointer; font-weight: bold; }
         .filter-btn.active { background: var(--gua-navy); color: white; }
 
-        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem; }
+        .guardians-rationale { background: var(--xav-light); border-left: 5px solid var(--gua-red); padding: 2rem; margin-bottom: 3rem; border-radius: 0 15px 15px 0; }
+        [data-theme="dark"] .guardians-rationale { background: #1e293b; }
 
-        @media (max-width: 768px) { .milestone-container { grid-template-columns: 1fr; } }
+        footer { background: var(--xav-blue); color: white; text-align: center; padding: 4rem; }
+        @media (max-width: 768px) { .milestone-container { grid-template-columns: 1fr; } .profile-grid-main { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body>
@@ -116,11 +118,14 @@
         <!-- PROFILE -->
         <section id="resume" class="section-card">
             <h2 class="section-title">Professional Identity</h2>
-            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem;">
+            <div class="profile-grid-main" style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem;">
                 <img src="frankkrotoicon.jpg" class="profile-img-lg" style="width:100%; border-radius:20px; border: 6px solid var(--xav-blue);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto+IV&background=0C2340&color=fff&size=512'">
                 <div>
                     <p style="font-size: 1.2rem; margin-bottom: 1.5rem;"><strong>Xavier University '27</strong>. Specializing in orchestrating autonomous agents to streamline enterprise workflows. Former NDCL Varsity Athlete bringing elite discipline to AI strategy.</p>
-                    <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="social-btn" style="width: fit-content; padding: 1rem 2rem;">LinkedIn Profile</a>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-social btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://github.com/fkroto4" target="_blank" class="btn-social btn-github"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -139,7 +144,13 @@
 
         <!-- GUARDIANS -->
         <section id="guardians" class="section-card">
-            <h2 class="section-title">Guardians 2026 Roster</h2>
+            <h2 class="section-title">Guardians 2026 Roster Hub</h2>
+            
+            <div class="guardians-rationale">
+                <h3><i class="fas fa-info-circle"></i> Why the Guardians Database?</h3>
+                <p style="margin-top: 1rem;">This section serves as a technical proof-of-concept for <strong>Agentic Data Orchestration</strong>. By integrating real-world Major League Baseball data through automated search and retrieval, I demonstrate the ability to direct AI agents to manage complex, multi-layered data structures. The Guardians theme represents my commitment to the Cleveland area while the <strong>Flip-Card Interaction</strong> proves mastery over dynamic DOM manipulation and interactive UI design.</p>
+            </div>
+
             <p style="margin-bottom: 2rem; color: var(--text-light); text-align: center;">Click a player card to flip it and view detailed 2026 season metrics.</p>
             <div class="filter-group" id="filterGroup">
                 <button class="filter-btn active" onclick="filterRoster('All')">All</button>
@@ -152,7 +163,7 @@
     </main>
 
     <footer>
-        <p>Frank Kroto IV | MGMT 342 | Autonomous Deployment v5.0</p>
+        <p>Frank Kroto IV | MGMT 342 | Autonomous Deployment v5.1</p>
     </footer>
 
     <script>
@@ -169,7 +180,7 @@
             { text: 'Integrate Personal Identity & Icons', done: true },
             { text: 'Build Interactive Flip-Card Roster', done: true },
             { text: 'Implement Theme Toggling', done: true },
-            { text: 'Verify 2026 Data Accuracy', done: false }
+            { text: 'Establish Rationale for Data Hub', done: true }
         ];
         function renderTasks() {
             const list = document.getElementById('taskList');
