@@ -1,16 +1,25 @@
-# Agentic Tools Part 2
+# Frank Leo Kroto IV | Advanced Agentic Portfolio
+## Strategic AI Architect & MLB Tactical Orchestrator
 
-## Overview
-This project, "Agentic Tools Part 2," serves as a practical demonstration of setting up a development environment from scratch. It focuses on establishing a robust and secure workflow for collaborative software development, particularly in a college project context. The key aspects covered include:
-- **Node.js Environment Setup**: Configuring Node.js for JavaScript runtime and package management.
-- **Git Version Control**: Initializing and managing a local Git repository.
-- **SSH Key Management**: Generating and utilizing SSH keys for secure and efficient communication with GitHub, eliminating the need for password-based authentication for each interaction.
+[![Verified Deployment](https://img.shields.io/badge/Deployment-v7.3_Verified-blue?style=for-the-badge&logo=github)](https://fkroto4.github.io/agentic-tools-part2/)
+[![Agentic OS](https://img.shields.io/badge/JARVIS_OS-Online-success?style=for-the-badge&logo=probot)](https://fkroto4.github.io/agentic-tools-part2/)
 
-This setup ensures a streamlined development process, promoting best practices in version control and secure remote repository access.
+### **Overview**
+This repository serves as a high-performance demonstration of **League-Wide Agentic Orchestration**. It integrates real-time global data streams with a sophisticated professional profile, managed by an autonomous cognitive briefing agent (JARVIS).
 
-## Tools Used
-- **Node.js**: JavaScript runtime environment.
-- **npm**: Node Package Manager (comes with Node.js).
-- **Git**: Distributed version control system.
-- **OpenSSH**: For generating and managing SSH keys.
-- **GitHub**: Cloud-based Git repository hosting service.
+### **Key Ecosystem Features**
+- **Live League Dashboard:** Real-time scoring and scheduling for all 30 MLB teams via `statsapi.mlb.com`.
+- **Tactical Field Map:** Interactive SVG diamond visualizer with live player positioning.
+- **Cognitive JARVIS OS:** A searchable knowledge base answering professional and strategic inquiries.
+- **Agentic Yield Simulator:** A practical ROI modeling tool for enterprise AI deployment.
+- **Multi-View Orchestrator:** Seamless transitions between Home, League, and Team Tactical views.
+
+### **Professional Identity**
+**Frank Leo Kroto IV** is a Business Management & Applied AI Strategy specialist at Xavier University. This portfolio showcases mastery over:
+1.  **Direct API Orchestration**
+2.  **Autonomous Workflow Design**
+3.  **High-Velocity Data Management**
+4.  **Dynamic UI/UX Branding**
+
+---
+*Autonomous Deployment v7.3 | Verified Master Certified*
