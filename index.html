@@ -26,12 +26,47 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
-        body.iphone-view main { max-width: 430px; margin: 0 auto; padding: 1rem; }
-        body.iphone-view .hero h1 { font-size: 2.5rem; }
-        body.iphone-view .command-center, body.iphone-view .milestone-container { grid-template-columns: 1fr; }
-        body.iphone-view .roster-grid { grid-template-columns: 1fr; }
+
+        /* HIGH-FIDELITY IPHONE PREVIEW */
+        body.iphone-mode { background: #1e293b !important; padding-top: 40px; }
+        body.iphone-mode nav, body.iphone-mode footer { display: none; }
+        body.iphone-mode .hero { border-radius: 40px 40px 0 0; margin: 0 auto; max-width: 393px; }
+        body.iphone-mode main { 
+            max-width: 393px; 
+            height: 852px; 
+            margin: 0 auto; 
+            padding: 1.5rem; 
+            background: var(--bg-color);
+            overflow-y: auto;
+            border: 12px solid #111;
+            border-radius: 50px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        /* Dynamic Island */
+        body.iphone-mode main::before {
+            content: "";
+            position: sticky;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            background: #000;
+            border-radius: 20px;
+            z-index: 10000;
+            display: block;
+            margin-bottom: -35px;
+        }
+        body.iphone-mode .section-title { font-size: 1.8rem; }
+        body.iphone-mode .hero h1 { font-size: 2.2rem; }
+        body.iphone-mode .command-center, body.iphone-mode .milestone-container, body.iphone-mode .strategy-grid { grid-template-columns: 1fr; }
+        body.iphone-mode .roster-grid { grid-template-columns: 1fr; }
+        body.iphone-mode .league-grid { grid-template-columns: 1fr; }
+        body.iphone-mode .field-container { height: 400px; }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 80px; transition: background 0.3s, color 0.3s; }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 80px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         nav { position: fixed; top: 0; width: 100%; background: var(--bg-color); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 3000; }
         .nav-brand { font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; }
         .nav-brand span { color: var(--accent); }
@@ -105,6 +140,10 @@
     </style>
 </head>
 <body data-theme="light">
+    <div id="desktop-controls" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 10000; display: flex; gap: 1rem;">
+        <button class="view-btn active" id="btn-desktop" onclick="switchDevice('desktop')"><i class="fas fa-desktop"></i> Desktop</button>
+        <button class="view-btn" id="btn-iphone" onclick="switchDevice('iphone')"><i class="fas fa-mobile-alt"></i> iPhone Preview</button>
+    </div>
     <nav>
         <div class="nav-brand" onclick="switchView('home')" style="cursor:pointer;">FK<span>.IV</span></div>
         <div class="nav-links" style="display: flex; align-items: center; gap: 1rem;">
@@ -119,10 +158,7 @@
                 <optgroup label="NL East"><option value="ATL">Braves</option><option value="MIA">Marlins</option><option value="NYM">Mets</option><option value="PHI">Phillies</option><option value="WSH">Nationals</option></optgroup>
                 <optgroup label="NL West"><option value="AZ">D-backs</option><option value="COL">Rockies</option><option value="LAD">Dodgers</option><option value="SD">Padres</option><option value="SF">Giants</option></optgroup>
             </select>
-            <div style="display: flex; gap: 0.5rem; border-left: 1px solid var(--border-color); padding-left: 1rem;">
-                <button class="theme-toggle" onclick="toggleIphoneView()" title="iPhone View"><i class="fas fa-mobile-alt"></i></button>
-                <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
-            </div>
+            <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
         </div>
     </nav>
     <header class="hero" id="mainHero">
@@ -131,18 +167,15 @@
     </header>
     <main id="mainContent">
         <div class="news-ticker"><div class="ticker-wrap" id="newsTicker"></div></div>
-
         <section class="briefing-note">
             <h3 style="margin-bottom: 1rem;"><i class="fas fa-chalkboard-teacher"></i> EXECUTIVE BRIEFING: SITE CAPABILITIES</h3>
             <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Real-Time API Orchestration:</strong> The site live-fetches data from the MLB Stats API for all 30 teams, providing active rosters, scoring, and tactical positioning.</li>
-                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Dynamic Strategic Profile:</strong> A high-performance consulting hub managed by an autonomous cognitive briefing agent (JARVIS), featuring interactive ROI yield simulation.</li>
-                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Tactical Ecosystem:</strong> Integrated multi-view dashboard with a dynamic SVG field map, real-time news ticker, and cross-device simulation (iPhone View).</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Real-Time API Orchestration:</strong> Live-fetching 30-team rosters, scores, and tactical field data.</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Agentic Consulting Hub:</strong> JARVIS-managed professional portal with interactive ROI yield tools.</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle" style="color: #f59e0b;"></i> <strong>Multi-Device Simulation:</strong> High-fidelity iPhone 15 Pro frame preview system for mobile orchestration.</li>
             </ul>
         </section>
-
         <div class="hello-world-banner">HELLO WORLD</div>
-
         <div id="view-home" class="view-content active">
             <section class="glass-card">
                 <div style="display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: center;">
@@ -163,20 +196,20 @@
                             <h4>Infrastructure Audit</h4>
                             <p>Identifying automation bottlenecks and data readiness.</p>
                         </div>
-                        <div class="strategy-card" onclick="updateAgent('Workflow', 'Design: Multi-agent swarms manage complex data streams.')">
+                        <div class="strategy-card" onclick="updateAgent('Workflow', 'Design: Multi-agent environments manage complex data streams.')">
                             <i class="fas fa-project-diagram"></i>
                             <h4>Workflow Design</h4>
                             <p>Designing secure and high-performance agentic frameworks.</p>
                         </div>
-                        <div class="strategy-card" onclick="updateAgent('ROI Modeling', 'Sir, current middle-office automation yields are exceeding 4.2x investment.')">
+                        <div class="strategy-card" onclick="updateAgent('Yield', 'ROI Modeling: project yields exceeding 4.2x investment.')">
                             <i class="fas fa-calculator"></i>
                             <h4>Yield Modeling</h4>
                             <p>Dynamic ROI tracking and predictive yield analysis.</p>
                         </div>
-                        <div class="strategy-card" onclick="updateAgent('Scaling Strategy', 'Scaling human leadership through strategic agent augmentation.')">
-                            <i class="fas fa-map"></i>
+                        <div class="strategy-card" onclick="updateAgent('Strategy', 'Scaling: Guiding the transition to a full Cognitive Enterprise.')">
+                            <i class="fas fa-rocket"></i>
                             <h4>Scaling Strategy</h4>
-                            <p>Guiding the transition to a full Cognitive Enterprise.</p>
+                            <p>Full-scale AI orchestration and cultural evolution.</p>
                         </div>
                     </div>
                     <div class="agent-sidebar">
@@ -184,7 +217,7 @@
                             <div style="width:15px; height:15px; background: #10b981; border-radius:50%; animation: pulse 2s infinite;"></div>
                             <h3 style="font-family: 'Fira Code', monospace; font-size: 1rem; color: var(--text-main);">JARVIS_OS: ONLINE</h3>
                         </div>
-                        <div id="agentBriefing" class="agent-briefing">Ready, Sir. Knowledge base synchronized. Ready for guest inquiries or tactical briefing.</div>
+                        <div id="agentBriefing" class="agent-briefing">Ready, Sir. Knowledge base synchronized. Select a module for briefing.</div>
                         <input type="text" id="jarvisQuery" placeholder="Ask about Frank or MLB..." onkeyup="if(event.key==='Enter') queryAgent()" style="width:100%; padding: 1rem; border-radius: 12px; border: 1px solid var(--accent); background: rgba(0,0,0,0.5); color: var(--accent); font-family: 'Fira Code', monospace; margin-bottom: 1.5rem; outline: none;">
                         <div style="display: flex; gap: 1rem;">
                             <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-social" style="flex:1; justify-content:center;"><i class="fab fa-linkedin"></i></a>
@@ -233,7 +266,7 @@
             <div style="display: grid; grid-template-columns: 1fr 400px; gap: 3rem; margin-bottom: 4rem;">
                 <div class="glass-card" style="margin:0;">
                     <h4><i class="fas fa-calculator"></i> Agentic Yield Simulator (ROI)</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem;">Projected annual savings by shifting roles to autonomous agents.</p>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem;">Projected savings by shifting roles to autonomous agents.</p>
                     <label style="font-weight: 900; display: block; margin-bottom: 1rem;">Department Headcount</label>
                     <input type="range" id="roiSlider" class="odds-slider" min="5" max="500" step="5" value="50" oninput="runROICalc()">
                     <div style="display:flex; justify-content:space-between; font-family: 'Fira Code', monospace; font-size: 1.2rem;">
@@ -260,26 +293,33 @@
         </div>
     </main>
     <footer>
-        <p>Frank Leo Kroto IV | Xavier University | Tactical Ecosystem v7.4 | Master Certified</p>
+        <p>Frank Leo Kroto IV | Xavier University | Tactical Ecosystem v7.5 | Verified Master Deployment</p>
     </footer>
     <script>
         const teamMap = { "CLE": 114, "LAD": 119, "NYY": 147, "PHI": 143, "ATL": 144, "BOS": 111, "HOU": 117, "CHC": 112, "SD": 135, "SF": 137, "NYM": 121, "STL": 138, "TOR": 141, "BAL": 110, "MIN": 142, "AZ": 109, "MIL": 158, "SEA": 136, "TEX": 140, "TB": 139, "DET": 116, "KC": 118, "CWS": 145, "LAA": 108, "COL": 115, "MIA": 146, "WSH": 120, "CIN": 113, "PIT": 134, "OAK": 133 };
         const teamColors = { "CLE": "#E31937", "LAD": "#005A9C", "NYY": "#003087", "PHI": "#E81828", "ATL": "#CE1141", "BOS": "#BD3039", "HOU": "#EB6E1F", "CHC": "#0E3386", "CWS": "#27251F", "DET": "#0C2340", "KC": "#004687", "MIN": "#002B5C", "BAL": "#DF4601", "TB": "#092C5C", "TOR": "#134A8E", "LAA": "#BA0021", "OAK": "#003831", "SEA": "#005C5C", "TEX": "#003278", "MIA": "#00A3E0", "NYM": "#002D72", "WSH": "#AB0003", "CIN": "#C6011F", "MIL": "#12284B", "PIT": "#FFB81C", "STL": "#C41E3A", "AZ": "#A71930", "COL": "#33006F", "SD": "#2F241D", "SF": "#FD5A1E" };
         let cTeamAbbr = "CLE";
         let fullRoster = [];
-        const tasks = [ { text: 'Phase 1: Infrastructure Audit', done: true }, { text: 'Phase 2: Pilot Deployment', done: true }, { text: 'Phase 3: Real-Time Data Portal', done: true }, { text: 'Phase 4: Scaling Strategy', done: false }, { text: 'Phase 5: Cognitive Optimization', done: false } ];
+        const tasks = [ { text: 'Phase 1: Infrastructure Audit', done: true }, { text: 'Phase 2: Pilot Deployment', done: true }, { text: 'Phase 3: Real-Time Data Portal', done: true }, { text: 'Phase 4: Agentic Scaling', done: false }, { text: 'Phase 5: Self-Optimizing Enterprise', done: false } ];
+        
+        function switchDevice(type) {
+            document.body.classList.toggle('iphone-mode', type === 'iphone');
+            document.getElementById('btn-desktop').classList.toggle('active', type === 'desktop');
+            document.getElementById('btn-iphone').classList.toggle('active', type === 'iphone');
+        }
+
         function toggleTheme() {
             const b = document.body;
             const isDark = b.getAttribute('data-theme') === 'dark';
             b.setAttribute('data-theme', isDark ? 'light' : 'dark');
             document.getElementById('themeIcon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
         }
-        function toggleIphoneView() { document.body.classList.toggle('iphone-view'); }
+
         function switchView(view) {
             document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
             document.getElementById(`view-${view}`).classList.add('active');
             document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-            if(view !== 'team') document.getElementById(`btn-${view}`).classList.add('active');
+            if(view !== 'team' && document.getElementById(`btn-${view}`)) document.getElementById(`btn-${view}`).classList.add('active');
             if(view === 'home') {
                 document.documentElement.style.setProperty('--accent', '#38bdf8');
                 document.getElementById('mainHero').style.background = '#0C2340';
@@ -288,6 +328,7 @@
             }
             if(view === 'league') fetchLeagueScores();
         }
+
         window.switchTeam = async (abbr) => {
             if(abbr === "HOME") { switchView('home'); return; }
             cTeamAbbr = abbr; switchView('team');
@@ -301,23 +342,28 @@
             document.getElementById('unofficialStream').href = `https://www.google.com/search?q=${abbr}+baseball+live+stream`;
             await Promise.all([fetchRoster(teamMap[abbr]), fetchLiveGame(teamMap[abbr])]);
         };
+
         async function fetchRoster(id) {
-            const grid = document.getElementById('rosterGrid'); grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:10rem;"><h3>SYNCING TACTICAL DATA...</h3></div>';
+            const grid = document.getElementById('rosterGrid');
+            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:10rem;"><h3>SYNCING TACTICAL DATA...</h3></div>';
             try {
                 const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
                 const data = await res.json(); fullRoster = data.roster;
                 renderRoster(fullRoster); renderFieldNodes(fullRoster);
             } catch (e) { grid.innerHTML = '<h3>Stream Offline</h3>'; }
         }
+
         function renderRoster(ros) {
             const grid = document.getElementById('rosterGrid'); grid.innerHTML = '';
             ros.forEach(p => {
-                const card = document.createElement('div'); card.className = 'player-card'; card.onclick = () => card.classList.toggle('flipped');
+                const card = document.createElement('div'); card.className = 'player-card';
+                card.onclick = () => card.classList.toggle('flipped');
                 const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
                 card.innerHTML = `<div class="card-front"><div class="p-num">#${p.jerseyNumber||'--'}</div><div class="player-img-wrap"><img src="${img}" class="player-img" onerror="this.src='https://ui-avatars.com/api/?name=${p.person.fullName.replace(' ','+')}&background=1e293b&color=fff'"></div><div class="p-meta-overlay"><div class="p-name-pill">${p.person.fullName}</div><span class="p-pos-pill">${p.position.name}</span></div></div><div class="card-back"><h3>${p.person.fullName}</h3><div class="p-status-box"><div>STATUS: ${p.status.description}</div><div>POS: ${p.position.abbreviation}</div></div><p style="font-size:0.7rem; margin-top:2rem; opacity:0.5;">Click to flip</p></div>`;
                 grid.appendChild(card);
             });
         }
+
         function renderFieldNodes(ros) {
             const map = document.getElementById('fieldMap'); document.querySelectorAll('.field-node').forEach(n => n.remove());
             const pos = { 'P': [50, 55], 'C': [50, 85], '1B': [75, 50], '2B': [65, 30], '3B': [25, 50], 'SS': [35, 30], 'LF': [20, 20], 'CF': [50, 10], 'RF': [80, 20] };
@@ -329,6 +375,7 @@
                 map.appendChild(div);
             });
         }
+
         async function fetchLeagueScores() {
             const board = document.getElementById('leagueBoard'); board.innerHTML = '<div style="grid-column:1/-1; text-align:center;"><h3>POLLING SCANNERS...</h3></div>';
             try {
@@ -344,12 +391,15 @@
                 });
             } catch (e) { board.innerHTML = '<h3>Scanner Offline</h3>'; }
         }
+
         function renderTasks() {
             const list = document.getElementById('taskList'); list.innerHTML = ''; let comp = 0;
             tasks.forEach((t, i) => { if(t.done) comp++; const div = document.createElement('div'); div.className = `task-item ${t.done?'done':''}`; div.onclick = () => { tasks[i].done = !tasks[i].done; renderTasks(); }; div.innerHTML = `<input type="checkbox" ${t.done?'checked':''} style="margin-right:1.5rem; transform:scale(1.8);"><span>${t.text}</span>`; list.appendChild(div); });
             const pct = Math.round((comp/tasks.length)*100); document.getElementById('progressText').innerText = pct + '%'; document.getElementById('circleFill').style.strokeDashoffset = 565 - (565 * pct / 100);
         }
+
         window.updateAgent = (t, m) => { const b = document.getElementById('agentBriefing'); b.style.opacity = 0; setTimeout(() => { b.innerHTML = `> ${t}: ${m}`; b.style.opacity = 1; }, 200); };
+        
         window.queryAgent = (topic) => {
             const q = topic || document.getElementById('jarvisQuery').value.toLowerCase();
             let r = "Data missing. Try 'About', 'Services', or 'Baseball'.";
@@ -358,10 +408,14 @@
             if(q.includes('baseball')) r = "I track all 30 MLB teams, providing live scores, field positions, and stream portals.";
             updateAgent('TACTICAL_QUERY', r); document.getElementById('jarvisQuery').value = '';
         };
+
         window.runROICalc = () => { const staff = document.getElementById('roiSlider').value; document.getElementById('staffCount').innerText = staff; document.getElementById('roiResult').innerText = ((staff * 75000 * 0.30) / 1000000).toFixed(2) + "M"; };
+        
         const news = ["TRADE: Yankees acquire bullpen depth.", "STRATEGY: Dodgers shift defensive alignment.", "UPDATE: Guardians lead AL Central.", "LIVE: Data stream synchronized."];
         document.getElementById('newsTicker').innerHTML = news.map(n => `<span class="ticker-item">${n}</span>`).join('');
+        
         setInterval(() => { let p = 50 + Math.random()*30; if(document.getElementById('momentumBar')) { document.getElementById('momentumBar').style.width = p + '%'; document.getElementById('momentumLabel').innerText = p.toFixed(1) + "%"; } }, 3000);
+        
         async function fetchLiveGame(id) {
             const sb = document.getElementById('liveScoreboard');
             try {
@@ -370,23 +424,26 @@
                 if (!game) { sb.innerHTML = '<div style="grid-column:1/-1; text-align:center;"><h3>No Active Game Found</h3></div>'; return; }
                 const isH = game.teams.home.team.id === id; const ls = game.linescore;
                 const bso = ls ? `B: ${ls.balls} | S: ${ls.strikes} | O: ${ls.outs}` : '--';
-                const cur = ls ? `AT BAT: ${ls.offense?.batter?.fullName || 'TBD'}` : '';
+                const cur = ls ? `BATTER: ${ls.offense?.batter?.fullName || 'TBD'}` : '';
                 sb.innerHTML = `<div class="score-team"><div class="score-name">${isH?'HOME':'AWAY'} | ${cTeamAbbr}</div><div class="score-num">${isH?game.teams.home.score||0:game.teams.away.score||0}</div></div><div class="score-status"><div class="${game.status.abstractGameState==='Live'?'status-live':''}">${game.status.detailedState}</div><div style="font-size:1rem; margin-top:1rem;">${ls ? ls.inningState + ' ' + ls.currentInningOrdinal : 'VS'}</div><div style="font-size:0.8rem; margin-top:1rem;">${bso}<br>${cur}</div></div><div class="score-team"><div class="score-name">OPP</div><div class="score-num">${isH?game.teams.away.score||0:game.teams.home.score||0}</div></div>`;
             } catch (e) { sb.innerHTML = '<h3>Score Stream Offline</h3>'; }
         }
+
         window.filterRoster = (group) => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`f-${group}`).classList.add('active');
+            if(document.getElementById(`f-${group}`)) document.getElementById(`f-${group}`).classList.add('active');
             let f = fullRoster;
             if(group==='Infielders') f = fullRoster.filter(p => ['1B','2B','3B','SS'].includes(p.position.abbreviation));
             if(group==='Outfielders') f = fullRoster.filter(p => ['LF','CF','RF','OF'].includes(p.position.abbreviation));
             if(group==='Pitchers') f = fullRoster.filter(p => p.position.abbreviation==='P');
             renderRoster(f);
         };
+
         window.filterBySearch = () => {
             const q = document.getElementById('playerSearch').value.toLowerCase();
             renderRoster(fullRoster.filter(p => p.person.fullName.toLowerCase().includes(q)));
         };
+
         window.onload = () => { renderTasks(); runROICalc(); switchView('home'); };
     </script>
 </body>
