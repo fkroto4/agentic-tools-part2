@@ -11,6 +11,7 @@
             --guardians-white: #FFFFFF;
             --bg-color: #f4f4f4;
             --text-color: #333;
+            --accent-gray: #e0e0e0;
         }
 
         body {
@@ -20,9 +21,6 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
         header {
@@ -39,39 +37,115 @@
         }
 
         main {
-            flex: 1;
-            padding: 3rem 5%;
+            padding: 2rem 5%;
             max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .hero-section {
+        .hello-section {
             background: var(--guardians-white);
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border-left: 8px solid var(--guardians-red);
+            margin-bottom: 3rem;
         }
 
-        .hero-section h2 {
+        .hello-section h2 {
             color: var(--guardians-navy);
             margin-top: 0;
         }
 
-        .placeholder-content {
-            margin-top: 2rem;
-            padding: 2rem;
-            border: 2px dashed #ccc;
-            color: #888;
+        .dossier-title {
             text-align: center;
-            border-radius: 8px;
+            color: var(--guardians-navy);
+            border-bottom: 2px solid var(--guardians-navy);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .player-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--accent-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .player-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--guardians-red);
+        }
+
+        .player-info {
+            padding: 1.5rem;
+        }
+
+        .player-info h3 {
+            margin: 0;
+            color: var(--guardians-navy);
+        }
+
+        .player-stats {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            background: #f9f9f9;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .history-section {
+            background: var(--guardians-navy);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .history-section h2 {
+            color: var(--guardians-red);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline {
+            margin-top: 1.5rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--guardians-red);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--guardians-red);
+            display: block;
         }
 
         footer {
             background-color: var(--guardians-navy);
             color: var(--guardians-white);
             text-align: center;
-            padding: 1rem;
-            margin-top: auto;
+            padding: 1.5rem;
+            margin-top: 4rem;
             font-size: 0.9rem;
         }
 
@@ -94,19 +168,91 @@
     </header>
 
     <main>
-        <section class="hero-section">
-            <span class="status-badge">Phase 1: Deployment</span>
+        <!-- HELLO WORLD SECTION (PHASE 1 CORE) -->
+        <section class="hello-section">
+            <span class="status-badge">Phase 1: Deployment Verified</span>
             <h2>Hello World!</h2>
-            <p>This is the initial deployment for MGMT 342. The connection to GitHub Pages is being established and verified with this static template.</p>
+            <p>This is the initial deployment for MGMT 342. The connection to GitHub Pages is established. Below is a detailed look at the 2026 Cleveland Guardians.</p>
         </section>
 
-        <section class="placeholder-content">
-            <p>Future interactive features and semester projects will be integrated here.</p>
+        <!-- 2026 TEAM DOSSIER -->
+        <h2 class="dossier-title">2026 Cleveland Guardians Dossier</h2>
+        
+        <div class="stats-grid">
+            <!-- José Ramírez -->
+            <div class="player-card">
+                <img src="https://img.mlbstatic.com/mlb-photos/image/upload/d_player_604x765.png,q_auto:best/v1/communities/a-r-p/players/608070" alt="José Ramírez" class="player-img">
+                <div class="player-info">
+                    <h3>José Ramírez (3B)</h3>
+                    <p><em>The Franchise Leader</em></p>
+                    <div class="player-stats">
+                        <strong>2026 Early Stats:</strong> .285 AVG | 3 HR | 12 RBI<br>
+                        <strong>Note:</strong> Surpassed Terry Turner on April 6, 2026, for most games played in franchise history (1,620).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Steven Kwan -->
+            <div class="player-card">
+                <img src="https://img.mlbstatic.com/mlb-photos/image/upload/d_player_604x765.png,q_auto:best/v1/communities/a-r-p/players/681211" alt="Steven Kwan" class="player-img">
+                <div class="player-info">
+                    <h3>Steven Kwan (LF)</h3>
+                    <p><em>The Contact Specialist</em></p>
+                    <div class="player-stats">
+                        <strong>2026 Early Stats:</strong> .312 AVG | 1 HR | 8 Runs<br>
+                        <strong>Note:</strong> Continues to lead the AL in contact rate and defensive runs saved in left field.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tanner Bibee -->
+            <div class="player-card">
+                <img src="https://img.mlbstatic.com/mlb-photos/image/upload/d_player_604x765.png,q_auto:best/v1/communities/a-r-p/players/676440" alt="Tanner Bibee" class="player-img">
+                <div class="player-info">
+                    <h3>Tanner Bibee (SP)</h3>
+                    <p><em>The Rotation Ace</em></p>
+                    <div class="player-stats">
+                        <strong>2026 Early Stats:</strong> 2-0 Record | 2.15 ERA | 18 SO<br>
+                        <strong>Note:</strong> Leading a young rotation that currently holds the lowest team ERA in the AL Central.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM HISTORY SECTION -->
+        <section class="history-section">
+            <h2>Franchise History: 1901 – 2026</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1901</span>
+                    <p>Founded as the Cleveland Bluebirds, a charter member of the American League.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1920 & 1948</span>
+                    <p>World Series Championships. 1948 remains the most recent title, led by Bob Feller and Lou Boudreau.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2016</span>
+                    <p>Reached the World Series, falling to the Cubs in a historic 7-game series after a 22-game winning streak in 2017.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2022</span>
+                    <p>Officially renamed the <strong>Cleveland Guardians</strong>, drawing inspiration from the Hope Memorial Bridge statues.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2025</span>
+                    <p>Achieved the largest divisional comeback in MLB history (15.5 games back) to win the AL Central.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2026</span>
+                    <p>Currently 1st in the AL Central (6-4). José Ramírez becomes the franchise leader in games played.</p>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Version 1.0 | Deployed: April 7, 2026</p>
+        <p>Frank's MGMT 342 Project | Version 1.1 | Deployed: April 7, 2026</p>
     </footer>
 
 </body>
