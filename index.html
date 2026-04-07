@@ -115,7 +115,6 @@
     </header>
 
     <main>
-        <!-- PROFILE -->
         <section id="resume" class="section-card">
             <h2 class="section-title">Professional Identity</h2>
             <div class="profile-grid-main" style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem;">
@@ -130,7 +129,6 @@
             </div>
         </section>
 
-        <!-- MILESTONES -->
         <section id="milestones" class="section-card">
             <h2 class="section-title">Interactive Progress</h2>
             <div class="milestone-container">
@@ -142,39 +140,35 @@
             </div>
         </section>
 
-        <!-- GUARDIANS -->
         <section id="guardians" class="section-card">
             <h2 class="section-title">Guardians 2026 Roster Hub</h2>
-            
             <div class="guardians-rationale">
                 <h3><i class="fas fa-info-circle"></i> Why the Guardians Database?</h3>
-                <p style="margin-top: 1rem;">This section serves as a technical proof-of-concept for <strong>Agentic Data Orchestration</strong>. By integrating real-world Major League Baseball data through automated search and retrieval, I demonstrate the ability to direct AI agents to manage complex, multi-layered data structures. The Guardians theme represents my commitment to the Cleveland area while the <strong>Flip-Card Interaction</strong> proves mastery over dynamic DOM manipulation and interactive UI design.</p>
+                <p style="margin-top: 1rem;">This section serves as a technical proof-of-concept for <strong>Agentic Data Orchestration</strong>. By integrating real-world MLB data through automated search and retrieval, I demonstrate the ability to direct AI agents to manage complex data structures. The Guardians theme represents my commitment to the Cleveland area while the <strong>Flip-Card Interaction</strong> proves mastery over dynamic DOM manipulation.</p>
             </div>
-
             <p style="margin-bottom: 2rem; color: var(--text-light); text-align: center;">Click a player card to flip it and view detailed 2026 season metrics.</p>
-            <div class="filter-group" id="filterGroup">
+            <div class="filter-group">
                 <button class="filter-btn active" onclick="filterRoster('All')">All</button>
                 <button class="filter-btn" onclick="filterRoster('Infielders')">Infielders</button>
                 <button class="filter-btn" onclick="filterRoster('Outfielders')">Outfielders</button>
                 <button class="filter-btn" onclick="filterRoster('Pitchers')">Pitchers</button>
+                <button class="filter-btn" onclick="filterRoster('Catchers')">Catchers</button>
             </div>
             <div class="roster-grid" id="rosterGrid"></div>
         </section>
     </main>
 
     <footer>
-        <p>Frank Kroto IV | MGMT 342 | Autonomous Deployment v5.1</p>
+        <p>Frank Kroto IV | Xavier University | MGMT 342 | Autonomous Deployment v5.2</p>
     </footer>
 
     <script>
-        // Theme
         function toggleTheme() {
             document.body.toggleAttribute('data-theme');
             const icon = document.getElementById('themeIcon');
             icon.className = document.body.hasAttribute('data-theme') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // Milestones
         const tasks = [
             { text: 'Deploy Phase 1 Static Site', done: true },
             { text: 'Integrate Personal Identity & Icons', done: true },
@@ -199,14 +193,31 @@
             document.getElementById('circleFill').style.strokeDashoffset = 565 - (565 * percent / 100);
         }
 
-        // Roster
         const players = [
             { name: "José Ramírez", pos: "3B", num: "11", id: "608070", group: "Infielders", s1: ".285 AVG", s2: "5 HR", s3: "15 RBI" },
             { name: "Steven Kwan", pos: "LF", num: "38", id: "680757", group: "Outfielders", s1: ".312 AVG", s2: "12 R", s3: "3 SB" },
             { name: "Josh Naylor", pos: "1B", num: "22", id: "647351", group: "Infielders", s1: ".260 AVG", s2: "4 HR", s3: "14 RBI" },
+            { name: "Andrés Giménez", pos: "2B", num: "0", id: "665926", group: "Infielders", s1: ".275 AVG", s2: "5 SB", s3: "GG" },
+            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", s1: ".290 AVG", s2: "6 HR", s3: "1.050 OPS" },
             { name: "Tanner Bibee", pos: "SP", num: "28", id: "676440", group: "Pitchers", s1: "2.15 ERA", s2: "22 K", s3: "0.95 WHIP" },
             { name: "Emmanuel Clase", pos: "RP", num: "48", id: "661403", group: "Pitchers", s1: "0.00 ERA", s2: "5 SV", s3: "101 MPH" },
-            { name: "Chase DeLauter", pos: "RF", num: "31", id: "686823", group: "Outfielders", s1: ".290 AVG", s2: "6 HR", s3: "1.050 OPS" }
+            { name: "Gavin Williams", pos: "SP", num: "32", id: "668909", group: "Pitchers", s1: "2.50 ERA", s2: "28 K", s3: "1.10 WHIP" },
+            { name: "Bo Naylor", pos: "C", num: "6", id: "666310", group: "Catchers", s1: ".240 AVG", s2: "3 HR", s3: "Elite Defense" },
+            { name: "David Fry", pos: "C/UTL", num: "26", id: "681807", group: "Catchers", s1: ".300 AVG", s2: "2 HR", s3: "Versatile" },
+            { name: "Triston McKenzie", pos: "SP", num: "24", id: "663474", group: "Pitchers", s1: "3.10 ERA", s2: "18 K", s3: "1.05 WHIP" },
+            { name: "Brayan Rocchio", pos: "SS", num: "8", id: "677587", group: "Infielders", s1: ".250 AVG", s2: "Elite Range", s3: "2 SB" },
+            { name: "Gabriel Arias", pos: "SS", num: "4", id: "672356", group: "Infielders", s1: ".230 AVG", s2: "Power Arm", s3: "1 HR" },
+            { name: "Will Brennan", pos: "OF", num: "17", id: "686823", group: "Outfielders", s1: ".270 AVG", s2: "Contact", s3: "Grit" },
+            { name: "Cade Smith", pos: "RP", num: "36", id: "671922", group: "Pitchers", s1: "1.20 ERA", s2: "12 K", s3: "Setup" },
+            { name: "Scott Barlow", pos: "RP", num: "58", id: "605130", group: "Pitchers", s1: "2.80 ERA", s2: "Curve", s3: "Veteran" },
+            { name: "Eli Morgan", pos: "RP", num: "49", id: "669212", group: "Pitchers", s1: "3.00 ERA", s2: "Changeup", s3: "Relief" },
+            { name: "Tim Herrin", pos: "RP", num: "33", id: "682120", group: "Pitchers", s1: "1.50 ERA", s2: "LHP", s3: "Lefty" },
+            { name: "Logan Allen", pos: "SP", num: "43", id: "671150", group: "Pitchers", s1: "3.50 ERA", s2: "15 K", s3: "LHP" },
+            { name: "Carlos Carrasco", pos: "SP", num: "59", id: "471911", group: "Pitchers", s1: "4.20 ERA", s2: "Cookie", s3: "Vet" },
+            { name: "Tyler Freeman", pos: "SS", num: "2", id: "671529", group: "Infielders", s1: ".280 AVG", s2: "UTL", s3: "OBP" },
+            { name: "Jhonkensy Noel", pos: "OF", num: "43", id: "678877", group: "Outfielders", s1: "Power", s2: "RF/LF", s3: "Big" },
+            { name: "Angel Martínez", pos: "INF", num: "1", id: "682657", group: "Infielders", s1: "Switch", s2: "UTL", s3: "Speed" },
+            { name: "Joey Cantillo", pos: "SP", num: "85", id: "676282", group: "Pitchers", s1: "LHP", s2: "K%", s3: "Young" }
         ];
 
         function renderRoster(filter) {
@@ -219,32 +230,15 @@
                 card.onclick = () => card.classList.toggle('flipped');
                 const initials = p.name.split(' ').map(n => n[0]).join('');
                 const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.id}/headshot/67/current`;
-                
                 card.innerHTML = `
-                    <div class="card-front">
-                        <div class="player-num">#${p.num}</div>
-                        <img src="${img}" class="player-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="css-avatar" style="display:none;">${initials}</div>
-                        <div class="player-info">
-                            <div class="player-name">${p.name}</div>
-                            <div class="player-pos">${p.pos}</div>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3 style="margin-bottom:1rem;">${p.name}</h3>
-                        <div class="back-stats">
-                            <div class="stat-line"><span>Stat 1</span><span class="stat-val">${p.s1}</span></div>
-                            <div class="stat-line"><span>Stat 2</span><span class="stat-val">${p.s2}</span></div>
-                            <div class="stat-line"><span>Stat 3</span><span class="stat-val">${p.s3}</span></div>
-                        </div>
-                        <p style="margin-top:2rem; font-size:0.8rem; opacity:0.7;">Click to flip back</p>
-                    </div>
+                    <div class="card-front"><div class="player-num">#${p.num}</div><img src="${img}" class="player-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="css-avatar" style="display:none;">${initials}</div><div class="player-info"><div class="player-name">${p.name}</div><div class="player-pos">${p.pos}</div></div></div>
+                    <div class="card-back"><h3 style="margin-bottom:1rem;">${p.name}</h3><div class="back-stats"><div class="stat-line"><span>Stat 1</span><span class="stat-val">${p.s1}</span></div><div class="stat-line"><span>Stat 2</span><span class="stat-val">${p.s2}</span></div><div class="stat-line"><span>Stat 3</span><span class="stat-val">${p.s3}</span></div></div><p style="margin-top:2rem; font-size:0.8rem; opacity:0.7;">Click to flip back</p></div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function filterRoster(group) {
+        window.filterRoster = function(group) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             renderRoster(group);
