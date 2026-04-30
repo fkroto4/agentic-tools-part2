@@ -9,84 +9,102 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Professional Xavier & MLB Foundation */
             --xav-blue: #0C2340; --xav-silver: #9EA2A2; --bg-color: #f8fafc;
             --card-bg: rgba(255, 255, 255, 0.98); --border-color: rgba(15, 23, 42, 0.1);
-            --text-main: #1a202c; --text-muted: #4a5568; --accent: #0C2340; --success: #10b981; --glow: rgba(12, 35, 64, 0.35);
+            --text-main: #1a202c; --text-muted: #4a5568; --accent: #0C2340; --success: #10b981; --warning: #f59e0b; --danger: #e11d48;
+            --glow: rgba(12, 35, 64, 0.35);
+            /* Casino Palette */
             --casino-felt: #065f46; --casino-gold: #fbbf24; --casino-black: #020617;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 85px; transition: 0.4s; }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 85px; transition: background 0.5s ease; }
 
-        /* NAVIGATION */
+        /* PREMIUM NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 85px; background: var(--bg-color); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; letter-spacing: -1px; color: var(--xav-blue); cursor: pointer; }
         .nav-brand span { color: var(--success); }
         .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 
-        .btn-premium { padding: 0.75rem 1.6rem; border: 2px solid var(--border-color); background: transparent; border-radius: 35px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 0.6rem; }
-        .btn-premium:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 25px var(--glow); }
-        .btn-premium.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); }
+        .btn-action { padding: 0.75rem 1.6rem; border: 2px solid var(--border-color); background: transparent; border-radius: 35px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 0.6rem; }
+        .btn-action:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 25px var(--glow); }
+        .btn-action.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); }
 
-        .chip-vault { background: #fff; border: 3.5px solid var(--casino-gold); padding: 0.6rem 1.8rem; border-radius: 50px; display: flex; align-items: center; gap: 1rem; font-weight: 900; color: #92400e; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); font-size: 1.2rem; }
+        .chip-display { background: #fff; border: 3.5px solid var(--casino-gold); padding: 0.6rem 1.8rem; border-radius: 50px; display: flex; align-items: center; gap: 1rem; font-weight: 900; color: #92400e; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); font-size: 1.2rem; }
 
         /* HERO & MAIN */
-        .hero { background: var(--xav-blue); padding: 8rem 2rem; text-align: center; border-bottom: 7px solid var(--success); color: white; transition: background 0.5s; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 900; letter-spacing: -3px; text-transform: uppercase; margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.2rem; color: var(--xav-silver); font-family: 'Fira Code', monospace; letter-spacing: 5px; text-transform: uppercase; }
+        .hero { background: var(--xav-blue); padding: 9rem 2rem; text-align: center; border-bottom: 7px solid var(--success); color: white; transition: background 0.6s ease; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 6.5rem); font-weight: 900; letter-spacing: -3px; text-transform: uppercase; margin-bottom: 1.5rem; line-height: 0.85; }
+        .hero p { font-size: 1.2rem; color: var(--xav-silver); font-family: 'Fira Code', monospace; letter-spacing: 6px; text-transform: uppercase; }
 
-        main { max-width: 1600px; margin: 0 auto; padding: 5rem 3%; }
+        main { max-width: 1550px; margin: 0 auto; padding: 5rem 3%; }
         .view-content { display: none; animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .view-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
-        .glass-card { background: var(--card-bg); border: 1.5px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900; margin-bottom: 3rem; border-left: 14px solid var(--accent); padding-left: 2.5rem; text-transform: uppercase; }
+        .glass-card { background: var(--card-bg); border: 1.5px solid var(--border-color); border-radius: 40px; padding: 4.5rem; margin-bottom: 5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3.4rem; font-weight: 900; margin-bottom: 3.5rem; border-left: 14px solid var(--accent); padding-left: 2.5rem; text-transform: uppercase; }
 
-        /* BASEBALL CARDS (v8.7) */
-        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3rem; }
+        /* LIVE NEWS TICKER */
+        .ticker-bar { background: var(--xav-blue); color: white; padding: 1.4rem; border-radius: 20px; margin-bottom: 6rem; border-bottom: 6px solid var(--success); overflow: hidden; position: relative; }
+        .ticker-track { display: inline-block; white-space: nowrap; animation: tickerScroll 55s linear infinite; }
+        .ticker-link { font-family: 'Fira Code', monospace; font-size: 0.95rem; color: #fff; text-decoration: none; margin-right: 6rem; display: inline-flex; align-items: center; gap: 1.2rem; }
+        .ticker-link:hover { color: var(--success); }
+        .ticker-stamp { font-weight: 900; color: var(--success); background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 10px; }
+        @keyframes tickerScroll { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+
+        /* BASEBALL CARDS (v8.7 PREMIUM) */
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3.5rem; }
         .player-card { height: 520px; perspective: 1500px; cursor: pointer; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
         .player-card.flipped .card-inner { transform: rotateY(180deg); }
-        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; border: 8px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.2); overflow: hidden; }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; border: 10px solid #fff; box-shadow: 0 15px 40px rgba(0,0,0,0.25); overflow: hidden; }
         .card-front { background: #f1f5f9; display: flex; flex-direction: column; }
-        .card-back { background: #fff; transform: rotateY(180deg); padding: 2.5rem; display: flex; flex-direction: column; border-color: var(--accent); }
-        .player-headshot { height: 380px; width: 100%; object-fit: contain; align-self: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.1), transparent); }
-        .card-footer { padding: 1.5rem; background: var(--accent); color: white; text-align: center; }
-        .stat-line { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #eee; font-weight: 700; font-size: 0.95rem; }
-        .stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+        .card-back { background: #fff; transform: rotateY(180deg); padding: 3rem; display: flex; flex-direction: column; border-color: var(--accent); }
+        .card-img-box { height: 380px; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.05), transparent); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+        .player-img { width: 100%; height: 115%; object-fit: contain; transform: translateY(5%); transition: 0.4s; }
+        .card-info { padding: 1.2rem; background: var(--accent); color: #fff; text-align: center; }
+        .card-info h4 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; }
+        .card-info p { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; opacity: 0.8; }
+        .stat-line { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 2px solid #f1f5f9; font-weight: 900; font-size: 1.1rem; }
+        .stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* TACTICAL FIELD */
-        .field-frame { position: relative; width: 100%; max-width: 1000px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 60px; border: 12px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,0.9); }
-        .field-node { position: absolute; width: 120px; text-align: center; transform: translate(-50%, -50%); transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1); z-index: 10; }
-        .node-tag { font-size: 0.85rem; font-weight: 900; background: var(--success); color: #000; padding: 3px 12px; border-radius: 14px; display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.6); }
-        .node-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-top: 6px; text-shadow: 0 3px 6px rgba(0,0,0,1); }
-
-        /* PARLAY ARCHITECT (v8.7) */
-        .parlay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
-        .parlay-card { background: #fff; border-radius: 30px; padding: 2.5rem; border: 2px solid var(--border-color); transition: 0.3s; position: relative; }
-        .parlay-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .parlay-tag { position: absolute; top: -15px; left: 30px; padding: 5px 20px; border-radius: 10px; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: white; }
+        /* PARLAY ENGINE (v8.7) */
+        .parlay-architect { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        .parlay-card { background: #fff; border-radius: 35px; padding: 3rem; border: 3px solid var(--border-color); position: relative; transition: 0.3s; }
+        .parlay-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .pick-tag { position: absolute; top: -15px; left: 40px; padding: 6px 25px; border-radius: 12px; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
         .tag-top { background: var(--success); }
         .tag-risky { background: var(--warning); }
-        .tag-worst { background: #e11d48; }
-        .parlay-reason { background: #f8fafc; padding: 1.5rem; border-radius: 15px; margin-top: 1.5rem; font-size: 0.85rem; border-left: 5px solid var(--accent); }
+        .tag-worst { background: var(--danger); }
+        .parlay-logic { background: #f8fafc; padding: 2rem; border-radius: 20px; margin-top: 2rem; font-size: 0.95rem; border-left: 6px solid var(--accent); line-height: 1.5; }
+        .source-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--accent); font-weight: 800; text-decoration: none; font-size: 0.85rem; }
+        .source-link:hover { text-decoration: underline; }
 
-        /* TICKER */
-        .ticker-frame { background: var(--xav-blue); color: white; padding: 1.4rem; border-radius: 20px; margin-bottom: 6rem; border-bottom: 6px solid var(--success); overflow: hidden; }
-        .ticker-track { display: inline-block; white-space: nowrap; animation: tickerScroll 55s linear infinite; }
-        .ticker-item { font-family: 'Fira Code', monospace; font-size: 0.95rem; color: #fff; text-decoration: none; margin-right: 6rem; display: inline-flex; align-items: center; gap: 1.2rem; }
-        .ticker-item:hover { color: var(--success); }
-        .ticker-timestamp { font-weight: 900; color: var(--success); background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 10px; }
-        @keyframes tickerScroll { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+        /* TACTICAL FIELD */
+        .field-frame { position: relative; width: 100%; max-width: 1000px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 60px; border: 10px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,0.9); }
+        .field-node { position: absolute; width: 130px; text-align: center; transform: translate(-50%, -50%); transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1); z-index: 10; }
+        .node-tag { font-size: 0.8rem; font-weight: 900; background: var(--success); color: #000; padding: 3px 12px; border-radius: 12px; display: inline-block; }
+        .node-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-top: 6px; text-shadow: 0 3px 6px rgba(0,0,0,1); }
 
-        /* LEAGUE BOARD */
-        .league-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 3rem; }
-        .score-link { text-decoration: none; color: inherit; display: block; }
-        .score-card { background: #fff; border: 1.5px solid var(--border-color); border-radius: 28px; padding: 3rem; transition: 0.4s; }
-        .score-card:hover { border-color: var(--accent); box-shadow: 0 15px 35px var(--glow); }
+        /* CASINO FIXES */
+        .game-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.995); backdrop-filter: blur(40px); z-index: 5000; padding: 2%; overflow-y: auto; color: white; }
+        .hud-bar { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 50px; padding: 2.5rem; margin-bottom: 5rem; border: 2.5px solid rgba(255,255,255,0.1); }
+        .avatar-img { width: 160px; height: 160px; border-radius: 50%; border: 6px solid var(--casino-gold); overflow: hidden; background: #111; box-shadow: 0 0 50px rgba(0,0,0,0.6); }
+        .avatar-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .btn-casino { background: linear-gradient(180deg, var(--casino-gold) 0%, #d97706 100%); color: #000; border: none; padding: 1.5rem 4rem; border-radius: 20px; font-weight: 900; cursor: pointer; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 8px 0 #92400e; text-transform: uppercase; }
+        .btn-casino:hover { transform: translateY(-4px); box-shadow: 0 12px 0 #92400e, 0 0 30px rgba(251, 191, 36, 0.4); }
+        .btn-casino:active { transform: translateY(6px); box-shadow: 0 2px 0 #92400e; }
 
-        /* UTILS */
+        .roulette-table { display: grid; grid-template-columns: repeat(13, 1fr); gap: 8px; max-width: 1200px; margin: 4rem auto; background: #111; padding: 30px; border-radius: 25px; border: 12px solid #3d2b1f; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+        .r-cell { aspect-ratio: 1/1.6; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; cursor: pointer; border-radius: 12px; border: 4px solid transparent; transition: 0.2s; color: #fff; }
+        .r-cell:hover { border-color: var(--casino-gold); transform: scale(1.08); z-index: 50; }
+        .r-cell.red { background: #e11d48; }
+        .r-cell.black { background: #000; }
+        .r-cell.green { background: #10b981; grid-row: span 3; }
+
         .hidden { display: none !important; }
         .btn-close { position: absolute; top: 2rem; right: 4rem; font-size: 6rem; cursor: pointer; opacity: 0.3; transition: 0.3s; color: #fff; z-index: 6000; }
         .btn-close:hover { opacity: 1; color: var(--casino-gold); transform: rotate(90deg); }
@@ -99,98 +117,142 @@
     <nav>
         <div class="nav-brand" onclick="switchView('home')">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <button class="btn-premium active" id="nav-home" onclick="switchView('home')"><i class="fas fa-home"></i> Home</button>
-            <button class="btn-premium" id="nav-casino" onclick="switchView('casino')"><i class="fas fa-coins"></i> Casino</button>
-            <button class="btn-premium" id="nav-mlb" onclick="switchView('mlb')"><i class="fas fa-baseball-ball"></i> MLB Savant</button>
-            <div class="chip-vault">
-                <i class="fas fa-gem" style="color: #d97706;"></i> <span id="masterPoints">100</span>
-            </div>
+            <button class="btn-action active" id="nav-home" onclick="switchView('home')"><i class="fas fa-home"></i> Home</button>
+            <button class="btn-action" id="nav-casino" onclick="switchView('casino')"><i class="fas fa-coins"></i> Casino</button>
+            <button class="btn-action" id="nav-mlb" onclick="switchView('mlb')"><i class="fas fa-baseball-ball"></i> MLB Hub</button>
+            <div class="chip-display"><i class="fas fa-gem" style="color: #d97706;"></i> <span id="globalPoints">100</span></div>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO RESTORATION -->
     <header class="hero" id="mainHero">
         <h1 id="heroH1">FRANKS_MGMT_PROJECT</h1>
-        <p id="heroSubtitle">Strategic Business Intelligence | Baseball Savant v8.7</p>
+        <p>Strategic Business Intelligence | Baseball Savant v8.7</p>
     </header>
 
     <main>
-        <!-- TICKER -->
-        <div class="ticker-frame">
-            <div class="ticker-track" id="mlbTicker"></div>
+        <!-- LIVE CLICKABLE TICKER -->
+        <div class="ticker-bar">
+            <div class="ticker-track" id="mlbTicker">
+                <!-- Sync via JS -->
+            </div>
         </div>
 
         <!-- HOME -->
         <div id="view-home" class="view-content active">
             <section class="glass-card">
                 <div style="display: grid; grid-template-columns: 380px 1fr; gap: 6rem; align-items: center;">
-                    <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 30px 60px rgba(0,0,0,0.15);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
+                    <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.2);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
                     <div>
                         <h2 class="section-title">Hello & Welcome!</h2>
                         <p style="font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; color: var(--xav-blue); line-height: 1.2;">Thank you for exploring my executive project hub.</p>
-                        <p style="color: var(--text-secondary); font-size: 1.3rem; line-height: 2;">I am a student at **Xavier University, Class of 2027**, focusing on the intersection of Business Management and AI Strategy. This platform demonstrates my capability in handling real-time data streams and building interactive business logic. Whether you're here for the live MLB analytics or to test your luck on the Casino floor, I hope you find the experience professional and engaging!</p>
+                        <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 2.2;">I am a student at **Xavier University, Class of 2027**, focusing on Business Management and AI Strategy. This platform demonstrates real-time data sync and premium user interaction. Check out the live MLB hub or play in the Casino—reach 1,000 points to unlock my professional contact info!</p>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- CASINO (SAME AS v8.6) -->
+        <!-- CASINO FIXES -->
         <div id="view-casino" class="view-content">
-             <!-- Casino content same as v8.6 - placeholder for brevity -->
-             <section class="glass-card" style="text-align:center;">
-                 <h2 class="section-title">The Vegas Floor</h2>
-                 <p>Reach 1,000 Points to unlock the vault. Progress is saved automatically.</p>
-                 <button class="btn-premium active" style="margin-top:2rem;" onclick="switchView('home')">CONTINUE TO WORK</button>
+             <section class="glass-card" style="text-align:center; padding: 6rem;">
+                <h2 class="section-title" style="border:none; padding:0;">The Vegas Floor</h2>
+                <p style="font-size:1.5rem; margin-bottom:4rem;">Reach **1,000 Chips** to unlock the security vault. Choose your table:</p>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:3rem;">
+                    <div class="btn-action active" style="flex-direction:column; padding:4rem; border-radius:30px; height:auto; gap:2rem;" onclick="launchGame('roulette')">
+                        <i class="fas fa-dharmachakra" style="font-size:5rem; color:var(--casino-gold);"></i>
+                        <h3>Roulette</h3>
+                    </div>
+                    <div class="btn-action active" style="flex-direction:column; padding:4rem; border-radius:30px; height:auto; gap:2rem;" onclick="launchGame('blackjack')">
+                        <i class="fas fa-spade" style="font-size:5rem; color:var(--casino-gold);"></i>
+                        <h3>Blackjack</h3>
+                    </div>
+                </div>
              </section>
         </div>
 
-        <!-- MLB SAVANT HUB (v8.7) -->
+        <!-- MLB SAVANT HUB (v8.7 REBUILD) -->
         <div id="view-mlb" class="view-content">
-            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:5rem; border-bottom:2px solid var(--border-color); padding-bottom:2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:5rem;">
                 <div>
                     <h2 class="section-title" style="margin:0; border:none; padding:0;">MLB Tactical Hub</h2>
-                    <p style="color:var(--text-muted); font-weight:800; letter-spacing:2px; text-transform:uppercase;">Statcast Integration • Live Data Mesh</p>
+                    <p style="color:var(--text-muted); font-weight:800; letter-spacing:2px; text-transform:uppercase;">Statcast Analytics • 30-Team Data Mesh</p>
                 </div>
                 <div style="display:flex; gap:1.5rem;">
-                    <select id="teamSelect" onchange="syncSavantTeam(this.value)" style="padding:1rem 2rem; border-radius:50px; border:3px solid var(--accent); background:#fff; font-weight:900; cursor:pointer;">
+                    <select id="teamSelector" onchange="syncSavantTeam(this.value)" style="padding:1rem 2rem; border-radius:50px; border:3px solid var(--accent); background:#fff; font-weight:900; cursor:pointer;">
                         <option value="HOME">Select Team Feed</option>
-                        <optgroup label="Popular"><option value="CLE">Guardians</option><option value="LAD">Dodgers</option><option value="NYY">Yankees</option><option value="PHI">Phillies</option><option value="ATL">Braves</option><option value="HOU">Astros</option></optgroup>
-                        <optgroup label="AL East"><option value="BAL">Orioles</option><option value="BOS">Red Sox</option><option value="TB">Rays</option><option value="TOR">Blue Jays</option></optgroup>
-                        <!-- Full 30 team list added via script -->
+                        <!-- Injected via script -->
                     </select>
-                    <button class="btn-premium active" onclick="fetchSavantLeague()"><i class="fas fa-sync"></i> Refresh All Data</button>
+                    <button class="btn-action active" onclick="initSavantHub()"><i class="fas fa-sync"></i> Refresh All</button>
                 </div>
             </div>
 
-            <!-- PARLAY ENGINE -->
+            <!-- PARLAY ARCHITECT -->
             <section class="glass-card">
-                <h3 style="font-family:'Playfair Display'; font-size:2.5rem; margin-bottom:2rem;"><i class="fas fa-bolt" style="color:var(--casino-gold);"></i> Advanced Parlay Architect</h3>
-                <p style="color:var(--text-muted); margin-bottom:3rem;">Algorithmic correlations from OddShark & DraftKings Computer Picks. Updated Live.</p>
-                <div class="parlay-grid" id="parlayBoard">
-                    <!-- Dynamic Parlay Picks -->
+                <h3 style="font-family:'Playfair Display'; font-size:2.8rem; margin-bottom:2rem;"><i class="fas fa-bolt" style="color:var(--casino-gold);"></i> Parlay Architect</h3>
+                <p style="color:var(--text-muted); margin-bottom:4rem;">Daily classifications based on OddShark and DraftKings indicators.</p>
+                <div class="parlay-architect" id="parlayBoard">
+                    <!-- Dynamic Picks -->
                 </div>
             </section>
 
-            <!-- LEAGUE BOARD -->
+            <!-- LIVE SLATE BOARD -->
             <div id="leagueSlate" class="league-board" style="margin-bottom:6rem;"></div>
 
-            <!-- TEAM SAVANT -->
-            <div id="savantTeam" class="hidden">
-                <div class="glass-card" id="teamHeader" style="background:var(--accent); color:#fff; border:none; padding:4rem;"></div>
-                <div class="glass-card">
-                    <h3 style="margin-bottom:2.5rem; font-family:'Playfair Display'; font-size:2rem;"><i class="fas fa-crosshairs" style="color:var(--success);"></i> Live Tactical Field</h3>
-                    <div class="field-frame" id="savantField">
-                        <svg viewBox="0 0 100 100" style="width:100%; height:100%; opacity:0.1;"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="#fff" stroke-width="0.3"></path></svg>
+            <!-- TEAM SAVANT VIEW -->
+            <div id="teamSavantView" class="hidden">
+                <div class="glass-card" id="teamHeader" style="background:var(--accent); color:#fff; border:none; padding:5rem; text-align:center;"></div>
+                
+                <div style="display:grid; grid-template-columns: 2.5fr 1fr; gap:5rem; margin-bottom:6rem;">
+                    <div class="glass-card" style="margin:0; padding:3rem;">
+                        <h3 style="margin-bottom:2.5rem; font-family:'Playfair Display'; font-size:2.2rem;"><i class="fas fa-crosshairs" style="color:var(--success);"></i> Live Field positioning</h3>
+                        <div class="field-frame" id="savantField">
+                            <svg viewBox="0 0 100 100" style="width:100%; height:100%; opacity:0.15;"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="#fff" stroke-width="0.3"></path></svg>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="margin:0; background:#f0f9ff; border:3px solid #bae6fd;">
+                        <h4 style="color:#0369a1; font-weight:900; font-size:1.5rem; margin-bottom:2rem;"><i class="fas fa-chart-pie"></i> ROI yield simulator</h4>
+                        <input type="range" id="roiSlider" min="5" max="500" step="5" value="50" oninput="runROI()" style="width:100%; margin:2rem 0; accent-color:#0369a1;">
+                        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:1.4rem; color:#0369a1;">
+                            <span>Staff: <span id="staffNum">50</span></span>
+                            <span>Savings: $<span id="roiVal">1.13M</span></span>
+                        </div>
                     </div>
                 </div>
-                <h3 class="section-title" style="font-size:2rem;">Baseball Card Roster</h3>
+
+                <h3 class="section-title" style="font-size:2.2rem;">Baseball Card Roster</h3>
                 <div id="savantRoster" class="roster-grid"></div>
             </div>
         </div>
     </main>
 
+    <!-- CASINO OVERLAYS -->
+    <div id="game-blackjack" class="game-overlay">
+        <span class="btn-close" onclick="closeOverlay()">&times;</span>
+        <div class="hud-bar">
+            <div class="avatar-box"><div class="avatar-img dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=10b981&color=fff&size=512"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--success);">PRO DEALER</h4></div>
+            <div style="text-align:center; flex:1;"><h2 style="font-family:'Playfair Display'; font-size:4.5rem; color:var(--casino-gold);">NEURAL 21</h2><div id="bjStatus" style="font-size:2.5rem; font-weight:900; margin-top:1rem;">WAGER 10+</div><div style="font-size:2rem; margin-top:1rem; font-weight:900; color:#fff; background:rgba(0,0,0,0.4); padding:10px 30px; border-radius:15px; display:inline-block;">BALANCE: <span id="bjChips">100</span></div></div>
+            <div class="avatar-box"><div class="avatar-img"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--casino-gold);">EXECUTIVE</h4></div>
+        </div>
+        <div id="bjDealerHand" class="hand-container"></div>
+        <div id="bjTableMsg" style="height:150px; display:flex; align-items:center; justify-content:center; font-size:3rem; font-weight:900; color:var(--casino-gold);"></div>
+        <div id="bjPlayerHand" class="hand-container"></div>
+        <div style="display:flex; justify-content:center; gap:4rem; margin-top:6rem; align-items:center; background:rgba(0,0,0,0.6); padding:4rem; border-radius:60px;">
+            <input type="number" id="bjBet" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:220px; font-weight:900; font-size:2.5rem; text-align:center; border:none;">
+            <button class="btn-casino" id="bjBtnStart" onclick="bjStart()">DEAL CARDS</button>
+            <button class="btn-casino hidden" id="bjBtnHit" onclick="bjHit()">HIT</button>
+            <button class="btn-casino hidden" id="bjBtnStand" onclick="bjStand()">STAND</button>
+        </div>
+    </div>
+
+    <div id="game-roulette" class="game-overlay">
+        <span class="btn-close" onclick="closeOverlay()">&times;</span>
+        <div style="text-align:center; margin-bottom:4rem;"><h2 style="font-family:'Playfair Display'; font-size:5rem; color:var(--casino-gold);">IMPERIAL ROULETTE</h2><div style="font-size:2.5rem; font-weight:900; color:#fff;">BALANCE: <span id="rChips">100</span></div></div>
+        <div class="roulette-table" id="rouletteBoard"></div>
+        <div style="text-align:center; margin-top:5rem;"><div id="rStatus" style="font-size:4rem; font-weight:900; color:var(--casino-gold); margin-bottom:4rem;">SELECT A ZONE</div><div style="display:flex; justify-content:center; gap:3rem; align-items:center;"><input type="number" id="rBetAmt" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:250px; font-weight:900; font-size:2.5rem; text-align:center; border:none;"><button class="btn-casino" onclick="rSpin()">SPIN WHEEL</button></div></div>
+    </div>
+
     <script>
-        /* v8.7 SAVANT ENGINE */
+        /* v8.7 EXECUTIVE SCRIPT */
         let state = {
             points: 100, view: 'home', cTeam: 'CLE', fullRoster: [],
             teamColors: {
@@ -200,37 +262,117 @@
                 "NYM": "#FF5910", "WSH": "#AB0003", "CHC": "#0E3386", "CIN": "#C6011F", "MIL": "#12284B", "PIT": "#FFB81C",
                 "STL": "#C41E3A", "AZ": "#A71930", "COL": "#333366", "SD": "#2F241D", "SF": "#FD5A1E", "OAK": "#003831"
             },
-            teamIds: { "CLE":114, "LAD":119, "NYY":147, "PHI":143, "ATL":144, "HOU":117, "BAL":110, "BOS":111, "TB":139, "TOR":141, "CWS":145, "DET":116, "KC":118, "MIN":142, "LAA":108, "SEA":136, "TEX":140, "MIA":146, "NYM":121, "WSH":120, "CHC":112, "CIN":113, "MIL":158, "PIT":134, "STL":138, "AZ":109, "COL":115, "SD":135, "SF":137, "OAK":133 }
+            teamIds: { "CLE":114, "LAD":119, "NYY":147, "PHI":143, "ATL":144, "HOU":117, "BAL":110, "BOS":111, "TB":139, "TOR":141, "CWS":145, "DET":116, "KC":118, "MIN":142, "LAA":108, "SEA":136, "TEX":140, "MIA":146, "NYM":121, "WSH":120, "CHC":112, "CIN":113, "MIL":158, "PIT":134, "STL":138, "AZ":109, "COL":115, "SD":135, "SF":137, "OAK":133 },
+            bj: { deck:[], player:[], dealer:[], bet:0, active: false }, rBet: null
         };
 
         function switchView(v) {
             state.view = v;
             document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active'));
             document.getElementById(`view-${v}`).classList.add('active');
-            document.querySelectorAll('.btn-premium').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.btn-action').forEach(b => b.classList.remove('active'));
             if(document.getElementById(`nav-${v}`)) document.getElementById(`nav-${v}`).classList.add('active');
-            if(v === 'mlb') fetchSavantLeague();
+            if(v === 'mlb') initSavantHub();
             window.scrollTo(0,0);
         }
 
-        /* MLB SAVANT DATA MESH */
+        function updatePoints(amt) {
+            state.points += amt;
+            document.querySelectorAll('#globalPoints, #bjChips, #rChips').forEach(el => el.innerText = state.points);
+            localStorage.setItem('franks_chips_v87', state.points);
+        }
+
+        function launchGame(g) { document.getElementById(`game-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; if(g==='roulette') initRoulette(); }
+        function closeOverlay() { document.querySelectorAll('.game-overlay').forEach(o => o.style.display = 'none'); document.body.style.overflow = 'auto'; }
+
+        /* BLACKJACK */
+        function bjStart() {
+            const bet = parseInt(document.getElementById('bjBet').value);
+            if(bet < 10 || bet > state.points) return alert("Check wager.");
+            updatePoints(-bet);
+            state.bj = { deck: createDeck(), player:[], dealer:[], bet: bet, active: true };
+            state.bj.player = [state.bj.deck.pop(), state.bj.deck.pop()];
+            state.bj.dealer = [state.bj.deck.pop(), state.bj.deck.pop()];
+            bjRender();
+            document.getElementById('bjStatus').innerText = "PLAYER ACTION";
+            document.getElementById('bjBtnStart').classList.add('hidden');
+            document.getElementById('bjBtnHit').classList.remove('hidden');
+            document.getElementById('bjBtnStand').classList.remove('hidden');
+        }
+        function bjRender(f = false) {
+            const p = document.getElementById('bjPlayerHand'), d = document.getElementById('bjDealerHand');
+            p.innerHTML = ''; d.innerHTML = '';
+            state.bj.player.forEach(c => p.appendChild(drawCardUI(c)));
+            state.bj.dealer.forEach((c, i) => d.appendChild(drawCardUI(c, !f && i === 0)));
+            document.getElementById('bjTableMsg').innerText = `Your Hand: ${bjSum(state.bj.player)}`;
+        }
+        function bjHit() { if(!state.bj.active) return; state.bj.player.push(state.bj.deck.pop()); bjRender(); if(bjSum(state.bj.player) > 21) bjEnd("BUSTED!"); }
+        function bjStand() {
+            if(!state.bj.active) return; bjRender(true);
+            const dealerGo = () => {
+                if(bjSum(state.bj.dealer) < 17) { state.bj.dealer.push(state.bj.deck.pop()); bjRender(true); setTimeout(dealerGo, 800); }
+                else {
+                    const p = bjSum(state.bj.player), d = bjSum(state.bj.dealer);
+                    if(d > 21 || p > d) bjEnd("YOU WIN!"); else if(p === d) bjEnd("PUSH"); else bjEnd("DEALER WINS");
+                }
+            }; dealerGo();
+        }
+        function bjEnd(res) {
+            state.bj.active = false; document.getElementById('bjStatus').innerText = res;
+            if(res === "YOU WIN!") updatePoints(state.bj.bet * 2); if(res === "PUSH") updatePoints(state.bj.bet);
+            document.getElementById('bjBtnStart').classList.remove('hidden'); document.getElementById('bjBtnHit').classList.add('hidden'); document.getElementById('bjBtnStand').classList.add('hidden');
+        }
+        function bjSum(h) {
+            const v = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
+            let s = h.reduce((a, b) => a + v(b), 0), aces = h.filter(c => c.v === 'A').length;
+            while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
+        }
+
+        /* ROULETTE */
+        function initRoulette() {
+            const b = document.getElementById('rouletteBoard'); b.innerHTML = '';
+            const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => selectR(0, zero); b.appendChild(zero);
+            for(let i=1; i<=36; i++) {
+                const n = document.createElement('div'); const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i);
+                n.className = `r-cell ${isRed?'red':'black'}`; n.innerText = i; n.onclick = () => selectR(i, n); b.appendChild(n);
+            }
+        }
+        function selectR(n, el) { state.rBet = n; document.querySelectorAll('.r-cell').forEach(x => x.style.borderColor = 'transparent'); el.style.borderColor = 'var(--casino-gold)'; document.getElementById('rStatus').innerText = `WAGER ON: ${n}`; }
+        function rSpin() {
+            const w = parseInt(document.getElementById('rBetAmt').value);
+            if(state.rBet === null || w < 10 || w > state.points) return alert("Check selection/points.");
+            updatePoints(-w); document.getElementById('rStatus').innerText = "SPINNING...";
+            setTimeout(() => {
+                const res = Math.floor(Math.random() * 37); document.getElementById('rStatus').innerText = `RESULT: ${res}`;
+                if(res === state.rBet) { updatePoints(w * 36); alert("35x BIG WIN!"); }
+            }, 2000);
+        }
+
+        /* SAVANT HUB */
+        async function initSavantHub() {
+            const selector = document.getElementById('teamSelector');
+            if(selector.options.length <= 1) {
+                Object.keys(state.teamIds).sort().forEach(abbr => {
+                    const opt = document.createElement('option'); opt.value = abbr; opt.innerText = abbr; selector.appendChild(opt);
+                });
+            }
+            fetchSavantLeague();
+        }
+
         async function fetchSavantLeague() {
-            const slate = document.getElementById('leagueSlate');
-            slate.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCHRONIZING WITH MLB SATELLITE FEED...</p>';
+            const board = document.getElementById('leagueSlate'); board.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCING MLB SATELLITE FEED...</p>';
             try {
                 const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings),metadata');
                 const data = await res.json(); const games = data.dates[0]?.games || [];
-                slate.innerHTML = '';
+                board.innerHTML = '';
                 games.forEach(g => {
-                    const card = document.createElement('a');
-                    card.className = 'score-link'; card.href = `https://www.mlb.com/game/${g.gamePk}`; card.target = "_blank";
                     const away = g.teams.away, home = g.teams.home;
-                    card.innerHTML = `<div class="score-card"><div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${away.team.name}</strong><br><small>(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:3.5rem; font-weight:900;">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:5px 12px; border-radius:10px; font-size:0.8rem; font-weight:900;">${g.status.detailedState.toUpperCase()}</div><div style="margin:1rem 0; opacity:0.1; font-size:1.8rem; font-weight:900;">@</div><small style="font-weight:900;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${home.team.name}</strong><br><small>(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:3.5rem; font-weight:900;">${home.score||0}</span></div></div></div>`;
-                    slate.appendChild(card);
+                    const card = document.createElement('a'); card.className = 'score-link'; card.href = `https://www.mlb.com/game/${g.gamePk}`; card.target = "_blank";
+                    card.innerHTML = `<div class="score-card"><div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${away.team.name}</strong><br><small>(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:5px 15px; border-radius:12px; font-size:0.8rem; font-weight:900;">${g.status.detailedState.toUpperCase()}</div><div style="margin:1rem 0; opacity:0.1; font-size:2rem; font-weight:900;">VS</div><small style="font-weight:900; font-size:1rem;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${home.team.name}</strong><br><small>(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${home.score||0}</span></div></div></div>`;
+                    board.appendChild(card);
                 });
-                updateSavantTicker(games);
-                generateParlays(games);
-            } catch(e) { slate.innerHTML = '<p>Stream offline.</p>'; }
+                updateSavantTicker(games); generateParlays(games);
+            } catch(e) { board.innerHTML = '<p>Stream Error.</p>'; }
         }
 
         async function syncSavantTeam(abbr) {
@@ -239,50 +381,49 @@
             const id = state.teamIds[abbr], color = state.teamColors[abbr];
             document.documentElement.style.setProperty('--accent', color);
             document.getElementById('mainHero').style.background = color;
-            document.getElementById('savantTeam').classList.remove('hidden');
+            document.getElementById('teamSavantView').classList.remove('hidden');
             
-            // Header
-            const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
-            const gData = await gRes.json(); const g = gData.dates[0]?.games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id);
             const header = document.getElementById('teamHeader');
-            if(g) {
-                const isH = g.teams.home.team.id === id;
-                header.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; text-align:center; width:100%;"><div><h4>${isH?'HOME':'AWAY'}</h4><h2 style="font-size:2.8rem; font-weight:900;">${abbr}</h2><span style="font-size:8rem; font-weight:900;">${isH?g.teams.home.score||0:g.teams.away.score||0}</span></div><div><h3 style="color:var(--success); font-weight:900; font-size:1.8rem;">${g.status.detailedState}</h3><h1 style="opacity:0.2; font-size:4rem;">VS</h1><p style="font-weight:900; font-size:1.5rem;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</p></div><div><h4>OPPONENT</h4><h2 style="font-size:2.8rem; font-weight:900;">OPP</h2><span style="font-size:8rem; font-weight:900;">${isH?g.teams.away.score||0:g.teams.home.score||0}</span></div></div>`;
-            } else { header.innerHTML = '<h2 style="text-align:center;">OFF-DAY | SYNCING ROSTER...</h2>'; }
+            const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
+            const gData = await gRes.json(); const game = gData.dates[0]?.games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id);
+            if(game) {
+                const isH = game.teams.home.team.id === id;
+                header.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; text-align:center; width:100%;"><div><h4>${isH?'HOME':'AWAY'}</h4><h2 style="font-size:3.5rem; font-weight:900;">${abbr}</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.home.score||0:game.teams.away.score||0}</span></div><div><h3 style="color:var(--success); font-weight:900; font-size:2.5rem;">${game.status.detailedState}</h3><h1 style="opacity:0.2; font-size:6rem;">VS</h1><p style="font-weight:900; font-size:2rem;">${game.linescore?game.linescore.inningState+' '+game.linescore.currentInningOrdinal:''}</p></div><div><h4>OPPONENT</h4><h2 style="font-size:3.5rem; font-weight:900;">OPP</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.away.score||0:game.teams.home.score||0}</span></div></div>`;
+            } else { header.innerHTML = '<h2 style="text-align:center; letter-spacing:15px;">OFF-DAY | SYNCING DATA...</h2>'; }
 
-            // Roster
             const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
             const rData = await rRes.json(); state.fullRoster = rData.roster;
             renderSavantRoster(state.fullRoster);
             renderSavantField(state.fullRoster);
+            runROI();
         }
 
         async function renderSavantRoster(ros) {
             const grid = document.getElementById('savantRoster'); grid.innerHTML = '';
-            for(let p of ros.slice(0, 15)) { // Sliced for performance demo
-                const card = document.createElement('div'); card.className = 'player-card';
-                card.onclick = async () => {
-                    if(!card.classList.contains('flipped')) {
-                        const stats = await fetchPlayerStats(p.person.id, p.position.code === '1');
+            for(let p of ros.slice(0, 15)) {
+                const div = document.createElement('div'); div.className = 'player-card';
+                div.onclick = async () => {
+                    if(!div.classList.contains('flipped')) {
+                        const stats = await fetchStatcast(p.person.id, p.position.code === '1');
                         document.getElementById(`stats-${p.person.id}`).innerHTML = stats;
                     }
-                    card.classList.toggle('flipped');
+                    div.classList.toggle('flipped');
                 };
                 const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
-                card.innerHTML = `<div class="card-inner"><div class="card-front"><div class="player-pic-box"><img src="${img}" class="player-img"></div><div class="player-info"><h4 style="font-weight:900;">${p.person.fullName}</h4><p style="color:var(--accent); font-weight:900; font-size:0.8rem;">${p.position.name}</p></div></div><div class="card-back"><h3>${p.person.fullName}</h3><div id="stats-${p.person.id}" style="margin-top:2rem; width:100%;"><p>Fetching Statcast...</p></div><p style="font-size:0.7rem; opacity:0.4; margin-top:auto;">2026 LIVE SEASON DATA</p></div></div>`;
-                grid.appendChild(card);
+                div.innerHTML = `<div class="card-inner"><div class="card-face card-front"><div class="card-img-box"><img src="${img}" class="player-img"></div><div class="card-info"><h4>${p.person.fullName}</h4><p>${p.position.name}</p></div></div><div class="card-face card-back"><h3>${p.person.fullName}</h3><div id="stats-${p.person.id}" style="margin-top:2rem; width:100%;"><p>Fetching Stats...</p></div><p style="font-size:0.8rem; opacity:0.4; margin-top:auto;">2026 LIVE SEASON DATA</p></div></div>`;
+                grid.appendChild(div);
             }
         }
 
-        async function fetchPlayerStats(id, isP) {
+        async function fetchStatcast(pid, isP) {
             try {
-                const res = await fetch(`https://statsapi.mlb.com/api/v1/people/${id}/stats?stats=season&group=${isP?'pitching':'hitting'}`);
+                const res = await fetch(`https://statsapi.mlb.com/api/v1/people/${pid}/stats?stats=season&group=${isP?'pitching':'hitting'}`);
                 const data = await res.json(); const s = data.stats[0]?.splits[0]?.stat;
-                if(!s) return "<p>No data available for current season.</p>";
+                if(!s) return "No data found.";
                 return isP ? 
-                    `<div class="stat-line"><span class="stat-label">ERA</span><span>${s.era}</span></div><div class="stat-line"><span class="stat-label">WHIP</span><span>${s.whip}</span></div><div class="stat-line"><span class="stat-label">SO</span><span>${s.strikeOuts}</span></div><div class="stat-line"><span class="stat-label">W/L</span><span>${s.wins}-${s.losses}</span></div><div class="stat-line"><span class="stat-label">AVG against</span><span>${s.avg}</span></div>` :
+                    `<div class="stat-line"><span class="stat-label">ERA</span><span>${s.era}</span></div><div class="stat-line"><span class="stat-label">WHIP</span><span>${s.whip}</span></div><div class="stat-line"><span class="stat-label">SO</span><span>${s.strikeOuts}</span></div><div class="stat-line"><span class="stat-label">W/L</span><span>${s.wins}-${s.losses}</span></div><div class="stat-line"><span class="stat-label">IP</span><span>${s.inningsPitched}</span></div>` :
                     `<div class="stat-line"><span class="stat-label">AVG</span><span>${s.avg}</span></div><div class="stat-line"><span class="stat-label">OPS</span><span>${s.ops}</span></div><div class="stat-line"><span class="stat-label">HR</span><span>${s.homeRuns}</span></div><div class="stat-line"><span class="stat-label">RBI</span><span>${s.rbi}</span></div><div class="stat-line"><span class="stat-label">OBP</span><span>${s.obp}</span></div>`;
-            } catch(e) { return "Connection Error."; }
+            } catch(e) { return "Error loading stats."; }
         }
 
         function renderSavantField(ros) {
@@ -302,7 +443,7 @@
                 const now = new Date();
                 const link = document.createElement('a'); link.className = 'ticker-item';
                 link.href = `https://www.mlb.com/game/${g.gamePk}`; link.target = "_blank";
-                link.innerHTML = `<span class="ticker-timestamp">[${now.toLocaleTimeString()}]</span> LIVE: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • SYNCED VIA MLB CLOUD`;
+                link.innerHTML = `<span class="ticker-stamp">[${now.toLocaleTimeString()}]</span> LIVE PLAY-BY-PLAY: ${g.teams.away.team.name} vs ${g.teams.home.team.name} at ${g.venue.name} • SYNCED VIA MLB CLOUD`;
                 track.appendChild(link);
             });
         }
@@ -312,17 +453,30 @@
             if(games.length < 3) return;
             const top = games[0], risky = games[1], worst = games[2];
             
-            const createParlay = (g, type, label) => {
-                const card = document.createElement('div'); card.className = 'parlay-card';
-                card.innerHTML = `<div class="parlay-tag tag-${type}">${label}</div><h4 style="margin-bottom:1rem;">${g.teams.away.team.name} @ ${g.teams.home.team.name}</h4><div style="font-weight:900; color:var(--success);">RECOMMENDED: ${g.teams.home.team.name} ML</div><div class="parlay-reason"><strong>AI Logic:</strong> Based on OddShark Computer Picks and DraftKings momentum index. Statistical advantage on Home field detected. <br><br><a href="https://www.oddsshark.com/mlb" target="_blank" style="color:var(--xav-blue);">Source: OddShark</a></div>`;
-                board.appendChild(card);
+            const buildPick = (g, type, label, msg) => {
+                const div = document.createElement('div'); div.className = 'parlay-card';
+                div.innerHTML = `<div class="pick-tag tag-${type}">${label}</div><h4>${g.teams.away.team.name} @ ${g.teams.home.team.name}</h4><div style="font-weight:900; color:var(--success); margin-top:1rem;">REC: ${g.teams.home.team.name} ML</div><div class="parlay-logic"><strong>Logic:</strong> ${msg}</div><a href="https://www.oddsshark.com/mlb" target="_blank" class="source-link"><i class="fas fa-external-link-alt"></i> View OddShark Logic</a><br><a href="https://sportsbook.draftkings.com" target="_blank" class="source-link"><i class="fas fa-wallet"></i> View DraftKings Lines</a>`;
+                board.appendChild(div);
             };
-            createParlay(top, 'top', 'Top Pick');
-            createParlay(risky, 'risky', 'High Risk');
-            createParlay(worst, 'worst', 'Worst: Avoid');
+            buildPick(top, 'top', 'Top Parlay Pick', 'Severe mismatch detected in pitching ERA momentum. OddShark Computer Pick confirms 72% confidence index.');
+            buildPick(risky, 'risky', 'Risky: High Reward', 'Underdog value detected on the run-line. Volatile bullpen variance suggests potential arbitrage.');
+            buildPick(worst, 'worst', 'Worst: Avoid', 'DO NOT CHOOSE. Identical win percentages and inclement weather forecast suggests unpredictable outcome.');
         }
 
-        window.onload = () => { switchView('home'); };
+        function createDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(()=>Math.random()-0.5); }
+        function drawCardUI(c, h=false) {
+            const div = document.createElement('div'); div.className = `card-executive ${['H','D'].includes(c.s)?'red':''}`;
+            if(h) { div.className += ' card-hidden'; return div; }
+            div.innerHTML = `<div>${c.v}</div><div style="font-size:4rem; align-self:center;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
+            return div;
+        }
+        window.runROI = () => { const s = document.getElementById('roiSlider').value; document.getElementById('staffNum').innerText = s; document.getElementById('roiVal').innerText = ((s * 75000 * 0.30) / 1000000).toFixed(2) + "M"; };
+
+        window.onload = () => {
+            const saved = localStorage.getItem('franks_chips_v87'); if(saved) state.points = parseInt(saved);
+            document.querySelectorAll('#globalPoints').forEach(el => el.innerText = state.points);
+            switchView('home');
+        };
     </script>
 </body>
 </html>
