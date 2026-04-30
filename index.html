@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Premium Executive Hub v8.5</title>
+    <title>Franks_MGMT_Project | Premium Executive Hub v8.6</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Xavier University Professional Palette (v7.7 Restoration) */
+            /* Xavier University Professional Palette */
             --xav-blue: #0C2340;
             --xav-silver: #9EA2A2;
             --bg-color: #f8fafc;
@@ -20,7 +20,6 @@
             --accent: #0C2340;
             --success: #10b981;
             --glow: rgba(12, 35, 64, 0.35);
-            
             /* Casino Floor Palette */
             --casino-felt: #065f46;
             --casino-gold: #fbbf24;
@@ -28,15 +27,15 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 85px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 85px; transition: 0.4s; }
 
-        /* PREMIUM NAVIGATION (v7.7 BASE + GLOW) */
-        nav { position: fixed; top: 0; width: 100%; height: 85px; background: var(--bg-color); backdrop-filter: blur(25px); border-bottom: 2px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        /* PREMIUM NAVIGATION */
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: var(--bg-color); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; letter-spacing: -1px; color: var(--xav-blue); cursor: pointer; }
         .nav-brand span { color: var(--success); }
         .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 
-        /* PROFESSIONAL BUTTONS WITH HOVER GLOW */
+        /* PROFESSIONAL BUTTONS */
         .btn-premium { 
             padding: 0.75rem 1.6rem; border: 2.5px solid var(--border-color); background: transparent; 
             border-radius: 35px; color: var(--text-main); font-weight: 800; cursor: pointer; 
@@ -52,7 +51,7 @@
             color: #92400e; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); font-size: 1.2rem;
         }
 
-        /* HERO SECTION (v7.7 RESTORATION) */
+        /* HERO & CONTENT */
         .hero { background: var(--xav-blue); padding: 9rem 2rem; text-align: center; border-bottom: 7px solid var(--success); color: white; position: relative; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 6.5rem); font-weight: 900; letter-spacing: -3px; text-transform: uppercase; margin-bottom: 1.5rem; line-height: 0.85; }
         .hero p { font-size: 1.2rem; color: var(--xav-silver); font-family: 'Fira Code', monospace; letter-spacing: 6px; text-transform: uppercase; }
@@ -65,15 +64,20 @@
         .glass-card { background: var(--card-bg); border: 1.5px solid var(--border-color); border-radius: 40px; padding: 4.5rem; margin-bottom: 5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 3.4rem; font-weight: 900; margin-bottom: 3.5rem; border-left: 14px solid var(--accent); padding-left: 2.5rem; text-transform: uppercase; }
 
-        /* LIVE NEWS TICKER (CLICKABLE & PROVABLE) */
+        /* LIVE NEWS TICKER */
         .ticker-frame { background: var(--xav-blue); color: white; padding: 1.4rem; border-radius: 20px; margin-bottom: 6rem; border-bottom: 6px solid var(--success); overflow: hidden; }
-        .ticker-track { display: inline-block; white-space: nowrap; animation: tickerScroll 55s linear infinite; }
+        .ticker-track { display: inline-block; white-space: nowrap; animation: tickerScroll 45s linear infinite; }
         .ticker-link { font-family: 'Fira Code', monospace; font-size: 0.95rem; color: #fff; text-decoration: none; margin-right: 6rem; display: inline-flex; align-items: center; gap: 1.2rem; }
         .ticker-link:hover { color: var(--success); }
-        .ticker-timestamp { font-weight: 900; color: var(--success); background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 10px; }
+        .ticker-timestamp { font-weight: 900; color: var(--success); background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 10px; }
         @keyframes tickerScroll { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-        /* ROSTER FLIP CARDS (RECOVERED FACES) */
+        /* MLB LEAGUE BOARD */
+        .league-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 3rem; }
+        .score-card { background: #fff; border: 1.5px solid var(--border-color); border-radius: 28px; padding: 3rem; transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .score-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px var(--glow); }
+
+        /* ROSTER FLIP CARDS */
         .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3.5rem; }
         .player-card { height: 480px; perspective: 1000px; cursor: pointer; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
@@ -82,48 +86,66 @@
         .card-back { background: #fff; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem; border: 5px solid var(--accent); }
         .player-pic-box { height: 350px; background: #f1f5f9; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; position: relative; }
         .player-img { width: 100%; height: 110%; object-fit: contain; transform: translateY(5%); transition: 0.5s; }
-        .player-card:hover .player-img { transform: translateY(0) scale(1.05); }
 
-        /* TACTICAL FIELD MAP (RECOVERED) */
+        /* TACTICAL FIELD MAP */
         .field-frame { position: relative; width: 100%; max-width: 1050px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 65px; border: 12px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,0.9); }
         .field-node { position: absolute; width: 130px; text-align: center; transform: translate(-50%, -50%); transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1); z-index: 10; }
         .node-tag { font-size: 0.85rem; font-weight: 900; background: var(--success); color: #000; padding: 4px 15px; border-radius: 14px; display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.6); }
         .node-name { font-size: 0.95rem; font-weight: 700; color: #fff; margin-top: 8px; text-shadow: 0 4px 8px rgba(0,0,0,1); }
 
-        /* CASINO HUB (v8.5 WARMTH) */
+        /* CASINO FLOOR */
         .casino-lobby { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; margin-top: 5rem; }
-        .game-card { 
+        .game-terminal { 
             background: linear-gradient(145deg, #065f46, #043d32); border: 15px solid #2d1b0f; 
             border-radius: 60px; padding: 6rem 2rem; text-align: center; color: white; cursor: pointer; 
             transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 40px 80px rgba(0,0,0,0.5);
         }
-        .game-card:hover { transform: translateY(-20px) scale(1.02); border-color: var(--casino-gold); box-shadow: 0 50px 100px rgba(0,0,0,0.6), 0 0 40px rgba(251, 191, 36, 0.4); }
-        .game-card i { font-size: 8rem; color: var(--casino-gold); margin-bottom: 3rem; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5)); }
+        .game-terminal:hover { transform: translateY(-15px) scale(1.02); border-color: var(--casino-gold); box-shadow: 0 50px 100px rgba(0,0,0,0.6), 0 0 40px rgba(251, 191, 36, 0.4); }
+        .game-terminal i { font-size: 8rem; color: var(--casino-gold); margin-bottom: 3rem; }
 
+        /* GAME OVERLAYS (v8.6 STABILIZED) */
         .game-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.995); backdrop-filter: blur(40px); z-index: 5000; padding: 2%; overflow-y: auto; color: white; }
-        .dealer-zone { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.04); border-radius: 50px; padding: 3rem; margin-bottom: 6rem; border: 2px solid rgba(255,255,255,0.1); }
-        .avatar { width: 180px; height: 180px; border-radius: 50%; border: 6px solid var(--casino-gold); overflow: hidden; background: #111; box-shadow: 0 0 50px rgba(0,0,0,0.6); }
-        .avatar.dealer { border-color: var(--success); box-shadow: 0 0 50px rgba(16, 185, 129, 0.4); }
-        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .game-hud { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.04); border-radius: 50px; padding: 2.5rem; margin-bottom: 5rem; border: 2px solid rgba(255,255,255,0.1); }
+        .avatar-box { text-align: center; }
+        .avatar-img { width: 160px; height: 160px; border-radius: 50%; border: 6px solid var(--casino-gold); overflow: hidden; background: #111; box-shadow: 0 0 50px rgba(0,0,0,0.6); }
+        .avatar-img.dealer { border-color: var(--success); }
+        .avatar-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ROULETTE BOARD */
-        .roulette-board { display: grid; grid-template-columns: repeat(13, 1fr); gap: 8px; max-width: 1200px; margin: 4rem auto; background: #111; padding: 30px; border-radius: 25px; border: 12px solid #3d2b1f; box-shadow: 0 30px 70px rgba(0,0,0,0.7); }
-        .r-cell { aspect-ratio: 1/1.6; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; cursor: pointer; border-radius: 12px; border: 4px solid transparent; transition: 0.2s; color: #fff; }
-        .r-cell:hover { border-color: var(--casino-gold); transform: scale(1.08); z-index: 20; }
+        .hand-container { display: flex; gap: 1.5rem; justify-content: center; min-height: 200px; align-items: center; margin: 3rem 0; }
+        .card-executive { width: 135px; height: 195px; background: #fff; border-radius: 18px; color: #000; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; font-weight: 900; font-size: 2rem; box-shadow: 0 15px 30px rgba(0,0,0,0.5); animation: cardDeal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-executive.red { color: #e11d48; }
+        .card-hidden { background: var(--xav-blue); border: 8px solid #fff; background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 1px); background-size: 15px 15px; }
+        @keyframes cardDeal { from { transform: translateY(-400px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
+
+        /* ROULETTE BOARD (v8.6 EXPANDED) */
+        .roulette-grid { display: grid; grid-template-columns: repeat(13, 1fr); gap: 10px; max-width: 1200px; margin: 3rem auto; background: #111; padding: 35px; border-radius: 30px; border: 15px solid #3d2b1f; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+        .r-cell { aspect-ratio: 1/1.5; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; cursor: pointer; border-radius: 10px; border: 4px solid transparent; transition: 0.2s; color: #fff; }
+        .r-cell:hover { border-color: var(--casino-gold); transform: scale(1.05); z-index: 50; }
         .r-cell.red { background: #e11d48; }
         .r-cell.black { background: #000; }
         .r-cell.green { background: #10b981; grid-row: span 3; }
+        .r-extra { grid-column: span 3; height: 80px; background: #2d1b0f; margin-top: 10px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; border: 4px solid transparent; cursor: pointer; }
+        .r-extra:hover { border-color: var(--casino-gold); }
 
-        /* MODALS & MISSION */
+        /* MISSION PORTAL */
         .mission-panel { background: #fff; color: #1a202c; padding: 4.5rem; border-radius: 45px; margin-bottom: 7rem; border: 5px solid var(--casino-gold); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
         .mission-panel h3 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--xav-blue); line-height: 1; }
 
-        /* UTILS */
-        .hidden { display: none !important; }
-        .btn-close { position: absolute; top: 2rem; right: 4rem; font-size: 6rem; cursor: pointer; opacity: 0.3; transition: 0.3s; color: #fff; }
+        .btn-casino-gold {
+            background: linear-gradient(180deg, var(--casino-gold) 0%, #d97706 100%);
+            color: black; border: 2px solid #92400e; padding: 1.2rem 2.5rem; border-radius: 20px;
+            font-weight: 900; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+            letter-spacing: 1px; box-shadow: 0 8px 0 #92400e, 0 15px 30px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+        }
+        .btn-casino-gold:hover { transform: translateY(-4px); box-shadow: 0 12px 0 #92400e, 0 20px 40px rgba(251, 191, 36, 0.4); }
+        .btn-casino-gold:active { transform: translateY(6px); box-shadow: 0 2px 0 #92400e; }
+
+        .btn-close { position: absolute; top: 2rem; right: 4rem; font-size: 6rem; cursor: pointer; opacity: 0.3; transition: 0.3s; color: #fff; z-index: 6000; }
         .btn-close:hover { opacity: 1; color: var(--casino-gold); transform: rotate(90deg); }
 
-        @media (max-width: 1200px) { .dealer-zone { flex-direction: column; gap: 3rem; } .avatar { width: 140px; height: 140px; } }
+        .hidden { display: none !important; }
+        @media (max-width: 1200px) { .game-hud { flex-direction: column; gap: 3rem; } .avatar-img { width: 120px; height: 120px; } }
     </style>
 </head>
 <body data-theme="light">
@@ -131,10 +153,10 @@
     <nav>
         <div class="nav-brand" onclick="switchView('home')">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <button class="btn-premium active" id="nav-home" onclick="switchView('home')"><i class="fas fa-th-large"></i> Home</button>
+            <button class="btn-premium active" id="nav-home" onclick="switchView('home')"><i class="fas fa-home"></i> Home Hub</button>
             <button class="btn-premium" id="nav-casino" onclick="switchView('casino')"><i class="fas fa-coins"></i> Play Games</button>
-            <button class="btn-premium" id="nav-league" onclick="switchView('league')"><i class="fas fa-globe-americas"></i> MLB Live</button>
-            <select id="teamSelector" onchange="switchTeam(this.value)" style="padding: 0.8rem; border-radius: 35px; border: 3px solid var(--accent); background: #fff; font-weight: 900; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <button class="btn-premium" id="nav-league" onclick="switchView('league')"><i class="fas fa-baseball-ball"></i> MLB Live</button>
+            <select id="teamSelector" onchange="switchTeam(this.value)" style="padding: 0.8rem; border-radius: 35px; border: 3.5px solid var(--accent); background: #fff; font-weight: 900; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                 <option value="HOME">Select Team Feed</option>
                 <option value="CLE">Cleveland Guardians</option>
                 <option value="LAD">LA Dodgers</option>
@@ -144,240 +166,179 @@
                 <option value="HOU">Houston Astros</option>
             </select>
             <div class="chip-vault">
-                <i class="fas fa-gem" style="color: #d97706;"></i> <span id="pointsDisplay">100</span>
+                <i class="fas fa-gem" style="color: #d97706;"></i> <span id="globalPoints">100</span>
             </div>
         </div>
     </nav>
 
-    <!-- HERO (RESTORED v7.7) -->
+    <!-- HERO -->
     <header class="hero" id="mainHero">
         <h1 id="heroH1">FRANKS_MGMT_PROJECT</h1>
-        <p>Business Intelligence | Strategic AI Frameworks | v8.5 Executive</p>
+        <p>Strategic Business Intelligence | AI Architecture v8.6</p>
     </header>
 
     <main>
-        <!-- LIVE NEWS TICKER -->
+        <!-- NEWS TICKER -->
         <div class="ticker-frame">
-            <div class="ticker-track" id="newsTicker">
-                <!-- Data sync via JS -->
-            </div>
+            <div class="ticker-track" id="newsTicker"></div>
         </div>
 
-        <!-- HOME VIEW (RESTORATION) -->
+        <!-- HOME VIEW (RESTORED & WARM) -->
         <div id="view-home" class="view-content active">
             <section class="glass-card">
-                <div style="display: grid; grid-template-columns: 400px 1fr; gap: 6rem; align-items: center;">
+                <div style="display: grid; grid-template-columns: 380px 1fr; gap: 6rem; align-items: center;">
                     <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.2);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
                     <div>
-                        <h2 class="section-title">Welcome & Hello!</h2>
-                        <p style="font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; color: var(--xav-blue); line-height: 1.2;">Thank you so much for visiting my project!</p>
-                        <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 2.2;">I am a student at **Xavier University, Class of 2027**, studying Business Management and Applied AI Strategy. This site is a culmination of my work in data synchronization and interactive user experience. I have built a fully live MLB tactical hub and a high-stakes Casino simulation. Feel free to explore the games and analytics—reach 1,000 points in the Casino to unlock a special message and my contact info!</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="glass-card">
-                <h2 class="section-title">Strategic Consulting Hub</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-                    <div class="btn-premium active" style="flex-direction: column; padding: 4rem 2rem; border-radius: 45px; height: auto; align-items: flex-start; gap: 2rem; cursor: default;">
-                        <i class="fas fa-microscope" style="font-size: 4rem;"></i>
-                        <h4 style="font-size: 1.6rem;">Infrastructure Audit</h4>
-                        <p style="font-size: 1.1rem; text-transform: none; font-weight: 400; letter-spacing: 0;">Identifying optimization nodes within legacy data silos to maximize automation ROI.</p>
-                    </div>
-                    <div class="btn-premium active" style="flex-direction: column; padding: 4rem 2rem; border-radius: 45px; height: auto; align-items: flex-start; gap: 2rem; cursor: default;">
-                        <i class="fas fa-network-wired" style="font-size: 4rem;"></i>
-                        <h4 style="font-size: 1.6rem;">Agentic Meshes</h4>
-                        <p style="font-size: 1.1rem; text-transform: none; font-weight: 400; letter-spacing: 0;">Designing secure, multi-agent orchestration layers for enterprise-level workflows.</p>
-                    </div>
-                    <div class="btn-premium active" style="flex-direction: column; padding: 4rem 2rem; border-radius: 45px; height: auto; align-items: flex-start; gap: 2rem; cursor: default;">
-                        <i class="fas fa-chart-line" style="font-size: 4rem;"></i>
-                        <h4 style="font-size: 1.6rem;">Predictive Analytics</h4>
-                        <p style="font-size: 1.1rem; text-transform: none; font-weight: 400; letter-spacing: 0;">Modeling the fiscal impact of transitioning manual labor to autonomous AI agents.</p>
+                        <h2 class="section-title">Hello & Welcome!</h2>
+                        <p style="font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; color: var(--xav-blue); line-height: 1.2;">Thank you for exploring my executive project hub.</p>
+                        <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 2.2;">I am a student at **Xavier University, Class of 2027**, focusing on Business Management and AI Strategy. This site demonstrates real-time data sync and interactive logic. Check out the live MLB hub or play a game in the Casino—reach 1,000 points to unlock my professional contact info!</p>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- CASINO VIEW (WARM & PRO) -->
+        <!-- CASINO VIEW -->
         <div id="view-casino" class="view-content">
             <div class="mission-panel">
                 <div style="max-width: 75%;">
-                    <h3>Hello! Want to win a prize?</h3>
-                    <p style="font-size: 1.4rem; margin-top: 1.5rem; opacity: 0.9;">Thank you for playing my games! I have a special message and my professional contact info waiting for you. **Try to win 1,000 points** to unlock the vault! *Note: Points are for fun only and have zero monetary value.*</p>
+                    <h3>Want to win a prize?</h3>
+                    <p style="font-size: 1.5rem; margin-top: 1.5rem; opacity: 0.9;">Win **1,000 points** across any game to unlock a special message and my contact credentials! Points are for demonstration only. Your progress is saved automatically.</p>
                 </div>
-                <button class="btn-premium active" style="background: var(--casino-gold); color: #000; border: none; padding: 1.8rem 4rem; font-size: 1.2rem;" onclick="alert('Goal: Reach 1,000 chips. Minimum wager is 10. Your progress is saved automatically. Good luck!')">MISSION GOAL</button>
+                <button class="btn-casino-gold" onclick="alert('Mission: Amass 1,000 chips. Progress persists between games.')">MISSION VIEW</button>
             </div>
 
             <div class="casino-lobby">
-                <div class="game-card" onclick="launchGame('roulette')">
+                <div class="game-terminal" onclick="launchGame('roulette')">
                     <i class="fas fa-dharmachakra"></i>
                     <h3 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1.5rem;">Royal Roulette</h3>
-                    <p style="font-size: 1.1rem; opacity: 0.8;">Click zones to place wagers. 35:1 Payout on Green Zero.</p>
-                    <button class="btn-premium active" style="margin-top: 4rem; background: var(--casino-gold); color: #000; border: none;">ENTER TABLE</button>
+                    <p>Standard zone betting. 35:1 Payout on Zero.</p>
+                    <button class="btn-casino-gold" style="margin-top: 3rem;">ENTER TABLE</button>
                 </div>
-                <div class="game-card" onclick="launchGame('blackjack')">
+                <div class="game-terminal" onclick="launchGame('blackjack')">
                     <i class="fas fa-spade"></i>
                     <h3 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1.5rem;">Neural Blackjack</h3>
-                    <p style="font-size: 1.1rem; opacity: 0.8;">Beat the professional dealer. AI stands on 17.</p>
-                    <button class="btn-premium active" style="margin-top: 4rem; background: var(--casino-gold); color: #000; border: none;">DEAL HAND</button>
+                    <p>Dealer stands on 17. 2:1 Payout on wins.</p>
+                    <button class="btn-casino-gold" style="margin-top: 3rem;">DEAL HAND</button>
                 </div>
-                <div class="game-card" onclick="launchGame('poker')">
+                <div class="game-terminal" onclick="launchGame('poker')">
                     <i class="fas fa-crown"></i>
-                    <h3 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1.5rem;">Hold'em Arena</h3>
-                    <p style="font-size: 1.1rem; opacity: 0.8;">Test your strategy 1v1 against the computer.</p>
-                    <button class="btn-premium active" style="margin-top: 4rem; background: var(--casino-gold); color: #000; border: none;">CHALLENGE</button>
+                    <h3 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1.5rem;">Hold'em AI</h3>
+                    <p>1v1 Challenge vs Computer. Advanced Rankings.</p>
+                    <button class="btn-casino-gold" style="margin-top: 3rem;">CHALLENGE</button>
                 </div>
             </div>
         </div>
 
-        <!-- LEAGUE VIEW (RESTORATION) -->
+        <!-- MLB VIEWS (RECOVERY) -->
         <div id="view-league" class="view-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem;">
-                <h2 class="section-title" style="margin:0;">Live League Board</h2>
-                <button class="btn-premium active" onclick="fetchLeagueScores()"><i class="fas fa-sync"></i> REFRESH SLATE</button>
+                <h2 class="section-title" style="margin:0;">Live League Slate</h2>
+                <button class="btn-premium active" onclick="fetchLeagueScores()"><i class="fas fa-sync"></i> SYNC DATA</button>
             </div>
             <div id="leagueBoard" class="league-board"></div>
         </div>
 
-        <!-- TEAM VIEW (RESTORATION) -->
-        <div id="view-team" class="view-content">
+        <div id="view-mlb" class="view-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem;">
                 <h2 class="section-title" id="teamHubTitle" style="margin:0;">Tactical Hub</h2>
                 <button class="btn-premium active" onclick="refreshTeam()"><i class="fas fa-satellite-dish"></i> SYNC API</button>
             </div>
             <div id="teamScoreboard" class="glass-card" style="background: var(--accent); color: white; border: none; padding: 4rem;"></div>
-            
             <div style="display: grid; grid-template-columns: 2.5fr 1fr; gap: 5rem; margin-bottom: 6rem;">
                 <div class="glass-card" style="margin:0; padding: 3rem;">
-                    <h3 style="margin-bottom: 2.5rem; font-family: 'Playfair Display'; font-size: 2.5rem;"><i class="fas fa-vector-square" style="color: var(--success);"></i> Tactical Field Positioning</h3>
+                    <h3 style="margin-bottom: 2.5rem; font-family: 'Playfair Display'; font-size: 2.5rem;"><i class="fas fa-vector-square" style="color: var(--success);"></i> Tactical Field Map</h3>
                     <div class="field-frame" id="fieldMap">
-                        <svg viewBox="0 0 100 100" style="width:100%; height:100%; opacity:0.15;"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="#fff" stroke-width="0.3"></path></svg>
+                        <svg viewBox="0 0 100 100" style="width:100%; height:100%; opacity:0.2;"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="#fff" stroke-width="0.3"></path></svg>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 4rem;">
-                    <div class="glass-card" style="margin:0; background: #f0f9ff; border: 3px solid #bae6fd;">
-                        <h4 style="color: #0369a1; font-weight: 900; font-size: 1.4rem;"><i class="fas fa-calculator"></i> ROI Yield Simulator</h4>
-                        <input type="range" id="roiSlider" min="5" max="500" step="5" value="50" oninput="calcROI()" style="width: 100%; margin: 2.5rem 0; accent-color: #0369a1;">
-                        <div style="display:flex; justify-content:space-between; font-weight: 900; font-size: 1.4rem; color: #0369a1;">
-                            <span>Staff: <span id="roiStaff">50</span></span>
-                            <span>Savings: $<span id="roiVal">1.13M</span></span>
-                        </div>
-                    </div>
-                    <div class="glass-card" style="margin:0; background: #fef2f2; border: 3px solid #fecaca;">
-                        <h4 style="color: #991b1b; font-weight: 900; font-size: 1.4rem;"><i class="fas fa-chart-line"></i> Best Bets AI</h4>
-                        <p style="font-size: 1.1rem; color: #b91c1c; line-height: 1.6;">Real-time win probability based on live bullpen volatility.</p>
-                        <div id="oddsVal" style="font-size: 3.5rem; font-weight: 900; text-align: center; color: #991b1b; margin-top: 2rem;">+145 ML</div>
-                    </div>
+                <div class="glass-card" style="margin:0; background: #fef2f2; border: 3px solid #fecaca;">
+                    <h4 style="color: #991b1b; font-weight: 900; font-size: 1.5rem; margin-bottom: 2rem;"><i class="fas fa-chart-line"></i> Best Bets AI</h4>
+                    <div id="oddsVal" style="font-size: 3.5rem; font-weight: 900; text-align: center; color: #991b1b; margin-top: 2rem;">+145 ML</div>
                 </div>
-            </div>
-
-            <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 5rem;">
-                <input type="text" id="rosterSearch" placeholder="Filter Active Roster..." oninput="filterRoster()" style="padding: 1.6rem 3rem; border-radius: 60px; border: 4px solid var(--accent); flex: 1; outline: none; font-weight: 800; font-size: 1.3rem; box-shadow: var(--shadow-sm);">
-                <button class="btn-premium active" onclick="renderRoster(state.fullRoster)">SHOW ALL</button>
             </div>
             <div id="rosterGrid" class="roster-grid"></div>
         </div>
     </main>
 
-    <!-- OVERLAYS (FULL LOGIC) -->
-    <div id="overlay-blackjack" class="game-overlay">
+    <!-- GAME OVERLAYS (v8.6 STABILIZED) -->
+    <div id="game-blackjack" class="game-overlay">
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
-        <div class="dealer-zone">
-            <div style="text-align: center;">
-                <div class="avatar dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=38a169&color=fff&size=512"></div>
-                <h4 style="margin-top: 1.5rem; color: var(--success); font-weight: 900; letter-spacing: 2px;">PROFESSIONAL DEALER</h4>
+        <div class="game-hud">
+            <div class="avatar-box">
+                <div class="avatar-img dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=38a169&color=fff&size=512"></div>
+                <h4 style="margin-top: 1rem; color: var(--success); font-weight: 900;">PRO DEALER</h4>
             </div>
             <div style="text-align: center; flex: 1;">
-                <h2 style="font-family: 'Playfair Display'; font-size: 5rem; color: var(--casino-gold);">NEURAL 21</h2>
-                <div id="bjStatus" style="font-size: 2.5rem; font-weight: 900; margin-top: 1rem; letter-spacing: 4px;">MINIMUM WAGER: 10</div>
+                <h2 style="font-family: 'Playfair Display'; font-size: 4.5rem; color: var(--casino-gold);">NEURAL 21</h2>
+                <div id="bjStatus" style="font-size: 2.5rem; font-weight: 900; margin-top: 1rem; letter-spacing: 5px;">WAGER 10+</div>
+                <div style="font-size: 1.5rem; margin-top: 1rem; font-weight: 800; color: #fff; background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 10px; display: inline-block;">YOUR CHIPS: <span id="bjChipShow">100</span></div>
             </div>
-            <div style="text-align: center;">
-                <div class="avatar"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div>
-                <h4 style="margin-top: 1.5rem; color: var(--casino-gold); font-weight: 900; letter-spacing: 2px;">EXECUTIVE PLAYER</h4>
+            <div class="avatar-box">
+                <div class="avatar-img"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div>
+                <h4 style="margin-top: 1rem; color: var(--casino-gold); font-weight: 900;">EXECUTIVE</h4>
             </div>
         </div>
-        <div id="bjDealerHand" class="hand-box"></div>
-        <div id="bjTableMsg" style="height: 150px; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 900; color: var(--casino-gold);"></div>
-        <div id="bjPlayerHand" class="hand-box"></div>
-        <div style="display: flex; justify-content: center; gap: 4rem; margin-top: 6rem; align-items: center; background: rgba(0,0,0,0.6); padding: 4rem; border-radius: 60px;">
+        <div id="bjDealerHand" class="hand-container"></div>
+        <div id="bjTableMsg" style="height: 120px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; font-weight: 900; color: var(--casino-gold);"></div>
+        <div id="bjPlayerHand" class="hand-container"></div>
+        <div style="display: flex; justify-content: center; gap: 4rem; margin-top: 5rem; background: rgba(0,0,0,0.7); padding: 4rem; border-radius: 60px;">
             <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <label style="font-weight: 900; color: var(--casino-gold); font-size: 1rem; letter-spacing: 2px;">BET AMOUNT</label>
-                <input type="number" id="bjBet" value="25" min="10" step="25" style="padding: 1.6rem; border-radius: 25px; border: none; width: 220px; font-weight: 900; font-size: 2.2rem; text-align: center;">
+                <label style="font-weight: 900; color: var(--casino-gold); font-size: 1rem; letter-spacing: 2px;">BET POINTS</label>
+                <input type="number" id="bjBet" value="25" min="10" step="25" style="padding: 1.6rem; border-radius: 20px; border: none; width: 180px; font-weight: 900; font-size: 2.2rem; text-align: center;">
             </div>
-            <button class="btn-premium active" style="background: var(--casino-gold); color: #000; border: none; padding: 2.5rem 6rem; font-size: 1.4rem;" id="bjBtnStart" onclick="bjStart()">DEAL CARDS</button>
-            <button class="btn-premium active hidden" style="padding: 2.5rem 6rem; font-size: 1.4rem;" id="bjBtnHit" onclick="bjHit()">HIT</button>
-            <button class="btn-premium active hidden" style="padding: 2.5rem 6rem; font-size: 1.4rem;" id="bjBtnStand" onclick="bjStand()">STAND</button>
+            <button class="btn-casino-gold" id="bjBtnDeal" onclick="bjStart()">DEAL CARDS</button>
+            <button class="btn-casino-gold hidden" id="bjBtnHit" onclick="bjHit()">HIT</button>
+            <button class="btn-casino-gold hidden" id="bjBtnStand" onclick="bjStand()">STAND</button>
         </div>
     </div>
 
-    <div id="overlay-roulette" class="game-overlay">
+    <div id="game-roulette" class="game-overlay">
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
-        <h2 style="font-family: 'Playfair Display'; font-size: 5rem; color: var(--casino-gold); text-align: center; margin-bottom: 4rem;">IMPERIAL ROULETTE</h2>
-        <div class="roulette-board" id="rouletteBoard"></div>
-        <div style="text-align: center; margin-top: 6rem;">
-            <div id="rStatus" style="font-size: 4rem; font-weight: 900; color: var(--casino-gold); margin-bottom: 4rem;">CLICK THE BOARD TO BET</div>
-            <div style="display: flex; justify-content: center; gap: 4rem; align-items: center;">
-                <input type="number" id="rBetAmt" value="25" min="10" step="25" style="padding: 1.6rem; border-radius: 25px; border: none; width: 220px; font-weight: 900; font-size: 2.2rem; text-align: center;">
-                <button class="btn-premium active" style="background: var(--casino-gold); color: #000; border: none; padding: 2.5rem 6rem; font-size: 1.4rem;" onclick="rSpin()">SPIN WHEEL</button>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-family: 'Playfair Display'; font-size: 4.5rem; color: var(--casino-gold);">IMPERIAL ROULETTE</h2>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #fff;">YOUR CHIPS: <span id="rChipShow">100</span></div>
+        </div>
+        <div class="roulette-grid" id="rBoard"></div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 3rem; margin-top: 4rem;">
+            <div id="rStatus" style="font-size: 3.5rem; font-weight: 900; color: var(--casino-gold);">PLACE YOUR BETS</div>
+            <div style="display: flex; gap: 3rem; align-items: center;">
+                <input type="number" id="rBetAmt" value="25" min="10" step="25" style="padding: 1.6rem; border-radius: 25px; border: none; width: 180px; font-weight: 900; font-size: 2.2rem; text-align: center;">
+                <button class="btn-casino-gold" onclick="rSpin()">SPIN WHEEL</button>
             </div>
         </div>
     </div>
 
-    <!-- POKER OVERLAY -->
-    <div id="overlay-poker" class="game-overlay">
-        <span class="btn-close" onclick="closeOverlay()">&times;</span>
-        <div class="dealer-zone">
-            <div class="avatar dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=38a169&color=fff&size=512"></div>
-            <h2 style="font-family: 'Playfair Display'; font-size: 4rem; color: var(--casino-gold);">HOLD'EM STRATEGY</h2>
-            <div class="avatar"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div>
-        </div>
-        <div id="pkDealerHand" class="hand-box"></div>
-        <div id="pkCommunity" class="hand-box" style="margin: 4rem 0; min-height: 220px; background: rgba(255,255,255,0.02); border-radius: 40px; border: 4px dashed rgba(255,255,255,0.1);"></div>
-        <div id="pkPlayerHand" class="hand-box"></div>
-        <div style="display: flex; justify-content: center; gap: 4rem; margin-top: 6rem; align-items: center; background: rgba(0,0,0,0.6); padding: 4rem; border-radius: 60px;">
-            <div style="font-size: 3rem; font-weight: 900;">POT: <span id="pkPot" style="color: var(--casino-gold);">0</span></div>
-            <input type="number" id="pkWager" value="25" min="10" step="25" style="padding: 1.6rem; border-radius: 25px; border: none; width: 220px; font-weight: 900; font-size: 2.2rem; text-align: center;">
-            <button class="btn-premium active" style="background: var(--casino-gold); color: #000; border: none; padding: 2.5rem 6rem;" id="pkBtnDeal" onclick="pkStart()">DEAL HAND</button>
-            <button class="btn-premium active hidden" id="pkBtnAction" style="padding: 2.5rem 6rem;" onclick="pkAction()">CHECK/CALL</button>
-        </div>
-    </div>
-
-    <!-- UNLOCK OVERLAY -->
-    <div id="unlock-overlay" class="game-overlay" style="background: var(--xav-blue);">
-        <div style="text-align:center; padding-top: 6%;">
-            <i class="fas fa-unlock-alt" style="font-size: 15rem; color: var(--casino-gold); animation: pulse 1s infinite;"></i>
-            <h1 style="font-family: 'Playfair Display'; font-size: 6.5rem; margin: 2rem 0;">VICTORY GRANTED</h1>
-            <p style="letter-spacing: 20px; color: var(--casino-gold); margin-bottom: 5rem; font-size: 2rem;">DECRYPTING SPECIAL MESSAGE...</p>
-            <div class="glass-card" style="max-width: 950px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.1); color: white; border: 5px solid var(--casino-gold); padding: 5rem;">
-                <h2 style="font-size: 4rem; margin-bottom: 1.5rem;">Frank Leo Kroto IV</h2>
-                <p style="opacity: 0.8; font-size: 2rem; margin-bottom: 5rem;">Business Strategy | AI Orchestration | Xavier University '27</p>
-                <div style="display: grid; gap: 3rem;">
-                    <div style="font-size: 2rem;"><i class="fas fa-envelope" style="width: 70px; color: var(--casino-gold);"></i> frankleokroto@gmail.com</div>
-                    <div style="font-size: 2rem;"><i class="fab fa-linkedin" style="width: 70px; color: var(--casino-gold);"></i> linkedin.com/in/frankkrotoiv</div>
+    <!-- UNLOCK REWARD -->
+    <div id="unlock-sequence" class="game-overlay" style="background: var(--xav-blue);">
+        <div style="text-align:center; padding-top: 8%;">
+            <i class="fas fa-unlock-alt" style="font-size: 10rem; color: var(--casino-gold); animation: pulse 1s infinite;"></i>
+            <h1 style="font-family: 'Playfair Display'; font-size: 6rem; margin: 2rem 0;">1,000 CHIPS REACHED</h1>
+            <p style="letter-spacing: 15px; color: var(--casino-gold); margin-bottom: 5rem; font-size: 1.5rem;">DECRYPTING SPECIAL MESSAGE...</p>
+            <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.08); color: white; border: 3px solid var(--casino-gold); padding: 5rem;">
+                <h2 style="font-size: 3.5rem;">Frank Leo Kroto IV</h2>
+                <p style="opacity: 0.8; font-size: 1.6rem; margin-bottom: 4rem;">Business Strategy | AI Orchestration | Xavier University '27</p>
+                <div style="display: grid; gap: 2.5rem;">
+                    <div style="font-size: 1.8rem;"><i class="fas fa-envelope" style="width: 50px; color: var(--casino-gold);"></i> frankleokroto@gmail.com</div>
+                    <div style="font-size: 1.8rem;"><i class="fab fa-linkedin" style="width: 50px; color: var(--casino-gold);"></i> linkedin.com/in/frankkrotoiv</div>
                 </div>
-                <div style="margin-top: 6rem; border-top: 1.5px solid rgba(255,255,255,0.2); padding-top: 4rem;">
-                    <p style="font-size: 1.6rem; font-weight: 700; color: var(--casino-gold); line-height: 1.6;">"Hello! Thank you so much for putting in the effort to play my game. I hope this project shows you that I am committed to finishing tasks and delivering high-quality, professional results. I look forward to connecting with you soon!"</p>
-                </div>
-                <button class="btn-premium active" style="margin-top: 6rem; width: 100%; font-size: 2rem; padding: 2.5rem; color: #fff; border-color: #fff;" onclick="location.reload()">RESET SYSTEM</button>
+                <p style="margin-top: 5rem; font-size: 1.3rem; font-weight: 700; color: var(--casino-gold); border-top: 1px solid rgba(255,255,255,0.2); padding-top: 3rem;">"Thank you so much for playing! I hope this project shows my commitment to professional, high-quality results. I look forward to connecting!"</p>
+                <button class="btn-premium active" style="margin-top: 5rem; width: 100%; font-size: 1.5rem; padding: 2rem; color: #fff; border-color: #fff;" onclick="location.reload()">RESET HUB</button>
             </div>
         </div>
     </div>
 
     <script>
-        /* v8.5 EXECUTIVE SCRIPT */
+        /* v8.6 EXECUTIVE ENGINE */
         let state = {
-            points: 100, view: 'home', cTeam: 'CLE', fullRoster: [],
+            chips: 100, view: 'home', cTeam: 'CLE', fullRoster: [],
             bj: { deck:[], player:[], dealer:[], bet:0, active: false },
-            pk: { deck:[], player:[], dealer:[], community:[], pot:0, phase:0, wager:25 },
             rBet: null
         };
 
         const TEAM_MAP = { "CLE": 114, "LAD": 119, "NYY": 147, "PHI": 143, "ATL": 144, "HOU": 117 };
         const TEAM_COLORS = { "CLE": "#E31937", "LAD": "#005A9C", "NYY": "#003087", "PHI": "#E81828", "ATL": "#CE1141", "HOU": "#EB6E1F" };
         const SUITS = ['S', 'H', 'D', 'C'], VALS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-        const RANK_POWER = {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
 
-        /* CORE */
         function switchView(v) {
             state.view = v;
             document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active'));
@@ -390,48 +351,49 @@
 
         function switchTeam(abbr) {
             if(abbr === "HOME") { switchView('home'); return; }
-            state.cTeam = abbr; switchView('team');
-            document.getElementById('teamHub').classList.remove('hidden');
+            state.cTeam = abbr; switchView('mlb');
             loadTeamHub(abbr);
         }
 
-        function updatePoints(amt) {
-            state.points += amt;
-            document.querySelectorAll('#pointsDisplay').forEach(el => el.innerText = state.points);
-            if(state.points >= 1000) document.getElementById('unlock-overlay').style.display = 'block';
-            localStorage.setItem('franks_project_points_v85', state.points);
+        function updateChips(amt) {
+            state.chips += amt;
+            document.querySelectorAll('#globalPoints, #bjChipShow, #rChipShow').forEach(el => el.innerText = state.chips);
+            if(state.chips >= 1000) document.getElementById('unlock-sequence').style.display = 'block';
+            localStorage.setItem('franks_chips_v86', state.chips);
         }
 
-        function launchGame(g) { document.getElementById(`overlay-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; if(g==='roulette') initRoulette(); }
+        function launchGame(g) { document.getElementById(`game-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; if(g==='roulette') initRoulette(); }
         function closeOverlay() { document.querySelectorAll('.game-overlay').forEach(o => o.style.display = 'none'); document.body.style.overflow = 'auto'; }
 
-        /* BLACKJACK */
+        /* BLACKJACK ENGINE (STABILIZED) */
         function bjStart() {
             const bet = parseInt(document.getElementById('bjBet').value);
-            if(bet < 10) return alert("Please bet at least 10 points!");
-            if(bet > state.points) return alert("Not enough points!");
-            updatePoints(-bet);
+            if(bet < 10 || bet > state.chips) return alert("Invalid Wager.");
+            updateChips(-bet);
             state.bj = { deck: createDeck(), player:[], dealer:[], bet: bet, active: true };
             state.bj.player = [state.bj.deck.pop(), state.bj.deck.pop()];
             state.bj.dealer = [state.bj.deck.pop(), state.bj.deck.pop()];
             bjRender();
-            document.getElementById('bjStatus').innerText = "PLAYER TURN";
-            document.getElementById('bjBtnStart').classList.add('hidden');
+            document.getElementById('bjStatus').innerText = "YOUR ACTION";
+            document.getElementById('bjBtnDeal').classList.add('hidden');
             document.getElementById('bjBtnHit').classList.remove('hidden');
             document.getElementById('bjBtnStand').classList.remove('hidden');
         }
+
         function bjRender(f = false) {
             const p = document.getElementById('bjPlayerHand'), d = document.getElementById('bjDealerHand');
             p.innerHTML = ''; d.innerHTML = '';
-            state.bj.player.forEach(c => p.appendChild(drawCardUI(c)));
-            state.bj.dealer.forEach((c, i) => d.appendChild(drawCardUI(c, !f && i === 0)));
+            state.bj.player.forEach(c => p.appendChild(createCardUI(c)));
+            state.bj.dealer.forEach((c, i) => d.appendChild(createCardUI(c, !f && i === 0)));
             document.getElementById('bjTableMsg').innerText = `Your Total: ${bjSum(state.bj.player)}`;
         }
+
         function bjHit() {
             if(!state.bj.active) return;
             state.bj.player.push(state.bj.deck.pop()); bjRender();
             if(bjSum(state.bj.player) > 21) bjEnd("BUSTED!");
         }
+
         function bjStand() {
             if(!state.bj.active) return;
             bjRender(true);
@@ -445,89 +407,49 @@
                 }
             }; dealerGo();
         }
+
         function bjEnd(res) {
             state.bj.active = false; document.getElementById('bjStatus').innerText = res;
-            if(res === "YOU WIN!") updatePoints(state.bj.bet * 2);
-            if(res === "PUSH") updatePoints(state.bj.bet);
-            document.getElementById('bjBtnStart').classList.remove('hidden');
+            if(res === "YOU WIN!") updateChips(state.bj.bet * 2);
+            if(res === "PUSH") updateChips(state.bj.bet);
+            document.getElementById('bjBtnDeal').classList.remove('hidden');
             document.getElementById('bjBtnHit').classList.add('hidden');
             document.getElementById('bjBtnStand').classList.add('hidden');
         }
+
         function bjSum(h) {
             const v = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
             let s = h.reduce((a, b) => a + v(b), 0), aces = h.filter(c => c.v === 'A').length;
             while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
         }
 
-        /* POKER */
-        function pkStart() {
-            const w = parseInt(document.getElementById('pkWager').value);
-            if(w < 10 || w > state.points) return alert("Invalid wager.");
-            updatePoints(-w);
-            state.pk = { deck: createDeck(), player:[], dealer:[], community:[], pot: w * 2, phase: 1, wager: w };
-            state.pk.player = [state.pk.deck.pop(), state.pk.deck.pop()];
-            state.pk.dealer = [state.pk.deck.pop(), state.pk.deck.pop()];
-            pkRender();
-            document.getElementById('pkBtnDeal').classList.add('hidden');
-            document.getElementById('pkBtnAction').classList.remove('hidden');
-        }
-        function pkRender() {
-            const p = document.getElementById('pkPlayerHand'), d = document.getElementById('pkDealerHand'), c = document.getElementById('pkCommunity');
-            p.innerHTML = ''; d.innerHTML = ''; c.innerHTML = '';
-            state.pk.player.forEach(card => p.appendChild(drawCardUI(card)));
-            state.pk.dealer.forEach(card => d.appendChild(drawCardUI(card, state.pk.phase < 4)));
-            state.pk.community.forEach(card => c.appendChild(drawCardUI(card)));
-            document.getElementById('pkPot').innerText = state.pk.pot;
-        }
-        function pkAction() {
-            if(state.pk.phase === 1) { state.pk.community.push(state.pk.deck.pop(), state.pk.deck.pop(), state.pk.deck.pop()); state.pk.phase = 2; }
-            else if(state.pk.phase === 2) { state.pk.community.push(state.pk.deck.pop()); state.pk.phase = 3; }
-            else if(state.pk.phase === 3) { state.pk.community.push(state.pk.deck.pop()); state.pk.phase = 4; }
-            else { pkShowdown(); return; }
-            state.pk.pot += state.pk.wager * 2; pkRender();
-        }
-        function pkShowdown() {
-            const p = evalPk([...state.pk.player, ...state.pk.community]), d = evalPk([...state.pk.dealer, ...state.pk.community]);
-            let res = (p > d) ? "YOU WIN!" : (d > p) ? "DEALER WINS" : "SPLIT POT";
-            alert(res); if(res.includes("WIN")) updatePoints(state.pk.pot); if(res.includes("SPLIT")) updatePoints(state.pk.pot/2);
-            document.getElementById('pkBtnDeal').classList.remove('hidden');
-            document.getElementById('pkBtnAction').classList.add('hidden');
-            pkRender();
-        }
-        function evalPk(cards) {
-            let s = 0; const c = {}; cards.forEach(card => c[card.v] = (c[card.v] || 0) + 1);
-            Object.keys(c).forEach(v => { if(c[v] === 4) s += 1000; if(c[v] === 3) s += 500; if(c[v] === 2) s += 200; });
-            return s + Math.max(...cards.map(card => RANK_POWER[card.v]));
-        }
-
-        /* ROULETTE */
+        /* ROULETTE ENGINE (EXPANDED) */
         function initRoulette() {
-            const b = document.getElementById('rouletteBoard'); b.innerHTML = '';
-            const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => { state.rBet = 0; highlightR(zero); }; b.appendChild(zero);
+            const b = document.getElementById('rBoard'); b.innerHTML = '';
+            const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => selectR(0); b.appendChild(zero);
             for(let i=1; i<=36; i++) {
                 const n = document.createElement('div');
                 const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i);
                 n.className = `r-cell ${isRed?'red':'black'}`;
-                n.innerText = i; n.onclick = () => { state.rBet = i; highlightR(n); }; b.appendChild(n);
+                n.innerText = i; n.onclick = () => selectR(i); b.appendChild(n);
             }
         }
-        function highlightR(el) { document.querySelectorAll('.r-cell').forEach(x => x.style.borderColor = 'transparent'); el.style.borderColor = 'var(--casino-gold)'; document.getElementById('rStatus').innerText = `BETTING ON: ${state.rBet}`; }
+        function selectR(n) { state.rBet = n; document.querySelectorAll('.r-cell').forEach(x => x.style.borderColor = 'transparent'); event.target.style.borderColor = 'var(--casino-gold)'; document.getElementById('rStatus').innerText = `WAGER ON: ${n}`; }
         function rSpin() {
             const w = parseInt(document.getElementById('rBetAmt').value);
-            if(state.rBet === null || w < 10 || w > state.points) return alert("Check wager/selection!");
-            updatePoints(-w);
+            if(state.rBet === null || w < 10 || w > state.chips) return alert("Check wager/selection.");
+            updateChips(-w);
             document.getElementById('rStatus').innerText = "SPINNING...";
             setTimeout(() => {
                 const res = Math.floor(Math.random() * 37);
-                document.getElementById('rStatus').innerText = `WINNING NUMBER: ${res}`;
-                if(res === state.rBet) { updatePoints(w * 36); alert("35x BIG WIN!"); }
+                document.getElementById('rStatus').innerText = `RESULT: ${res}`;
+                if(res === state.rBet) { updateChips(w * 36); alert("JACKPOT 35:1!"); }
             }, 2000);
         }
 
-        /* MLB */
+        /* MLB RESTORATION */
         async function fetchLeagueScores() {
-            const board = document.getElementById('leagueBoard');
-            board.innerHTML = '<p style="text-align:center; grid-column: 1/-1; padding: 10rem;">SYNCHRONIZING MLB CLOUD DATA...</p>';
+            const board = document.getElementById('leagueBoard'); board.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCING MLB DATA...</p>';
             try {
                 const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings)');
                 const data = await res.json(); const games = data.dates[0]?.games || [];
@@ -535,11 +457,11 @@
                 games.forEach(g => {
                     const card = document.createElement('div'); card.className = 'score-card';
                     const away = g.teams.away, home = g.teams.home;
-                    card.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><strong style="font-size:1.3rem;">${away.team.name}</strong><br><small style="color:var(--text-muted); font-weight:900;">(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:6px 15px; border-radius:12px; font-size:0.8rem; font-weight:900; color:var(--text-muted);">${g.status.detailedState.toUpperCase()}</div><div style="margin:1.5rem 0; opacity:0.1; font-size:1.8rem; font-weight:900;">VS</div><small style="font-weight:900; font-size:1rem;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong style="font-size:1.3rem;">${home.team.name}</strong><br><small style="color:var(--text-muted); font-weight:900;">(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${home.score||0}</span></div></div>`;
+                    card.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${away.team.name}</strong><br><small>(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:3.5rem; font-weight:900; color:var(--xav-blue);">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:6px 15px; border-radius:12px; font-size:0.8rem; font-weight:900;">${g.status.detailedState.toUpperCase()}</div><div style="margin:1rem 0; opacity:0.1; font-size:1.8rem; font-weight:900;">VS</div><small style="font-weight:900;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${home.team.name}</strong><br><small>(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:3.5rem; font-weight:900; color:var(--xav-blue);">${home.score||0}</span></div></div>`;
                     board.appendChild(card);
                 });
-                updateTickerUI(games);
-            } catch(e) { board.innerHTML = '<p>Error syncing data.</p>'; }
+                updateTicker(games);
+            } catch(e) { board.innerHTML = '<p>Offline.</p>'; }
         }
 
         async function loadTeamHub(abbr) {
@@ -554,26 +476,26 @@
             if(game) {
                 const isH = game.teams.home.team.id === id;
                 sb.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; text-align:center; width:100%;"><div><h4>${isH?'HOME':'AWAY'}</h4><h2 style="font-size:3rem; font-weight:900;">${abbr}</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.home.score||0:game.teams.away.score||0}</span></div><div><h3 style="color:var(--success); font-weight:900; font-size:2rem;">${game.status.detailedState}</h3><h1 style="opacity:0.2; font-size:5rem;">VS</h1><p style="font-weight:900; font-size:1.8rem;">${game.linescore?game.linescore.inningState+' '+game.linescore.currentInningOrdinal:''}</p></div><div><h4>OPPONENT</h4><h2 style="font-size:3rem; font-weight:900;">OPP</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.away.score||0:game.teams.home.score||0}</span></div></div>`;
-            } else { sb.innerHTML = '<h2 style="text-align:center; letter-spacing:10px;">OFF-DAY | NO GAME</h2>'; }
+            } else { sb.innerHTML = '<h2 style="text-align:center;">NO GAME TODAY</h2>'; }
 
             const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
             const rData = await rRes.json(); state.fullRoster = rData.roster;
-            renderRosterUI(state.fullRoster);
-            renderFieldUI(state.fullRoster);
+            renderRoster(state.fullRoster);
+            renderFieldNodes(state.fullRoster);
         }
 
-        function renderRosterUI(ros) {
+        function renderRoster(ros) {
             const grid = document.getElementById('rosterGrid'); grid.innerHTML = '';
             ros.forEach(p => {
                 const div = document.createElement('div'); div.className = 'player-card';
                 div.onclick = () => div.classList.toggle('flipped');
                 const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
-                div.innerHTML = `<div class="card-inner"><div class="card-front"><div class="player-pic-box"><img src="${img}" class="player-img" onerror="this.src='https://ui-avatars.com/api/?name=${p.person.fullName.replace(' ','+')}'"></div><div class="player-info"><h4 style="font-weight:900; font-size:1.3rem;">${p.person.fullName}</h4><p style="color:var(--accent); font-weight:900; font-size:0.9rem;">${p.position.name}</p></div></div><div class="card-back"><h3>${p.person.fullName}</h3><p style="font-weight:900; margin-top:2rem; color:var(--accent); font-size:1.2rem;">${p.status.description}</p><p style="font-size:0.9rem; opacity:0.4; margin-top:4rem;">CLICK TO ROTATE</p></div></div>`;
+                div.innerHTML = `<div class="card-inner"><div class="card-front"><div class="player-pic-box"><img src="${img}" class="player-img" onerror="this.src='https://ui-avatars.com/api/?name=${p.person.fullName.replace(' ','+')}'"></div><div class="player-info"><h4 style="font-weight:900; font-size:1.3rem;">${p.person.fullName}</h4><p style="color:var(--accent); font-weight:900; font-size:0.9rem;">${p.position.name}</p></div></div><div class="card-back"><h3>${p.person.fullName}</h3><p style="font-weight:900; margin-top:2rem; color:var(--accent);">${p.status.description}</p><p style="font-size:0.9rem; opacity:0.4; margin-top:4rem;">CLICK TO ROTATE</p></div></div>`;
                 grid.appendChild(div);
             });
         }
 
-        function renderFieldUI(ros) {
+        function renderFieldNodes(ros) {
             const arena = document.getElementById('fieldMap'); document.querySelectorAll('.field-node').forEach(n => n.remove());
             const pos = { 'P':[50,55], 'C':[50,88], '1B':[78,50], '2B':[68,32], '3B':[22,50], 'SS':[32,32], 'LF':[15,22], 'CF':[50,8], 'RF':[85,22] };
             Object.keys(pos).forEach(key => {
@@ -584,34 +506,30 @@
             });
         }
 
-        function updateTickerUI(games) {
+        function updateTicker(games) {
             const track = document.getElementById('newsTicker'); track.innerHTML = '';
             games.forEach(g => {
                 const now = new Date();
                 const link = document.createElement('a'); link.className = 'ticker-link';
                 link.href = `https://www.mlb.com/game/${g.gamePk}`; link.target = "_blank";
-                link.innerHTML = `<span class="ticker-timestamp">[${now.getHours()}:${now.getMinutes()}]</span> LIVE PLAY-BY-PLAY: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • SOURCE: MLB.COM CLOUD DATA`;
+                link.innerHTML = `<span class="ticker-timestamp">[${now.getHours()}:${now.getMinutes()}]</span> LIVE: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • CLICK FOR LIVE DATA`;
                 track.appendChild(link);
             });
         }
 
-        /* HELPERS */
         function createDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(()=>Math.random()-0.5); }
-        function drawCardUI(c, h=false) {
+        function createCardUI(c, h=false) {
             const div = document.createElement('div'); div.className = `card-executive ${['H','D'].includes(c.s)?'red':''}`;
-            if(h) { div.className += ' card-back-ex'; return div; }
+            if(h) { div.className += ' card-hidden'; return div; }
             div.innerHTML = `<div>${c.v}</div><div style="font-size:3.5rem; align-self:center;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
             return div;
         }
-        window.calcROI = () => { const s = document.getElementById('roiSlider').value; document.getElementById('roiStaff').innerText = s; document.getElementById('roiVal').innerText = ((s * 75000 * 0.30) / 1000000).toFixed(2) + "M"; };
-        window.filterRoster = () => renderRosterUI(state.fullRoster.filter(p => p.person.fullName.toLowerCase().includes(document.getElementById('rosterSearch').value.toLowerCase())));
 
         window.onload = () => {
-            const saved = localStorage.getItem('franks_project_points_v85');
-            if(saved) state.points = parseInt(saved);
-            document.querySelectorAll('#pointsDisplay').forEach(el => el.innerText = state.points);
+            const saved = localStorage.getItem('franks_chips_v86');
+            if(saved) state.chips = parseInt(saved);
+            document.querySelectorAll('#globalPoints').forEach(el => el.innerText = state.chips);
             switchView('home');
-            calcROI();
         };
     </script>
 </body>
