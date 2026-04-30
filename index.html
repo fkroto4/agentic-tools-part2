@@ -3,432 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Premium Strategic Hub v8.1</title>
+    <title>Franks_MGMT_Project | Executive Strategic Hub v8.2</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Premium Light Design System */
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --xav-navy: #0C2340;
-            --xav-blue-light: #1e3a8a;
-            --xav-silver: #94a3b8;
+            /* Premium Core Palette (Recovered from Backup) */
+            --xav-blue: #0C2340;
+            --xav-silver: #9EA2A2;
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --text-main: #0f172a;
+            --text-muted: #475569;
             --accent: #0C2340;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --border: rgba(15, 23, 42, 0.08);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05);
-            --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.1);
-            
-            /* Casino Design System */
+            /* Casino Palette */
             --casino-felt: #065f46;
             --casino-gold: #fbbf24;
-            --casino-gold-dark: #b45309;
             --casino-black: #020617;
         }
 
-        [data-theme="casino"] {
-            --bg-body: var(--casino-black);
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --accent: var(--casino-gold);
-            --border: rgba(251, 191, 36, 0.2);
+        [data-theme="dark"] {
+            --bg-color: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-body); color: var(--text-primary); font-family: 'Inter', sans-serif; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-x: hidden; line-height: 1.5; }
+        /* GLOBAL STYLES */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 80px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* NAVIGATION (Restored & Enhanced) */
+        nav { position: fixed; top: 0; width: 100%; background: var(--bg-color); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 3000; }
+        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; color: var(--xav-navy); cursor: pointer; }
+        .nav-brand span { color: #10b981; }
+        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
+        
+        /* PREMIUM BUTTONS (Restored Standards) */
+        .view-btn { padding: 0.6rem 1.2rem; border: 1.5px solid var(--border-color); background: transparent; border-radius: 25px; color: var(--text-main); font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .view-btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+        .view-btn.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 12px rgba(12, 35, 64, 0.2); }
+        
+        .chip-vault { background: #fffbeb; border: 2.5px solid var(--casino-gold); padding: 0.6rem 1.4rem; border-radius: 50px; display: flex; align-items: center; gap: 0.8rem; font-weight: 900; color: #92400e; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); position: relative; }
+        .help-icon { background: var(--casino-gold); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; position: absolute; top: -10px; right: -10px; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* PREMIUM BUTTONS */
-        .btn-executive { 
-            background: linear-gradient(135deg, var(--xav-navy) 0%, #1e40af 100%); 
-            color: white; border: 1px solid rgba(255,255,255,0.1); padding: 0.75rem 1.8rem; 
-            border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(12, 35, 64, 0.15); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-executive:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(12, 35, 64, 0.25); filter: brightness(1.1); }
-        .btn-executive:active { transform: translateY(0); }
+        /* HERO (Restored) */
+        .hero { background: var(--xav-blue); padding: 7rem 2rem; text-align: center; border-bottom: 5px solid #10b981; position: relative; overflow: hidden; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; letter-spacing: -2px; text-transform: uppercase; margin-bottom: 1rem; color: white; }
+        .hero p { font-size: 1.1rem; color: var(--xav-silver); font-family: 'Fira Code', monospace; letter-spacing: 3px; }
 
-        .btn-casino {
-            background: linear-gradient(180deg, var(--casino-gold) 0%, #d97706 100%);
-            color: black; border: 2px solid #92400e; padding: 1rem 2.2rem;
-            border-radius: 16px; font-weight: 900; cursor: pointer; transition: 0.2s;
-            box-shadow: 0 6px 0 #92400e, 0 10px 20px rgba(0,0,0,0.3);
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
-        }
-        .btn-casino:hover { transform: translateY(-2px); box-shadow: 0 8px 0 #92400e, 0 12px 25px rgba(0,0,0,0.4); }
-        .btn-casino:active { transform: translateY(4px); box-shadow: 0 2px 0 #92400e; }
+        main { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem; }
+        .view-content { display: none; animation: fadeIn 0.6s ease-out; }
+        .view-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* NAVIGATION */
-        nav { 
-            position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.8); 
-            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); 
-            display: flex; justify-content: space-between; align-items: center; padding: 0 6%; z-index: 2000;
-        }
-        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; cursor: pointer; color: var(--xav-navy); }
-        .nav-brand span { color: var(--success); }
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-item { text-decoration: none; color: var(--text-secondary); font-weight: 700; font-size: 0.85rem; transition: 0.3s; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .nav-item:hover, .nav-item.active { color: var(--xav-navy); }
-        .chip-display { 
-            background: #fff; border: 2px solid var(--casino-gold); padding: 0.6rem 1.4rem; 
-            border-radius: 50px; font-weight: 900; color: #b45309; display: flex; align-items: center; gap: 0.8rem;
-            box-shadow: var(--shadow-sm); animation: glow 2s infinite;
-        }
-        @keyframes glow { 0% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.2); } 50% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); } 100% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.2); } }
+        .glass-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 28px; padding: 3rem; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(0,0,0,0.04); position: relative; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; margin-bottom: 2.5rem; border-left: 8px solid var(--accent); padding-left: 1.5rem; text-transform: uppercase; }
 
-        /* HERO & CONTENT */
-        .hero { height: 65vh; background: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin-top: 85px; position: relative; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; line-height: 0.85; color: var(--xav-navy); letter-spacing: -3px; }
-        .hero p { font-family: 'Fira Code', monospace; color: var(--xav-silver); font-size: 1.1rem; margin-top: 2rem; letter-spacing: 4px; text-transform: uppercase; }
+        /* CONSULTING HUB (Restored) */
+        .command-center { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
+        .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .strategy-card { background: rgba(12, 35, 64, 0.03); border: 1.5px solid var(--border-color); border-radius: 20px; padding: 2rem; cursor: pointer; transition: 0.3s; }
+        .strategy-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .strategy-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .agent-sidebar { background: #fff; border-radius: 24px; padding: 2rem; border: 2px solid var(--accent); position: sticky; top: 110px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .agent-briefing { background: #f8fafc; border-radius: 12px; padding: 1.2rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent); min-height: 180px; margin-bottom: 1.5rem; border-left: 5px solid var(--accent); line-height: 1.6; }
 
-        .view-section { display: none; padding: 6rem 8%; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .view-section.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* CASINO VIEWS (Enhanced) */
+        .casino-arena { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .game-terminal { background: var(--casino-felt); border: 12px solid #2d1b0f; border-radius: 40px; padding: 4rem 2rem; text-align: center; color: white; cursor: pointer; transition: 0.4s; box-shadow: 0 30px 60px rgba(0,0,0,0.4); position: relative; }
+        .game-terminal:hover { transform: scale(1.03); border-color: var(--casino-gold); }
+        .game-terminal i { font-size: 6rem; color: var(--casino-gold); margin-bottom: 2rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
+        
+        .casino-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(20px); z-index: 5000; padding: 3%; overflow-y: auto; color: white; }
+        .close-game { position: absolute; top: 2rem; right: 3rem; font-size: 4rem; cursor: pointer; opacity: 0.3; transition: 0.3s; }
+        .close-game:hover { opacity: 1; color: var(--casino-gold); transform: rotate(90deg); }
 
-        .premium-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 32px; padding: 4rem; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
-        .tag-line { color: var(--xav-silver); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 1.5rem; display: block; }
+        /* PLAYER & JARVIS VISUALS */
+        .visual-frame { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 30px; }
+        .entity-avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--casino-gold); overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+        .entity-avatar.jarvis { border-color: #10b981; box-shadow: 0 0 30px rgba(16, 185, 129, 0.4); }
+        .entity-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .jarvis-core { width: 60px; height: 60px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; box-shadow: 0 0 20px #10b981; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
 
-        /* CASINO HUB */
-        .casino-hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; margin-top: 4rem; }
-        .game-terminal { 
-            background: linear-gradient(145deg, #065f46, #064e3b); border: 10px solid #2d1b0f; 
-            border-radius: 48px; padding: 4rem 2rem; text-align: center; color: white; transition: 0.4s;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-        .game-terminal:hover { transform: translateY(-15px) scale(1.02); border-color: var(--casino-gold); }
-        .game-terminal i { font-size: 6rem; color: var(--casino-gold); margin-bottom: 2.5rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
-
-        /* GAME OVERLAYS */
-        .overlay-fullscreen { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(15px); z-index: 3000; padding: 4%;
-            overflow-y: auto; color: white;
-        }
-        .exit-btn { position: absolute; top: 2.5rem; right: 3rem; font-size: 3.5rem; cursor: pointer; color: white; opacity: 0.4; transition: 0.3s; }
-        .exit-btn:hover { opacity: 1; color: var(--casino-gold); transform: rotate(90deg); }
-
-        /* POKER TABLE */
-        .poker-arena { 
-            background: radial-gradient(circle, #065f46 0%, #043d32 100%); 
-            border: 24px solid #3d2b1f; border-radius: 300px; min-height: 650px; position: relative;
-            box-shadow: inset 0 0 150px rgba(0,0,0,0.8), 0 20px 50px rgba(0,0,0,0.5);
-            display: flex; flex-direction: column; justify-content: space-between; padding: 5rem;
-        }
-        .hand-container { display: flex; gap: 1.2rem; justify-content: center; height: 180px; align-items: center; }
-        .card-premium { 
-            width: 120px; height: 175px; background: white; border-radius: 14px; border: 1px solid #ddd;
-            color: black; display: flex; flex-direction: column; justify-content: space-between;
-            padding: 14px; font-weight: 900; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            position: relative; animation: dealCard 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
+        /* CARD ENGINE */
+        .hand { display: flex; gap: 1.2rem; justify-content: center; height: 180px; align-items: center; }
+        .card-premium { width: 120px; height: 175px; background: white; border-radius: 14px; border: 1px solid #ddd; color: black; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; font-weight: 900; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3); animation: dealIn 0.5s ease-out; }
         .card-premium.red { color: #e11d48; }
-        .card-hidden { background: var(--xav-navy); border: 6px solid white; background-image: radial-gradient(#1e3a8a 2px, transparent 1px); background-size: 12px 12px; }
-        @keyframes dealCard { from { transform: translateY(-500px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
+        .card-hidden { background: var(--xav-navy); border: 6px solid white; background-image: radial-gradient(rgba(255,255,255,0.1) 2px, transparent 1px); background-size: 10px 10px; }
+        @keyframes dealIn { from { transform: translateY(-400px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
 
-        /* MLB GRID SLATE */
-        .mlb-master-grid { display: grid; grid-template-columns: 2.5fr 1.2fr; gap: 3rem; }
-        .games-slate { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.8rem; }
-        .executive-game-card { 
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; 
-            padding: 1.8rem; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: var(--shadow-sm);
-        }
-        .executive-game-card:hover { transform: translateY(-5px); border-color: var(--xav-navy); box-shadow: var(--shadow-md); }
-        .score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
-        .score-val { font-size: 1.8rem; font-weight: 900; color: var(--xav-navy); }
-        .game-status-pill { font-size: 0.65rem; font-weight: 900; background: #f1f5f9; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; color: var(--xav-silver); }
-        .status-live { background: #fee2e2; color: #e11d48; }
+        /* MLB RESTORATION (Backup Stuff) */
+        .field-container { position: relative; width: 100%; max-width: 900px; height: 650px; margin: 2rem auto; background: #0f172a; border-radius: 40px; border: 4px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 100px rgba(0,0,0,0.5); }
+        .diamond-svg { width: 100%; height: 100%; opacity: 0.15; }
+        .field-node { position: absolute; width: 100px; text-align: center; transform: translate(-50%, -50%); transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .node-label { font-size: 0.7rem; font-weight: 900; background: #10b981; color: black; padding: 2px 8px; border-radius: 10px; }
+        .node-name { font-size: 0.8rem; font-weight: 700; margin-top: 0.3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .league-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 2.5rem; }
+        
+        /* MODALS */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; }
+        .modal-content { background: #fff; padding: 3rem; border-radius: 30px; max-width: 600px; width: 90%; color: #000; position: relative; }
+        .btn-close-modal { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: #94a3b8; }
 
-        /* ODDS BOARD */
-        .odds-board { background: #0f172a; color: white; border-radius: 28px; padding: 2.5rem; position: sticky; top: 110px; }
-        .odds-row { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .odds-val { color: var(--success); font-weight: 900; font-family: 'Fira Code', monospace; }
-        .jarvis-intelligence { font-size: 0.75rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; margin-top: 8px; line-height: 1.4; border-left: 3px solid var(--success); }
-
-        /* UNLOCK MODAL */
-        #unlock-animation { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--xav-navy); z-index: 5000; flex-direction: column; 
-            justify-content: center; align-items: center; color: white; text-align: center;
-        }
-        .vault-icon { font-size: 10rem; color: var(--casino-gold); animation: unlock 2s forwards; }
-        @keyframes unlock { 0% { transform: scale(1); } 50% { transform: scale(1.2); rotate(10deg); } 100% { transform: scale(1); rotate(0); color: #10b981; } }
-
-        /* NEWS TICKER */
-        .ticker-bar { background: var(--xav-navy); color: white; padding: 0.7rem; overflow: hidden; white-space: nowrap; font-family: 'Fira Code', monospace; font-size: 0.75rem; margin-bottom: 2rem; border-radius: 12px; }
-        .ticker-inner { display: inline-block; animation: tickerScroll 45s linear infinite; }
-        @keyframes tickerScroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        /* UTILS */
-        .hidden { display: none !important; }
-        .professional-highlight { background: linear-gradient(rgba(12, 35, 64, 0.02), rgba(12, 35, 64, 0.05)); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
-
-        @media (max-width: 1100px) { .mlb-master-grid { grid-template-columns: 1fr; } .odds-board { position: static; margin-top: 3rem; } }
+        @media (max-width: 1100px) { .command-center { grid-template-columns: 1fr; } .agent-sidebar { position: static; } }
     </style>
 </head>
 <body data-theme="light">
     <nav>
         <div class="nav-brand" onclick="switchView('home')">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <div class="nav-item active" id="nav-home" onclick="switchView('home')">Hub Home</div>
-            <div class="nav-item" id="nav-casino" onclick="switchView('casino')">Casino Floor</div>
-            <div class="nav-item" id="nav-mlb" onclick="switchView('mlb')">Tactical Hub</div>
-            <div class="chip-display"><i class="fas fa-gem"></i> <span id="chipBank">100</span></div>
+            <button class="view-btn active" id="btn-home" onclick="switchView('home')"><i class="fas fa-th-large"></i> Home</button>
+            <button class="view-btn" id="btn-casino" onclick="switchView('casino')"><i class="fas fa-coins"></i> Casino</button>
+            <button class="view-btn" id="btn-league" onclick="switchView('league')"><i class="fas fa-list-ol"></i> League</button>
+            <select id="teamSelector" onchange="switchTeam(this.value)" style="padding: 0.6rem; border-radius: 25px; border: 2px solid var(--accent); background: #fff; font-weight: 800; cursor: pointer;">
+                <option value="HOME">Select MLB Team</option>
+                <optgroup label="Popular"><option value="CLE">Guardians</option><option value="LAD">Dodgers</option><option value="NYY">Yankees</option><option value="PHI">Phillies</option></optgroup>
+                <optgroup label="American League"><option value="BAL">Orioles</option><option value="BOS">Red Sox</option><option value="TB">Rays</option><option value="TOR">Blue Jays</option><option value="CWS">White Sox</option><option value="DET">Tigers</option><option value="KC">Royals</option><option value="MIN">Twins</option><option value="HOU">Astros</option><option value="LAA">Angels</option><option value="SEA">Mariners</option><option value="TEX">Rangers</option></optgroup>
+                <optgroup label="National League"><option value="ATL">Braves</option><option value="MIA">Marlins</option><option value="NYM">Mets</option><option value="WSH">Nationals</option><option value="CHC">Cubs</option><option value="CIN">Reds</option><option value="MIL">Brewers</option><option value="PIT">Pirates</option><option value="STL">Cardinals</option><option value="AZ">D-backs</option><option value="COL">Rockies</option><option value="SD">Padres</option><option value="SF">Giants</option></optgroup>
+            </select>
+            <div class="chip-vault">
+                <i class="fas fa-gem"></i> <span id="chipBank">100</span>
+                <div class="help-icon" onclick="toggleModal('helpModal')">?</div>
+            </div>
         </div>
     </nav>
 
-    <!-- HUB VIEW -->
-    <section id="view-home" class="view-section active">
-        <header class="hero">
-            <h1>FRANKS_MGMT_PROJECT</h1>
-            <p>High-Velocity Data • Agentic Logic • Executive UX</p>
-        </header>
-        <div class="premium-card">
-            <span class="tag-line">Strategic Deployment v8.1</span>
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 2rem; color: var(--xav-navy);">Executive Briefing</h2>
-            <p style="color: var(--text-secondary); font-size: 1.3rem; margin-bottom: 4rem; max-width: 900px; line-height: 1.6;">Welcome, Sir. This ecosystem is a specialized demonstration of **Autonomous Strategic Integration**. We have combined real-time MLB data feeds with a sophisticated neural-logic casino engine to create a high-stakes professional gateway. Access to my secure contact credentials is restricted until the 1,000-chip threshold is achieved through tactical engagement.</p>
+    <header class="hero" id="mainHero">
+        <h1 id="heroTitle">FRANKS_MGMT_PROJECT</h1>
+        <p>Business Management & AI Strategy | Strategic Agentic Hub v8.2</p>
+    </header>
+
+    <main>
+        <!-- HOME VIEW (RESTORED) -->
+        <div id="view-home" class="view-content active">
+            <section class="glass-card">
+                <div style="display: grid; grid-template-columns: 320px 1fr; gap: 4rem; align-items: center;">
+                    <img src="frankkrotoicon.jpg" style="width:100%; border-radius:40px; border: 8px solid var(--accent); box-shadow: var(--shadow-lg);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Leo+Kroto+IV&background=0C2340&color=fff&size=512'">
+                    <div>
+                        <h2 class="section-title">Professional Profile</h2>
+                        <p style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--xav-navy);">Xavier University '27 | Strategic AI Architecture</p>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">Specialized in synthesizing high-velocity data streams with autonomous agentic frameworks. This platform demonstrates my ability to architect complex, multi-threaded applications that bridge professional utility with advanced engagement logic.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-card">
+                <h2 class="section-title">Strategic Consulting Hub</h2>
+                <div class="command-center">
+                    <div class="strategy-grid">
+                        <div class="strategy-card" onclick="updateAgent('Infrastructure Audit', 'Identifying automation nodes in legacy data silos to optimize throughput.')">
+                            <i class="fas fa-search-dollar"></i>
+                            <h4>Infrastructure Audit</h4>
+                            <p>Pinpointing data readiness and agentic scaling potential.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('Workflow Architecture', 'Designing secure, high-performance agentic meshes for enterprise data.')">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>Workflow Architecture</h4>
+                            <p>Building resilient multi-agent orchestration frameworks.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('ROI Modeling', 'Projecting fiscal efficiency by automating repetitive cognitive tasks.')">
+                            <i class="fas fa-chart-pie"></i>
+                            <h4>ROI Modeling</h4>
+                            <p>Advanced yield analysis and predictive scaling strategy.</p>
+                        </div>
+                        <div class="strategy-card" onclick="updateAgent('Full-Scale Deployment', 'Executing the transition from AI pilots to verified Cognitive Enterprises.')">
+                            <i class="fas fa-microchip"></i>
+                            <h4>Full-Scale Deployment</h4>
+                            <p>End-to-end integration of autonomous business logic.</p>
+                        </div>
+                    </div>
+                    <div class="agent-sidebar">
+                        <div style="display:flex; align-items:center; gap:1rem; margin-bottom: 1.5rem;">
+                            <div style="width:14px; height:12px; background: #10b981; border-radius:50%; box-shadow: 0 0 10px #10b981;"></div>
+                            <h3 style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800;">JARVIS CORE: NOMINAL</h3>
+                        </div>
+                        <div id="agentBriefing" class="agent-briefing">Ready, Sir. Knowledge base synchronized. Select a tactical module or query the system directly regarding the 1,000-chip threshold.</div>
+                        <input type="text" id="jarvisQuery" placeholder="System query..." onkeyup="if(event.key==='Enter') queryAgent()" style="width:100%; padding: 1rem; border-radius: 14px; border: 2px solid var(--accent); background: white; margin-bottom: 1.5rem; outline: none; font-weight: 600;">
+                        <div style="display: flex; gap: 0.8rem;">
+                            <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="view-btn active" style="flex:1; text-align:center;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="https://github.com/fkroto4" target="_blank" class="view-btn active" style="flex:1; text-align:center;"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CASINO VIEW (NEW & POLISHED) -->
+        <div id="view-casino" class="view-content">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 4rem; text-align: center; color: var(--casino-gold); margin-bottom: 1rem;">Vegas Executive Floor</h2>
+            <p style="text-align: center; color: var(--text-muted); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 4rem;">"High Stakes, Sir. Access is Earned."</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-                <div class="professional-highlight" style="border-top: 5px solid var(--xav-navy);">
-                    <h4 style="margin-bottom: 1rem; font-size: 1.2rem;"><i class="fas fa-database"></i> Live API Stream</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Direct synchronization with MLB Stats API. Every game, every score, every tactical move tracked in real-time with zero latency.</p>
+            <div class="casino-arena">
+                <div class="game-terminal" onclick="launchGame('roulette')">
+                    <i class="fas fa-dharmachakra"></i>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Imperial Roulette</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Precision physics simulation. High-velocity yield potential.</p>
+                    <button class="view-btn active" style="margin-top: 2rem; background: var(--casino-gold); color: black; border: none;">PLACE WAGERS</button>
                 </div>
-                <div class="professional-highlight" style="border-top: 5px solid var(--success);">
-                    <h4 style="margin-bottom: 1rem; font-size: 1.2rem;"><i class="fas fa-brain"></i> Neural Evaluators</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Custom-built Poker logic engine capable of 7-card hand evaluation and AI betting strategies vs the JARVIS persona.</p>
+                <div class="game-terminal" onclick="launchGame('blackjack')">
+                    <i class="fas fa-spade"></i>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Neural Blackjack</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Beat the Dealer AI. Optimized for 21-point saturation.</p>
+                    <button class="view-btn active" style="margin-top: 2rem; background: var(--casino-gold); color: black; border: none;">DEAL IN</button>
                 </div>
-                <div class="professional-highlight" style="border-top: 5px solid var(--casino-gold);">
-                    <h4 style="margin-bottom: 1rem; font-size: 1.2rem;"><i class="fas fa-lock"></i> Identity Vault</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary);">An executive handshake protocol. Amass 1,000 chips to trigger the fun 'Trade Animation' and unlock my verified portfolio details.</p>
+                <div class="game-terminal" onclick="launchGame('poker')">
+                    <i class="fas fa-crown"></i>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Texas Hold'em</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">1v1 Head-to-head vs JARVIS. Advanced hand evaluation.</p>
+                    <button class="view-btn active" style="margin-top: 2rem; background: var(--casino-gold); color: black; border: none;">CHALLENGE AI</button>
                 </div>
-            </div>
-            <button class="btn-executive" style="margin-top: 4rem; padding: 1.2rem 3rem; font-size: 0.9rem;" onclick="switchView('casino')">INITIALIZE SESSION <i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-
-    <!-- CASINO VIEW -->
-    <section id="view-casino" class="view-section">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 5rem; text-align: center; color: var(--casino-gold); letter-spacing: -2px;">Vegas Executive</h2>
-        <p style="text-align: center; color: var(--xav-silver); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5rem;">"The only risk is not taking one, Sir."</p>
-        
-        <div class="casino-hub-grid">
-            <div class="game-terminal" onclick="openGame('roulette')">
-                <i class="fas fa-dharmachakra"></i>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Royal Roulette</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 2rem;">Physics-accurate spin mechanics. 35:1 Payouts on Zero.</p>
-                <button class="btn-casino">ENTER TABLE</button>
-            </div>
-            <div class="game-terminal" onclick="openGame('blackjack')">
-                <i class="fas fa-spade"></i>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Neural 21</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 2rem;">Head-to-head vs Dealer AI. Standard Vegas House Rules.</p>
-                <button class="btn-casino">DEAL HAND</button>
-            </div>
-            <div class="game-terminal" onclick="openGame('poker')">
-                <i class="fas fa-chess-king"></i>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Texas Hold'em</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 2rem;">The Ultimate Challenge. True 7-card evaluation vs JARVIS.</p>
-                <button class="btn-casino">CHALLENGE AI</button>
             </div>
         </div>
-    </section>
 
-    <!-- MLB VIEW -->
-    <section id="view-mlb" class="view-section">
-        <div class="ticker-bar"><div class="ticker-inner" id="mlbTicker">LINKING TO GLOBAL DATA STREAM... SYNCHRONIZING WITH MLB STATS API... STAND BY FOR TACTICAL UPDATE...</div></div>
-        
-        <header style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;">
-            <div>
-                <span class="tag-line">Real-Time Data Orchestration</span>
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--xav-navy);">Tactical Command</h2>
+        <!-- LEAGUE VIEW (RESTORED BASEBALL) -->
+        <div id="view-league" class="view-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <h2 class="section-title" style="margin:0;">Live League Board</h2>
+                <button class="view-btn active" onclick="fetchLeagueScores()"><i class="fas fa-sync-alt"></i> REFRESH DATA SLATE</button>
             </div>
-            <button class="btn-executive" onclick="refreshMLB()"><i class="fas fa-sync-alt"></i> REFRESH DATA GRID</button>
-        </header>
-
-        <div class="mlb-master-grid">
-            <div>
-                <div class="premium-card" style="padding: 2.5rem; margin-bottom: 3rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem;">Field Map: Active Roster</h3>
-                        <select id="teamSelect" onchange="syncFieldMap(this.value)" style="padding: 1rem; border-radius: 14px; border: 1px solid var(--border); font-family: 'Fira Code'; font-weight: 700; cursor: pointer;">
-                            <option value="114">Cleveland Guardians</option>
-                            <option value="119">LA Dodgers</option>
-                            <option value="147">NY Yankees</option>
-                            <option value="143">Philadelphia Phillies</option>
-                            <option value="144">Atlanta Braves</option>
-                            <option value="117">Houston Astros</option>
-                        </select>
-                    </div>
-                    <div id="fieldMapArena" style="height: 500px; background: #0f172a; border-radius: 28px; position: relative; border: 6px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
-                        <div style="text-align:center; padding-top: 200px; color: white; font-weight: 900; opacity: 0.1; font-size: 2rem;">LIVE TACTICAL FIELD</div>
-                    </div>
-                </div>
-                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 2rem; font-size: 1.5rem;">Daily Slate: Full Schedule</h3>
-                <div id="mlbGamesGrid" class="games-slate"></div>
-            </div>
-
-            <aside>
-                <div class="odds-board">
-                    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; color: var(--casino-gold);">
-                        <i class="fas fa-bolt"></i> Best Bets AI
-                    </h3>
-                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 2.5rem; line-height: 1.5;">JARVIS correlates OddShark, DraftKings, and Season Win-Probabilities to identify market inefficiencies.</p>
-                    <div id="oddsList"></div>
-                    
-                    <div style="margin-top: 4rem; padding: 2rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 24px;">
-                        <h4 style="color: #10b981; font-size: 0.85rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase;">Executive Advisory:</h4>
-                        <p style="font-size: 0.9rem; color: #a7f3d0; font-family: 'Fira Code'; line-height: 1.5;" id="jarvisAdvice">"Analyzing pitching matchups... High arbitrage potential on the Guardians run-line today, Sir."</p>
-                    </div>
-                </div>
-            </aside>
+            <div id="leagueBoard" class="league-grid"></div>
         </div>
-    </section>
 
-    <!-- OVERLAYS -->
-    <div id="overlay-poker" class="overlay-fullscreen">
-        <span class="exit-btn" onclick="closeOverlay()">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--casino-gold); text-align: center; margin-bottom: 2rem;">TEXAS HOLD'EM VS JARVIS</h2>
-        <div class="poker-felt">
-            <div id="pkDealer" class="hand-container"></div>
-            <div style="text-align:center; margin: 4rem 0;">
-                <div id="pkStatus" style="font-size: 2.5rem; font-weight: 900; color: var(--casino-gold); text-transform: uppercase; margin-bottom: 1.5rem;">PRE-FLOP</div>
-                <div class="hand-container" id="pkCommunity" style="min-height: 175px; background: rgba(0,0,0,0.2); border-radius: 20px; width: 80%; margin: 0 auto;"></div>
-                <div style="margin-top: 2rem; font-size: 2rem; font-weight: 900;">POT: <span id="pkPot" style="color: var(--casino-gold);">0</span></div>
+        <!-- TEAM VIEW (RESTORED TACTICAL HUB) -->
+        <div id="view-team" class="view-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <h2 class="section-title" id="teamHubTitle" style="margin:0;">Tactical Hub</h2>
+                <button class="view-btn active" onclick="refreshTeamData()"><i class="fas fa-satellite-dish"></i> SYNC TEAM API</button>
             </div>
-            <div id="pkPlayer" class="hand-container"></div>
+            <div id="teamScoreboard" class="glass-card" style="background: var(--accent); color: white; padding: 2.5rem;"></div>
             
-            <div style="display:flex; justify-content:center; gap:2rem; margin-top: 4rem; background: rgba(0,0,0,0.6); padding: 2.5rem; border-radius: 32px; border: 1px solid var(--border);">
-                <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                    <label style="color:var(--casino-gold); font-weight:900; font-size:0.75rem; letter-spacing:1px;">WAGER AMOUNT</label>
-                    <input type="number" id="pkWager" value="25" min="10" step="25" style="padding:1rem; border-radius:12px; border:none; width: 120px; font-weight:900; font-size:1.2rem; text-align:center;">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+                <div class="glass-card" style="margin:0;">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-map-marker-alt"></i> Real-Time Field Map</h3>
+                    <div class="field-container" id="fieldMap">
+                        <svg class="diamond-svg" viewBox="0 0 100 100"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="#fff" stroke-width="0.3"></path></svg>
+                    </div>
                 </div>
-                <button class="btn-casino" id="pkDealBtn" onclick="pkStart()">DEAL HAND</button>
-                <button class="btn-casino hidden" id="pkCheckBtn" onclick="pkAction('check')">CHECK/CALL</button>
-                <button class="btn-casino hidden" id="pkFoldBtn" onclick="pkAction('fold')">FOLD HAND</button>
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div class="glass-card" style="margin:0; padding: 2rem; background: #f0f9ff; border: 2px solid #bae6fd;">
+                        <h4 style="color: #0369a1;"><i class="fas fa-calculator"></i> ROI Yield Simulator</h4>
+                        <input type="range" id="roiSlider" class="odds-slider" min="5" max="500" step="5" value="50" oninput="runROICalc()" style="width: 100%; margin: 1.5rem 0;">
+                        <div style="display:flex; justify-content:space-between; font-weight: 800; font-size: 1rem; color: #0369a1;">
+                            <span>Staff: <span id="staffCount">50</span></span>
+                            <span>Savings: $<span id="roiResult">1.13M</span></span>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="margin:0; padding: 2rem; background: #fef2f2; border: 2px solid #fecaca;">
+                        <h4 style="color: #991b1b;"><i class="fas fa-chart-line"></i> Strategic Best Bets</h4>
+                        <p style="font-size: 0.8rem; margin-top: 1rem; color: #b91c1c;">Simulated odds based on live momentum indicators.</p>
+                        <div id="oddsIntelligence" style="margin-top: 1rem; font-weight: 900; font-size: 1.5rem; text-align: center; color: #991b1b;">+145 ML</div>
+                    </div>
+                </div>
             </div>
+
+            <div class="filter-group" style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center;">
+                <input type="text" id="playerSearch" placeholder="Filter Roster..." oninput="filterBySearch()" style="padding: 0.8rem 1.5rem; border-radius: 30px; border: 2px solid var(--accent); flex: 1; outline: none; font-weight: 600;">
+                <button class="view-btn active" id="f-All" onclick="filterRoster('All')">All</button>
+                <button class="view-btn" id="f-Infielders" onclick="filterRoster('Infielders')">Infielders</button>
+                <button class="view-btn" id="f-Pitchers" onclick="filterRoster('Pitchers')">Pitchers</button>
+            </div>
+            <div id="rosterGrid" class="roster-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;"></div>
+        </div>
+    </main>
+
+    <!-- GAME OVERLAYS (FULL EXPERIENCE) -->
+    <div id="overlay-poker" class="casino-overlay">
+        <span class="close-game" onclick="closeOverlay()">&times;</span>
+        <div class="visual-frame">
+            <div style="text-align: center;">
+                <div class="entity-avatar jarvis"><div class="jarvis-core"></div></div>
+                <h4 style="margin-top: 1rem; color: #10b981;">JARVIS AI</h4>
+            </div>
+            <div style="text-align: center; flex: 1;">
+                <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--casino-gold);">HOLD'EM STRATEGY</h2>
+                <div id="pkStatus" style="font-size: 1.5rem; font-weight: 900; margin-top: 1rem; text-transform: uppercase;">READY TO DEAL</div>
+            </div>
+            <div style="text-align: center;">
+                <div class="entity-avatar"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=fbbf24&color=000'"></div>
+                <h4 style="margin-top: 1rem; color: var(--casino-gold);">EXECUTIVE PLAYER</h4>
+            </div>
+        </div>
+        <div id="pkDealerHand" class="hand"></div>
+        <div id="pkCommunity" class="hand" style="margin: 3rem 0; min-height: 180px; background: rgba(255,255,255,0.03); border-radius: 30px; border: 2px dashed rgba(255,255,255,0.1);"></div>
+        <div id="pkPlayerHand" class="hand"></div>
+        <div style="text-align: center; margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; align-items: center;">
+            <div style="font-size: 2rem; font-weight: 900;">POT: <span id="pkPot" style="color: var(--casino-gold);">0</span></div>
+            <input type="number" id="pkWager" value="25" step="25" min="10" style="padding: 1rem; border-radius: 15px; border: none; width: 120px; font-weight: 900; font-size: 1.2rem; text-align: center;">
+            <button class="view-btn active" id="pkDealBtn" style="background: var(--casino-gold); color: black; border: none; padding: 1.2rem 3rem;" onclick="pkStart()">DEAL HAND</button>
+            <button class="view-btn active hidden" id="pkCheckBtn" style="padding: 1.2rem 3rem;" onclick="pkAction('check')">CHECK/CALL</button>
+            <button class="view-btn active hidden" id="pkFoldBtn" style="padding: 1.2rem 3rem; background: #e11d48; border: none;" onclick="pkAction('fold')">FOLD</button>
         </div>
     </div>
 
     <!-- BLACKJACK OVERLAY -->
-    <div id="overlay-blackjack" class="overlay-fullscreen">
-        <span class="exit-btn" onclick="closeOverlay()">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--casino-gold); text-align: center; margin-bottom: 4rem;">NEURAL BLACKJACK</h2>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 5rem;">
-            <div id="bjDealer" class="hand-container"></div>
-            <div id="bjStatus" style="font-size: 3.5rem; font-weight: 900; color: var(--casino-gold); text-transform: uppercase;">PLACE WAGER</div>
-            <div id="bjPlayer" class="hand-container"></div>
-            <div style="display: flex; gap: 2rem; background: rgba(0,0,0,0.5); padding: 2rem; border-radius: 25px;">
-                <input type="number" id="bjBet" value="25" min="10" step="25" style="padding:1rem; border-radius:15px; border:none; width: 140px; font-weight:900; font-size:1.4rem; text-align:center;">
-                <button class="btn-casino" id="bjDealBtn" onclick="bjStart()">DEAL</button>
-                <button class="btn-casino hidden" id="bjHitBtn" onclick="bjHit()">HIT</button>
-                <button class="btn-casino hidden" id="bjStandBtn" onclick="bjStand()">STAND</button>
-            </div>
+    <div id="overlay-blackjack" class="casino-overlay">
+        <span class="close-game" onclick="closeOverlay()">&times;</span>
+        <div class="visual-frame">
+             <div class="entity-avatar jarvis"><div class="jarvis-core"></div></div>
+             <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--casino-gold);">NEURAL 21</h2>
+             <div class="entity-avatar"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=fbbf24&color=000'"></div>
+        </div>
+        <div id="bjDealer" class="hand"></div>
+        <div id="bjStatus" style="font-size: 3rem; font-weight: 900; text-align: center; color: var(--casino-gold); margin: 3rem 0;">PLACE WAGER</div>
+        <div id="bjPlayer" class="hand"></div>
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 4rem;">
+            <input type="number" id="bjBet" value="25" step="25" min="10" style="padding: 1rem; border-radius: 15px; width: 120px; font-weight: 900; font-size: 1.2rem; text-align: center;">
+            <button class="view-btn active" id="bjDealBtn" style="background: var(--casino-gold); color: black; border: none; padding: 1.2rem 3rem;" onclick="bjStart()">DEAL</button>
+            <button class="view-btn active hidden" id="bjHitBtn" style="padding: 1.2rem 3rem;" onclick="bjHit()">HIT</button>
+            <button class="view-btn active hidden" id="bjStandBtn" style="padding: 1.2rem 3rem;" onclick="bjStand()">STAND</button>
         </div>
     </div>
 
     <!-- ROULETTE OVERLAY -->
-    <div id="overlay-roulette" class="overlay-fullscreen">
-        <span class="exit-btn" onclick="closeOverlay()">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--casino-gold); text-align: center;">IMPERIAL ROULETTE</h2>
-        <div style="text-align:center; margin-top: 8rem;">
-             <i class="fas fa-dharmachakra" style="font-size: 15rem; color: var(--casino-gold); animation: spinWheel 4s infinite linear;"></i>
-             <style>@keyframes spinWheel { from {rotate:0deg;} to {rotate:360deg;} }</style>
-             <h3 style="margin-top:4rem; font-size: 2rem;">CALIBRATING PHYSICS ENGINE...</h3>
-             <p style="margin-top:1rem; opacity:0.5;">Optimizing velocity and friction constants.</p>
-             <button class="btn-casino" style="margin-top: 5rem;" onclick="spinRouletteSim()">TEST SPIN (+50 CHIPS)</button>
+    <div id="overlay-roulette" class="casino-overlay">
+        <span class="close-game" onclick="closeOverlay()">&times;</span>
+        <h2 style="font-family: 'Playfair Display'; font-size: 4rem; color: var(--casino-gold); text-align: center;">IMPERIAL ROULETTE</h2>
+        <div style="text-align: center; margin-top: 10rem;">
+             <i class="fas fa-dharmachakra" style="font-size: 15rem; color: var(--casino-gold); animation: spinSlow 10s linear infinite;"></i>
+             <style>@keyframes spinSlow { from{rotate:0deg;} to{rotate:360deg;} }</style>
+             <h3 style="margin-top: 3rem;">WAGER SIMULATION ACTIVE</h3>
+             <button class="view-btn active" style="margin-top: 3rem; background: var(--casino-gold); color: black; border: none; padding: 1.5rem 4rem;" onclick="updateChips(50); alert('Testing Complete: +50 Chips credited.');">TEST SPIN</button>
         </div>
     </div>
 
-    <!-- UNLOCK SEQUENCE -->
-    <div id="unlock-animation">
-        <i class="fas fa-unlock-alt vault-icon"></i>
-        <h1 style="font-family: 'Playfair Display', serif; font-size: 5rem; margin: 2rem 0;">ACCESS GRANTED</h1>
-        <p style="color: var(--casino-gold); font-family: 'Fira Code'; letter-spacing: 8px; margin-bottom: 5rem;">TRADING CHIPS FOR CREDENTIALS...</p>
-        <div class="premium-card" style="max-width: 650px; text-align: left; background: rgba(255,255,255,0.08); border: 2px solid var(--casino-gold); color: white;">
-            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 1.5rem;">Frank Leo Kroto IV</h2>
-            <p style="opacity: 0.7; font-size: 1.1rem; margin-bottom: 3rem;">Business Management & AI Strategy | Xavier University '27</p>
-            <div style="display: grid; gap: 1.5rem;">
-                <div style="font-size: 1.2rem;"><i class="fas fa-envelope" style="width: 40px; color: var(--casino-gold);"></i> frankleokroto@gmail.com</div>
-                <div style="font-size: 1.2rem;"><i class="fab fa-linkedin" style="width: 40px; color: var(--casino-gold);"></i> linkedin.com/in/frankkrotoiv</div>
-                <div style="font-size: 1.2rem;"><i class="fab fa-github" style="width: 40px; color: var(--casino-gold);"></i> github.com/fkroto4</div>
+    <!-- MODALS -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="btn-close-modal" onclick="toggleModal('helpModal')">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; font-family: 'Playfair Display'; color: var(--xav-navy);">The Executive Handshake</h2>
+            <p style="margin-bottom: 1rem; font-size: 1.1rem;">Sir, the goal of this simulation is to achieve a liquidity threshold of **1,000 Chips**.</p>
+            <p style="margin-bottom: 1rem;">1. **Select a Game:** Choose from Poker, Blackjack, or Roulette in the Casino Floor.<br>2. **Engage Strategically:** All chips are saved in your local vault.<br>3. **The Unlock:** Upon reaching 1,000 chips, the "Security Decryption" sequence will fire automatically, revealing Frank's full professional credentials.</p>
+            <button class="view-btn active" style="width:100%; margin-top: 2rem;" onclick="toggleModal('helpModal')">ACKNOWLEDGED</button>
+        </div>
+    </div>
+
+    <!-- UNLOCK OVERLAY (Decryption Sequence) -->
+    <div id="unlock-sequence" class="casino-overlay" style="background: var(--xav-navy);">
+        <div style="text-align:center; padding-top: 10%;">
+            <i class="fas fa-unlock-alt" style="font-size: 8rem; color: var(--casino-gold); animation: pulse 1s infinite;"></i>
+            <h1 style="font-family: 'Playfair Display'; font-size: 5rem; margin: 2rem 0;">EXECUTIVE ACCESS GRANTED</h1>
+            <p style="letter-spacing: 10px; color: var(--casino-gold); margin-bottom: 5rem;">DECODING IDENTITY MODULES...</p>
+            <div class="glass-card" style="max-width: 700px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.05); color: white; border: 2px solid var(--casino-gold);">
+                <h2>Frank Leo Kroto IV</h2>
+                <p style="opacity: 0.7; margin-bottom: 2rem;">Business Strategy | AI Orchestration | Xavier University '27</p>
+                <div style="display: grid; gap: 1rem;">
+                    <div><i class="fas fa-envelope" style="width: 30px; color: var(--casino-gold);"></i> frankleokroto@gmail.com</div>
+                    <div><i class="fab fa-linkedin" style="width: 30px; color: var(--casino-gold);"></i> linkedin.com/in/frankkrotoiv</div>
+                </div>
+                <button class="view-btn active" style="margin-top: 3rem; width: 100%;" onclick="location.reload()">RESET SECURITY SYSTEM</button>
             </div>
-            <p style="margin-top: 4rem; font-family: 'Fira Code'; font-size: 0.8rem; opacity: 0.4; text-align: center;">THANK YOU FOR ENGAGING WITH THE FRANKS_MGMT_PROJECT v8.1</p>
-            <button class="btn-executive" style="margin-top: 3rem; width: 100%;" onclick="location.reload()">RESET SECURITY SYSTEM</button>
         </div>
     </div>
 
     <script>
-        /* STATE & PERSISTENCE */
+        /* JARVIS v8.2 STATE ENGINE */
         let state = {
-            chips: 100, view: 'home',
+            chips: 100, view: 'home', cTeam: 'CLE', fullRoster: [],
             poker: { deck:[], player:[], dealer:[], community:[], pot:0, phase:0, wager:25 },
             bj: { deck:[], player:[], dealer:[], wager:25 }
         };
 
+        const teamMap = { "CLE": 114, "LAD": 119, "NYY": 147, "PHI": 143, "ATL": 144, "BOS": 111, "HOU": 117, "CHC": 112, "SD": 135, "SF": 137, "NYM": 121, "STL": 138, "TOR": 141, "BAL": 110, "MIN": 142, "AZ": 109, "MIL": 158, "SEA": 136, "TEX": 140, "TB": 139, "DET": 116, "KC": 118, "CWS": 145, "LAA": 108, "COL": 115, "MIA": 146, "WSH": 120, "CIN": 113, "PIT": 134, "OAK": 133 };
         const SUITS = ['S', 'H', 'D', 'C'], VALS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-        const RANK_VALS = {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
+        const RANK_POWER = {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
 
-        /* CORE ORCHESTRATION */
-        function switchView(v) {
-            state.view = v;
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(`view-${v}`).classList.add('active');
+        /* ORCHESTRATION */
+        function switchView(view) {
+            state.view = view;
+            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+            document.getElementById(`view-${view}`).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            if(document.getElementById(`nav-${v}`)) document.getElementById(`nav-${v}`).classList.add('active');
-            document.body.setAttribute('data-theme', v === 'casino' ? 'casino' : 'light');
-            if(v === 'mlb') refreshMLB();
+            if(document.getElementById(`nav-${view}`)) document.getElementById(`nav-${view}`).classList.add('active');
+            if(view === 'league') fetchLeagueScores();
             window.scrollTo(0,0);
+        }
+
+        function switchTeam(abbr) {
+            if(abbr === "HOME") { switchView('home'); return; }
+            state.cTeam = abbr; switchView('team');
+            document.getElementById('teamHubTitle').innerText = `${abbr} Tactical Hub`;
+            refreshTeamData();
         }
 
         function updateChips(amt) {
             state.chips += amt;
             document.getElementById('chipBank').innerText = state.chips;
-            if(state.chips >= 1000) { document.getElementById('unlock-animation').style.display = 'flex'; }
-            localStorage.setItem('franks_mgmt_v81_chips', state.chips);
+            if(state.chips >= 1000) document.getElementById('unlock-sequence').style.display = 'block';
+            localStorage.setItem('franks_mgmt_chips_v82', state.chips);
         }
 
-        function openGame(g) { document.getElementById(`overlay-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; }
-        function closeOverlay() { document.querySelectorAll('.overlay-fullscreen').forEach(o => o.style.display = 'none'); document.body.style.overflow = 'auto'; }
+        function launchGame(g) { document.getElementById(`overlay-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeOverlay() { document.querySelectorAll('.casino-overlay').forEach(o => o.style.display = 'none'); document.body.style.overflow = 'auto'; }
+        function toggleModal(id) { const m = document.getElementById(id); m.style.display = (m.style.display === 'flex') ? 'none' : 'flex'; }
 
-        /* DECK ENGINE */
-        function getDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(() => Math.random() - 0.5); }
-        function createCardUI(c, hidden = false) {
-            const div = document.createElement('div');
-            div.className = `card-premium ${['H','D'].includes(c.s) ? 'red' : ''}`;
+        /* DECK UTILS */
+        function createDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(() => Math.random() - 0.5); }
+        function renderCard(c, hidden = false) {
+            const div = document.createElement('div'); div.className = `card-premium ${['H','D'].includes(c.s) ? 'red' : ''}`;
             if(hidden) { div.className += ' card-hidden'; return div; }
-            div.innerHTML = `<div>${c.v}</div><div style="font-size:3rem; align-self:center;">${c.s === 'S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
+            div.innerHTML = `<div>${c.v}</div><div style="font-size:3.5rem; align-self:center;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
             return div;
         }
 
-        /* POKER ENGINE (v8.1 TRUE EVALUATOR) */
+        /* POKER LOGIC (TRUE EVALUATOR) */
         function pkStart() {
             const w = parseInt(document.getElementById('pkWager').value);
-            if(w > state.chips) return alert("Sir, your liquidity is insufficient for this wager.");
+            if(w > state.chips) return alert("Insufficient chips, Sir.");
             updateChips(-w);
-            state.poker = { deck: getDeck(), player:[], dealer:[], community:[], pot: w * 2, phase: 1, wager: w };
+            state.poker = { deck: createDeck(), player:[], dealer:[], community:[], pot: w * 2, phase: 1, wager: w };
             state.poker.player = [state.poker.deck.pop(), state.poker.deck.pop()];
             state.poker.dealer = [state.poker.deck.pop(), state.poker.deck.pop()];
             pkRender();
             document.getElementById('pkDealBtn').classList.add('hidden');
             document.getElementById('pkCheckBtn').classList.remove('hidden');
             document.getElementById('pkFoldBtn').classList.remove('hidden');
-            document.getElementById('pkStatus').innerText = "PRE-FLOP ANALYSIS";
+            document.getElementById('pkStatus').innerText = "PRE-FLOP";
         }
-
         function pkRender() {
-            const p = document.getElementById('pkPlayer'), d = document.getElementById('pkDealer'), c = document.getElementById('pkCommunity');
+            const p = document.getElementById('pkPlayerHand'), d = document.getElementById('pkDealerHand'), c = document.getElementById('pkCommunity');
             p.innerHTML = ''; d.innerHTML = ''; c.innerHTML = '';
-            state.poker.player.forEach(card => p.appendChild(createCardUI(card)));
-            state.poker.dealer.forEach(card => d.appendChild(createCardUI(card, state.poker.phase < 4)));
-            state.poker.community.forEach(card => c.appendChild(createCardUI(card)));
+            state.poker.player.forEach(card => p.appendChild(renderCard(card)));
+            state.poker.dealer.forEach(card => d.appendChild(renderCard(card, state.poker.phase < 4)));
+            state.poker.community.forEach(card => c.appendChild(renderCard(card)));
             document.getElementById('pkPot').innerText = state.poker.pot;
         }
-
         function pkAction(type) {
             if(type === 'fold') { pkEnd("FOLD: JARVIS WINS"); return; }
             if(state.poker.phase === 1) { // Flop
@@ -443,26 +446,21 @@
             } else { pkShowdown(); return; }
             state.poker.pot += state.poker.wager * 2; pkRender();
         }
-
         function pkShowdown() {
-            const p = evaluatePokerHand([...state.poker.player, ...state.poker.community]);
-            const d = evaluatePokerHand([...state.poker.dealer, ...state.poker.community]);
+            const p = evalPoker([...state.poker.player, ...state.poker.community]);
+            const d = evalPoker([...state.poker.dealer, ...state.poker.community]);
             if(p > d) pkEnd("YOU WIN!"); else if(d > p) pkEnd("JARVIS WINS"); else pkEnd("SPLIT POT");
         }
-
-        function evaluatePokerHand(cards) {
+        function evalPoker(cards) {
             let score = 0;
             const counts = {}; cards.forEach(c => counts[c.v] = (counts[c.v] || 0) + 1);
             Object.keys(counts).forEach(v => {
-                if(counts[v] === 4) score += 1000 + RANK_VALS[v];
-                if(counts[v] === 3) score += 500 + RANK_VALS[v];
-                if(counts[v] === 2) score += 200 + RANK_VALS[v];
+                if(counts[v] === 4) score += 1000 + RANK_POWER[v];
+                if(counts[v] === 3) score += 500 + RANK_POWER[v];
+                if(counts[v] === 2) score += 200 + RANK_POWER[v];
             });
-            const suits = {}; cards.forEach(c => suits[c.s] = (suits[c.s] || 0) + 1);
-            if(Object.values(suits).some(s => s >= 5)) score += 800; // Flush
-            return score + Math.max(...cards.map(c => RANK_VALS[c.v]));
+            return score + Math.max(...cards.map(c => RANK_POWER[c.v]));
         }
-
         function pkEnd(msg) {
             document.getElementById('pkStatus').innerText = msg;
             if(msg.includes("YOU WIN")) updateChips(state.poker.pot);
@@ -473,46 +471,42 @@
             document.getElementById('pkFoldBtn').classList.add('hidden');
         }
 
-        /* BLACKJACK ENGINE */
+        /* BLACKJACK LOGIC */
         function bjStart() {
             const w = parseInt(document.getElementById('bjBet').value);
             if(w > state.chips) return alert("Insufficient Chips.");
             updateChips(-w);
-            state.bj = { deck: getDeck(), player:[], dealer:[], wager: w };
+            state.bj = { deck: createDeck(), player:[], dealer:[], wager: w };
             state.bj.player = [state.bj.deck.pop(), state.bj.deck.pop()];
             state.bj.dealer = [state.bj.deck.pop(), state.bj.deck.pop()];
             bjRender();
-            document.getElementById('bjStatus').innerText = "YOUR MOVE";
+            document.getElementById('bjStatus').innerText = "YOUR TURN";
             document.getElementById('bjDealBtn').classList.add('hidden');
             document.getElementById('bjHitBtn').classList.remove('hidden');
             document.getElementById('bjStandBtn').classList.remove('hidden');
         }
-
-        function bjRender(final = false) {
+        function bjRender(f = false) {
             const p = document.getElementById('bjPlayer'), d = document.getElementById('bjDealer');
             p.innerHTML = ''; d.innerHTML = '';
-            state.bj.player.forEach(c => p.appendChild(createCardUI(c)));
-            state.bj.dealer.forEach((c, i) => d.appendChild(createCardUI(c, !final && i === 0)));
+            state.bj.player.forEach(c => p.appendChild(renderCard(c)));
+            state.bj.dealer.forEach((c, i) => d.appendChild(renderCard(c, !f && i === 0)));
         }
-
         function bjHit() {
             state.bj.player.push(state.bj.deck.pop()); bjRender();
             if(bjSum(state.bj.player) > 21) bjEnd("BUSTED");
         }
-
         function bjStand() {
             bjRender(true);
-            const draw = () => {
+            const dealerDraw = () => {
                 if(bjSum(state.bj.dealer) < 17) {
                     state.bj.dealer.push(state.bj.deck.pop()); bjRender(true);
-                    setTimeout(draw, 700);
+                    setTimeout(dealerDraw, 700);
                 } else {
                     const ps = bjSum(state.bj.player), ds = bjSum(state.bj.dealer);
                     if(ds > 21 || ps > ds) bjEnd("WIN!"); else if(ps === ds) bjEnd("PUSH"); else bjEnd("LOSE");
                 }
-            }; draw();
+            }; dealerDraw();
         }
-
         function bjEnd(r) {
             document.getElementById('bjStatus').innerText = r;
             if(r === "WIN!") updateChips(state.bj.wager * 2);
@@ -521,86 +515,98 @@
             document.getElementById('bjHitBtn').classList.add('hidden');
             document.getElementById('bjStandBtn').classList.add('hidden');
         }
-
         function bjSum(h) {
             const val = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
             let s = h.reduce((a, b) => a + val(b), 0), aces = h.filter(c => c.v === 'A').length;
             while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
         }
 
-        /* MLB TACTICAL HUB (FULL SLATE REWRITE) */
-        async function refreshMLB() {
-            const grid = document.getElementById('mlbGamesGrid');
-            grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 5rem; opacity:0.3;">ORCHESTRATING DATA STREAM...</div>';
+        /* MLB HUB (RECOVERY) */
+        async function fetchLeagueScores() {
+            const board = document.getElementById('leagueBoard');
+            board.innerHTML = '<p style="text-align:center; grid-column:1/-1;">ORCHESTRATING DATA STREAM...</p>';
             try {
-                const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings),metadata');
-                const data = await res.json();
-                const games = data.dates[0]?.games || [];
-                grid.innerHTML = '';
-                if(games.length === 0) grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 5rem; opacity:0.5;">NO ACTIVE GAMES IN SCHEDULE.</p>';
-                
+                const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings)');
+                const data = await res.json(); const games = data.dates[0]?.games || [];
+                board.innerHTML = '';
                 games.forEach(g => {
-                    const card = document.createElement('div');
-                    card.className = 'executive-game-card';
-                    const away = g.teams.away, home = g.teams.home;
-                    const isLive = g.status.abstractGameState === 'Live';
-                    card.innerHTML = `
-                        <div style="display:flex; justify-content:space-between; margin-bottom:1.5rem;">
-                            <span class="game-status-pill ${isLive?'status-live':''}">${g.status.detailedState}</span>
-                            <span style="font-size:0.7rem; font-weight:700; color:var(--xav-navy);">${g.linescore?.inningState || ''} ${g.linescore?.currentInningOrdinal || ''}</span>
-                        </div>
-                        <div class="score-row"><span>${away.team.name}</span><span class="score-val">${away.score || 0}</span></div>
-                        <div class="score-row"><span>${home.team.name}</span><span class="score-val">${home.score || 0}</span></div>
-                        <div style="margin-top:1.5rem; font-size:0.6rem; color:var(--xav-silver); text-align:center; border-top:1px solid var(--border); padding-top:1rem;">
-                            ${g.venue.name} | ${new Date(g.gameDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                        </div>
-                    `;
-                    grid.appendChild(card);
+                    const card = document.createElement('div'); card.className = 'glass-card'; card.style.margin = '0';
+                    const aRec = g.teams.away.leagueRecord ? `(${g.teams.away.leagueRecord.wins}-${g.teams.away.leagueRecord.losses})` : '';
+                    const hRec = g.teams.home.leagueRecord ? `(${g.teams.home.leagueRecord.wins}-${g.teams.home.leagueRecord.losses})` : '';
+                    card.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${g.teams.away.team.name}</strong><br><small>${aRec}</small><br><span style="font-size:3rem; font-weight:900;">${g.teams.away.score||0}</span></div><div style="text-align:center;"><div class="node-label">${g.status.detailedState}</div><div style="margin:0.5rem 0; opacity:0.3;">@</div><small>${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${g.teams.home.team.name}</strong><br><small>${hRec}</small><br><span style="font-size:3rem; font-weight:900;">${g.teams.home.score||0}</span></div></div>`;
+                    board.appendChild(card);
                 });
-                populateOdds(games);
-                document.getElementById('mlbTicker').innerText = `LIVE: ${games.length} GAMES DETECTED. DATA SYNCED WITH MLB.COM CLOUD. TACTICAL FEED NOMINAL.`;
-            } catch(e) { grid.innerHTML = '<p>Connection Interrupted. Re-linking...</p>'; }
+            } catch(e) { board.innerHTML = '<p>Connection Offline.</p>'; }
         }
 
-        function populateOdds(games) {
-            const list = document.getElementById('oddsList'); list.innerHTML = '';
-            games.slice(0, 6).forEach(g => {
-                const homeRec = g.teams.home.leagueRecord;
-                const winPct = (homeRec.wins / (homeRec.wins + homeRec.losses)) || 0.5;
-                const ml = winPct > 0.52 ? `-${Math.round(winPct * 250)}` : `+${Math.round((1-winPct) * 200)}`;
-                const div = document.createElement('div'); div.className = 'odds-row';
-                div.innerHTML = `
-                    <div><strong>${g.teams.home.team.name}</strong><div class="jarvis-intelligence">Value detected on ML: ${ml}</div></div>
-                    <div class="odds-val">${ml}</div>
-                `;
-                list.appendChild(div);
-            });
-            document.getElementById('jarvisAdvice').innerText = `"Sir, the current slate suggests high statistical volatility in the ${games[0]?.teams.away.team.name} matchup. Recommended strategy: Conservative Run-line."`;
-        }
-
-        async function syncFieldMap(id) {
+        async function refreshTeamData() {
+            const id = teamMap[state.cTeam];
             const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
-            const data = await res.json();
-            const arena = document.getElementById('fieldMapArena');
-            arena.innerHTML = '<svg viewBox="0 0 100 100" style="width:100%; height:100%; opacity:0.1;"><path d="M50 90 L10 50 L50 10 L90 50 Z" fill="none" stroke="white" stroke-width="0.5"></path></svg>';
+            const data = await res.json(); state.fullRoster = data.roster;
+            renderRoster(state.fullRoster);
+            renderFieldNodes(state.fullRoster);
+            fetchLiveScoreboard(id);
+        }
+
+        function renderRoster(ros) {
+            const grid = document.getElementById('rosterGrid'); grid.innerHTML = '';
+            ros.forEach(p => {
+                const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
+                const div = document.createElement('div'); div.className = 'glass-card'; div.style.padding = '1.5rem';
+                div.innerHTML = `<img src="${img}" style="width:100%; border-radius:15px; margin-bottom:1rem;"><h4 style="font-size:1.1rem;">${p.person.fullName}</h4><p style="color:var(--accent); font-weight:900;">${p.position.name}</p>`;
+                grid.appendChild(div);
+            });
+        }
+
+        function renderFieldNodes(ros) {
+            const map = document.getElementById('fieldMap'); document.querySelectorAll('.field-node').forEach(n => n.remove());
             const pos = { 'P':[50,55], 'C':[50,88], '1B':[78,50], '2B':[68,32], '3B':[22,50], 'SS':[32,32], 'LF':[15,20], 'CF':[50,8], 'RF':[85,20] };
             Object.keys(pos).forEach(key => {
-                const player = data.roster.find(p => p.position.abbreviation === key) || { person: { fullName: 'TBD' } };
-                const div = document.createElement('div');
-                div.style.position = 'absolute'; div.style.left = pos[key][0]+'%'; div.style.top = pos[key][1]+'%';
-                div.style.transform = 'translate(-50%, -50%)'; div.style.textAlign = 'center'; div.style.color = 'white';
-                div.innerHTML = `<div style="font-size:0.6rem; font-weight:900; background:var(--success); color:black; padding:2px 6px; border-radius:5px; display:inline-block;">${key}</div><div style="font-size:0.7rem; font-weight:700; margin-top:3px; text-shadow: 0 2px 4px black;">${player.person.fullName}</div>`;
-                arena.appendChild(div);
+                const player = ros.find(p => p.position.abbreviation === key) || { person: { fullName: 'TBD' } };
+                const div = document.createElement('div'); div.className = 'field-node'; div.style.left = pos[key][0]+'%'; div.style.top = pos[key][1]+'%';
+                div.innerHTML = `<div class="node-label">${key}</div><div class="node-name">${player.person.fullName}</div>`;
+                map.appendChild(div);
             });
         }
 
-        function spinRouletteSim() { updateChips(50); alert("Sir, physics simulation confirmed. +50 Chips credited for testing."); }
+        async function fetchLiveScoreboard(id) {
+            const sb = document.getElementById('teamScoreboard');
+            try {
+                const res = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
+                const data = await res.json(); const g = data.dates[0]?.games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id);
+                if(!g) { sb.innerHTML = '<h2 style="text-align:center;">No Active Game Today</h2>'; return; }
+                sb.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><h3>${g.teams.away.team.name}</h3><span style="font-size:4rem; font-weight:900;">${g.teams.away.score||0}</span></div><div style="text-align:center;"><h4>${g.status.detailedState}</h4><p>${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</p></div><div style="text-align:right;"><h3>${g.teams.home.team.name}</h3><span style="font-size:4rem; font-weight:900;">${g.teams.home.score||0}</span></div></div>`;
+            } catch(e) { sb.innerHTML = '<h3>Stream Offline</h3>'; }
+        }
+
+        /* UTILS */
+        window.updateAgent = (t, m) => { document.getElementById('agentBriefing').innerHTML = `<strong>${t}:</strong> ${m}`; };
+        window.queryAgent = () => {
+            const q = document.getElementById('jarvisQuery').value.toLowerCase(); let r = "Try 'Identity', 'Strategy', or 'Casino'.";
+            if(q.includes('identity')) r = "The Identity Vault unlocks at 1,000 chips, Sir.";
+            if(q.includes('strategy')) r = "Frank's strategy focus is on Cognitive Enterprise scaling and data mesh design.";
+            if(q.includes('casino')) r = "All chips are persisted across sessions. Reach 1,000 to win.";
+            updateAgent('JARVIS', r); document.getElementById('jarvisQuery').value = '';
+        };
+        window.runROICalc = () => { const s = document.getElementById('roiSlider').value; document.getElementById('staffCount').innerText = s; document.getElementById('roiResult').innerText = ((s * 75000 * 0.30) / 1000000).toFixed(2) + "M"; };
+        window.filterBySearch = () => {
+            const q = document.getElementById('playerSearch').value.toLowerCase();
+            renderRoster(state.fullRoster.filter(p => p.person.fullName.toLowerCase().includes(q)));
+        };
+        window.filterRoster = (group) => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            let f = state.fullRoster;
+            if(group==='Infielders') f = f.filter(p => ['1B','2B','3B','SS'].includes(p.position.abbreviation));
+            if(group==='Pitchers') f = f.filter(p => p.position.abbreviation==='P');
+            renderRoster(f);
+        };
 
         window.onload = () => {
-            const saved = localStorage.getItem('franks_mgmt_v81_chips');
+            const saved = localStorage.getItem('franks_mgmt_chips_v82');
             if(saved) state.chips = parseInt(saved);
             document.getElementById('chipBank').innerText = state.chips;
             switchView('home');
+            runROICalc();
         };
     </script>
 </body>
