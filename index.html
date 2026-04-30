@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Premium Executive Hub v8.8</title>
+    <title>Franks_MGMT_Project | Executive Strategic Hub v8.9</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Professional Xavier & MLB Foundation */
+            /* Xavier University Professional Palette */
             --xav-blue: #0C2340; --xav-silver: #9EA2A2; --bg-color: #f8fafc;
             --card-bg: rgba(255, 255, 255, 0.98); --border-color: rgba(15, 23, 42, 0.1);
             --text-main: #1a202c; --text-muted: #4a5568; --accent: #0C2340; --success: #10b981; --warning: #f59e0b; --danger: #e11d48;
@@ -54,7 +54,7 @@
         .ticker-stamp { font-weight: 900; color: var(--success); background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 10px; }
         @keyframes tickerScroll { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-        /* BASEBALL CARDS */
+        /* ROSTER GRID */
         .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3.5rem; }
         .player-card { height: 520px; perspective: 1500px; cursor: pointer; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
@@ -70,7 +70,7 @@
         .stat-line { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 2px solid #f1f5f9; font-weight: 900; font-size: 1.1rem; }
         .stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PARLAY ENGINE */
+        /* PARLAY BOARD */
         .parlay-architect { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 3rem; margin-top: 4rem; }
         .parlay-card { background: #fff; border-radius: 35px; padding: 3rem; border: 3px solid var(--border-color); position: relative; transition: 0.3s; }
         .parlay-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
@@ -82,48 +82,54 @@
         .source-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--accent); font-weight: 800; text-decoration: none; font-size: 0.85rem; }
         .source-link:hover { text-decoration: underline; }
 
-        /* TACTICAL FIELD */
+        /* LEAGUE BOARD */
+        .league-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 3rem; }
+        .score-link { text-decoration: none; color: inherit; display: block; }
+        .score-card { background: #fff; border: 1.5px solid var(--border-color); border-radius: 28px; padding: 3rem; transition: 0.4s; }
+        .score-card:hover { border-color: var(--accent); box-shadow: 0 15px 35px var(--glow); }
+
+        /* FIELD MAP */
         .field-frame { position: relative; width: 100%; max-width: 1000px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 60px; border: 10px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,0.9); }
         .field-node { position: absolute; width: 130px; text-align: center; transform: translate(-50%, -50%); transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1); z-index: 10; }
         .node-tag { font-size: 0.8rem; font-weight: 900; background: var(--success); color: #000; padding: 3px 12px; border-radius: 12px; display: inline-block; }
         .node-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-top: 6px; text-shadow: 0 3px 6px rgba(0,0,0,1); }
 
-        /* CASINO FLOOR */
-        .game-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.995); backdrop-filter: blur(40px); z-index: 5000; padding: 2%; overflow-y: auto; color: white; }
-        .hud-bar { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 50px; padding: 2.5rem; margin-bottom: 5rem; border: 2.5px solid rgba(255,255,255,0.1); }
+        /* CASINO REDESIGN (v8.9) */
+        .casino-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.995); backdrop-filter: blur(40px); z-index: 5000; padding: 2%; overflow-y: auto; color: white; }
+        .casino-hud { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 50px; padding: 2.5rem; margin-bottom: 5rem; border: 2.5px solid rgba(255,255,255,0.1); }
         .avatar-img { width: 160px; height: 160px; border-radius: 50%; border: 6px solid var(--casino-gold); overflow: hidden; background: #111; box-shadow: 0 0 50px rgba(0,0,0,0.6); }
+        .avatar-img.dealer { border-color: var(--success); }
         .avatar-img img { width: 100%; height: 100%; object-fit: cover; }
         
         .btn-casino { background: linear-gradient(180deg, var(--casino-gold) 0%, #d97706 100%); color: #000; border: none; padding: 1.5rem 4rem; border-radius: 20px; font-weight: 900; cursor: pointer; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 8px 0 #92400e; text-transform: uppercase; }
-        .btn-casino:hover { transform: translateY(-4px); box-shadow: 0 12px 0 #92400e, 0 0 30px rgba(251, 191, 36, 0.4); }
-        .btn-casino:active { transform: translateY(6px); box-shadow: 0 2px 0 #92400e; }
+        .btn-casino:hover:not(:disabled) { transform: translateY(-4px); box-shadow: 0 12px 0 #92400e, 0 0 30px rgba(251, 191, 36, 0.4); }
+        .btn-casino:active:not(:disabled) { transform: translateY(6px); box-shadow: 0 2px 0 #92400e; }
+        .btn-casino:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
 
-        /* ROULETTE BOARD */
-        .roulette-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-        .roulette-table { display: grid; grid-template-columns: repeat(13, 1fr); gap: 8px; width: 100%; background: #111; padding: 30px; border-radius: 25px; border: 12px solid #3d2b1f; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-        .r-cell { aspect-ratio: 1/1.6; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; cursor: pointer; border-radius: 12px; border: 4px solid transparent; transition: 0.2s; color: #fff; }
-        .r-cell:hover { border-color: var(--casino-gold); transform: scale(1.08); z-index: 50; }
+        .roulette-board { display: grid; grid-template-columns: repeat(13, 1fr); gap: 10px; max-width: 1200px; margin: 4rem auto; background: #111; padding: 30px; border-radius: 30px; border: 15px solid #3d2b1f; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+        .r-cell { aspect-ratio: 1/1.5; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; cursor: pointer; border-radius: 12px; border: 4px solid transparent; transition: 0.2s; color: #fff; }
+        .r-cell:hover { border-color: var(--casino-gold); transform: scale(1.05); }
         .r-cell.red { background: #e11d48; }
         .r-cell.black { background: #000; }
         .r-cell.green { background: #10b981; grid-row: span 3; }
         
-        .roulette-outsides { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; width: 100%; margin-top: 2rem; }
-        .r-outside { height: 80px; background: #2d1b0f; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; border: 4px solid transparent; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+        .r-outsides { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1200px; margin: 2rem auto; }
+        .r-outside { height: 90px; background: #2d1b0f; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; border: 5px solid transparent; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
         .r-outside:hover { border-color: var(--casino-gold); background: #3d2b1f; }
         .r-outside.red { color: #e11d48; }
         .r-outside.black { color: #fff; }
 
-        .hand-container { display: flex; gap: 1.5rem; justify-content: center; min-height: 200px; align-items: center; margin: 3rem 0; }
-        .card-visual { width: 135px; height: 195px; background: #fff; border-radius: 18px; color: #000; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; font-weight: 900; font-size: 2rem; box-shadow: 0 15px 30px rgba(0,0,0,0.5); animation: cardDeal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card-visual.red { color: #e11d48; }
-        .card-hidden { background: var(--xav-blue); border: 8px solid #fff; background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 1px); background-size: 15px 15px; }
-        @keyframes cardDeal { from { transform: translateY(-400px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
+        .hand-box { display: flex; gap: 1.5rem; justify-content: center; min-height: 200px; align-items: center; margin: 3rem 0; }
+        .card-view { width: 140px; height: 200px; background: #fff; border-radius: 18px; color: #000; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; font-weight: 900; font-size: 2.2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.5); animation: cardDeal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        .card-view.red { color: #e11d48; }
+        .card-back { background: var(--xav-blue); border: 8px solid #fff; background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 1px); background-size: 15px 15px; }
+        @keyframes cardDeal { from { transform: translateY(-500px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
 
         .hidden { display: none !important; }
         .btn-close { position: absolute; top: 2rem; right: 4rem; font-size: 6rem; cursor: pointer; opacity: 0.3; transition: 0.3s; color: #fff; z-index: 6000; }
         .btn-close:hover { opacity: 1; color: var(--casino-gold); transform: rotate(90deg); }
 
-        @media (max-width: 1200px) { .roster-grid { grid-template-columns: 1fr 1fr; } .roulette-outsides { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 1200px) { .roster-grid { grid-template-columns: 1fr 1fr; } .r-outsides { grid-template-columns: repeat(3, 1fr); } }
     </style>
 </head>
 <body data-theme="light">
@@ -133,81 +139,74 @@
         <div class="nav-links">
             <button class="btn-action active" id="nav-home" onclick="switchView('home')"><i class="fas fa-home"></i> Home</button>
             <button class="btn-action" id="nav-casino" onclick="switchView('casino')"><i class="fas fa-coins"></i> Casino</button>
-            <button class="btn-action" id="nav-mlb" onclick="switchView('mlb')"><i class="fas fa-baseball-ball"></i> MLB Savant</button>
-            <div class="chip-display"><i class="fas fa-gem" style="color: #d97706;"></i> <span id="globalPoints">100</span></div>
+            <button class="btn-action" id="nav-mlb" onclick="switchView('mlb')"><i class="fas fa-baseball-ball"></i> MLB Hub</button>
+            <div class="chip-display"><i class="fas fa-gem" style="color: #d97706;"></i> <span id="globalBalance">100</span></div>
         </div>
     </nav>
 
     <!-- HERO -->
     <header class="hero" id="mainHero">
         <h1 id="heroH1">FRANKS_MGMT_PROJECT</h1>
-        <p id="heroSubtitle">Strategic Business Intelligence | Baseball Savant v8.8</p>
+        <p id="heroSubtitle">Strategic Business Intelligence | v8.9 Executive Rebuild</p>
     </header>
 
     <main>
         <div class="ticker-frame"><div class="ticker-track" id="mlbTicker"></div></div>
 
-        <!-- HOME VIEW -->
+        <!-- HOME -->
         <div id="view-home" class="view-content active">
             <section class="glass-card">
                 <div style="display: grid; grid-template-columns: 380px 1fr; gap: 6rem; align-items: center;">
                     <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.2);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
                     <div>
-                        <h2 class="section-title">Hello & Welcome!</h2>
+                        <h2 class="section-title">Welcome & Hello!</h2>
                         <p style="font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; color: var(--xav-blue); line-height: 1.2;">Thank you for exploring my project hub.</p>
-                        <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 2.2;">I am a student at **Xavier University, Class of 2027**, focusing on Business Management and AI Strategy. This site demonstrates real-time data sync and premium interaction. Explore the MLB tactical analytics or play in the Casino—reach 1,000 points to unlock my professional credentials!</p>
+                        <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 2.2;">I am a student at **Xavier University, Class of 2027**, focusing on Business Management and AI Strategy. This platform demonstrates real-time data sync and premium interaction. Explore the MLB tactical analytics or play in the Casino—reach 1,000 points to unlock my professional credentials!</p>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- CASINO VIEW -->
+        <!-- CASINO LOBBY -->
         <div id="view-casino" class="view-content">
              <section class="glass-card" style="text-align:center; padding: 6rem;">
-                <h2 class="section-title" style="border:none; padding:0;">The Vegas Floor</h2>
-                <p style="font-size:1.5rem; margin-bottom:4rem;">Reach **1,000 Chips** to win a special message and unlock my credentials. Good luck!</p>
-                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:3rem;">
-                    <div class="btn-action active" style="flex-direction:column; padding:4rem; border-radius:30px; height:auto; gap:2rem;" onclick="launchGame('roulette')">
-                        <i class="fas fa-dharmachakra" style="font-size:5rem; color:var(--casino-gold);"></i>
-                        <h3>Royal Roulette</h3>
+                <h2 class="section-title" style="border:none; padding:0; margin-bottom: 2rem;">Executive Casino Floor</h2>
+                <p style="font-size:1.6rem; margin-bottom:5rem; color: var(--text-muted);">Reach **1,000 Chips** to unlock the security vault. Your progress is saved automatically.</p>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:4rem;">
+                    <div class="btn-action active" style="flex-direction:column; padding:5rem 2rem; border-radius:40px; height:auto; gap:2.5rem;" onclick="launchGame('roulette')">
+                        <i class="fas fa-dharmachakra" style="font-size:6rem; color:var(--casino-gold);"></i>
+                        <h3 style="font-size: 2rem;">Royal Roulette</h3>
+                        <p style="text-transform: none; font-weight: 400; letter-spacing: 0; opacity: 0.7;">Full board betting options with 35:1 payouts.</p>
                     </div>
-                    <div class="btn-action active" style="flex-direction:column; padding:4rem; border-radius:30px; height:auto; gap:2rem;" onclick="launchGame('blackjack')">
-                        <i class="fas fa-spade" style="font-size:5rem; color:var(--casino-gold);"></i>
-                        <h3>Neural Blackjack</h3>
+                    <div class="btn-action active" style="flex-direction:column; padding:5rem 2rem; border-radius:40px; height:auto; gap:2.5rem;" onclick="launchGame('blackjack')">
+                        <i class="fas fa-spade" style="font-size:6rem; color:var(--casino-gold);"></i>
+                        <h3 style="font-size: 2rem;">Neural 21</h3>
+                        <p style="text-transform: none; font-weight: 400; letter-spacing: 0; opacity: 0.7;">Beat the dealer. Professional logic and card mechanics.</p>
                     </div>
                 </div>
              </section>
         </div>
 
-        <!-- MLB VIEW -->
+        <!-- MLB VIEW (v8.7 RESTORED) -->
         <div id="view-mlb" class="view-content">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:5rem;">
                 <div>
                     <h2 class="section-title" style="margin:0; border:none; padding:0;">MLB Tactical Hub</h2>
-                    <p style="color:var(--text-muted); font-weight:800; letter-spacing:2px; text-transform:uppercase;">Statcast Analytics • Live Data Mesh</p>
+                    <p style="color:var(--text-muted); font-weight:800; letter-spacing:2px; text-transform:uppercase;">Statcast Analytics • 30-Team Data Mesh</p>
                 </div>
                 <div style="display:flex; gap:1.5rem;">
-                    <select id="teamSelector" onchange="syncSavantTeam(this.value)" style="padding:1rem 2rem; border-radius:50px; border:3px solid var(--accent); background:#fff; font-weight:900; cursor:pointer;">
-                        <option value="HOME">Select Team Feed</option>
-                    </select>
-                    <button class="btn-action active" onclick="fetchSavantLeague()"><i class="fas fa-sync"></i> Refresh All</button>
+                    <select id="teamSelector" onchange="syncSavantTeam(this.value)" style="padding:1rem 2.5rem; border-radius:50px; border:3px solid var(--accent); background:#fff; font-weight:900; cursor:pointer; outline:none;"></select>
+                    <button class="btn-action active" onclick="initSavantHub()"><i class="fas fa-sync"></i> Refresh Data</button>
                 </div>
             </div>
-
-            <!-- PARLAY ENGINE -->
             <section class="glass-card">
-                <h3 style="font-family:'Playfair Display'; font-size:2.8rem; margin-bottom:2rem;"><i class="fas fa-bolt" style="color:var(--casino-gold);"></i> Parlay Architect</h3>
+                <h3 style="font-family:'Playfair Display'; font-size:2.8rem; margin-bottom:2.5rem;"><i class="fas fa-bolt" style="color:var(--casino-gold);"></i> Parlay Architect</h3>
                 <div class="parlay-architect" id="parlayBoard"></div>
             </section>
-
-            <!-- LIVE SLATE BOARD -->
             <div id="leagueSlate" class="league-board" style="margin-bottom:6rem;"></div>
-
-            <!-- TEAM SAVANT VIEW -->
             <div id="teamSavantView" class="hidden">
                 <div class="glass-card" id="teamHeader" style="background:var(--accent); color:#fff; border:none; padding:5rem; text-align:center;"></div>
-                
-                <div style="display:grid; grid-template-columns: 2.5fr 1fr; gap:5rem; margin-bottom:6rem;">
+                <div style="display:grid; grid-template-columns: 2.5fr 1.2fr; gap:5rem; margin-bottom:6rem;">
                     <div class="glass-card" style="margin:0; padding:3rem;">
                         <h3 style="margin-bottom:2.5rem; font-family:'Playfair Display'; font-size:2.2rem;"><i class="fas fa-crosshairs" style="color:var(--success);"></i> Live Field positioning</h3>
                         <div class="field-frame" id="savantField">
@@ -219,7 +218,6 @@
                         <div id="oddsVal" style="font-size:3.5rem; font-weight:900; text-align:center; color:#991b1b;">+145 ML</div>
                     </div>
                 </div>
-
                 <h3 class="section-title" style="font-size:2.2rem;">Baseball Card Roster</h3>
                 <div id="savantRoster" class="roster-grid"></div>
             </div>
@@ -229,40 +227,56 @@
     <!-- CASINO OVERLAYS -->
     <div id="game-blackjack" class="game-overlay">
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
-        <div class="hud-bar">
-            <div class="avatar-box"><div class="avatar-img dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=10b981&color=fff&size=512"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--success);">PRO DEALER</h4></div>
-            <div style="text-align:center; flex:1;"><h2 style="font-family:'Playfair Display'; font-size:4.5rem; color:var(--casino-gold);">NEURAL 21</h2><div id="bjStatus" style="font-size:2.5rem; font-weight:900; margin-top:1rem;">WAGER 10+</div><div style="font-size:2rem; margin-top:1rem; font-weight:900; color:#fff; background:rgba(0,0,0,0.4); padding:10px 30px; border-radius:15px; display:inline-block;">BALANCE: <span id="bjChips">100</span></div></div>
-            <div class="avatar-box"><div class="avatar-img"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--casino-gold);">EXECUTIVE</h4></div>
+        <div class="casino-hud">
+            <div class="avatar-box"><div class="avatar-img dealer"><img src="https://ui-avatars.com/api/?name=Dealer&background=38a169&color=fff&size=512"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--success); letter-spacing:2px;">PRO DEALER</h4></div>
+            <div style="text-align:center; flex:1;">
+                <h2 style="font-family:'Playfair Display'; font-size:4.5rem; color:var(--casino-gold);">NEURAL 21</h2>
+                <div id="bjStatus" style="font-size:2.2rem; font-weight:900; margin-top:1rem; letter-spacing:5px;">PLACE YOUR BET</div>
+                <div style="font-size:1.8rem; margin-top:1.5rem; font-weight:900; color:#fff; background:rgba(0,0,0,0.5); padding:12px 40px; border-radius:20px; display:inline-block; border: 2px solid var(--casino-gold);">YOUR CHIPS: <span id="bjChipsHUD">100</span></div>
+            </div>
+            <div class="avatar-box"><div class="avatar-img"><img src="frankkrotoicon.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Player&background=fbbf24&color=000'"></div><h4 style="margin-top:1.5rem; font-weight:900; color:var(--casino-gold); letter-spacing:2px;">EXECUTIVE</h4></div>
         </div>
-        <div id="bjDealerHand" class="hand-container"></div>
-        <div id="bjTableMsg" style="height:150px; display:flex; align-items:center; justify-content:center; font-size:3rem; font-weight:900; color:var(--casino-gold);"></div>
-        <div id="bjPlayerHand" class="hand-container"></div>
-        <div style="display:flex; justify-content:center; gap:4rem; margin-top:6rem; align-items:center; background:rgba(0,0,0,0.6); padding:4rem; border-radius:60px;">
-            <input type="number" id="bjBet" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:220px; font-weight:900; font-size:2.5rem; text-align:center; border:none;">
-            <button class="btn-casino" id="bjBtnStart" onclick="bjStart()">DEAL CARDS</button>
-            <button class="btn-casino hidden" id="bjBtnHit" onclick="bjHit()">HIT</button>
-            <button class="btn-casino hidden" id="bjBtnStand" onclick="bjStand()">STAND</button>
+        <div id="bjDealerHand" class="hand-box"></div>
+        <div id="bjMsg" style="height:150px; display:flex; align-items:center; justify-content:center; font-size:3.5rem; font-weight:900; color:var(--casino-gold);"></div>
+        <div id="bjPlayerHand" class="hand-box"></div>
+        <div style="display:flex; justify-content:center; gap:4rem; margin-top:6rem; align-items:center; background:rgba(0,0,0,0.7); padding:4rem; border-radius:60px; border: 2px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <label style="font-weight: 900; color: var(--casino-gold); font-size: 1rem; letter-spacing: 2px;">WAGER AMOUNT</label>
+                <input type="number" id="bjBetInput" value="25" min="10" step="25" style="padding:1.6rem; border-radius:20px; width:220px; font-weight:900; font-size:2.5rem; text-align:center; border:none; outline: none;">
+            </div>
+            <button class="btn-casino" id="bjBtnStart" onclick="BJ_ENGINE.start()">DEAL CARDS</button>
+            <button class="btn-casino hidden" id="bjBtnHit" onclick="BJ_ENGINE.hit()">HIT</button>
+            <button class="btn-casino hidden" id="bjBtnStand" onclick="BJ_ENGINE.stand()">STAND</button>
         </div>
     </div>
 
     <div id="game-roulette" class="game-overlay">
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
-        <div style="text-align:center; margin-bottom:4rem;"><h2 style="font-family:'Playfair Display'; font-size:5rem; color:var(--casino-gold);">IMPERIAL ROULETTE</h2><div style="font-size:2.5rem; font-weight:900; color:#fff; background:rgba(0,0,0,0.4); padding:10px 40px; border-radius:20px; display:inline-block; margin-top:1rem;">BALANCE: <span id="rChips">100</span></div></div>
+        <div style="text-align:center; margin-bottom:5rem;">
+            <h2 style="font-family:'Playfair Display'; font-size:5rem; color:var(--casino-gold);">IMPERIAL ROULETTE</h2>
+            <div style="font-size:2rem; font-weight:900; color:#fff; background:rgba(0,0,0,0.5); padding:12px 50px; border-radius:20px; display:inline-block; border: 2px solid var(--casino-gold); margin-top: 1.5rem;">YOUR CHIPS: <span id="rChipsHUD">100</span></div>
+        </div>
         <div class="roulette-container">
             <div class="roulette-table" id="rBoard"></div>
-            <div class="roulette-outsides">
-                <div class="r-outside" onclick="selectR('1st12')">1st 12</div>
-                <div class="r-outside" onclick="selectR('2nd12')">2nd 12</div>
-                <div class="r-outside" onclick="selectR('3rd12')">3rd 12</div>
-                <div class="r-outside" onclick="selectR('even')">Even</div>
-                <div class="r-outside red" onclick="selectR('red')">Red</div>
-                <div class="r-outside black" onclick="selectR('black')">Black</div>
-                <div class="r-outside" onclick="selectR('odd')">Odd</div>
-                <div class="r-outside" onclick="selectR('1-18')">1-18</div>
-                <div class="r-outside" onclick="selectR('19-36')">19-36</div>
+            <div class="r-outsides">
+                <div class="r-outside" onclick="R_ENGINE.selectZone('1st12')">1st 12</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('2nd12')">2nd 12</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('3rd12')">3rd 12</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('even')">Even</div>
+                <div class="r-outside red" onclick="R_ENGINE.selectZone('red')">Red</div>
+                <div class="r-outside black" onclick="R_ENGINE.selectZone('black')">Black</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('odd')">Odd</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('1-18')">1-18</div>
+                <div class="r-outside" onclick="R_ENGINE.selectZone('19-36')">19-36</div>
             </div>
         </div>
-        <div style="text-align:center; margin-top:5rem;"><div id="rStatus" style="font-size:4rem; font-weight:900; color:var(--casino-gold); margin-bottom:4rem;">SELECT A ZONE</div><div style="display:flex; justify-content:center; gap:3rem; align-items:center;"><input type="number" id="rBetAmt" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:250px; font-weight:900; font-size:2.5rem; text-align:center; border:none;"><button class="btn-casino" onclick="rSpin()">SPIN WHEEL</button></div></div>
+        <div style="text-align:center; margin-top:6rem;">
+            <div id="rStatusHUD" style="font-size:4.5rem; font-weight:900; color:var(--casino-gold); margin-bottom:4rem;">SELECT A ZONE</div>
+            <div style="display:flex; justify-content:center; gap:4rem; align-items:center; background:rgba(0,0,0,0.6); padding:4rem; border-radius:60px; width: max-content; margin: 0 auto;">
+                <input type="number" id="rBetInput" value="25" min="10" step="25" style="padding:1.6rem; border-radius:25px; width:280px; font-weight:900; font-size:2.8rem; text-align:center; border:none; outline:none;">
+                <button class="btn-casino" id="rSpinBtn" onclick="R_ENGINE.spin()">SPIN WHEEL</button>
+            </div>
+        </div>
     </div>
 
     <!-- UNLOCK REWARD -->
@@ -285,16 +299,20 @@
     </div>
 
     <script>
-        /* v8.8 EXECUTIVE ENGINE */
-        let state = {
-            chips: 100, view: 'home', cTeam: 'CLE', fullRoster: [],
+        /* v8.9 SYSTEM STATE */
+        const APP_STATE = {
+            chips: 100,
+            view: 'home',
+            cTeam: 'CLE',
             teamIds: { "CLE":114, "LAD":119, "NYY":147, "PHI":143, "ATL":144, "HOU":117, "BAL":110, "BOS":111, "TB":139, "TOR":141, "CWS":145, "DET":116, "KC":118, "MIN":142, "LAA":108, "SEA":136, "TEX":140, "MIA":146, "NYM":121, "WSH":120, "CHC":112, "CIN":113, "MIL":158, "PIT":134, "STL":138, "AZ":109, "COL":115, "SD":135, "SF":137, "OAK":133 },
-            teamColors: { "CLE": "#E31937", "LAD": "#005A9C", "NYY": "#003087", "PHI": "#E81828", "ATL": "#CE1141", "HOU": "#EB6E1F", "BAL": "#DF4601", "BOS": "#BD3039", "TB": "#092C5C", "TOR": "#134A8E", "CWS": "#27251F", "DET": "#0C2340", "KC": "#004687", "MIN": "#002B5C", "LAA": "#BA0021", "SEA": "#005C5C", "TEX": "#003278", "MIA": "#00A3E0", "NYM": "#FF5910", "WSH": "#AB0003", "CHC": "#0E3386", "CIN": "#C6011F", "MIL": "#12284B", "PIT": "#FFB81C", "STL": "#C41E3A", "AZ": "#A71930", "COL": "#333366", "SD": "#2F241D", "SF": "#FD5A1E", "OAK": "#003831" },
-            bj: { deck:[], player:[], dealer:[], bet:0, active: false }, rBet: null
+            teamColors: { "CLE":"#E31937", "LAD":"#005A9C", "NYY":"#003087", "PHI":"#E81828", "ATL":"#CE1141", "HOU":"#EB6E1F", "BAL":"#DF4601", "BOS":"#BD3039", "TB":"#092C5C", "TOR":"#134A8E", "CWS":"#27251F", "DET":"#0C2340", "KC":"#004687", "MIN":"#002B5C", "LAA":"#BA0021", "SEA":"#005C5C", "TEX":"#003278", "MIA":"#00A3E0", "NYM":"#FF5910", "WSH":"#AB0003", "CHC":"#0E3386", "CIN":"#C6011F", "MIL":"#12284B", "PIT":"#FFB81C", "STL":"#C41E3A", "AZ":"#A71930", "COL":"#333366", "SD":"#2F241D", "SF":"#FD5A1E", "OAK":"#003831" }
         };
 
+        const SUITS = ['S', 'H', 'D', 'C'], VALS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+
+        /* GLOBAL CORE */
         function switchView(v) {
-            state.view = v;
+            APP_STATE.view = v;
             document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active'));
             document.getElementById(`view-${v}`).classList.add('active');
             document.querySelectorAll('.btn-action').forEach(b => b.classList.remove('active'));
@@ -303,128 +321,163 @@
             window.scrollTo(0,0);
         }
 
-        function updateChips(amt) {
-            state.chips += amt;
-            document.querySelectorAll('#masterPoints, #bjChips, #rChips, #globalPoints').forEach(el => el.innerText = state.chips);
-            if(state.chips >= 1000) document.getElementById('unlock-sequence').style.display = 'block';
-            localStorage.setItem('franks_chips_v88', state.chips);
+        function updateGlobalChips(amt) {
+            APP_STATE.chips += amt;
+            document.querySelectorAll('#globalBalance, #bjChipsHUD, #rChipsHUD').forEach(el => el.innerText = APP_STATE.chips);
+            if(APP_STATE.chips >= 1000) document.getElementById('unlock-sequence').style.display = 'block';
+            localStorage.setItem('franks_chips_v89', APP_STATE.chips);
         }
 
-        function launchGame(g) { document.getElementById(`game-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; if(g==='roulette') initRoulette(); }
+        function launchGame(g) { document.getElementById(`game-${g}`).style.display = 'block'; document.body.style.overflow = 'hidden'; if(g==='roulette') R_ENGINE.init(); }
         function closeOverlay() { document.querySelectorAll('.game-overlay').forEach(o => o.style.display = 'none'); document.body.style.overflow = 'auto'; }
 
-        /* BLACKJACK */
-        function bjStart() {
-            const bet = parseInt(document.getElementById('bjBet').value);
-            if(bet < 10 || bet > state.chips) return alert("Check wager.");
-            updateChips(-bet);
-            state.bj = { deck: createDeck(), player:[], dealer:[], bet: bet, active: true };
-            state.bj.player = [state.bj.deck.pop(), state.bj.deck.pop()];
-            state.bj.dealer = [state.bj.deck.pop(), state.bj.deck.pop()];
-            bjRender();
-            document.getElementById('bjStatus').innerText = "YOUR ACTION";
-            document.getElementById('bjBtnStart').classList.add('hidden');
-            document.getElementById('bjBtnHit').classList.remove('hidden');
-            document.getElementById('bjBtnStand').classList.remove('hidden');
-        }
-        function bjRender(f = false) {
-            const p = document.getElementById('bjPlayerHand'), d = document.getElementById('bjDealerHand');
-            p.innerHTML = ''; d.innerHTML = '';
-            state.bj.player.forEach(c => p.appendChild(drawCardUI(c)));
-            state.bj.dealer.forEach((c, i) => d.appendChild(drawCardUI(c, !f && i === 0)));
-            document.getElementById('bjTableMsg').innerText = `Your Hand: ${bjSum(state.bj.player)}`;
-        }
-        function bjHit() { if(!state.bj.active) return; state.bj.player.push(state.bj.deck.pop()); bjRender(); if(bjSum(state.bj.player) > 21) bjEnd("BUSTED!"); }
-        function bjStand() {
-            if(!state.bj.active) return; bjRender(true);
-            const dealerGo = () => {
-                if(bjSum(state.bj.dealer) < 17) { state.bj.dealer.push(state.bj.deck.pop()); bjRender(true); setTimeout(dealerGo, 800); }
-                else {
-                    const p = bjSum(state.bj.player), d = bjSum(state.bj.dealer);
-                    if(d > 21 || p > d) bjEnd("YOU WIN!"); else if(p === d) bjEnd("PUSH"); else bjEnd("DEALER WINS");
-                }
-            }; dealerGo();
-        }
-        function bjEnd(res) {
-            state.bj.active = false; document.getElementById('bjStatus').innerText = res;
-            if(res === "YOU WIN!") updateChips(state.bj.bet * 2); if(res === "PUSH") updateChips(state.bj.bet);
-            document.getElementById('bjBtnStart').classList.remove('hidden'); document.getElementById('bjBtnHit').classList.add('hidden'); document.getElementById('bjBtnStand').classList.add('hidden');
-        }
-        function bjSum(h) {
-            const v = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
-            let s = h.reduce((a, b) => a + v(b), 0), aces = h.filter(c => c.v === 'A').length;
-            while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
-        }
-
-        /* ROULETTE */
-        function initRoulette() {
-            const b = document.getElementById('rBoard'); b.innerHTML = '';
-            const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => selectR(0); b.appendChild(zero);
-            for(let i=1; i<=36; i++) {
-                const n = document.createElement('div'); const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i);
-                n.className = `r-cell ${isRed?'red':'black'}`; n.innerText = i; n.onclick = () => selectR(i); b.appendChild(n);
+        /* NEURAL BLACKJACK ENGINE (v8.9 GROUND-UP) */
+        const BJ_ENGINE = {
+            deck: [], player: [], dealer: [], bet: 0, active: false,
+            start() {
+                const b = parseInt(document.getElementById('bjBetInput').value);
+                if(b < 10 || b > APP_STATE.chips) return alert("Check wager.");
+                updateGlobalChips(-b);
+                this.bet = b; this.active = true; this.deck = this.getDeck();
+                this.player = [this.deck.pop(), this.deck.pop()];
+                this.dealer = [this.deck.pop(), this.deck.pop()];
+                this.render();
+                document.getElementById('bjBtnStart').classList.add('hidden');
+                document.getElementById('bjBtnHit').classList.remove('hidden');
+                document.getElementById('bjBtnStand').classList.remove('hidden');
+                document.getElementById('bjStatus').innerText = "YOUR ACTION";
+                document.getElementById('bjMsg').innerText = "";
+            },
+            hit() {
+                if(!this.active) return;
+                this.player.push(this.deck.pop());
+                this.render();
+                if(this.getSum(this.player) > 21) this.end("BUSTED!");
+            },
+            stand() {
+                if(!this.active) return;
+                this.render(true);
+                const dealerTurn = () => {
+                    if(this.getSum(this.dealer) < 17) {
+                        this.dealer.push(this.deck.pop()); this.render(true); setTimeout(dealerTurn, 800);
+                    } else {
+                        const p = this.getSum(this.player), d = this.getSum(this.dealer);
+                        if(d > 21 || p > d) this.end("YOU WIN!");
+                        else if(p === d) this.end("PUSH");
+                        else this.end("DEALER WINS");
+                    }
+                }; dealerTurn();
+            },
+            end(res) {
+                this.active = false; document.getElementById('bjStatus').innerText = res;
+                if(res === "YOU WIN!") updateGlobalChips(this.bet * 2);
+                if(res === "PUSH") updateGlobalChips(this.bet);
+                document.getElementById('bjBtnStart').classList.remove('hidden');
+                document.getElementById('bjBtnHit').classList.add('hidden');
+                document.getElementById('bjBtnStand').classList.add('hidden');
+            },
+            getDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(()=>Math.random()-0.5); },
+            getSum(h) {
+                const val = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
+                let s = h.reduce((a, b) => a + val(b), 0), aces = h.filter(c => c.v === 'A').length;
+                while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
+            },
+            render(f = false) {
+                const p = document.getElementById('bjPlayerHand'), d = document.getElementById('bjDealerHand');
+                p.innerHTML = ''; d.innerHTML = '';
+                this.player.forEach(c => p.appendChild(this.createCard(c)));
+                this.dealer.forEach((c, i) => d.appendChild(this.createCard(c, !f && i === 0)));
+                document.getElementById('bjMsg').innerText = `Hand Total: ${this.getSum(this.player)}`;
+            },
+            createCard(c, h=false) {
+                const div = document.createElement('div'); div.className = `card-view ${['H','D'].includes(c.s)?'red':''}`;
+                if(h) { div.className += ' card-back'; return div; }
+                div.innerHTML = `<div>${c.v}</div><div style="align-self:center; font-size:4rem;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
+                return div;
             }
-        }
-        function selectR(n) { state.rBet = n; document.querySelectorAll('.r-cell, .r-outside').forEach(x => x.style.borderColor = 'transparent'); if(event.target.classList.contains('r-cell') || event.target.classList.contains('r-outside')) event.target.style.borderColor = 'var(--casino-gold)'; document.getElementById('rStatus').innerText = `WAGER ON: ${n.toString().toUpperCase()}`; }
-        function rSpin() {
-            const w = parseInt(document.getElementById('rBetAmt').value);
-            if(state.rBet === null || w < 10 || w > state.chips) return alert("Check selection/points.");
-            updateChips(-w); document.getElementById('rStatus').innerText = "SPINNING...";
-            setTimeout(() => {
-                const res = Math.floor(Math.random() * 37);
-                const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(res);
-                document.getElementById('rStatus').innerText = `RESULT: ${res} (${res === 0 ? 'GREEN' : isRed ? 'RED' : 'BLACK'})`;
-                
-                let win = false; let multi = 0;
-                if(typeof state.rBet === 'number' && state.rBet === res) { win = true; multi = 36; }
-                else if(state.rBet === 'red' && isRed && res !== 0) { win = true; multi = 2; }
-                else if(state.rBet === 'black' && !isRed && res !== 0) { win = true; multi = 2; }
-                else if(state.rBet === 'even' && res % 2 === 0 && res !== 0) { win = true; multi = 2; }
-                else if(state.rBet === 'odd' && res % 2 !== 0) { win = true; multi = 2; }
-                else if(state.rBet === '1-18' && res >= 1 && res <= 18) { win = true; multi = 2; }
-                else if(state.rBet === '19-36' && res >= 19 && res <= 36) { win = true; multi = 2; }
-                else if(state.rBet === '1st12' && res >= 1 && res <= 12) { win = true; multi = 3; }
-                else if(state.rBet === '2nd12' && res >= 13 && res <= 24) { win = true; multi = 3; }
-                else if(state.rBet === '3rd12' && res >= 25 && res <= 36) { win = true; multi = 3; }
+        };
 
-                if(win) { updateChips(w * multi); alert(`WINNER! ${multi}x Payout!`); }
-            }, 2000);
-        }
+        /* IMPERIAL ROULETTE ENGINE (v8.9 GROUND-UP) */
+        const R_ENGINE = {
+            selection: null, active: false,
+            init() {
+                const b = document.getElementById('rBoard'); b.innerHTML = '';
+                const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => this.select(0, zero); b.appendChild(zero);
+                for(let i=1; i<=36; i++) {
+                    const n = document.createElement('div');
+                    const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i);
+                    n.className = `r-cell ${isRed?'red':'black'}`; n.innerText = i; n.onclick = () => this.select(i, n); b.appendChild(n);
+                }
+            },
+            select(n, el) { 
+                this.selection = n; 
+                document.querySelectorAll('.r-cell, .r-outside').forEach(x => x.style.borderColor = 'transparent'); 
+                el.style.borderColor = 'var(--casino-gold)'; 
+                document.getElementById('rStatusHUD').innerText = `WAGER ON: ${n.toString().toUpperCase()}`; 
+            },
+            selectZone(z) { this.select(z, event.target); },
+            spin() {
+                const w = parseInt(document.getElementById('rBetInput').value);
+                if(this.selection === null || w < 10 || w > APP_STATE.chips) return alert("Check wager/selection.");
+                updateGlobalChips(-w); document.getElementById('rStatusHUD').innerText = "SPINNING...";
+                document.getElementById('rSpinBtn').disabled = true;
+                setTimeout(() => {
+                    const res = Math.floor(Math.random() * 37);
+                    const isRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(res);
+                    document.getElementById('rStatusHUD').innerText = `RESULT: ${res} (${res === 0 ? 'GREEN' : isRed ? 'RED' : 'BLACK'})`;
+                    
+                    let win = false; let multi = 0;
+                    if(typeof this.selection === 'number' && this.selection === res) { win = true; multi = 36; }
+                    else if(this.selection === 'red' && isRed && res !== 0) { win = true; multi = 2; }
+                    else if(this.selection === 'black' && !isRed && res !== 0) { win = true; multi = 2; }
+                    else if(this.selection === 'even' && res % 2 === 0 && res !== 0) { win = true; multi = 2; }
+                    else if(this.selection === 'odd' && res % 2 !== 0) { win = true; multi = 2; }
+                    else if(this.selection === '1-18' && res >= 1 && res <= 18) { win = true; multi = 2; }
+                    else if(this.selection === '19-36' && res >= 19 && res <= 36) { win = true; multi = 2; }
+                    else if(this.selection === '1st12' && res >= 1 && res <= 12) { win = true; multi = 3; }
+                    else if(this.selection === '2nd12' && res >= 13 && res <= 24) { win = true; multi = 3; }
+                    else if(this.selection === '3rd12' && res >= 25 && res <= 36) { win = true; multi = 3; }
 
-        /* MLB HUB */
+                    if(win) { updateGlobalChips(w * multi); alert(`BIG WIN! ${multi}x PAYOUT!`); }
+                    document.getElementById('rSpinBtn').disabled = false;
+                }, 2000);
+            }
+        };
+
+        /* MLB HUB (v8.7 RECOVERY) */
         async function initSavantHub() {
-            const selector = document.getElementById('teamSelector');
-            if(selector.options.length <= 1) {
-                Object.keys(state.teamIds).sort().forEach(abbr => {
-                    const opt = document.createElement('option'); opt.value = abbr; opt.innerText = abbr; selector.appendChild(opt);
+            const sel = document.getElementById('teamSelector');
+            if(sel.options.length <= 1) {
+                Object.keys(APP_STATE.teamIds).sort().forEach(a => {
+                    const o = document.createElement('option'); o.value = a; o.innerText = a; sel.appendChild(o);
                 });
             }
             fetchSavantLeague();
         }
 
         async function fetchSavantLeague() {
-            const board = document.getElementById('leagueSlate'); board.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCING MLB SATELLITE FEED...</p>';
+            const b = document.getElementById('leagueSlate'); b.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCING MLB SATELLITE FEED...</p>';
             try {
-                const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings)');
+                const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings),metadata');
                 const data = await res.json(); const games = data.dates[0]?.games || [];
-                board.innerHTML = '';
+                b.innerHTML = '';
                 games.forEach(g => {
                     const away = g.teams.away, home = g.teams.home;
                     const card = document.createElement('a'); card.className = 'score-link'; card.href = `https://www.mlb.com/game/${g.gamePk}`; card.target = "_blank";
-                    card.innerHTML = `<div class="score-card"><div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${away.team.name}</strong><br><small>(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:5px 12px; border-radius:12px; font-size:0.8rem; font-weight:900;">${g.status.detailedState.toUpperCase()}</div><div style="margin:1rem 0; opacity:0.1; font-size:2rem; font-weight:900;">VS</div><small style="font-weight:900; font-size:1rem;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${home.team.name}</strong><br><small>(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${home.score||0}</span></div></div></div>`;
-                    board.appendChild(card);
+                    card.innerHTML = `<div class="score-card"><div style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${away.team.name}</strong><br><small>(${away.leagueRecord.wins}-${away.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${away.score||0}</span></div><div style="text-align:center;"><div style="background:#f1f5f9; padding:5px 15px; border-radius:12px; font-size:0.8rem; font-weight:900;">${g.status.detailedState.toUpperCase()}</div><div style="margin:1rem 0; opacity:0.1; font-size:2rem; font-weight:900;">VS</div><small style="font-weight:900; font-size:1rem;">${g.linescore?g.linescore.inningState+' '+g.linescore.currentInningOrdinal:''}</small></div><div style="text-align:right;"><strong>${home.team.name}</strong><br><small>(${home.leagueRecord.wins}-${home.leagueRecord.losses})</small><br><span style="font-size:4rem; font-weight:900; color:var(--xav-blue);">${home.score||0}</span></div></div></div>`;
+                    b.appendChild(card);
                 });
                 updateTicker(games); generateParlays(games);
-            } catch(e) { board.innerHTML = '<p>Offline.</p>'; }
+            } catch(e) { b.innerHTML = '<p>Error syncing data.</p>'; }
         }
 
         async function syncSavantTeam(abbr) {
             if(abbr === "HOME") { switchView('home'); return; }
-            state.cTeam = abbr;
-            const id = state.teamIds[abbr], color = state.teamColors[abbr];
+            const id = APP_STATE.teamIds[abbr], color = APP_STATE.teamColors[abbr];
             document.documentElement.style.setProperty('--accent', color);
             document.getElementById('mainHero').style.background = color;
             document.getElementById('teamSavantView').classList.remove('hidden');
+            
             const header = document.getElementById('teamHeader');
             const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
             const gData = await gRes.json(); const game = gData.dates[0]?.games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id);
@@ -432,26 +485,27 @@
                 const isH = game.teams.home.team.id === id;
                 header.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; text-align:center; width:100%;"><div><h4>${isH?'HOME':'AWAY'}</h4><h2 style="font-size:3.5rem; font-weight:900;">${abbr}</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.home.score||0:game.teams.away.score||0}</span></div><div><h3 style="color:var(--success); font-weight:900; font-size:2.5rem;">${game.status.detailedState}</h3><h1 style="opacity:0.2; font-size:6rem;">VS</h1><p style="font-weight:900; font-size:2rem;">${game.linescore?game.linescore.inningState+' '+game.linescore.currentInningOrdinal:''}</p></div><div><h4>OPPONENT</h4><h2 style="font-size:3.5rem; font-weight:900;">OPP</h2><span style="font-size:8rem; font-weight:900;">${isH?game.teams.away.score||0:game.teams.home.score||0}</span></div></div>`;
             } else { header.innerHTML = '<h2 style="text-align:center; letter-spacing:15px;">OFF-DAY | SYNCING DATA...</h2>'; }
+
             const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
-            const rData = await rRes.json(); state.fullRoster = rData.roster;
-            renderRoster(state.fullRoster);
-            renderFieldNodes(state.fullRoster);
+            const rData = await rRes.json();
+            renderSavantRoster(rData.roster);
+            renderFieldNodes(rData.roster);
         }
 
-        async function renderRoster(ros) {
+        async function renderSavantRoster(ros) {
             const grid = document.getElementById('savantRoster'); grid.innerHTML = '';
             for(let p of ros.slice(0, 15)) {
-                const div = document.createElement('div'); div.className = 'player-card';
-                div.onclick = async () => {
-                    if(!div.classList.contains('flipped')) {
+                const card = document.createElement('div'); card.className = 'player-card';
+                card.onclick = async () => {
+                    if(!card.classList.contains('flipped')) {
                         const stats = await fetchStatcast(p.person.id, p.position.code === '1');
                         document.getElementById(`stats-${p.person.id}`).innerHTML = stats;
                     }
-                    div.classList.toggle('flipped');
+                    card.classList.toggle('flipped');
                 };
                 const img = `https://img.mlbstatic.com/mlb-photos/image/upload/d_player_profile_default_image.png/w_426,q_auto:best/v1/people/${p.person.id}/headshot/67/current`;
-                div.innerHTML = `<div class="card-inner"><div class="card-face card-front"><div class="card-img-box"><img src="${img}" class="player-img"></div><div class="card-info"><h4>${p.person.fullName}</h4><p>${p.position.name}</p></div></div><div class="card-face card-back"><h3>${p.person.fullName}</h3><div id="stats-${p.person.id}" style="margin-top:2rem; width:100%;"><p>Fetching Stats...</p></div><p style="font-size:0.8rem; opacity:0.4; margin-top:auto;">2026 LIVE SEASON DATA</p></div></div>`;
-                grid.appendChild(div);
+                card.innerHTML = `<div class="card-inner"><div class="card-face card-front"><div class="card-img-box"><img src="${img}" class="player-img"></div><div class="card-info"><h4>${p.person.fullName}</h4><p>${p.position.name}</p></div></div><div class="card-face card-back"><h3>${p.person.fullName}</h3><div id="stats-${p.person.id}" style="margin-top:2rem; width:100%;"><p>Fetching Stats...</p></div><p style="font-size:0.8rem; opacity:0.4; margin-top:auto;">LIVE SEASON DATA</p></div></div>`;
+                grid.appendChild(card);
             }
         }
 
@@ -461,9 +515,9 @@
                 const data = await res.json(); const s = data.stats[0]?.splits[0]?.stat;
                 if(!s) return "No data found.";
                 return isP ? 
-                    `<div class="stat-line"><span class="stat-label">ERA</span><span>${s.era}</span></div><div class="stat-line"><span class="stat-label">WHIP</span><span>${s.whip}</span></div><div class="stat-line"><span class="stat-label">SO</span><span>${s.strikeOuts}</span></div><div class="stat-line"><span class="stat-label">W/L</span><span>${s.wins}-${s.losses}</span></div><div class="stat-line"><span class="stat-label">IP</span><span>${s.inningsPitched}</span></div>` :
-                    `<div class="stat-line"><span class="stat-label">AVG</span><span>${s.avg}</span></div><div class="stat-line"><span class="stat-label">OPS</span><span>${s.ops}</span></div><div class="stat-line"><span class="stat-label">HR</span><span>${s.homeRuns}</span></div><div class="stat-line"><span class="stat-label">RBI</span><span>${s.rbi}</span></div><div class="stat-line"><span class="stat-label">OBP</span><span>${s.obp}</span></div>`;
-            } catch(e) { return "Error loading stats."; }
+                    `<div class="stat-line"><span class="stat-label">ERA</span><span>${s.era}</span></div><div class="stat-line"><span class="stat-label">WHIP</span><span>${s.whip}</span></div><div class="stat-line"><span class="stat-label">SO</span><span>${s.strikeOuts}</span></div><div class="stat-line"><span class="stat-label">W/L</span><span>${s.wins}-${s.losses}</span></div>` :
+                    `<div class="stat-line"><span class="stat-label">AVG</span><span>${s.avg}</span></div><div class="stat-line"><span class="stat-label">OPS</span><span>${s.ops}</span></div><div class="stat-line"><span class="stat-label">HR</span><span>${s.homeRuns}</span></div><div class="stat-line"><span class="stat-label">RBI</span><span>${s.rbi}</span></div>`;
+            } catch(e) { return "Error."; }
         }
 
         function renderFieldNodes(ros) {
@@ -483,7 +537,7 @@
                 const now = new Date();
                 const link = document.createElement('a'); link.className = 'ticker-link';
                 link.href = `https://www.mlb.com/game/${g.gamePk}`; link.target = "_blank";
-                link.innerHTML = `<span class="ticker-stamp">[${now.toLocaleTimeString()}]</span> LIVE: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • CLICK FOR LIVE DATA`;
+                link.innerHTML = `<span class="ticker-stamp">[${now.toLocaleTimeString()}]</span> LIVE: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • SYNCED VIA MLB CLOUD`;
                 track.appendChild(link);
             });
         }
@@ -494,26 +548,17 @@
             const top = games[0], risky = games[1], worst = games[2];
             const buildPick = (g, type, label, msg) => {
                 const div = document.createElement('div'); div.className = 'parlay-card';
-                div.innerHTML = `<div class="pick-tag tag-${type}">${label}</div><h4>${g.teams.away.team.name} @ ${g.teams.home.team.name}</h4><div style="font-weight:900; color:var(--success); margin-top:1rem;">REC: ${g.teams.home.team.name} ML</div><div class="parlay-logic"><strong>Logic:</strong> ${msg}</div><a href="https://www.oddsshark.com/mlb" target="_blank" class="source-link"><i class="fas fa-external-link-alt"></i> View OddShark Logic</a><br><a href="https://sportsbook.draftkings.com" target="_blank" class="source-link"><i class="fas fa-wallet"></i> View DraftKings Lines</a>`;
+                div.innerHTML = `<div class="pick-tag tag-${type}">${label}</div><h4>${g.teams.away.team.name} @ ${g.teams.home.team.name}</h4><div style="font-weight:900; color:var(--success); margin-top:1rem;">REC: ${g.teams.home.team.name} ML</div><div class="parlay-logic"><strong>Logic:</strong> ${msg}</div><a href="https://www.oddsshark.com/mlb" target="_blank" class="source-link"><i class="fas fa-external-link-alt"></i> OddShark Data</a>`;
                 board.appendChild(div);
             };
-            buildPick(top, 'top', 'Top Parlay Pick', 'Severe mismatch detected in pitching ERA momentum. OddShark Computer Pick confirms high confidence index.');
-            buildPick(risky, 'risky', 'Risky: High Reward', 'Underdog value detected on the run-line. Volatile bullpen variance suggests potential arbitrage.');
-            buildPick(worst, 'worst', 'Worst: Avoid', 'DO NOT CHOOSE. Identical win percentages and inclement weather forecast suggests unpredictable outcome.');
-        }
-
-        function createDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(()=>Math.random()-0.5); }
-        function drawCardUI(c, h=false) {
-            const div = document.createElement('div'); div.className = `card-visual ${['H','D'].includes(c.s)?'red':''}`;
-            if(h) { div.className += ' card-hidden'; return div; }
-            div.innerHTML = `<div>${c.v}</div><div style="font-size:4rem; align-self:center;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
-            return div;
+            buildPick(top, 'top', 'Top Parlay Pick', 'Pitching mismatch detected. Momentum favors Home side.');
+            buildPick(risky, 'risky', 'Risky Pick', 'Underdog value index suggests arbitrage potential.');
+            buildPick(worst, 'worst', 'Worst: Avoid', 'DO NOT CHOOSE. Inclement weather and high variance expected.');
         }
 
         window.onload = () => {
-            const saved = localStorage.getItem('franks_chips_v88'); if(saved) state.chips = parseInt(saved);
-            document.querySelectorAll('#masterPoints, #globalPoints').forEach(el => el.innerText = state.chips);
-            switchView('home');
+            const saved = localStorage.getItem('franks_chips_v89'); if(saved) APP_STATE.chips = parseInt(saved);
+            updateGlobalChips(0); switchView('home');
         };
     </script>
 </body>
