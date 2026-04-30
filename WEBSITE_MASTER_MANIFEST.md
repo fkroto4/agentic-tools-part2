@@ -1,12 +1,12 @@
-# FRANK LEO KROTO IV | WEBSITE MASTER MANIFEST
+# FRANKS_MGMT_PROJECT | MASTER MANIFEST
 ## LAST UPDATED: Thursday, April 30, 2026 (v8.0)
 
-This document serves as the persistent memory and technical specification for the Advanced Agentic Hub. JARVIS MUST reference this file before and after every modification to ensure continuity and prevent regression.
+This document serves as the persistent memory and technical specification for the Franks_MGMT_Project. JARVIS MUST reference this file before and after every modification to ensure continuity and prevent regression.
 
 ---
 
 ## I. CORE IDENTITY & BRANDING
-- **Full Professional Title:** Frank Leo Kroto IV
+- **Project Title:** Franks_MGMT_Project
 - **Academic Affiliation:** Xavier University '27 (Business Management & Applied AI Strategy)
 - **Agentic Hub:** Strategic Hub v8.0 (The Gamified Portfolio)
 - **Primary Color Anchor:** Solid Xavier Navy Blue (#0C2340) / Vegas Gold (#F59E0B)
