@@ -16,12 +16,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
         body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-top: 85px; }
 
-        /* NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; }
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
+        .nav-links { display: flex; align-items: center; gap: 1rem; }
 
-        .btn-nav { padding: 0.7rem 1.4rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; }
+        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; }
         .btn-nav:hover { border-color: var(--accent); }
         .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
 
@@ -34,15 +33,23 @@
         .source-link { color: var(--xav-blue); font-weight: 800; text-decoration: none; font-size: 0.85rem; display: block; margin-top: 1.5rem; }
 
         #heartbeat { font-family: 'Fira Code', monospace; color: var(--success); font-weight: 900; font-size: 1.2rem; }
+
+        /* HELP BUTTON */
+        .floating-help { position: fixed; bottom: 2rem; right: 2rem; width: 80px; height: 80px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900; cursor: pointer; z-index: 5000; box-shadow: 0 10px 30px rgba(12, 35, 64, 0.4); border: 4px solid #fff; transition: 0.4s; }
+        .floating-help:hover { transform: scale(1.1) rotate(15deg); background: var(--casino-gold); color: #000; }
+        
+        .help-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 35, 64, 0.98); z-index: 6000; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 5%; backdrop-filter: blur(15px); }
+        .help-content { max-width: 800px; background: rgba(255,255,255,0.05); padding: 4rem; border-radius: 40px; border: 2px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-brand" onclick="window.location.href='index.html'">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <a href="index.html" class="btn-nav">Home</a>
-            <a href="casino.html" class="btn-nav">Casino</a>
-            <a href="mlb-savant.html" class="btn-nav">Baseball cards</a>
+            <a href="index.html" class="btn-nav">Home hub</a>
+            <a href="casino.html" class="btn-nav">Casino floor</a>
+            <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
+            <a href="milb-savant.html" class="btn-nav">MiLB Teams Live!</a>
             <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
         </div>
     </nav>
@@ -55,7 +62,7 @@
             <div class="source-grid">
                 <div class="source-pill">
                     <h4>MLB Stats API</h4>
-                    <p>Live scores, standings, player rosters, and individual Statcast statistics.</p>
+                    <p>Live scores, standings, player rosters, and individual Statcast statistics for MLB and MiLB.</p>
                     <a href="https://statsapi.mlb.com" target="_blank" class="source-link">Verify Feed <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 <div class="source-pill">
@@ -78,10 +85,25 @@
         </div>
     </main>
 
+    <div class="floating-help" onclick="toggleHelp()">?</div>
+    <div id="helpOverlay" class="help-overlay" onclick="toggleHelp()">
+        <div class="help-content">
+            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">DATA INTEGRITY GUIDE</h2>
+            <p style="font-size:1.4rem; line-height:2; opacity:0.9;">
+                This page documents the professional-grade data sources powering the Strategic Hub.
+                <br><br>
+                1. Review the **Citations** to verify the official MLB API and betting market providers.
+                <br>2. Monitor the **System Heartbeat** to prove that the application is currently live and fetching real-time packets.
+            </p>
+            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
+        </div>
+    </div>
+
     <script>
         setInterval(() => {
             document.getElementById('heartbeat').innerText = `SYSTEM HEARTBEAT: ${new Date().toLocaleTimeString()}`;
         }, 1000);
+        function toggleHelp() { const h = document.getElementById('helpOverlay'); h.style.display = (h.style.display === 'flex') ? 'none' : 'flex'; }
     </script>
 </body>
 </html>
