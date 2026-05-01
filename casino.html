@@ -37,16 +37,33 @@
         .btn-casino-action { background: linear-gradient(180deg, var(--casino-gold) 0%, #d97706 100%); color: #000; border: none; padding: 1.5rem 4rem; border-radius: 20px; font-weight: 900; cursor: pointer; font-size: 1.4rem; box-shadow: 0 8px 0 #92400e; text-transform: uppercase; }
         .btn-casino-action:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: translateY(4px); }
 
-        .hand-visual { display: flex; gap: 1.5rem; justify-content: center; min-height: 220px; align-items: center; margin: 4rem 0; }
-        .card-executive { width: 150px; height: 215px; background: #fff; border-radius: 20px; color: #000; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; font-weight: 900; font-size: 2.5rem; box-shadow: 0 15px 40px rgba(0,0,0,0.6); animation: cardDeal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
-        .card-executive.red { color: var(--danger); }
-        .card-back { background: var(--xav-blue); border: 8px solid #fff; background-image: radial-gradient(rgba(255,255,255,0.3) 2px, transparent 1px); background-size: 15px 15px; color: transparent !important; }
+        .hand-visual { display: flex; gap: 1.5rem; justify-content: center; min-height: 250px; align-items: center; margin: 4rem 0; }
         
+        /* PREMIUM PLAYING CARD STYLE */
+        .card-executive { 
+            width: 170px; height: 240px; background: #fff; border-radius: 15px; color: #000; 
+            display: flex; flex-direction: column; justify-content: space-between; padding: 15px; 
+            font-weight: 900; font-size: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.1); 
+            border: 1px solid #ddd; position: relative; animation: cardDeal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-executive::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; opacity: 0.1; }
+        .card-executive.suit-heart::before { content: "♥"; color: var(--danger); }
+        .card-executive.suit-diamond::before { content: "♦"; color: var(--danger); }
+        .card-executive.suit-spade::before { content: "♠"; }
+        .card-executive.suit-club::before { content: "♣"; }
+        .card-executive.red { color: var(--danger); }
+        
+        .card-corner { line-height: 1; display: flex; flex-direction: column; align-items: center; }
+        .card-corner.bottom { transform: rotate(180deg); }
+        .card-suit-small { font-size: 1.5rem; }
+
+        .card-back { background: var(--xav-blue); border: 8px solid #fff; background-image: url('frankkrotoicon.jpg'); background-size: cover; background-position: center; color: transparent !important; }
+        @keyframes cardDeal { from { transform: translateY(-400px) rotate(45deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
+
         /* ROULETTE SPECIFICS */
         .r-board-container { max-width: 1200px; margin: 0 auto; background: #064e3b; padding: 30px; border: 12px solid #3d2b1f; border-radius: 30px; box-shadow: inset 0 0 100px rgba(0,0,0,0.5); }
         .r-board { display: grid; grid-template-columns: 80px repeat(12, 1fr); gap: 8px; margin-bottom: 2rem; }
         .r-cell { aspect-ratio: 1/1.5; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; cursor: pointer; border: 3px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; transition: 0.2s; }
-        .r-cell:hover { transform: scale(1.05); z-index: 10; border-color: #fff; }
         .r-cell.selected { border: 4px solid var(--casino-gold); box-shadow: 0 0 20px var(--casino-gold); background: rgba(251, 191, 36, 0.2) !important; }
         .r-cell.red { background: var(--danger); }
         .r-cell.black { background: #000; }
@@ -68,7 +85,6 @@
         .btn-close { position: absolute; top: 2rem; right: 4rem; font-size: 6rem; cursor: pointer; opacity: 0.3; }
         .btn-prof-skip { background: #fff; border: 3px solid var(--casino-gold); color: #000; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 900; cursor: pointer; margin-top: 2rem; transition: 0.3s; font-size: 0.8rem; text-transform: uppercase; }
 
-        /* HELP BUTTON */
         .floating-help { position: fixed; bottom: 2rem; right: 2rem; width: 80px; height: 80px; background: var(--casino-gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900; cursor: pointer; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 4px solid #fff; transition: 0.4s; }
         .help-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 35, 64, 0.98); z-index: 6000; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 5%; backdrop-filter: blur(15px); }
         .help-content { max-width: 800px; background: rgba(255,255,255,0.05); padding: 4rem; border-radius: 40px; border: 2px solid rgba(255,255,255,0.1); }
@@ -82,7 +98,7 @@
         <div class="nav-links">
             <a href="index.html" class="btn-nav">Home hub</a>
             <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
-            <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
+            <a href="betting-hub.html" class="btn-nav">Sports Betting Hub</a>
             <a href="sources.html" class="btn-nav">Credits</a>
         </div>
         <div class="hud-balance"><i class="fas fa-gem"></i> <span id="hudBal">100</span></div>
@@ -118,31 +134,28 @@
         </div>
     </main>
 
+    <div class="floating-help" onclick="toggleHelp()">?</div>
+    <div id="helpOverlay" class="help-overlay" onclick="toggleHelp()">
+        <div class="help-content">
+            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">CASINO FLOOR GUIDE</h2>
+            <p style="font-size:1.4rem; line-height:2; opacity:0.9;">
+                This simulation demonstrates secure state management and dynamic UI orchestration.
+                <br><br>
+                1. Select a module to begin.
+                <br>2. Set your wager and monitor the **Persistent HUD**.
+                <br>3. Reach 1,000 chips to unlock the **Executive Gateway**.
+            </p>
+            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
+        </div>
+    </div>
+
     <!-- ROULETTE OVERLAY -->
     <div id="game-roulette" class="game-overlay">
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
         <h2 style="font-family:'Playfair Display'; font-size:4rem; color:var(--casino-gold); text-align:center;">IMPERIAL ROULETTE</h2>
-        
-        <div class="wheel-visual">
-            <div class="wheel-pointer"></div>
-            <div id="rWheelTrack" class="wheel-track"></div>
-        </div>
-
-        <div class="r-board-container">
-            <div class="r-board" id="rBoard"></div>
-            <div class="r-zone-bets">
-                <button class="btn-zone red" id="bet-red" onclick="GAMES.roulette.selectZone('red')">RED (1:1)</button>
-                <button class="btn-zone black" id="bet-black" onclick="GAMES.roulette.selectZone('black')">BLACK (1:1)</button>
-            </div>
-        </div>
-
-        <div style="text-align:center; margin-top:4rem;">
-            <div id="rStatus" style="font-size:3.5rem; font-weight:900; color:var(--casino-gold); margin-bottom:3rem; height:80px;">SELECT YOUR BET</div>
-            <div style="display:flex; justify-content:center; gap:3rem; align-items:center;">
-                <input type="number" id="rBetInput" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:200px; font-weight:900; font-size:2.5rem; text-align:center;">
-                <button class="btn-casino-action" id="rSpinBtn" onclick="GAMES.roulette.spin()">SPIN WHEEL</button>
-            </div>
-        </div>
+        <div class="wheel-visual"><div class="wheel-pointer"></div><div id="rWheelTrack" class="wheel-track"></div></div>
+        <div class="r-board-container"><div class="r-board" id="rBoard"></div><div class="r-zone-bets"><button class="btn-zone red" id="bet-red" onclick="GAMES.roulette.selectZone('red')">RED (1:1)</button><button class="btn-zone black" id="bet-black" onclick="GAMES.roulette.selectZone('black')">BLACK (1:1)</button></div></div>
+        <div style="text-align:center; margin-top:4rem;"><div id="rStatus" style="font-size:3.5rem; font-weight:900; color:var(--casino-gold); margin-bottom:3rem; height:80px;">SELECT YOUR BET</div><div style="display:flex; justify-content:center; gap:3rem; align-items:center;"><input type="number" id="rBetInput" value="25" min="10" step="25" style="padding:1.5rem; border-radius:20px; width:200px; font-weight:900; font-size:2.5rem; text-align:center;"><button class="btn-casino-action" id="rSpinBtn" onclick="GAMES.roulette.spin()">SPIN WHEEL</button></div></div>
     </div>
 
     <!-- BLACKJACK OVERLAY -->
@@ -164,34 +177,10 @@
         <span class="btn-close" onclick="closeOverlay()">&times;</span>
         <div style="text-align:center; padding-top: 5%;">
             <h2 style="font-family:'Playfair Display'; font-size:4rem; color:var(--casino-gold);">HIGH-LOW PREDICTOR</h2>
-            <div class="hand-visual">
-                <div id="hlCurrentCard" class="card-executive"></div>
-                <div style="font-size: 5rem; margin: 0 4rem; opacity: 0.2;"><i class="fas fa-long-arrow-alt-right"></i></div>
-                <div id="hlNextCard" class="card-executive card-back"></div>
-            </div>
+            <div class="hand-visual"><div id="hlCurrentCard"></div><div style="font-size: 5rem; margin: 0 4rem; opacity: 0.2;"><i class="fas fa-long-arrow-alt-right"></i></div><div id="hlNextCard"></div></div>
             <div id="hlMsg" style="font-size:2.5rem; font-weight:900; margin-bottom:4rem; color:var(--casino-gold);">GUESS: HIGHER OR LOWER?</div>
-            <div style="display:flex; justify-content:center; gap:3rem;">
-                <button class="btn-casino-action" onclick="GAMES.hl.play('high')">HIGHER</button>
-                <button class="btn-casino-action" style="background:var(--danger); box-shadow: 0 8px 0 #991b1b;" onclick="GAMES.hl.play('low')">LOWER</button>
-            </div>
-            <div style="margin-top:4rem;">
-                <input type="number" id="hlBet" value="25" min="10" step="25" style="padding:1.2rem; border-radius:15px; width:150px; font-weight:900; font-size:1.8rem; text-align:center;">
-            </div>
-        </div>
-    </div>
-
-    <div class="floating-help" onclick="toggleHelp()">?</div>
-    <div id="helpOverlay" class="help-overlay" onclick="toggleHelp()">
-        <div class="help-content">
-            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">CASINO FLOOR GUIDE</h2>
-            <p style="font-size:1.4rem; line-height:2; opacity:0.9;">
-                This simulation demonstrates secure state management and dynamic UI orchestration.
-                <br><br>
-                1. Select a module to begin.
-                <br>2. Set your wager and monitor the **Persistent HUD**.
-                <br>3. Reach 1,000 chips to unlock the **Executive Gateway**.
-            </p>
-            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
+            <div style="display:flex; justify-content:center; gap:3rem;"><button class="btn-casino-action" onclick="GAMES.hl.play('high')">HIGHER</button><button class="btn-casino-action" style="background:var(--danger); box-shadow: 0 8px 0 #991b1b;" onclick="GAMES.hl.play('low')">LOWER</button></div>
+            <div style="margin-top:4rem;"><input type="number" id="hlBet" value="25" min="10" step="25" style="padding:1.2rem; border-radius:15px; width:150px; font-weight:900; font-size:1.8rem; text-align:center;"></div>
         </div>
     </div>
 
@@ -205,7 +194,8 @@
             }
         };
 
-        const SUITS = ['S', 'H', 'D', 'C'], VALS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+        const SUITS = [{s:'S', c:'♠', r:false}, {s:'H', c:'♥', r:true}, {s:'D', c:'♦', r:true}, {s:'C', c:'♣', r:false}];
+        const VALS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
         const RANK = {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
         const R_REDS = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
 
@@ -216,14 +206,11 @@
                 init() {
                     const b = document.getElementById('rBoard'); b.innerHTML = '';
                     const track = document.getElementById('rWheelTrack'); track.innerHTML = '';
-                    
-                    // Create board (Simplified for layout reliability)
                     const zero = document.createElement('div'); zero.className = 'r-cell green'; zero.innerText = '0'; zero.onclick = () => this.selectNum(0, zero); b.appendChild(zero);
                     for(let i=1; i<=36; i++) {
                         const n = document.createElement('div'); const isRed = R_REDS.includes(i);
                         n.className = `r-cell ${isRed?'red':'black'}`; n.innerText = i; n.onclick = () => this.selectNum(i, n); b.appendChild(n);
                     }
-                    // Create wheel track (repeated for seamless cycle)
                     [...this.nums, ...this.nums, ...this.nums].forEach(n => {
                         const d = document.createElement('div'); const isRed = R_REDS.includes(n);
                         d.className = `wheel-num ${n===0?'green':isRed?'red':''}`; d.innerText = n; track.appendChild(d);
@@ -244,21 +231,16 @@
                     const w = parseInt(document.getElementById('rBetInput').value);
                     if(!this.selType || w < 10 || w > APP.bal) return alert("Check wager/selection.");
                     if(this.spinning) return;
-                    
                     this.spinning = true; APP.update(-w);
                     document.getElementById('rSpinBtn').disabled = true;
                     document.getElementById('rStatus').innerText = "WHEEL IN MOTION...";
-                    
                     const res = this.nums[Math.floor(Math.random() * 37)];
                     const track = document.getElementById('rWheelTrack');
-                    const targetIdx = this.nums.indexOf(res) + 37; // Center set
-                    const offset = -(targetIdx * 95) + (300 - 40); // 95 is width+gap, 300 is half view
-                    
+                    const targetIdx = this.nums.indexOf(res) + 37; 
+                    const offset = -(targetIdx * 95) + (300 - 40); 
                     track.style.transform = `translateX(${offset}px)`;
-                    
                     setTimeout(() => {
-                        this.spinning = false;
-                        document.getElementById('rSpinBtn').disabled = false;
+                        this.spinning = false; document.getElementById('rSpinBtn').disabled = false;
                         document.getElementById('rStatus').innerText = `RESULT: ${res}`;
                         this.checkWin(res, w);
                     }, 4100);
@@ -287,10 +269,10 @@
                     document.getElementById('bjStandBtn').classList.remove('hidden');
                     document.getElementById('bjMsg').innerText = "";
                 },
-                getDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s}))); return d.sort(()=>Math.random()-0.5); },
+                getDeck() { let d = []; SUITS.forEach(s => VALS.forEach(v => d.push({v, s: s.s, c: s.c, r: s.r}))); return d.sort(()=>Math.random()-0.5); },
                 getSum(h) {
-                    const v = c => (['J','Q','K'].includes(c.v) ? 10 : c.v === 'A' ? 11 : parseInt(c.v));
-                    let s = h.reduce((a, b) => a + v(b), 0), aces = h.filter(c => c.v === 'A').length;
+                    const v = card => (['J','Q','K'].includes(card.v) ? 10 : card.v === 'A' ? 11 : parseInt(card.v));
+                    let s = h.reduce((a, b) => a + v(b), 0), aces = h.filter(card => card.v === 'A').length;
                     while(s > 21 && aces > 0) { s -= 10; aces--; } return s;
                 },
                 hit() { if(!this.active) return; this.player.push(this.deck.pop()); this.render(); if(this.getSum(this.player) > 21) this.end("BUSTED!"); },
@@ -318,9 +300,10 @@
                     this.dealer.forEach((c, i) => d.appendChild(this.drawCard(c, !f && i === 0)));
                 },
                 drawCard(c, h=false) {
-                    const div = document.createElement('div'); div.className = `card-executive ${['H','D'].includes(c.s)?'red':''}`;
-                    if(h) { div.className += ' card-back'; return div; }
-                    div.innerHTML = `<div>${c.v}</div><div style="align-self:center; font-size:4rem;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
+                    const div = document.createElement('div');
+                    if(h) { div.className = 'card-executive card-back'; return div; }
+                    div.className = `card-executive suit-${c.s.toLowerCase()} ${c.r?'red':''}`;
+                    div.innerHTML = `<div class="card-corner"><div>${c.v}</div><div class="card-suit-small">${c.c}</div></div><div class="card-corner bottom"><div>${c.v}</div><div class="card-suit-small">${c.c}</div></div>`;
                     return div;
                 }
             },
@@ -328,16 +311,22 @@
                 cur: null, next: null,
                 init() {
                     this.cur = this.getCard();
-                    this.render('hlCurrentCard', this.cur);
+                    const curEl = document.getElementById('hlCurrentCard'); curEl.innerHTML = ''; 
+                    curEl.appendChild(this.drawCard(this.cur));
                     const nextEl = document.getElementById('hlNextCard');
-                    nextEl.className = 'card-executive card-back'; nextEl.innerHTML = '';
+                    nextEl.innerHTML = ''; nextEl.className = 'card-executive card-back';
                     document.getElementById('hlMsg').innerText = "GUESS: HIGHER OR LOWER?";
                 },
-                getCard() { return { v: VALS[Math.floor(Math.random()*13)], s: SUITS[Math.floor(Math.random()*4)] }; },
+                getCard() { 
+                    const s = SUITS[Math.floor(Math.random()*4)];
+                    return { v: VALS[Math.floor(Math.random()*13)], s: s.s, c: s.c, r: s.r }; 
+                },
                 play(guess) {
                     const b = parseInt(document.getElementById('hlBet').value);
                     if(b < 10 || b > APP.bal) return alert("Check points.");
-                    APP.update(-b); this.next = this.getCard(); this.render('hlNextCard', this.next);
+                    APP.update(-b); this.next = this.getCard();
+                    const nextEl = document.getElementById('hlNextCard');
+                    nextEl.innerHTML = ''; nextEl.appendChild(this.drawCard(this.next));
                     const v1 = RANK[this.cur.v], v2 = RANK[this.next.v];
                     setTimeout(() => {
                         if((guess === 'high' && v2 > v1) || (guess === 'low' && v2 < v1)) {
@@ -346,10 +335,11 @@
                         setTimeout(() => this.init(), 2000);
                     }, 800);
                 },
-                render(id, c) {
-                    const el = document.getElementById(id);
-                    el.className = `card-executive ${['H','D'].includes(c.s)?'red':''}`;
-                    el.innerHTML = `<div>${c.v}</div><div style="align-self:center; font-size:4rem;">${c.s==='S'?'♠':c.s==='H'?'♥':c.s==='D'?'♦':'♣'}</div><div style="align-self:flex-end;">${c.v}</div>`;
+                drawCard(c) {
+                    const div = document.createElement('div');
+                    div.className = `card-executive suit-${c.s.toLowerCase()} ${c.r?'red':''}`;
+                    div.innerHTML = `<div class="card-corner"><div>${c.v}</div><div class="card-suit-small">${c.c}</div></div><div class="card-corner bottom"><div>${c.v}</div><div class="card-suit-small">${c.c}</div></div>`;
+                    return div;
                 }
             }
         };

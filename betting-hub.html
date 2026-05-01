@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Betting Hub</title>
+    <title>Franks_MGMT_Project | Sports Betting Hub</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
             --xav-blue: #0C2340; --accent: #0C2340; --bg-color: #f1f5f9; --border-color: #e2e8f0;
-            --text-main: #0f172a; --text-muted: #64748b; --success: #059669; --warning: #d97706; --danger: #dc2626;
+            --text-main: #0f172a; --text-muted: #64748b; --success: #10b981; --warning: #d97706; --danger: #dc2626;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
@@ -59,7 +59,8 @@
             <a href="index.html" class="btn-nav">Home hub</a>
             <a href="casino.html" class="btn-nav">Casino floor</a>
             <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
-            <a href="betting-hub.html" class="btn-nav active">Betting Hub</a>
+            <a href="betting-hub.html" class="btn-nav active">Sports Betting Hub</a>
+            <a href="sources.html" class="btn-nav">Credits</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
     </nav>
@@ -67,7 +68,7 @@
     <main>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;">
             <div>
-                <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">Betting Hub</h2>
+                <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">Sports Betting Hub</h2>
                 <p style="color:var(--text-muted); font-weight: 800; letter-spacing: 2px;">PREDICTIVE ANALYTICS • 12-PICK PARLAY ARCHITECT</p>
             </div>
             <button class="btn-nav active" onclick="fetchDailySlate()"><i class="fas fa-sync"></i> Refresh Daily Market</button>
@@ -87,7 +88,7 @@
     <div class="floating-help" onclick="toggleHelp()">?</div>
     <div id="helpOverlay" class="help-overlay" onclick="toggleHelp()">
         <div class="help-content">
-            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">BETTING HUB GUIDE</h2>
+            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">SPORTS BETTING GUIDE</h2>
             <p style="font-size:1.4rem; line-height:2; opacity:0.9;">
                 This predictive engine analyzes the day's MLB slate to rank matchups by statistical confidence.
                 <br><br>
