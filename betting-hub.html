@@ -20,7 +20,7 @@
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
         .nav-links { display: flex; align-items: center; gap: 1rem; }
 
-        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; text-decoration: none; }
+        .btn-nav { padding: 0.7rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; text-decoration: none; }
         .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.2); }
         .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 5px 15px var(--glow); }
 
@@ -59,7 +59,6 @@
             <a href="index.html" class="btn-nav">Home hub</a>
             <a href="casino.html" class="btn-nav">Casino floor</a>
             <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
-            <a href="milb-savant.html" class="btn-nav">MiLB Teams Live!</a>
             <a href="betting-hub.html" class="btn-nav active">Betting Hub</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
@@ -96,7 +95,7 @@
                 <br>2. Explore the **12-Pick Parlay Architect**, categorized into Safe, Value, and Risk tiers.
                 <br>3. Use the **OddShark** and **DraftKings** links on each pick to verify real-time market lines and computer predictions.
             </p>
-            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem;">DISMISS GUIDE</button>
+            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
         </div>
     </div>
 
@@ -113,7 +112,6 @@
                     generateParlays(games);
                 } else {
                     status.innerText = "No MLB games scheduled for today. Displaying simulated historical analytics.";
-                    // Simulated or fallback data here if needed
                 }
             } catch(e) { status.innerText = "Market link interrupted. Check network."; }
         }

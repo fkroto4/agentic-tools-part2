@@ -18,13 +18,13 @@
 
         nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 
-        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; text-decoration: none; }
+        .btn-nav { padding: 0.7rem 1.4rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.2px; text-decoration: none; }
         .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.2); }
         .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-        .chip-vault { background: #fff; border: 3px solid #fbbf24; padding: 0.5rem 1.4rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
+        .chip-vault { background: #fff; border: 3px solid #fbbf24; padding: 0.5rem 1.6rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
 
         main { max-width: 1550px; margin: 0 auto; padding: 5rem 3%; }
         .executive-card { background: #fff; border: 1px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
@@ -91,7 +91,6 @@
             <a href="index.html" class="btn-nav">Home hub</a>
             <a href="casino.html" class="btn-nav">Casino floor</a>
             <a href="mlb-savant.html" class="btn-nav active">MLB Teams Live!</a>
-            <a href="milb-savant.html" class="btn-nav">MiLB Teams Live!</a>
             <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
@@ -142,11 +141,11 @@
                 <br><br>
                 1. Select an MLB team from the dropdown to load their **Active Roster** and **Tactical Field Positions**.
                 <br>2. Monitor game status via the pulsing green **LIVE** or static red **RECORD** indicators.
-                <br>3. View daily scores and click them to open the official MLB GameDay page.
+                <br>3. View daily scores and **Click them to watch the Live Broadcast** on MLB.tv.
                 <br>4. Interact with Trading Cards to reveal individual season-to-date statistics.
                 <br>5. Use the **WATCH LIVE FEED** button for direct access to official broadcasts.
             </p>
-            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem;">DISMISS GUIDE</button>
+            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
         </div>
     </div>
 
@@ -168,7 +167,7 @@
                 games.forEach(g => {
                     const card = document.createElement('a');
                     card.className = 'score-pill';
-                    card.href = `https://www.mlb.com/game/${g.gamePk}`;
+                    card.href = `https://www.mlb.com/tv/g${g.gamePk}`; // DIRECT LIVE BROADCAST LINK
                     card.target = "_blank";
                     card.innerHTML = `
                         <div class="pill-row"><span>${g.teams.away.team.name}</span><span class="pill-score">${g.teams.away.score || 0}</span></div>
@@ -183,7 +182,6 @@
         async function syncSavantHub(abbr) {
             if(abbr === "HOME") return location.reload();
             document.getElementById('savantContent').classList.remove('hidden');
-            
             const id = STATE.teamIds[abbr], color = STATE.teamColors[abbr];
             document.documentElement.style.setProperty('--accent', color);
             document.getElementById('teamHeaderTitle').innerText = abbr + " STRATEGIC FEED";
@@ -203,7 +201,7 @@
                 if(game && game.status.abstractGameState === 'Live') {
                     statusBox.innerHTML = `<div class="state-label state-live"><div class="status-icon icon-live"></div> LIVE RIGHT NOW</div><div class="record-pill">CURRENT SEASON RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>`;
                     footageBtn.style.display = 'inline-flex';
-                    footageBtn.href = `https://www.mlb.com/game/${game.gamePk}`;
+                    footageBtn.href = `https://www.mlb.com/tv/g${game.gamePk}`;
                 } else {
                     statusBox.innerHTML = `<div class="state-label state-inactive"><div class="status-icon icon-inactive"></div> CURRENT SEASON RECORD</div><div class="record-pill">RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>`;
                     footageBtn.style.display = 'none';
