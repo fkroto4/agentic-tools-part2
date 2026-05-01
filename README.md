@@ -1,25 +1,31 @@
-# Frank Leo Kroto IV | Advanced Agentic Portfolio
-## Strategic AI Architect & MLB Tactical Orchestrator
+# Franks_MGMT_Project v10.4: Executive Strategic Hub
 
-[![Verified Deployment](https://img.shields.io/badge/Deployment-v7.3_Verified-blue?style=for-the-badge&logo=github)](https://fkroto4.github.io/agentic-tools-part2/)
-[![Agentic OS](https://img.shields.io/badge/JARVIS_OS-Online-success?style=for-the-badge&logo=probot)](https://fkroto4.github.io/agentic-tools-part2/)
+A high-fidelity, data-driven command center architected for **Major League Baseball (MLB) analytics**, **Sports Betting Strategy**, and **Interactive Executive Simulations**. This project demonstrates the power of Multi-Page Architecture (MPA) and real-time API orchestration.
 
-### **Overview**
-This repository serves as a high-performance demonstration of **League-Wide Agentic Orchestration**. It integrates real-time global data streams with a sophisticated professional profile, managed by an autonomous cognitive briefing agent (JARVIS).
-
-### **Key Ecosystem Features**
-- **Live League Dashboard:** Real-time scoring and scheduling for all 30 MLB teams via `statsapi.mlb.com`.
-- **Tactical Field Map:** Interactive SVG diamond visualizer with live player positioning.
-- **Cognitive JARVIS OS:** A searchable knowledge base answering professional and strategic inquiries.
-- **Agentic Yield Simulator:** A practical ROI modeling tool for enterprise AI deployment.
-- **Multi-View Orchestrator:** Seamless transitions between Home, League, and Team Tactical views.
-
-### **Professional Identity**
-**Frank Leo Kroto IV** is a Business Management & Applied AI Strategy specialist at Xavier University. This portfolio showcases mastery over:
-1.  **Direct API Orchestration**
-2.  **Autonomous Workflow Design**
-3.  **High-Velocity Data Management**
-4.  **Dynamic UI/UX Branding**
+## 🚀 Live Environment
+**Executive Gateway:** [https://fkroto4.github.io/agentic-tools-part2/](https://fkroto4.github.io/agentic-tools-part2/)
 
 ---
-*Autonomous Deployment v7.3 | Verified Master Certified*
+
+## 🏗️ Architecture: The Isolated Network
+To guarantee 100% stability and prevent logic interference, the hub is split into 5 physical physical modules:
+
+1.  **Executive Home (`index.html`):** The primary mission briefing featuring the Professor's Message and professional credentials decryption sequence.
+2.  **MLB Teams Live! (`mlb-savant.html`):** A real-time tactical feed for all 30 MLB franchises. Features interactive 'Topps-style' trading cards, live game status (Green/Red indicators), and tactical field mapping.
+3.  **Sports Betting Hub (`betting-hub.html`):** A predictive engine featuring a 12-Pick Parlay Architect with unique, sanitized links to OddShark and DraftKings.
+4.  **Executive Casino (`casino.html`):** A high-fidelity simulation including Imperial Roulette, Neural Blackjack, and High-Low Predictor. Managed via a persistent chip vault.
+5.  **Credits & Sources (`sources.html`):** Full technical transparency featuring a live System Heartbeat and verified data citations.
+
+---
+
+## 🛠️ Technical Specifications
+- **State Management:** Persistent global point balance managed via `localStorage` (`franks_chips_v94`).
+- **Data Source:** Official `statsapi.mlb.com` for real-time scores, standings, rosters, and player headshots.
+- **UI Framework:** Custom "Executive Premium" design system using Xavier Navy (#0C2340) and Slate, optimized for desktop and high-density data visualization.
+- **Guidance System:** Floating gold '?' help button on every page providing context-aware executive tooltips.
+
+## 🎓 Academic Integrity (Fast-Track)
+For assessment purposes, a **(skip to end for Professor)** protocol is located on the **Casino Floor** under the Blackjack module. This immediately fulfills the 1,000-chip goal and unlocks the professional credentials on the Home Screen.
+
+---
+*Created by Frank Leo Kroto IV | Xavier University Class of 2027*
