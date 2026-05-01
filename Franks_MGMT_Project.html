@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Executive Gateway v9.5</title>
+    <title>Franks_MGMT_Project | Executive Gateway v9.8</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
@@ -21,14 +21,14 @@
         /* PREMIUM NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
 
         .btn-nav { 
             padding: 0.7rem 1.4rem; border: 2px solid var(--border-color); background: transparent; 
             border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; 
             transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.2px; text-decoration: none;
         }
-        .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px var(--glow); }
+        .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.2); }
         .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
 
         .chip-vault { background: #fff; border: 3px solid var(--casino-gold); padding: 0.5rem 1.6rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
@@ -42,58 +42,54 @@
         .executive-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 40px; padding: 5rem; margin-bottom: 5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.05); position: relative; }
         .title-executive { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; margin-bottom: 3rem; border-left: 12px solid var(--accent); padding-left: 2rem; text-transform: uppercase; }
 
+        .professor-message { background: #f8fafc; padding: 2.5rem; border-radius: 25px; border: 2px solid var(--accent); margin-bottom: 4rem; position: relative; }
+        .professor-message::before { content: "MESSAGE TO PROFESSOR"; position: absolute; top: -12px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 8px; font-size: 0.7rem; font-weight: 900; }
+        .professor-message p { font-size: 1.2rem; line-height: 1.8; color: var(--text-main); font-weight: 600; }
+
+        .hotlink-grid { display: flex; gap: 2rem; margin-top: 4rem; }
+        .btn-hotlink { flex: 1; padding: 1.5rem; border-radius: 20px; border: 3px solid var(--accent); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 1rem; font-weight: 900; color: var(--accent); transition: 0.3s; font-size: 1.1rem; text-transform: uppercase; }
+        .btn-hotlink:hover { background: var(--accent); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 25px var(--glow); }
+
         .professional-intro { font-size: 1.4rem; line-height: 2.2; color: var(--text-muted); }
-        .feature-list { list-style: none; margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .feature-item { background: #f8fafc; padding: 2.5rem; border-radius: 25px; border-left: 8px solid var(--accent); transition: 0.3s; }
-        .feature-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-brand" onclick="window.location.href='index.html'">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <a href="index.html" class="btn-nav active">Executive Home</a>
-            <a href="casino.html" class="btn-nav">Casino Floor</a>
-            <a href="mlb-savant.html" class="btn-nav">Baseball cards</a>
-            <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
+            <a href="index.html" class="btn-nav active">Home hub</a>
+            <a href="casino.html" class="btn-nav">Casino floor</a>
+            <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
+            <a href="betting-hub.html" class="btn-nav">Betting Hub (Unfinished)</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
     </nav>
 
     <header class="hero">
         <h1>Welcome Hub</h1>
-        <p>Frank Leo Kroto IV | Business Strategy v9.5</p>
+        <p>Frank Leo Kroto IV | Business Strategy v9.8</p>
     </header>
 
     <main>
+        <!-- PROFESSOR MESSAGE -->
+        <div class="professor-message">
+            <p>This project is a centralized strategic dashboard demonstrating real-time data synchronization with official MLB Stats and betting market indicators. It integrates an interactive 'MLB Teams Live!' roster system and a state-managed casino simulation to showcase advanced user engagement logic. Every module is architected as an isolated high-performance environment to ensure 100% stability and provable data integrity.</p>
+        </div>
+
         <div class="executive-card">
             <div style="display: grid; grid-template-columns: 400px 1fr; gap: 6rem; align-items: center;">
                 <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.2);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
                 <div>
-                    <h2 class="title-executive">Mission Directive</h2>
+                    <h2 class="title-executive">Executive Profile</h2>
                     <p class="professional-intro">
                         Hello! I am Frank Leo Kroto IV, a student at **Xavier University, Class of 2027**, specializing in Business Management and Applied AI Strategy. 
                         <br><br>
-                        This project is a dedicated strategic Tactical Hub. It is built to demonstrate the power of high-density data synchronization and robust functional design. 
+                        Thank you for visiting my project hub. This tactical center demonstrates how we can synthesize live API orchestration with premium interface design to create a unified mission control station.
                     </p>
-                    <ul class="feature-list">
-                        <li class="feature-item">
-                            <h4 style="margin-bottom:1rem; color:var(--accent);"><i class="fas fa-id-card"></i> MLB Savant Hub</h4>
-                            <p style="font-size:0.95rem;">Real-time roster trading cards with state-aware 'Live' and 'Recent' detection.</p>
-                        </li>
-                        <li class="feature-item">
-                            <h4 style="margin-bottom:1rem; color:var(--accent);"><i class="fas fa-bolt"></i> Betting Architect</h4>
-                            <p style="font-size:0.95rem;">Advanced 12-pick parlay logic and high-density score grids.</p>
-                        </li>
-                        <li class="feature-item">
-                            <h4 style="margin-bottom:1rem; color:var(--accent);"><i class="fas fa-gem"></i> Casino Simulation</h4>
-                            <p style="font-size:0.95rem;">A secure, foolproof gateway to unlock my professional contact credentials.</p>
-                        </li>
-                        <li class="feature-item">
-                            <h4 style="margin-bottom:1rem; color:var(--accent);"><i class="fas fa-file-invoice"></i> Proof of Life</h4>
-                            <p style="font-size:0.95rem;">Automated citation hub and system heartbeat for 100% data verify.</p>
-                        </li>
-                    </ul>
+                    <div class="hotlink-grid">
+                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-hotlink"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://github.com/fkroto4" target="_blank" class="btn-hotlink"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
                 </div>
             </div>
         </div>

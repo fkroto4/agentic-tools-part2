@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Betting Hub</title>
+    <title>Franks_MGMT_Project | Betting Hub (Unfinished)</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
@@ -16,32 +16,20 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
         body { background: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-top: 85px; }
 
-        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; }
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
 
         .btn-nav { padding: 0.7rem 1.4rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.2px; text-decoration: none; }
-        .btn-nav:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.2); }
+        .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 5px 15px var(--glow); }
 
         .chip-vault { background: #fff; border: 3px solid #fbbf24; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem; }
 
         main { max-width: 1550px; margin: 0 auto; padding: 5rem 3%; }
         .executive-card { background: #fff; border: 1px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
 
-        .ticker-frame { background: #0f172a; color: white; padding: 1.2rem; border-radius: 15px; margin-bottom: 4rem; overflow: hidden; border-bottom: 4px solid var(--xav-blue); }
-        .ticker-track { display: flex; gap: 5rem; animation: scrollTicker 60s linear infinite; white-space: nowrap; width: max-content; }
-        .ticker-item { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 1rem; }
-        @keyframes scrollTicker { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
-
-        .score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-        .score-pill { background: #fff; border: 1.5px solid var(--border-color); border-radius: 20px; padding: 1.5rem; transition: 0.3s; display: flex; flex-direction: column; gap: 0.8rem; text-decoration: none; color: inherit; }
-        .score-pill:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .pill-row { display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 1rem; }
-        .pill-val { font-size: 1.6rem; color: var(--accent); }
-        .pill-status { font-size: 0.7rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; background: #f8fafc; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color); }
-
-        .parlay-board { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; margin-top: 4rem; }
+        .parlay-board { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; margin-top: 4rem; }
         .parlay-stack { display: flex; flex-direction: column; gap: 1.5rem; }
         .parlay-item { background: #fff; border: 2.5px solid var(--border-color); border-radius: 25px; padding: 2rem; position: relative; transition: 0.3s; }
         .parlay-item:hover { border-color: var(--accent); transform: scale(1.02); }
@@ -61,23 +49,25 @@
     <nav>
         <div class="nav-brand" onclick="window.location.href='index.html'">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <a href="index.html" class="btn-nav">Home</a>
-            <a href="casino.html" class="btn-nav">Casino</a>
-            <a href="mlb-savant.html" class="btn-nav">Baseball cards</a>
-            <a href="betting-hub.html" class="btn-nav active">Betting Hub</a>
+            <a href="index.html" class="btn-nav">Home hub</a>
+            <a href="casino.html" class="btn-nav">Casino floor</a>
+            <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
+            <a href="betting-hub.html" class="btn-nav active">Betting Hub (Unfinished)</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
     </nav>
 
     <main>
-        <div class="ticker-frame"><div class="ticker-track" id="mainTicker"></div></div>
-
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;">
             <div>
-                <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">Betting Architect</h2>
-                <p style="color:var(--text-muted); font-weight: 800; letter-spacing: 2px;">LIVE SLATE • 12-PICK PARLAY LOGIC • MARKET SYNC</p>
+                <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">Betting Hub (Unfinished)</h2>
+                <p style="color:var(--text-muted); font-weight: 800; letter-spacing: 2px;">PARLAY ARCHITECT UNDER DEVELOPMENT</p>
             </div>
-            <button class="btn-nav active" onclick="fetchDailySlate()"><i class="fas fa-sync"></i> Sync Market Data</button>
+        </div>
+
+        <div class="executive-card" style="text-align:center; padding: 10rem 2rem;">
+            <i class="fas fa-tools" style="font-size: 5rem; color: var(--border-color); margin-bottom: 2rem;"></i>
+            <h2 style="color: var(--text-muted);">The Betting Hub is currently undergoing maintenance. <br>Please visit the <a href="mlb-savant.html" style="color:var(--accent);">MLB Teams Live!</a> page for active game scores.</h2>
         </div>
 
         <section class="executive-card">
@@ -88,35 +78,16 @@
                 <div class="parlay-stack"><span class="tier-label tier-avoid">Tier 3: Strategic Risks</span><div id="stack-avoid"></div></div>
             </div>
         </section>
-
-        <h3 style="font-family:'Playfair Display'; font-size: 2.5rem; margin-bottom: 2.5rem; border-left: 10px solid var(--accent); padding-left: 2rem;">Condensed Live Slate</h3>
-        <div id="scoreGrid" class="score-grid"></div>
     </main>
 
     <script>
         async function fetchDailySlate() {
-            const b = document.getElementById('scoreGrid'); b.innerHTML = '<p style="text-align:center; grid-column:1/-1;">SYNCING MLB CLOUD DATA...</p>';
             try {
                 const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings),metadata');
-                const data = await res.json(); const games = data.dates[0]?.games || [];
-                b.innerHTML = '';
-                games.forEach(g => {
-                    const card = document.createElement('a'); card.className = 'score-pill'; card.href = `https://www.mlb.com/game/${g.gamePk}`; card.target = "_blank";
-                    card.innerHTML = `<div class="pill-row"><span>${g.teams.away.team.name}</span><span class="pill-val">${g.teams.away.score || 0}</span></div><div class="pill-row"><span>${g.teams.home.team.name}</span><span class="pill-val">${g.teams.home.score || 0}</span></div><div style="text-align:center; margin-top:0.5rem;"><span class="pill-status">${g.status.detailedState} ${g.linescore?.inningState || ''}</span></div>`;
-                    b.appendChild(card);
-                });
-                updateTicker(games); generateParlays(games);
-            } catch(e) { b.innerHTML = '<p>Offline.</p>'; }
-        }
-
-        function updateTicker(games) {
-            const track = document.getElementById('mainTicker'); track.innerHTML = '';
-            games.forEach(g => {
-                const item = document.createElement('a'); item.className = 'ticker-item';
-                item.href = `https://www.mlb.com/game/${g.gamePk}`; item.target = "_blank";
-                item.innerHTML = `<span class="ticker-time">[${new Date().toLocaleTimeString()}]</span> LIVE: ${g.teams.away.team.name} vs ${g.teams.home.team.name} • CLICK FOR GAMEDAY`;
-                track.appendChild(item);
-            });
+                const data = await res.json();
+                const games = data.dates[0]?.games || [];
+                generateParlays(games);
+            } catch(e) { console.error(e); }
         }
 
         function generateParlays(games) {
@@ -131,9 +102,9 @@
                 if(tier === 'safe') safe.appendChild(div); else if(tier === 'risky') risky.appendChild(div); else avoid.appendChild(div);
             };
             for(let i=0; i<4; i++) {
-                if(games[i]) build(games[i], 'safe', `Pick #${i+1}`, "High pitching mismatch detected. Statistical confidence index: 78%.");
-                if(games[i+4]) build(games[i+4], 'risky', `Pick #${i+5}`, "Underdog momentum detection. Arbitrage potential on run-line.");
-                if(games[i+8]) build(games[i+8], 'avoid', `Pick #${i+9}`, "Volatile variance forecast. Bullpen availability concerns.");
+                if(games[i]) build(games[i], 'safe', `Pick #${i+1}`, "Severe mismatch index detected.");
+                if(games[i+4]) build(games[i+4], 'risky', `Pick #${i+5}`, "Underdog momentum detection.");
+                if(games[i+8]) build(games[i+8], 'avoid', `Pick #${i+9}`, "Volatile variance forecast.");
             }
         }
 
