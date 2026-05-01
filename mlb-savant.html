@@ -10,13 +10,13 @@
     <style>
         :root {
             --xav-blue: #0C2340; --accent: #0C2340; --success: #10b981; --bg-color: #f1f5f9; --border-color: #e2e8f0;
-            --text-main: #0f172a; --text-muted: #64748b; --card-bg: #fff;
+            --text-main: #0f172a; --text-muted: #64748b; --card-bg: #fff; --danger: #e11d48;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
         body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-top: 85px; }
 
-        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
         .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 
@@ -32,7 +32,7 @@
         /* BASEBALL CARDS (STABLE GRID) */
         .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 3.5rem; }
         .player-card { height: 480px; perspective: 1000px; cursor: pointer; margin: 0 auto; width: 100%; max-width: 340px; }
-        .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
         .player-card.flipped .card-inner { transform: rotateY(180deg); }
         
         .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; border: 10px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; background: #fff; }
@@ -41,7 +41,6 @@
         
         .img-container { height: 340px; background: linear-gradient(to bottom, #f1f5f9, #e2e8f0); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
         .player-img { width: 100%; height: 110%; object-fit: contain; transform: translateY(5%); transition: 0.3s; }
-        .player-card:hover .player-img { transform: translateY(0) scale(1.05); }
         
         .card-label { padding: 1.2rem; background: var(--accent); color: #fff; text-align: center; }
         .card-label h4 { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; }
@@ -55,7 +54,7 @@
         .node-tag { font-size: 0.8rem; font-weight: 900; background: var(--success); color: #000; padding: 3px 12px; border-radius: 12px; display: inline-block; }
         .node-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-top: 6px; text-shadow: 0 3px 6px rgba(0,0,0,1); }
 
-        .state-label { font-size: 1rem; font-weight: 900; padding: 6px 20px; border-radius: 50px; background: #eee; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: inline-flex; align-items: center; gap: 0.8rem; }
+        .state-label { font-size: 1rem; font-weight: 900; padding: 10px 30px; border-radius: 50px; background: #eee; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: inline-flex; align-items: center; gap: 0.8rem; }
         .state-live { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); }
         .live-pulse { width: 12px; height: 12px; background: var(--danger); border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
@@ -99,7 +98,7 @@
                 </div>
             </div>
 
-            <h3 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 3rem; text-transform: uppercase; border-left: 12px solid var(--accent); padding-left: 2rem;">Authentic Trading Cards</h3>
+            <h3 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 3rem; text-transform: uppercase; border-left: 10px solid var(--accent); padding-left: 2rem;">Active Roster Stack</h3>
             <div id="rosterGrid" class="roster-grid"></div>
         </div>
     </main>
@@ -118,27 +117,31 @@
             document.documentElement.style.setProperty('--accent', color);
             document.getElementById('teamHeaderTitle').innerText = abbr + " STRATEGIC FEED";
 
-            // State Aware Check
-            const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
-            const gData = await gRes.json(); const game = gData.dates[0]?.games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id);
-            const statusEl = document.getElementById('hubStatus');
-            if(game && game.status.abstractGameState === 'Live') {
-                statusEl.className = "state-label state-live";
-                statusEl.innerHTML = '<div class="live-pulse"></div> LIVE NOW: 2026 ACTIVE ROSTER';
-            } else {
-                statusEl.className = "state-label";
-                statusEl.innerText = "MOST RECENT (Final): 2026 ACTIVE ROSTER";
-            }
+            try {
+                // State Aware Check
+                const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
+                const gData = await gRes.json(); 
+                const game = gData.dates && gData.dates[0] ? gData.dates[0].games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id) : null;
+                
+                const statusEl = document.getElementById('hubStatus');
+                if(game && game.status.abstractGameState === 'Live') {
+                    statusEl.className = "state-label state-live";
+                    statusEl.innerHTML = '<div class="live-pulse"></div> LIVE NOW: 2026 ACTIVE ROSTER';
+                } else {
+                    statusEl.className = "state-label";
+                    statusEl.innerText = "MOST RECENT (Final): 2026 ACTIVE ROSTER";
+                }
 
-            const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
-            const rData = await rRes.json();
-            renderBaseballCards(rData.roster);
-            renderFieldNodes(rData.roster);
+                const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
+                const rData = await rRes.json();
+                renderBaseballCards(rData.roster);
+                renderFieldNodes(rData.roster);
+            } catch(e) { console.error(e); }
         }
 
-        async function renderBaseballCards(ros) {
+        function renderBaseballCards(ros) {
             const grid = document.getElementById('rosterGrid'); grid.innerHTML = '';
-            ros.slice(0, 15).forEach(p => {
+            ros.forEach(p => {
                 const card = document.createElement('div'); card.className = 'player-card';
                 card.onclick = async () => {
                     if(!card.classList.contains('flipped')) {
@@ -156,7 +159,8 @@
         async function fetchStats(pid, isP) {
             try {
                 const res = await fetch(`https://statsapi.mlb.com/api/v1/people/${pid}/stats?stats=season&group=${isP?'pitching':'hitting'}`);
-                const d = await res.json(); const s = d.stats[0]?.splits[0]?.stat;
+                const d = await res.json(); 
+                const s = d.stats && d.stats[0] && d.stats[0].splits && d.stats[0].splits[0] ? d.stats[0].splits[0].stat : null;
                 if(!s) return "Season data pending.";
                 return isP ? 
                     `<div class="stat-line"><span class="stat-label">ERA</span><span>${s.era}</span></div><div class="stat-line"><span class="stat-label">WHIP</span><span>${s.whip}</span></div><div class="stat-line"><span class="stat-label">SO</span><span>${s.strikeOuts}</span></div><div class="stat-line"><span class="stat-label">W/L</span><span>${s.wins}-${s.losses}</span></div>` :
@@ -170,7 +174,7 @@
             Object.keys(pos).forEach(key => {
                 const p = ros.find(player => player.position.abbreviation === key) || { person: { fullName: 'TBD' } };
                 const div = document.createElement('div'); div.className = 'field-node'; div.style.left = pos[key][0]+'%'; div.style.top = pos[key][1]+'%';
-                div.innerHTML = `<div class="node-label">${key}</div><div class="node-name">${p.person.fullName}</div>`;
+                div.innerHTML = `<div class="node-tag">${key}</div><div class="node-name">${p.person.fullName}</div>`;
                 arena.appendChild(div);
             });
         }
