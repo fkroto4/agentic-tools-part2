@@ -173,12 +173,12 @@
                 if(game && game.status.abstractGameState === 'Live') {
                     statusBox.innerHTML = `
                         <div class="state-label state-live"><div class="status-icon icon-live"></div> LIVE RIGHT NOW</div>
-                        <div class="record-pill"><i class="fas fa-chart-line"></i> SEASON RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
+                        <div class="record-pill"><i class="fas fa-chart-line"></i> CURRENT SEASON RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
                     `;
                 } else {
                     statusBox.innerHTML = `
                         <div class="state-label state-inactive"><div class="status-icon icon-inactive"></div> ENDING STANDINGS (Inactive)</div>
-                        <div class="record-pill"><i class="fas fa-trophy"></i> FINAL RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
+                        <div class="record-pill"><i class="fas fa-trophy"></i> CURRENT SEASON RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
                     `;
                 }
 
