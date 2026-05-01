@@ -29,7 +29,20 @@
         main { max-width: 1550px; margin: 0 auto; padding: 5rem 3%; }
         .executive-card { background: #fff; border: 1px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
 
-        /* SCOREGRID CONDENSED */
+        /* STATUS INDICATORS */
+        .hub-status-container { display: flex; align-items: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .state-label { font-size: 1rem; font-weight: 900; padding: 12px 25px; border-radius: 50px; background: #fff; border: 2px solid var(--border-color); color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .state-live { border-color: var(--success); color: var(--success); }
+        .state-inactive { border-color: var(--danger); color: var(--danger); }
+        
+        .status-icon { width: 12px; height: 12px; border-radius: 50%; }
+        .icon-live { background: var(--success); animation: pulseGreen 1.5s infinite; }
+        .icon-inactive { background: var(--danger); }
+        @keyframes pulseGreen { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+
+        .record-pill { background: var(--xav-blue); color: #fff; padding: 12px 25px; border-radius: 50px; font-weight: 900; font-size: 0.9rem; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 0.8rem; }
+
+        /* SCOREGRID */
         .score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
         .score-pill { background: #fff; border: 1.5px solid var(--border-color); border-radius: 20px; padding: 1.5rem; transition: 0.3s; display: flex; flex-direction: column; gap: 0.8rem; text-decoration: none; color: inherit; }
         .score-pill:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.1); }
@@ -42,30 +55,20 @@
         .player-card { height: 480px; perspective: 1000px; cursor: pointer; margin: 0 auto; width: 100%; max-width: 340px; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
         .player-card.flipped .card-inner { transform: rotateY(180deg); }
-        
         .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; border: 10px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; background: #fff; }
-        .card-front { background: #f8fafc; }
         .card-back { background: #fff; transform: rotateY(180deg); padding: 2.5rem; display: flex; flex-direction: column; border: 10px solid var(--accent); }
-        
         .img-container { height: 340px; background: linear-gradient(to bottom, #f1f5f9, #e2e8f0); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
         .player-img { width: 100%; height: 110%; object-fit: contain; transform: translateY(5%); transition: 0.3s; }
-        
         .card-label { padding: 1.2rem; background: var(--accent); color: #fff; text-align: center; }
         .card-label h4 { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; }
-        
         .stat-line { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 2.5px solid #f1f5f9; font-weight: 900; font-size: 1rem; color: #1a202c; }
         .stat-label { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; }
 
         /* FIELD MAP */
-        .field-frame { position: relative; width: 100%; max-width: 1000px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 60px; border: 12px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,1); }
+        .field-frame { position: relative; width: 100%; max-width: 1000px; height: 750px; margin: 4rem auto; background: #0f172a; border-radius: 60px; border: 10px solid #1e293b; overflow: hidden; box-shadow: inset 0 0 150px rgba(0,0,0,1); }
         .field-node { position: absolute; width: 130px; text-align: center; transform: translate(-50%, -50%); transition: 0.7s; z-index: 10; }
         .node-tag { font-size: 0.8rem; font-weight: 900; background: var(--success); color: #000; padding: 3px 12px; border-radius: 12px; display: inline-block; }
         .node-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-top: 6px; text-shadow: 0 3px 6px rgba(0,0,0,1); }
-
-        .state-label { font-size: 1rem; font-weight: 900; padding: 10px 30px; border-radius: 50px; background: #eee; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: inline-flex; align-items: center; gap: 0.8rem; }
-        .state-live { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); }
-        .live-pulse { width: 12px; height: 12px; background: var(--danger); border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
 
         .hidden { display: none !important; }
         select { padding: 1.2rem 3rem; border-radius: 50px; border: 4px solid var(--accent); background: #fff; font-weight: 900; font-size: 1.2rem; cursor: pointer; outline: none; }
@@ -87,7 +90,9 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;">
             <div>
                 <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">MLB Teams Live!</h2>
-                <div id="hubStatus" class="state-label" style="margin-top:1rem;">Select Team to Load Tactical Data</div>
+                <div class="hub-status-container" id="hubStatusBox">
+                    <div class="state-label">Select Team to Load Tactical Data</div>
+                </div>
             </div>
             <select id="teamSelector" onchange="syncSavantHub(this.value)">
                 <option value="HOME">Select Team Feed</option>
@@ -126,8 +131,9 @@
             try {
                 const res = await fetch('https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&hydrate=linescore,team(standings),metadata');
                 const data = await res.json();
-                const games = data.dates[0]?.games || [];
+                const games = data.dates && data.dates[0] ? data.dates[0].games : [];
                 b.innerHTML = '';
+                if(games.length === 0) b.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:var(--text-muted);">NO GAMES SCHEDULED TODAY</p>';
                 games.forEach(g => {
                     const card = document.createElement('a');
                     card.className = 'score-pill';
@@ -140,7 +146,7 @@
                     `;
                     b.appendChild(card);
                 });
-            } catch(e) { b.innerHTML = '<p>Offline.</p>'; }
+            } catch(e) { console.error(e); b.innerHTML = '<p>Feed Sync Interrupted.</p>'; }
         }
 
         async function syncSavantHub(abbr) {
@@ -151,25 +157,39 @@
             document.documentElement.style.setProperty('--accent', color);
             document.getElementById('teamHeaderTitle').innerText = abbr + " STRATEGIC FEED";
 
-            // State Aware Check
-            const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore`);
-            const gData = await gRes.json(); const game = gData.dates && gData.dates[0] ? gData.dates[0].games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id) : null;
-            const statusEl = document.getElementById('hubStatus');
-            if(game && game.status.abstractGameState === 'Live') {
-                statusEl.className = "state-label state-live";
-                statusEl.innerHTML = '<div class="live-pulse"></div> LIVE NOW: ACTIVE ROSTER';
-            } else {
-                statusEl.className = "state-label";
-                statusEl.innerText = "MOST RECENT (Final): ACTIVE ROSTER";
-            }
+            try {
+                // Status & Schedule
+                const gRes = await fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=${id}&hydrate=linescore,team(standings)`);
+                const gData = await gRes.json(); 
+                const game = gData.dates && gData.dates[0] ? gData.dates[0].games.find(gm => gm.teams.away.team.id === id || gm.teams.home.team.id === id) : null;
+                
+                // Standing / Record
+                const tRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}?hydrate=standings`);
+                const tData = await tRes.json();
+                const teamData = tData.teams[0];
+                const rec = teamData.record || { wins: 0, losses: 0, winningPercentage: ".000" };
 
-            const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
-            const rData = await rRes.json();
-            renderBaseballCards(rData.roster);
-            renderFieldNodes(rData.roster);
+                const statusBox = document.getElementById('hubStatusBox');
+                if(game && game.status.abstractGameState === 'Live') {
+                    statusBox.innerHTML = `
+                        <div class="state-label state-live"><div class="status-icon icon-live"></div> LIVE RIGHT NOW</div>
+                        <div class="record-pill"><i class="fas fa-chart-line"></i> SEASON RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
+                    `;
+                } else {
+                    statusBox.innerHTML = `
+                        <div class="state-label state-inactive"><div class="status-icon icon-inactive"></div> ENDING STANDINGS (Inactive)</div>
+                        <div class="record-pill"><i class="fas fa-trophy"></i> FINAL RECORD: ${rec.wins}-${rec.losses} (${rec.winningPercentage})</div>
+                    `;
+                }
+
+                const rRes = await fetch(`https://statsapi.mlb.com/api/v1/teams/${id}/roster`);
+                const rData = await rRes.json();
+                renderBaseballCards(rData.roster);
+                renderFieldNodes(rData.roster);
+            } catch(e) { console.error(e); }
         }
 
-        async function renderBaseballCards(ros) {
+        function renderBaseballCards(ros) {
             const grid = document.getElementById('rosterGrid'); grid.innerHTML = '';
             ros.forEach(p => {
                 const card = document.createElement('div'); card.className = 'player-card';
