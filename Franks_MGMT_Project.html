@@ -3,59 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Executive Gateway v10.1</title>
+    <title>Franks_MGMT_Project | Sources & Credits</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --xav-blue: #0C2340; --xav-navy-light: #1e3a8a; --xav-silver: #9EA2A2;
-            --bg-color: #f1f5f9; --card-bg: #ffffff; --border-color: #e2e8f0;
-            --text-main: #0f172a; --text-muted: #64748b; --accent: #0C2340;
-            --glow: rgba(12, 35, 64, 0.2); --casino-gold: #fbbf24;
+            --xav-blue: #0C2340; --accent: #0C2340; --bg-color: #f1f5f9; --border-color: #e2e8f0;
+            --text-main: #0f172a; --text-muted: #64748b; --success: #059669; --casino-gold: #fbbf24;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 85px; }
+        body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-top: 85px; }
 
-        /* PREMIUM NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
 
-        .btn-nav { 
-            padding: 0.7rem 1.4rem; border: 2px solid var(--border-color); background: transparent; 
-            border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; 
-            transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.2px; text-decoration: none;
-        }
-        .btn-nav:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(12, 35, 64, 0.2); }
-        .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 8px 25px var(--glow); }
+        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; text-decoration: none; }
+        .btn-nav:hover { border-color: var(--accent); }
+        .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-        .chip-vault { background: #fff; border: 3px solid var(--casino-gold); padding: 0.5rem 1.6rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
+        .chip-vault { background: #fff; border: 3px solid #fbbf24; padding: 0.5rem 1.4rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
 
-        /* HERO */
-        .hero { background: var(--xav-blue); padding: 8rem 2rem; text-align: center; border-bottom: 6px solid var(--xav-navy-light); color: white; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; letter-spacing: -2px; text-transform: uppercase; margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.2rem; color: var(--xav-silver); font-family: 'Fira Code', monospace; letter-spacing: 5px; text-transform: uppercase; }
+        main { max-width: 1200px; margin: 0 auto; padding: 5rem 5%; }
+        .executive-card { background: #fff; border: 1px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
 
-        main { max-width: 1400px; margin: 0 auto; padding: 5rem 5%; }
-        .executive-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 40px; padding: 5rem; margin-bottom: 5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.05); position: relative; }
-        .title-executive { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; margin-bottom: 3rem; border-left: 12px solid var(--accent); padding-left: 2rem; text-transform: uppercase; }
+        .source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .source-pill { background: #f8fafc; border-radius: 25px; padding: 2.5rem; border-left: 8px solid var(--accent); }
+        .source-pill h4 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--xav-blue); }
+        .source-link { color: var(--xav-blue); font-weight: 800; text-decoration: none; font-size: 0.85rem; display: block; margin-top: 1.5rem; }
 
-        .professor-message { background: #f8fafc; padding: 3rem; border-radius: 35px; border: 2px solid var(--accent); margin-bottom: 4rem; position: relative; }
-        .professor-message::before { content: "MESSAGE TO PROFESSOR"; position: absolute; top: -15px; left: 35px; background: var(--accent); color: #fff; padding: 4px 20px; border-radius: 10px; font-size: 0.8rem; font-weight: 900; }
-        .professor-message p { font-size: 1.3rem; line-height: 2; color: var(--text-main); font-weight: 600; margin-bottom: 2rem; }
-
-        .hotlink-grid { display: flex; gap: 2rem; margin-top: 4rem; }
-        .btn-hotlink { flex: 1; padding: 1.5rem; border-radius: 20px; border: 3px solid var(--accent); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 1rem; font-weight: 900; color: var(--accent); transition: 0.3s; font-size: 1.1rem; text-transform: uppercase; }
-        .btn-hotlink:hover { background: var(--accent); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 25px var(--glow); }
-
-        .btn-access { background: var(--casino-gold); color: #000; border: none; padding: 1.5rem 3rem; border-radius: 50px; font-weight: 900; cursor: pointer; transition: 0.4s; text-transform: uppercase; font-size: 1.1rem; display: none; align-items: center; gap: 1rem; box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3); }
-
-        /* VICTORY OVERLAY */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--xav-blue); z-index: 5000; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 2rem; overflow-y: auto; }
-        .vault-icon { font-size: 10rem; color: var(--casino-gold); animation: pulse 1s infinite; margin-bottom: 2rem; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        #heartbeat { font-family: 'Fira Code', monospace; color: var(--success); font-weight: 900; font-size: 1.2rem; }
 
         /* HELP BUTTON */
         .floating-help { position: fixed; bottom: 2rem; right: 2rem; width: 80px; height: 80px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900; cursor: pointer; z-index: 5000; box-shadow: 0 10px 30px rgba(12, 35, 64, 0.4); border: 4px solid #fff; transition: 0.4s; }
@@ -63,114 +42,74 @@
         
         .help-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 35, 64, 0.98); z-index: 6000; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 5%; backdrop-filter: blur(15px); }
         .help-content { max-width: 800px; background: rgba(255,255,255,0.05); padding: 4rem; border-radius: 40px; border: 2px solid rgba(255,255,255,0.1); }
-
-        .btn-close-overlay { position: absolute; top: 2rem; right: 4rem; font-size: 5rem; color: #fff; cursor: pointer; opacity: 0.3; transition: 0.3s; }
-        .btn-close-overlay:hover { opacity: 1; color: var(--casino-gold); }
-
-        .professional-intro { font-size: 1.4rem; line-height: 2.2; color: var(--text-muted); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-brand" onclick="window.location.href='index.html'">Franks<span>_MGMT</span></div>
         <div class="nav-links">
-            <a href="index.html" class="btn-nav active">Home hub</a>
+            <a href="index.html" class="btn-nav">Home hub</a>
             <a href="casino.html" class="btn-nav">Casino floor</a>
             <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
             <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
+            <a href="sources.html" class="btn-nav active">Credits</a>
             <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1>Welcome Hub</h1>
-        <p>Frank Leo Kroto IV | Strategic Refinement v10.1</p>
-    </header>
-
     <main>
-        <!-- PROFESSOR MESSAGE -->
-        <div class="professor-message">
-            <p>This dashboard serves as an executive command center, synthesizing real-time MLB data, betting market analytics, and interactive engagement systems. It demonstrates the power of multi-page isolation for system stability and high-fidelity API orchestration to drive strategic decision-making. Every module is architected as an isolated high-performance environment to ensure 100% stability and provable data integrity.</p>
-            <button id="accessBtn" class="btn-access" onclick="openVictory()">
-                <i class="fas fa-unlock-alt"></i> Access Granted: View Credentials
-            </button>
-        </div>
-
+        <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; margin-bottom: 4rem;">Credits & Data Sources</h2>
+        
         <div class="executive-card">
-            <div style="display: grid; grid-template-columns: 400px 1fr; gap: 6rem; align-items: center;">
-                <img src="frankkrotoicon.jpg" style="width:100%; border-radius:60px; border: 12px solid var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.2);" onerror="this.src='https://ui-avatars.com/api/?name=Frank+Kroto&background=0C2340&color=fff&size=512'">
-                <div>
-                    <h2 class="title-executive">Executive Profile</h2>
-                    <p class="professional-intro">
-                        Hello! I am Frank Leo Kroto IV, a student at **Xavier University, Class of 2027**, specializing in Business Management and Applied AI Strategy. 
-                        <br><br>
-                        Thank you for visiting my project hub. This tactical center demonstrates how we can synthesize live API orchestration with premium interface design to create a unified mission control station.
-                    </p>
-                    <div class="hotlink-grid">
-                        <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" class="btn-hotlink"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="https://github.com/fkroto4" target="_blank" class="btn-hotlink"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
+            <h3 style="margin-bottom:2rem;">Data Integrity Verification</h3>
+            <div class="source-grid">
+                <div class="source-pill">
+                    <h4>MLB Stats API</h4>
+                    <p>Live scores, standings, player rosters, and individual Statcast statistics for Major League Baseball.</p>
+                    <a href="https://statsapi.mlb.com" target="_blank" class="source-link">Verify Feed <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="source-pill">
+                    <h4>OddShark Computer Picks</h4>
+                    <p>Mathematical momentum indexing and market parlay logic references.</p>
+                    <a href="https://www.oddsshark.com/mlb" target="_blank" class="source-link">Verify Logic <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="source-pill">
+                    <h4>DraftKings Sportsbook</h4>
+                    <p>Real-time moneyline, spread, and game availability data.</p>
+                    <a href="https://sportsbook.draftkings.com" target="_blank" class="source-link">Verify Lines <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
+        </div>
+
+        <div class="executive-card" style="text-align:center; background: var(--xav-blue); color: white; border: none;">
+            <h3 style="margin-bottom:1.5rem;">System Proof of Life</h3>
+            <p style="opacity:0.7; margin-bottom:2rem;">This application is performing active data fetches every minute.</p>
+            <div id="heartbeat">SYSTEM HEARTBEAT: CALCULATING...</div>
         </div>
     </main>
 
     <div class="floating-help" onclick="toggleHelp()">?</div>
     <div id="helpOverlay" class="help-overlay" onclick="toggleHelp()">
         <div class="help-content">
-            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">EXECUTIVE GATEWAY GUIDE</h2>
+            <h2 style="font-family:'Playfair Display'; font-size:3.5rem; margin-bottom:2rem; color:var(--casino-gold);">DATA INTEGRITY GUIDE</h2>
             <p style="font-size:1.4rem; line-height:2; opacity:0.9;">
-                Welcome to the Strategic Command Center. This hub is split into isolated physical pages to guarantee zero logic interference.
+                This page documents the professional-grade data sources powering the Strategic Hub.
                 <br><br>
-                1. Navigate using the **Top Bar** to explore MLB analytics and betting tools.
-                <br>2. Visit the **Casino Floor** to wager chips and reach the 1,000-point goal.
-                <br>3. Once the goal is reached, return here to **Unlock my Credentials** (Email and LinkedIn).
+                1. Review the **Citations** to verify the official MLB API and betting market providers.
+                <br>2. Monitor the **System Heartbeat** to prove that the application is currently live and fetching real-time packets.
             </p>
-            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem;">DISMISS GUIDE</button>
-        </div>
-    </div>
-
-    <!-- VICTORY OVERLAY -->
-    <div id="victory-sequence" class="overlay">
-        <span class="btn-close-overlay" onclick="closeVictory()">&times;</span>
-        <i class="fas fa-unlock-alt vault-icon"></i>
-        <h1 style="font-family: 'Playfair Display'; font-size: 5rem; margin-bottom: 2rem;">DECRYPTION COMPLETE</h1>
-        <p style="letter-spacing: 15px; color: var(--casino-gold); margin-bottom: 5rem; font-size: 1.5rem;">ACCESS GRANTED TO CREDENTIALS</p>
-        <div class="executive-card" style="max-width: 800px; text-align: left; background: rgba(255,255,255,0.08); color: white; border: 3px solid var(--casino-gold); padding: 5rem;">
-            <h2 style="font-size: 3rem;">Frank Leo Kroto IV</h2>
-            <p style="opacity: 0.8; font-size: 1.4rem; margin-bottom: 3rem;">Business Strategy | AI Orchestration | Xavier University '27</p>
-            <div style="display: grid; gap: 2rem;">
-                <div style="font-size: 1.8rem;"><i class="fas fa-envelope" style="width: 50px; color: var(--casino-gold);"></i> krotof@xavier.FAKE</div>
-                <a href="https://linkedin.com/in/frankkrotoiv" target="_blank" style="font-size: 1.8rem; color: white; text-decoration: none;">
-                    <i class="fab fa-linkedin" style="width: 50px; color: var(--casino-gold);"></i> View my LinkedIn Profile
-                </a>
-            </div>
-            <p style="margin-top: 5rem; font-size: 1.3rem; font-weight: 700; color: var(--casino-gold); border-top: 1px solid rgba(255,255,255,0.2); padding-top: 3rem;">"Hello! Thank you so much for putting in the effort to play my game. I hope this project shows my commitment to professional, high-quality results. I look forward to connecting!"</p>
-            <div style="display: flex; gap: 2rem; margin-top: 5rem;">
-                <button class="btn-nav active" style="flex:1; font-size: 1.2rem; padding: 1.5rem;" onclick="resetHub()">RESET HUB</button>
-                <button class="btn-nav" style="flex:1; font-size: 1.2rem; padding: 1.5rem; border-color:white; color:white;" onclick="closeVictory()">STAY ON HUB</button>
-            </div>
+            <button class="btn-nav active" style="margin-top:3rem; padding:1.5rem 4rem; font-size:1.2rem; background:var(--casino-gold); color:#000;">DISMISS GUIDE</button>
         </div>
     </div>
 
     <script>
-        function openVictory() { document.getElementById('victory-sequence').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeVictory() { document.getElementById('victory-sequence').style.display = 'none'; document.body.style.overflow = 'auto'; }
-        function toggleHelp() {
-            const h = document.getElementById('helpOverlay');
-            h.style.display = (h.style.display === 'flex') ? 'none' : 'flex';
-        }
-        function resetHub() { localStorage.setItem('franks_chips_v94', '100'); location.reload(); }
-
+        setInterval(() => {
+            document.getElementById('heartbeat').innerText = `SYSTEM HEARTBEAT: ${new Date().toLocaleTimeString()}`;
+        }, 1000);
+        function toggleHelp() { const h = document.getElementById('helpOverlay'); h.style.display = (h.style.display === 'flex') ? 'none' : 'flex'; }
         window.onload = () => {
             const saved = localStorage.getItem('franks_chips_v94');
-            const chips = saved || '100';
-            document.getElementById('masterChips').innerText = chips;
-            localStorage.setItem('franks_chips_v94', chips);
-            if(parseInt(chips) >= 1000) {
-                document.getElementById('accessBtn').style.display = 'inline-flex';
-                if(document.referrer.includes('casino.html')) openVictory();
-            }
+            document.getElementById('masterChips').innerText = saved || '100';
         };
     </script>
 </body>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franks_MGMT_Project | Sources Cited</title>
+    <title>Franks_MGMT_Project | Sources & Credits</title>
     <link rel="icon" type="image/jpeg" href="frankkrotoicon.jpg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
             --xav-blue: #0C2340; --accent: #0C2340; --bg-color: #f1f5f9; --border-color: #e2e8f0;
-            --text-main: #0f172a; --text-muted: #64748b; --success: #059669;
+            --text-main: #0f172a; --text-muted: #64748b; --success: #059669; --casino-gold: #fbbf24;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
@@ -18,11 +18,13 @@
 
         nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 4%; display: flex; justify-content: space-between; align-items: center; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2rem; color: var(--xav-blue); cursor: pointer; }
-        .nav-links { display: flex; align-items: center; gap: 1rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.2rem; }
 
-        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; }
+        .btn-nav { padding: 0.6rem 1.1rem; border: 2px solid var(--border-color); background: transparent; border-radius: 30px; color: var(--text-main); font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; text-decoration: none; }
         .btn-nav:hover { border-color: var(--accent); }
         .btn-nav.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .chip-vault { background: #fff; border: 3px solid #fbbf24; padding: 0.5rem 1.4rem; border-radius: 50px; font-weight: 900; color: #92400e; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); }
 
         main { max-width: 1200px; margin: 0 auto; padding: 5rem 5%; }
         .executive-card { background: #fff; border: 1px solid var(--border-color); border-radius: 40px; padding: 4rem; margin-bottom: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
@@ -49,20 +51,21 @@
             <a href="index.html" class="btn-nav">Home hub</a>
             <a href="casino.html" class="btn-nav">Casino floor</a>
             <a href="mlb-savant.html" class="btn-nav">MLB Teams Live!</a>
-            <a href="milb-savant.html" class="btn-nav">MiLB Teams Live!</a>
             <a href="betting-hub.html" class="btn-nav">Betting Hub</a>
+            <a href="sources.html" class="btn-nav active">Credits</a>
+            <div class="chip-vault"><i class="fas fa-gem"></i> <span id="masterChips">100</span></div>
         </div>
     </nav>
 
     <main>
-        <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; margin-bottom: 4rem;">Sources Cited</h2>
+        <h2 style="font-family:'Playfair Display'; font-size: 3.5rem; font-weight: 900; margin-bottom: 4rem;">Credits & Data Sources</h2>
         
         <div class="executive-card">
             <h3 style="margin-bottom:2rem;">Data Integrity Verification</h3>
             <div class="source-grid">
                 <div class="source-pill">
                     <h4>MLB Stats API</h4>
-                    <p>Live scores, standings, player rosters, and individual Statcast statistics for MLB and MiLB.</p>
+                    <p>Live scores, standings, player rosters, and individual Statcast statistics for Major League Baseball.</p>
                     <a href="https://statsapi.mlb.com" target="_blank" class="source-link">Verify Feed <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 <div class="source-pill">
@@ -104,6 +107,10 @@
             document.getElementById('heartbeat').innerText = `SYSTEM HEARTBEAT: ${new Date().toLocaleTimeString()}`;
         }, 1000);
         function toggleHelp() { const h = document.getElementById('helpOverlay'); h.style.display = (h.style.display === 'flex') ? 'none' : 'flex'; }
+        window.onload = () => {
+            const saved = localStorage.getItem('franks_chips_v94');
+            document.getElementById('masterChips').innerText = saved || '100';
+        };
     </script>
 </body>
 </html>
